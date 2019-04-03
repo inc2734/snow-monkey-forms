@@ -21,13 +21,23 @@ class Setting {
 				[
 					'name'    => 'お名前',
 					'type'    => 'text',
-					'label'   => 'お名前',
+					'label'   => 'お名前 ※',
 					'require' => true,
 				],
 				[
 					'name'  => 'ご住所',
 					'type'  => 'text',
 					'label' => 'ご住所',
+				],
+				[
+					'name'  => '趣味',
+					'type'  => 'checkbox',
+					'label' => '趣味',
+					'children' => [
+						'soccer'   => 'サッカー',
+						'baseball' => '野球',
+						'tennis'   => 'テニス',
+					],
 				],
 			];
 
@@ -37,7 +47,7 @@ class Setting {
 				[
 					'name'    => 'お名前',
 					'type'    => 'text',
-					'label'   => 'お名前',
+					'label'   => 'お名前 ※',
 					'require' => true,
 				],
 			];

@@ -56,7 +56,7 @@ class Bootstrap {
 					<p>
 						<?php echo esc_html( $control['label'] ); ?><br>
 						<span class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $control['name'] ); ?>">
-							<?php echo Control::render( $control['type'], [ 'name' => $control['name'] ] ); ?>
+							<?php echo Control::render( $control['type'], $control ); ?>
 						</span>
 					</p>
 				<?php endforeach; ?>
@@ -100,6 +100,7 @@ jQuery(
 						function( response ) {
 							response = JSON.parse( response );
 							var method = response.data._method;
+							console.log( response );
 
 							actionArea.html( response.action );
 

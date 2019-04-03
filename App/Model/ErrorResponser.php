@@ -15,10 +15,7 @@ class ErrorResponser extends Responser {
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
 			$form_control = Control::render(
 				$control['type'],
-				[
-					'name'  => $control['name'],
-					'value' => $this->get( $control['name'] ),
-				]
+				array_merge( $control, [ 'value' => $this->get( $control['name'] ) ] )
 			);
 
 			$error_message = ! empty( $control['require'] ) && '' === $this->get( $control['name'] )

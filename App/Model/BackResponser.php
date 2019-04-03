@@ -15,10 +15,7 @@ class BackResponser extends Responser {
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
 			$controls[ $control['name'] ] = Control::render(
 				$control['type'],
-				[
-					'name'  => $control['name'],
-					'value' => $this->get( $control['name'] ),
-				]
+				array_merge( $control, [ 'value' => $this->get( $control['name'] ) ] )
 			);
 		}
 
