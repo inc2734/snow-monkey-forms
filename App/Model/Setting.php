@@ -66,11 +66,12 @@ class Setting {
 		} else if ( 2 == $form_id ) {
 			$this->controls = [
 				[
-					'name'       => 'お名前',
 					'type'       => 'text',
 					'label'      => 'お名前 ※',
 					'require'    => true,
-					'attributes' => [],
+					'attributes' => [
+						'name' => 'お名前',
+					],
 				],
 			];
 
