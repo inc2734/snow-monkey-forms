@@ -1,0 +1,23 @@
+{
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "authors": [
+    {
+      "name": "Takashi Kitajima",
+      "email": "inc@2inc.org",
+      "homepage": "https://2inc.org"
+    }
+  ],
+  "require-dev": {
+  },
+  "require": {
+    "php": ">=5.6"
+  },
+  "scripts" :{
+  },
+  "autoload": {
+    "psr-4": {
+      "Snow_Monkey\\Plugin\\Forms\\": ""
+    }
+  }
+}

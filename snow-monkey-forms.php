@@ -1,0 +1,147 @@
+<?php
+/**
+ * Plugin name: Snow Monkey Forms
+ * Version: 0.0.1
+ *
+ * @package snow-monkey-forms
+ * @author inc2734
+ * @license GPL-2.0+
+ */
+
+namespace Snow_Monkey\Plugin\Forms;
+
+use Snow_Monkey\Plugin\Forms\App;
+use Snow_Monkey\Plugin\Forms\App\Control;
+
+define( 'SNOW_MONKEY_FORMS_URL', plugin_dir_url( __FILE__ ) );
+define( 'SNOW_MONKEY_FORMS_PATH', plugin_dir_path( __FILE__ ) );
+
+require_once( SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php' );
+
+class Bootstrap {
+
+	public function __construct() {
+		add_action( 'plugins_loaded', [ $this, '_plugins_loaded' ] );
+	}
+
+	public function _plugins_loaded() {
+		add_shortcode( 'snow_monkey_form', [ $this, '_shortcode_form' ] );
+		add_action( 'wp_footer', [ $this, '_script' ], 999999 );
+	}
+
+	public function _shortcode_form( $attributes ) {
+		$attributes = shortcode_atts(
+			[
+				'id' => null,
+			],
+			$attributes
+		);
+
+		if ( ! $attributes['id'] ) {
+			return;
+		}
+
+		$form_id = $attributes['id'];
+		$setting = App\DataStore::get( $form_id );
+
+		if ( ! $setting->get( 'controls' ) ) {
+			return;
+		}
+
+		ob_start();
+		?>
+		<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action="">
+			<div class="p-entry-content">
+				<?php foreach ( $setting->get( 'controls' ) as $control ) : ?>
+					<p>
+						<?php echo esc_html( $control['label'] ); ?><br>
+						<span class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $control['name'] ); ?>">
+							<?php
+							$class_name = 'Snow_Monkey\Plugin\Forms\App\Control\\' . ucfirst( strtolower( $control['type'] ) );
+							echo $class_name::render( $control['name'], '' );
+							?>
+						</span>
+					</p>
+				<?php endforeach; ?>
+
+				<p class="snow-monkey-form__action">
+					<?php echo Control\Button::render( '確認', [ 'data-action' => 'confirm' ] ); ?>
+					<?php echo Control\Hidden::render( '_method', 'confirm' ); ?>
+				</p>
+			</div>
+			<?php echo Control\Hidden::render( '_formid', $form_id ); ?>
+		</form>
+		<?php
+		return ob_get_clean();
+	}
+
+	public function _script() {
+		?>
+<script>
+jQuery(
+	function( $ ) {
+		var form = $( '#snow-monkey-form-1' );
+		var actionArea = form.find( '.snow-monkey-form__action' );
+
+		$( document ).on(
+			'click',
+			'[data-action="back"]',
+			function( event ) {
+				$( event.currentTarget ).parent().find( 'input[type="hidden"]' ).attr( 'value', 'back' );
+			}
+		)
+
+		form.on(
+			'submit',
+			function( event ) {
+				event.preventDefault();
+
+				$.post(
+					'<?php echo SNOW_MONKEY_FORMS_URL; ?>/json/',
+					form.serialize()
+				).done(
+					function( response ) {
+						response = JSON.parse( response );
+						var method = response.data._method;
+
+						actionArea.html( response.action );
+
+						$.each(
+							response.controls,
+							function( key, control ) {
+								var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
+								placeholder.html( '' );
+							}
+						);
+
+						if ( '' === method || 'back' === method || 'error' === method ) {
+							$.each(
+								response.controls,
+								function( key, control ) {
+									var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
+									placeholder.append( control );
+								}
+							);
+						} else if ( 'confirm' === method ) {
+							$.each(
+								response.data,
+								function( key, value ) {
+									var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
+									placeholder.append( value ).append( response.controls[ key ] );
+								}
+							);
+						} else if ( 'complete' === method ) {
+							form.html( '' ).append( response.message );
+						}
+					}
+				);
+			}
+		);
+	}
+);
+</script>
+		<?php
+	}
+}
+
+new Bootstrap();
