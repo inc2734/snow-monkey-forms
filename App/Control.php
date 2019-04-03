@@ -15,30 +15,37 @@ class Control {
 
 			return sprintf(
 				'<input class="c-form-control" type="text" %1$s>',
-				static::generate_attributes( $options )
+				static::generate_attributes( $options['attributes'] )
 			);
 
 		} elseif ( 'checkbox' === $type ) {
 
 			$children = isset( $options['children'] ) ? $options['children'] : [];
-			$name     = isset( $options['name'] ) ? $options['name'] : null;
-			$values   = isset( $options['value'] ) ? $options['value'] : [];
-			$values   = is_array( $values ) ? $values : explode( static::GLUE, $values );
+			$options_attributes = isset( $options['attributes'] ) ? $options['attributes'] : [];
+			$name   = isset( $options_attributes['name'] ) ? $options_attributes['name'] : null;
+			$values = isset( $options_attributes['value'] ) ? $options_attributes['value'] : [];
+			$values = is_array( $values ) ? $values : explode( static::GLUE, $values );
 
 			if ( ! $name ) {
 				return;
 			}
 
 			$controls = [
-				static::render( 'hidden', [ 'name' => $name, 'value' => '' ] ),
+				static::render( 'hidden', [ 'attributes' => [ 'name' => $name, 'value' => '' ] ] ),
 			];
-			foreach ( $children as $key => $value ) {
+			foreach ( $children as $child_option ) {
+				$label = isset( $child_option['label'] ) ? $child_option['label'] : null;
+				$child_attributes = isset( $child_option['attributes'] ) ? $child_option['attributes'] : [];
+				$value = isset( $child_attributes['value'] ) ? $child_attributes['value'] : null;
+				$child_attributes = is_array( $values ) && ! empty( $values ) && in_array( $value, $values )
+					? array_merge( $child_attributes, [ 'checked' => 'checked' ] )
+					: $child_attributes;
+
 				$controls[] = sprintf(
-					'<label><input type="checkbox" name="%1$s[]" value="%2$s" %4$s>%3$s</label>',
+					'<label><input type="checkbox" name="%1$s[]" %2$s>%3$s</label>',
 					$name,
-					$key,
-					$value,
-					is_array( $values ) && in_array( $key, $values ) ? 'checked="checked"' : null
+					static::generate_attributes( $child_attributes ),
+					$label
 				);
 			}
 
@@ -46,9 +53,10 @@ class Control {
 
 		} elseif ( 'hidden' === $type ) {
 
-			$value = isset( $options['value'] ) ? $options['value'] : null;
+			$options_attributes = isset( $options['attributes'] ) ? $options['attributes'] : [];
+			$value = isset( $options_attributes['value'] ) ? $options_attributes['value'] : null;
 			$value = is_array( $value ) ? implode( static::GLUE, $value ) : $value;
-			$attributes = static::generate_attributes( array_merge( $options, [ 'value' => $value ] ) );
+			$attributes = static::generate_attributes( array_merge( $options_attributes, [ 'value' => $value ] ) );
 
 			return sprintf(
 				'<input type="hidden" %1$s>',
@@ -57,8 +65,9 @@ class Control {
 
 		} elseif ( 'button' === $type ) {
 
-			$attributes = static::generate_attributes( $options );
-			$value      = isset( $options['value'] ) ? $options['value'] : null;
+			$options_attributes = isset( $options['attributes'] ) ? $options['attributes'] : [];
+			$attributes = static::generate_attributes( $options_attributes );
+			$value      = isset( $options_attributes['value'] ) ? $options_attributes['value'] : null;
 
 			return sprintf(
 				'<button class="c-btn" %1$s>%2$s</button>',

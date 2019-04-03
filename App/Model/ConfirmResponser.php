@@ -13,11 +13,35 @@ class ConfirmResponser extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$controls[ $control['name'] ] = Control::render(
-				'hidden',
+			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
+			$value = $this->get( $attributes['name'] );
+
+			$label = $value;
+			if ( is_array( $value ) ) {
+				$labels = [];
+				$children = isset( $control['children'] ) ? $control['children'] : [];
+				foreach ( $children as $child ) {
+					$child_attributes = isset( $child['attributes'] ) ? $child['attributes'] : [];
+					if ( isset( $child_attributes['value'] ) && in_array( $child_attributes['value'], $value ) ) {
+						$labels[] = $child['label'];
+					}
+				}
+				$label = implode( ', ', $labels );
+			}
+
+			$controls[ $control['attributes']['name'] ] = implode(
+				'',
 				[
-					'name'  => $control['name'],
-					'value' => $this->get( $control['name'] ),
+					$label,
+					Control::render(
+						'hidden',
+						[
+							'attributes' => [
+								'name'  => $control['attributes']['name'],
+								'value' => $value,
+							],
+						]
+					),
 				]
 			);
 		}
@@ -27,9 +51,9 @@ class ConfirmResponser extends Responser {
 			[
 				'controls' => $controls,
 				'action' => [
-					Control::render( 'button', [ 'value' => '戻る', 'data-action' => 'back' ] ),
-					Control::render( 'button', [ 'value' => '送信', 'data-action' => 'complete' ] ),
-					Control::render( 'hidden', [ 'name' => '_method', 'value' => 'complete' ] ),
+					Control::render( 'button', [ 'attributes' => [ 'value' => '戻る', 'data-action' => 'back' ] ] ),
+					Control::render( 'button', [ 'attributes' => [ 'value' => '送信', 'data-action' => 'complete' ] ] ),
+					Control::render( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'complete' ] ] ),
 				],
 			]
 		);

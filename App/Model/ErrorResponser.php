@@ -13,16 +13,16 @@ class ErrorResponser extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$form_control = Control::render(
-				$control['type'],
-				array_merge( $control, [ 'value' => $this->get( $control['name'] ) ] )
-			);
+			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
+			$control['attributes'] = array_merge( $attributes, [ 'value' => $this->get( $control['attributes']['name'] ) ] );
 
-			$error_message = ! empty( $control['require'] ) && '' === $this->get( $control['name'] )
+			$form_control = Control::render( $control['type'], $control );
+
+			$error_message = ! empty( $control['require'] ) && '' === $this->get( $control['attributes']['name'] )
 				? '未入力です'
 				: '';
 
-			$controls[ $control['name'] ] = $form_control . $error_message;
+			$controls[ $control['attributes']['name'] ] = $form_control . $error_message;
 		}
 
 		return array_merge(
@@ -30,8 +30,8 @@ class ErrorResponser extends Responser {
 			[
 				'controls' => $controls,
 				'action' => [
-					Control::render( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ),
-					Control::render( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ),
+					Control::render( 'button', [ 'attributes' => [ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
+					Control::render( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'confirm' ] ] ),
 				],
 			]
 		);

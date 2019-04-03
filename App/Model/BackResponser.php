@@ -13,19 +13,19 @@ class BackResponser extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$controls[ $control['name'] ] = Control::render(
-				$control['type'],
-				array_merge( $control, [ 'value' => $this->get( $control['name'] ) ] )
-			);
+			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
+			$control['attributes'] = array_merge( $attributes, [ 'value' => $this->get( $control['attributes']['name'] ) ] );
+
+			$controls[ $control['attributes']['name'] ] = Control::render( $control['type'], $control );
 		}
 
 		return array_merge(
 			parent::get_response_data(),
 			[
 				'controls' => $controls,
-				'action' => [
-					Control::render( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ),
-					Control::render( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ),
+				'action'   => [
+					Control::render( 'button', [ 'attributes' =>[ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
+					Control::render( 'hidden', [ 'attributes' =>[ 'name' => '_method', 'value' => 'confirm' ] ] ),
 				],
 			]
 		);

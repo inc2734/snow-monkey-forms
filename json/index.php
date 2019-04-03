@@ -18,7 +18,7 @@ $setting = DataStore::get( $form_id );
 $response = new Responser( $data, $setting );
 
 foreach ( $setting->get( 'controls' ) as $control ) {
-	if ( ! empty( $control['require'] ) && '' === $response->get( $control['name'] ) ) {
+	if ( ! empty( $control['require'] ) && '' === $response->get( $control['attributes']['name'] ) ) {
 		$data['_method'] = 'error';
 		break;
 	}

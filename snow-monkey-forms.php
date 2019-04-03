@@ -55,18 +55,18 @@ class Bootstrap {
 				<?php foreach ( $setting->get( 'controls' ) as $control ) : ?>
 					<p>
 						<?php echo esc_html( $control['label'] ); ?><br>
-						<span class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $control['name'] ); ?>">
+						<span class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $control['attributes']['name'] ); ?>">
 							<?php echo Control::render( $control['type'], $control ); ?>
 						</span>
 					</p>
 				<?php endforeach; ?>
 
 				<p class="snow-monkey-form__action">
-					<?php echo Control::render( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ); ?>
-					<?php echo Control::render( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ); ?>
+					<?php echo Control::render( 'button', [ 'attributes' => [ 'value' => '確認', 'data-action' => 'confirm' ] ] ); ?>
+					<?php echo Control::render( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'confirm' ] ] ); ?>
 				</p>
 			</div>
-			<?php echo Control::render( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] ); ?>
+			<?php echo Control::render( 'hidden', [ 'attributes' => [ 'name' => '_formid', 'value' => $form_id ] ] ); ?>
 		</form>
 		<?php
 		return ob_get_clean();
@@ -112,20 +112,12 @@ jQuery(
 								}
 							);
 
-							if ( '' === method || 'back' === method || 'error' === method ) {
+							if ( '' === method || 'back' === method || 'error' === method || 'confirm' === method ) {
 								$.each(
 									response.controls,
 									function( key, control ) {
 										var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
 										placeholder.append( control );
-									}
-								);
-							} else if ( 'confirm' === method ) {
-								$.each(
-									response.data,
-									function( key, value ) {
-										var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
-										placeholder.append( value ).append( response.controls[ key ] );
 									}
 								);
 							} else if ( 'complete' === method ) {

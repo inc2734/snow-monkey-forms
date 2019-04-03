@@ -19,24 +19,45 @@ class Setting {
 		if ( 1 == $form_id ) {
 			$this->controls = [
 				[
-					'name'    => 'お名前',
-					'type'    => 'text',
-					'label'   => 'お名前 ※',
-					'require' => true,
+					'type'       => 'text',
+					'label'      => 'お名前 ※',
+					'require'    => true,
+					'attributes' => [
+						'name' => 'お名前',
+					],
 				],
 				[
-					'name'  => 'ご住所',
-					'type'  => 'text',
-					'label' => 'ご住所',
+					'type'       => 'text',
+					'label'      => 'ご住所',
+					'attributes' => [
+						'name' => 'ご住所',
+					],
 				],
 				[
-					'name'  => '趣味',
-					'type'  => 'checkbox',
-					'label' => '趣味',
+					'type'       => 'checkbox',
+					'label'      => '趣味',
+					'attributes' => [
+						'name'  => '趣味',
+					],
 					'children' => [
-						'soccer'   => 'サッカー',
-						'baseball' => '野球',
-						'tennis'   => 'テニス',
+						[
+							'label'      => 'サッカー',
+							'attributes' => [
+								'value' => 'soccer',
+							],
+						],
+						[
+							'label'      => '野球',
+							'attributes' => [
+								'value' => 'baseball',
+							],
+						],
+						[
+							'label'      => 'テニス',
+							'attributes' => [
+								'value' => 'tennis',
+							],
+						],
 					],
 				],
 			];
@@ -45,10 +66,11 @@ class Setting {
 		} else if ( 2 == $form_id ) {
 			$this->controls = [
 				[
-					'name'    => 'お名前',
-					'type'    => 'text',
-					'label'   => 'お名前 ※',
-					'require' => true,
+					'name'       => 'お名前',
+					'type'       => 'text',
+					'label'      => 'お名前 ※',
+					'require'    => true,
+					'attributes' => [],
 				],
 			];
 
