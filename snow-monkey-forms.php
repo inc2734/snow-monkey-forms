@@ -80,61 +80,68 @@ class Bootstrap {
 <script>
 jQuery(
 	function( $ ) {
-		var form = $( '#snow-monkey-form-1' );
-		var actionArea = form.find( '.snow-monkey-form__action' );
-
 		$( document ).on(
 			'click',
 			'[data-action="back"]',
 			function( event ) {
 				$( event.currentTarget ).parent().find( 'input[type="hidden"]' ).attr( 'value', 'back' );
 			}
-		)
+		);
 
-		form.on(
-			'submit',
-			function( event ) {
-				event.preventDefault();
+		var send = function( form ) {
+			var actionArea = form.find( '.snow-monkey-form__action' );
 
-				$.post(
-					'<?php echo SNOW_MONKEY_FORMS_URL; ?>/json/',
-					form.serialize()
-				).done(
-					function( response ) {
-						response = JSON.parse( response );
-						var method = response.data._method;
+			form.on(
+				'submit',
+				function( event ) {
+					event.preventDefault();
 
-						actionArea.html( response.action );
+					$.post(
+						'<?php echo SNOW_MONKEY_FORMS_URL; ?>/json/',
+						form.serialize()
+					).done(
+						function( response ) {
+							response = JSON.parse( response );
+							var method = response.data._method;
 
-						$.each(
-							response.controls,
-							function( key, control ) {
-								var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
-								placeholder.html( '' );
-							}
-						);
+							actionArea.html( response.action );
 
-						if ( '' === method || 'back' === method || 'error' === method ) {
 							$.each(
 								response.controls,
 								function( key, control ) {
 									var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
-									placeholder.append( control );
+									placeholder.html( '' );
 								}
 							);
-						} else if ( 'confirm' === method ) {
-							$.each(
-								response.data,
-								function( key, value ) {
-									var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
-									placeholder.append( value ).append( response.controls[ key ] );
-								}
-							);
-						} else if ( 'complete' === method ) {
-							form.html( '' ).append( response.message );
+
+							if ( '' === method || 'back' === method || 'error' === method ) {
+								$.each(
+									response.controls,
+									function( key, control ) {
+										var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
+										placeholder.append( control );
+									}
+								);
+							} else if ( 'confirm' === method ) {
+								$.each(
+									response.data,
+									function( key, value ) {
+										var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
+										placeholder.append( value ).append( response.controls[ key ] );
+									}
+								);
+							} else if ( 'complete' === method ) {
+								form.html( '' ).append( response.message );
+							}
 						}
-					}
-				);
+					);
+				}
+			);
+		};
+
+		$( '.snow-monkey-form' ).each(
+			function( i, e ) {
+				send( $( e ) );
 			}
 		);
 	}

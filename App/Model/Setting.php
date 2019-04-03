@@ -32,6 +32,17 @@ class Setting {
 			];
 
 			$this->complete_message = '送信しました！';
+		} else if ( 2 == $form_id ) {
+			$this->controls = [
+				[
+					'name'    => 'お名前',
+					'type'    => 'text',
+					'label'   => 'お名前',
+					'require' => true,
+				],
+			];
+
+			$this->complete_message = '送信したぜ！';
 		}
 	}
 
