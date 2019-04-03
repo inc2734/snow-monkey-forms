@@ -13,8 +13,13 @@ class BackResponser extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$class_name = 'Snow_Monkey\Plugin\Forms\App\Control\\' . ucfirst( strtolower( $control['type'] ) );
-			$controls[ $control['name'] ] = $class_name::render( $control['name'], $this->get( $control['name'] ) );
+			$controls[ $control['name'] ] = Control::render(
+				$control['type'],
+				[
+					'name'  => $control['name'],
+					'value' => $this->get( $control['name'] ),
+				]
+			);
 		}
 
 		return array_merge(
@@ -22,8 +27,8 @@ class BackResponser extends Responser {
 			[
 				'controls' => $controls,
 				'action' => [
-					Control\Button::render( '確認', [ 'data-action' => 'confirm' ] ),
-					Control\Hidden::render( '_method', 'confirm' ),
+					Control::render( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ),
+					Control::render( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ),
 				],
 			]
 		);

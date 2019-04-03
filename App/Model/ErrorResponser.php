@@ -13,8 +13,13 @@ class ErrorResponser extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$class_name   = 'Snow_Monkey\Plugin\Forms\App\Control\\' . ucfirst( strtolower( $control['type'] ) );
-			$form_control = $class_name::render( $control['name'], $this->get( $control['name'] ) );
+			$form_control = Control::render(
+				$control['type'],
+				[
+					'name'  => $control['name'],
+					'value' => $this->get( $control['name'] ),
+				]
+			);
 
 			$error_message = ! empty( $control['require'] ) && '' === $this->get( $control['name'] )
 				? '未入力です'
@@ -28,8 +33,8 @@ class ErrorResponser extends Responser {
 			[
 				'controls' => $controls,
 				'action' => [
-					Control\Button::render( '確認', [ 'data-action' => 'confirm' ] ),
-					Control\Hidden::render( '_method', 'confirm' ),
+					Control::render( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ),
+					Control::render( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ),
 				],
 			]
 		);

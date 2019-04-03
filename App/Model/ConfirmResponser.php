@@ -13,7 +13,13 @@ class ConfirmResponser extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$controls[ $control['name'] ] = Control\Hidden::render( $control['name'], $this->get( $control['name'] ) );
+			$controls[ $control['name'] ] = Control::render(
+				'hidden',
+				[
+					'name'  => $control['name'],
+					'value' => $this->get( $control['name'] ),
+				]
+			);
 		}
 
 		return array_merge(
@@ -21,9 +27,9 @@ class ConfirmResponser extends Responser {
 			[
 				'controls' => $controls,
 				'action' => [
-					Control\Button::render( '戻る', [ 'data-action' => 'back' ] ),
-					Control\Button::render( '送信', [ 'data-action' => 'complete' ] ),
-					Control\Hidden::render( '_method', 'complete' ),
+					Control::render( 'button', [ 'value' => '戻る', 'data-action' => 'back' ] ),
+					Control::render( 'button', [ 'value' => '送信', 'data-action' => 'complete' ] ),
+					Control::render( 'hidden', [ 'name' => '_method', 'value' => 'complete' ] ),
 				],
 			]
 		);

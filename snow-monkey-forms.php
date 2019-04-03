@@ -10,7 +10,7 @@
 
 namespace Snow_Monkey\Plugin\Forms;
 
-use Snow_Monkey\Plugin\Forms\App;
+use Snow_Monkey\Plugin\Forms\App\DataStore;
 use Snow_Monkey\Plugin\Forms\App\Control;
 
 define( 'SNOW_MONKEY_FORMS_URL', plugin_dir_url( __FILE__ ) );
@@ -42,7 +42,7 @@ class Bootstrap {
 		}
 
 		$form_id = $attributes['id'];
-		$setting = App\DataStore::get( $form_id );
+		$setting = DataStore::get( $form_id );
 
 		if ( ! $setting->get( 'controls' ) ) {
 			return;
@@ -56,20 +56,17 @@ class Bootstrap {
 					<p>
 						<?php echo esc_html( $control['label'] ); ?><br>
 						<span class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $control['name'] ); ?>">
-							<?php
-							$class_name = 'Snow_Monkey\Plugin\Forms\App\Control\\' . ucfirst( strtolower( $control['type'] ) );
-							echo $class_name::render( $control['name'], '' );
-							?>
+							<?php echo Control::render( $control['type'], [ 'name' => $control['name'] ] ); ?>
 						</span>
 					</p>
 				<?php endforeach; ?>
 
 				<p class="snow-monkey-form__action">
-					<?php echo Control\Button::render( '確認', [ 'data-action' => 'confirm' ] ); ?>
-					<?php echo Control\Hidden::render( '_method', 'confirm' ); ?>
+					<?php echo Control::render( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ); ?>
+					<?php echo Control::render( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ); ?>
 				</p>
 			</div>
-			<?php echo Control\Hidden::render( '_formid', $form_id ); ?>
+			<?php echo Control::render( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] ); ?>
 		</form>
 		<?php
 		return ob_get_clean();

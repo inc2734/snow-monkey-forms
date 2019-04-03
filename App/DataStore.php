@@ -7,10 +7,10 @@
 
 namespace Snow_Monkey\Plugin\Forms\App;
 
-use Snow_Monkey\Plugin\Forms\App\Model;
+use Snow_Monkey\Plugin\Forms\App\Model\Setting;
 
 class DataStore {
 	public static function get( $form_id ) {
-		return new Model\Setting( $form_id );
+		return new Setting( $form_id );
 	}
 }
