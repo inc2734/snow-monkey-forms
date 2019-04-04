@@ -8,6 +8,8 @@
 
 ```
 $ composer install
+$ npm install
+$ npm run build
 ```
 
 その後、通常の WordPress プラグインと同様の手順で有効化してください。

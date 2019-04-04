@@ -26,7 +26,7 @@ class Bootstrap {
 
 	public function _plugins_loaded() {
 		add_shortcode( 'snow_monkey_form', [ $this, '_shortcode_form' ] );
-		add_action( 'wp_footer', [ $this, '_script' ], 999999 );
+		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_assets' ] );
 		add_action( 'rest_api_init', [ $this, '_endpoint' ] );
 	}
 
@@ -73,72 +73,24 @@ class Bootstrap {
 		return ob_get_clean();
 	}
 
-	public function _script() {
-		?>
-<script>
-jQuery(
-	function( $ ) {
-		$( document ).on(
-			'click',
-			'[data-action="back"]',
-			function( event ) {
-				$( event.currentTarget ).parent().find( 'input[type="hidden"]' ).attr( 'value', 'back' );
-			}
+	public function _enqueue_assets() {
+		wp_enqueue_script(
+			'snow-monkey-forms',
+			SNOW_MONKEY_FORMS_URL . '/dist/js/app.min.js',
+			[ 'jquery' ],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.min.js' ),
+			true
 		);
 
-		var send = function( form ) {
-			var actionArea = form.find( '.snow-monkey-form__action' );
-
-			form.on(
-				'submit',
-				function( event ) {
-					event.preventDefault();
-
-					$.post(
-						'<?php echo home_url(); ?>/wp-json/snow-monkey-form/v1/view',
-						form.serialize()
-					).done(
-						function( response ) {
-							response = JSON.parse( response );
-							var method = response.data._method;
-							console.log( response );
-
-							actionArea.html( response.action );
-
-							$.each(
-								response.controls,
-								function( key, control ) {
-									var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
-									placeholder.html( '' );
-								}
-							);
-
-							if ( '' === method || 'back' === method || 'error' === method || 'confirm' === method ) {
-								$.each(
-									response.controls,
-									function( key, control ) {
-										var placeholder = form.find( '.snow-monkey-form__placeholder[data-name="' + key + '"]' );
-										placeholder.append( control );
-									}
-								);
-							} else if ( 'complete' === method ) {
-								form.html( '' ).append( response.message );
-							}
-						}
-					);
-				}
-			);
-		};
-
-		$( '.snow-monkey-form' ).each(
-			function( i, e ) {
-				send( $( e ) );
-			}
+		wp_add_inline_script(
+			'snow-monkey-forms',
+			'var snow_monkey_forms = ' . json_encode(
+				[
+					'view_json_url' => home_url() . '/wp-json/snow-monkey-form/v1/view',
+				]
+			),
+			'before'
 		);
-	}
-);
-</script>
-		<?php
 	}
 
 	public function _endpoint() {
