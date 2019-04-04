@@ -14,21 +14,16 @@ class Validator {
 	protected $responser = [];
 	protected $setting;
 
+	protected $validation_map = [];
+
 	public function __construct( Responser $responser, Setting $setting ) {
-		$this->responser = $responser;
-		$this->setting   = $setting;
+		$this->responser      = $responser;
+		$this->setting        = $setting;
+		$this->validation_map = $this->_set_validation_map( $setting );
 	}
 
 	public function validate() {
-		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$attributes  = isset( $control['attributes'] ) ? $control['attributes'] : [];
-			$name        = isset( $attributes['name'] ) ? $attributes['name'] : null;
-			$validations = isset( $control['validations'] ) ? $control['validations'] : [];
-
-			if ( '' === $name || is_null( $name ) ) {
-				continue;
-			}
-
+		foreach ( $this->validation_map as $name => $validations ) {
 			foreach ( $validations as $validation_name => $validation ) {
 				if ( 'required' === $validation_name && $validation ) {
 					if ( false === Validation\Required::validate( $this->responser->get( $name ) ) ) {
@@ -41,27 +36,39 @@ class Validator {
 		return true;
 	}
 
-	public function get_error_message( $target ) {
+	public function get_error_message( $name ) {
 		$error_messages = [];
 
-		foreach ( $this->setting->get( 'controls' ) as $control ) {
+		if ( ! isset( $this->validation_map[ $name ] ) ) {
+			return;
+		}
+
+		foreach ( $this->validation_map[ $name ] as $validation_name => $validation ) {
+			if ( 'required' === $validation_name && $validation ) {
+				if ( false === Validation\Required::validate( $this->responser->get( $name ) ) ) {
+					$error_messages[] = Validation\Required::get_message();
+				}
+			}
+		}
+
+		return implode( ' ', $error_messages );
+	}
+
+	protected function _set_validation_map( Setting $setting ) {
+		$validation_map = [];
+
+		foreach ( $setting->get( 'controls' ) as $control ) {
 			$attributes  = isset( $control['attributes'] ) ? $control['attributes'] : [];
 			$name        = isset( $attributes['name'] ) ? $attributes['name'] : null;
 			$validations = isset( $control['validations'] ) ? $control['validations'] : [];
 
-			if ( '' === $name || is_null( $name ) || $target !== $name ) {
+			if ( '' === $name || is_null( $name ) || ! $validations ) {
 				continue;
 			}
 
-			foreach ( $validations as $validation_name => $validation ) {
-				if ( 'required' === $validation_name && $validation ) {
-					if ( false === Validation\Required::validate( $this->responser->get( $name ) ) ) {
-						$error_messages[] = Validation\Required::get_message();
-					}
-				}
-			}
-
-			return implode( ' ', $error_messages );
+			$validation_map[ $name ] = $validations;
 		}
+
+		return $validation_map;
 	}
 }
