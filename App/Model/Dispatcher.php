@@ -12,7 +12,15 @@ class Dispatcher {
 	protected $response;
 
 	public static function dispatch( $method, array $data = [], Setting $setting ) {
-		$class_name = 'Snow_Monkey\Plugin\Forms\App\Model\\' . ucfirst( strtolower( $method ) ) . 'Responser';
-		return new $class_name( $data, $setting );
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Controller\\' . ucfirst( strtolower( $method ) );
+
+		try {
+			$controller = new $class_name( $data, $setting );
+		} catch ( Exception $e ) {
+			error_log( $e->getMessage() );
+			$controller = new \Snow_Monkey\Plugin\Forms\App\Controller\Back();
+		}
+
+		return $controller;
 	}
 }

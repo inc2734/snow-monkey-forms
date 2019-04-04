@@ -5,18 +5,19 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Model;
+namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
-use Snow_Monkey\Plugin\Forms\App\Control;
+use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class ErrorResponser extends Responser {
+class Error extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
 			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
 			$control['attributes'] = array_merge( $attributes, [ 'value' => $this->get( $control['attributes']['name'] ) ] );
 
-			$form_control = Control::render( $control['type'], $control );
+			$form_control = Helper::control( $control['type'], $control );
 
 			$error_message = ! empty( $control['require'] ) && '' === $this->get( $control['attributes']['name'] )
 				? '未入力です'
@@ -30,8 +31,8 @@ class ErrorResponser extends Responser {
 			[
 				'controls' => $controls,
 				'action' => [
-					Control::render( 'button', [ 'attributes' => [ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
-					Control::render( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'confirm' ] ] ),
+					Helper::control( 'button', [ 'attributes' => [ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
+					Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'confirm' ] ] ),
 				],
 			]
 		);

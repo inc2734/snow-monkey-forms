@@ -5,11 +5,12 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Model;
+namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
-use Snow_Monkey\Plugin\Forms\App\Control;
+use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class ConfirmResponser extends Responser {
+class Confirm extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
@@ -32,7 +33,7 @@ class ConfirmResponser extends Responser {
 				'',
 				[
 					$label,
-					Control::render(
+					Helper::control(
 						'hidden',
 						[
 							'attributes' => [
@@ -50,9 +51,9 @@ class ConfirmResponser extends Responser {
 			[
 				'controls' => $controls,
 				'action' => [
-					Control::render( 'button', [ 'attributes' => [ 'value' => '戻る', 'data-action' => 'back' ] ] ),
-					Control::render( 'button', [ 'attributes' => [ 'value' => '送信', 'data-action' => 'complete' ] ] ),
-					Control::render( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'complete' ] ] ),
+					Helper::control( 'button', [ 'attributes' => [ 'value' => '戻る', 'data-action' => 'back' ] ] ),
+					Helper::control( 'button', [ 'attributes' => [ 'value' => '送信', 'data-action' => 'complete' ] ] ),
+					Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'complete' ] ] ),
 				],
 			]
 		);
