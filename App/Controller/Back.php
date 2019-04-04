@@ -24,14 +24,36 @@ class Back extends Contract\Controller {
 				continue;
 			}
 
-			$control['attributes'] = array_merge(
-				$attributes,
-				[
-					'value' => $this->responser->get( $name ),
-				]
-			);
+			$value = $this->responser->get( $name );
 
-			$controls[ $name ] = Helper::control( $type, $control );
+			if ( 'checkbox' === $type || 'radio' === $type ) {
+				if ( isset( $attributes['value'] ) && $attributes['value'] === $value ) {
+					$control['attributes'] = array_merge(
+						$attributes,
+						[
+							'checked' => 'checked',
+						]
+					);
+				}
+			} elseif ( 'select' === $type ) {
+				if ( isset( $attributes['value'] ) && $attributes['value'] === $value ) {
+					$control['attributes'] = array_merge(
+						$attributes,
+						[
+							'selected' => 'selected',
+						]
+					);
+				}
+			} else {
+				$control['attributes'] = array_merge(
+					$attributes,
+					[
+						'value' => $value,
+					]
+				);
+			}
+
+			$controls[ $name ] = Helper::control( $type, $control['attributes'] );
 		}
 
 		return $controls;
@@ -39,8 +61,8 @@ class Back extends Contract\Controller {
 
 	protected function set_action() {
 		return [
-			Helper::control( 'button', [ 'attributes' => [ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
-			Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'confirm' ] ] ),
+			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ),
+			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ),
 		];
 	}
 

@@ -16,6 +16,7 @@
     "clean:js": "rimraf dist/js",
     "build": "npm-run-all -p js",
     "js:app": "webpack src/js/app.js -o dist/js/app.min.js --config webpack.config.js",
+    "js:blocks": "webpack src/js/blocks.js -o dist/js/blocks.min.js --config webpack.config.js",
     "js": "npm run clean:js && npm-run-all -p js:*"
   }
 }

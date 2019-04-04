@@ -10,9 +10,7 @@ namespace Snow_Monkey\Plugin\Forms\App;
 use Snow_Monkey\Plugin\Forms\App\Control;
 
 class Helper {
-	public static function control( $type, array $options = [] ) {
-		$attributes = isset( $options['attributes'] ) ? $options['attributes'] : [];
-
+	public static function control( $type, array $attributes = [] ) {
 		if ( 'text' === $type ) {
 
 			$control = new Control\Text( $attributes );
@@ -39,5 +37,11 @@ class Helper {
 			return $control->render();
 
 		}
+	}
+
+	public static function dynamic_block( $slug, $attributes, $content = null ) {
+		ob_start();
+		include( SNOW_MONKEY_FORMS_PATH . '/block/' . $slug . '/view.php' );
+		return ob_get_clean();
 	}
 }

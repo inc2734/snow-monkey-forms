@@ -48,6 +48,14 @@ abstract class Control {
 				continue;
 			}
 
+			if ( 'checked' === $key && ! $value ) {
+				continue;
+			}
+
+			if ( 'selected' === $key && ! $value ) {
+				continue;
+			}
+
 			if ( is_null( $value ) || is_array( $value ) ) {
 				continue;
 			}

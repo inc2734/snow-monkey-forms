@@ -25,6 +25,7 @@ class Confirm extends Contract\Controller {
 			}
 
 			$value = $this->responser->get( $name );
+			$label = isset( $attributes['label'] ) ? $attributes['label'] : $value;
 
 			if ( is_array( $value ) ) {
 				$labels  = [];
@@ -35,20 +36,20 @@ class Confirm extends Contract\Controller {
 					$child_value      = isset( $child_attributes['value'] ) ? $child_attributes['value'] : null;
 					if ( ! is_null( $child_value ) && in_array( $child_value, $value ) ) {
 						$labels[]  = $child['label'];
-						$hiddens[] = Helper::control( 'hidden', [ 'attributes' => [ 'name'  => $name . '[]', 'value' => $child_value ] ] );
+						$hiddens[] = Helper::control( 'hidden', [ 'name'  => $name . '[]', 'value' => $child_value ] );
 					}
 				}
 
-				$value  = implode( ', ', $labels );
+				$label  = implode( ', ', $labels );
 				$hidden = implode( '', $hiddens );
 
 			} else {
 
-				$hidden = Helper::control( 'hidden', [ 'attributes' => [ 'name'  => $name, 'value' => $value ] ] );
+				$hidden = Helper::control( 'hidden', [ 'name'  => $name, 'value' => $value ] );
 
 			}
 
-			$controls[ $name ] = implode( '', [ esc_html( $value ), $hidden ] );
+			$controls[ $name ] = implode( '', [ esc_html( $label ), $hidden ] );
 		}
 
 		return $controls;
@@ -56,9 +57,9 @@ class Confirm extends Contract\Controller {
 
 	protected function set_action() {
 		return [
-			Helper::control( 'button', [ 'attributes' => [ 'value' => '戻る', 'data-action' => 'back' ] ] ),
-			Helper::control( 'button', [ 'attributes' => [ 'value' => '送信', 'data-action' => 'complete' ] ] ),
-			Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'complete' ] ] ),
+			Helper::control( 'button', [ 'value' => '戻る', 'data-action' => 'back' ] ),
+			Helper::control( 'button', [ 'value' => '送信', 'data-action' => 'complete' ] ),
+			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'complete' ] ),
 		];
 	}
 
