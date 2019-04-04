@@ -15,14 +15,14 @@ $data    = filter_input_array( INPUT_POST );
 $form_id = $data['_formid'];
 $setting = DataStore::get( $form_id );
 
-$response = new Responser( $data, $setting );
+$responser = new Responser( $data, $setting );
 
 foreach ( $setting->get( 'controls' ) as $control ) {
-	if ( ! empty( $control['require'] ) && '' === $response->get( $control['attributes']['name'] ) ) {
+	if ( ! empty( $control['require'] ) && '' === $responser->get( $control['attributes']['name'] ) ) {
 		$data['_method'] = 'error';
 		break;
 	}
 }
 
-$response = Dispatcher::dispatch( $data['_method'], $data, $setting );
-$response->send( $response->get_response_data() );
+$controller = Dispatcher::dispatch( $data['_method'], $responser, $setting );
+$controller->send();

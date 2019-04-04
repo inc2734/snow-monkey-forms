@@ -7,34 +7,49 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
-use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Error extends Responser {
-	public function get_response_data() {
+class Error extends Contract\Controller {
+	protected function set_controls() {
 		$controls = [];
-		foreach ( $this->setting->get( 'controls' ) as $control ) {
+		$setting_controls = $this->setting->get( 'controls' );
+
+		foreach ( $setting_controls as $control ) {
 			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
-			$control['attributes'] = array_merge( $attributes, [ 'value' => $this->get( $control['attributes']['name'] ) ] );
+			$name       = isset( $attributes['name'] ) ? $attributes['name'] : null;
+
+			if ( '' === $name || is_null( $name ) ) {
+				continue;
+			}
+
+			$control['attributes'] = array_merge(
+				$attributes,
+				[
+					'value' => $this->responser->get( $name ),
+				]
+			);
 
 			$form_control = Helper::control( $control['type'], $control );
 
-			$error_message = ! empty( $control['require'] ) && '' === $this->get( $control['attributes']['name'] )
+			$error_message = ! empty( $control['require'] ) && '' === $this->responser->get( $name )
 				? '未入力です'
 				: '';
 
-			$controls[ $control['attributes']['name'] ] = $form_control . $error_message;
+			$controls[ $name ] = $form_control . $error_message;
 		}
 
-		return array_merge(
-			parent::get_response_data(),
-			[
-				'controls' => $controls,
-				'action' => [
-					Helper::control( 'button', [ 'attributes' => [ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
-					Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'confirm' ] ] ),
-				],
-			]
-		);
+		return $controls;
+	}
+
+	protected function set_action() {
+		return [
+			Helper::control( 'button', [ 'attributes' => [ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
+			Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'confirm' ] ] ),
+		];
+	}
+
+	protected function set_message() {
+		return $this->message;
 	}
 }

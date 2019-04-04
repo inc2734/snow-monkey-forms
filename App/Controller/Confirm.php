@@ -7,19 +7,28 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
-use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Confirm extends Responser {
-	public function get_response_data() {
+class Confirm extends Contract\Controller {
+	protected function set_controls() {
 		$controls = [];
-		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$value = $this->get( $control['attributes']['name'] );
+		$setting_controls = $this->setting->get( 'controls' );
 
+		foreach ( $setting_controls as $control ) {
+			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
+			$name       = isset( $attributes['name'] ) ? $attributes['name'] : null;
+			$children   = isset( $attributes['children'] ) ? $attributes['children'] : [];
+
+			if ( '' === $name || is_null( $name ) ) {
+				continue;
+			}
+
+			$value = $this->responser->get( $name );
 			$label = $value;
+
 			if ( is_array( $value ) ) {
 				$labels = [];
-				$children = isset( $control['attributes']['children'] ) ? $control['attributes']['children'] : [];
 				foreach ( $children as $child ) {
 					$child_attributes = isset( $child['attributes'] ) ? $child['attributes'] : [];
 					if ( isset( $child_attributes['value'] ) && in_array( $child_attributes['value'], $value ) ) {
@@ -29,33 +38,27 @@ class Confirm extends Responser {
 				$label = implode( ', ', $labels );
 			}
 
-			$controls[ $control['attributes']['name'] ] = implode(
+			$controls[ $name ] = implode(
 				'',
 				[
 					$label,
-					Helper::control(
-						'hidden',
-						[
-							'attributes' => [
-								'name'  => $control['attributes']['name'],
-								'value' => $value,
-							],
-						]
-					),
+					Helper::control( 'hidden', [ 'attributes' => [ 'name'  => $name, 'value' => $value ] ] ),
 				]
 			);
 		}
 
-		return array_merge(
-			parent::get_response_data(),
-			[
-				'controls' => $controls,
-				'action' => [
-					Helper::control( 'button', [ 'attributes' => [ 'value' => '戻る', 'data-action' => 'back' ] ] ),
-					Helper::control( 'button', [ 'attributes' => [ 'value' => '送信', 'data-action' => 'complete' ] ] ),
-					Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'complete' ] ] ),
-				],
-			]
-		);
+		return $controls;
+	}
+
+	protected function set_action() {
+		return [
+			Helper::control( 'button', [ 'attributes' => [ 'value' => '戻る', 'data-action' => 'back' ] ] ),
+			Helper::control( 'button', [ 'attributes' => [ 'value' => '送信', 'data-action' => 'complete' ] ] ),
+			Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'complete' ] ] ),
+		];
+	}
+
+	protected function set_message() {
+		return $this->message;
 	}
 }

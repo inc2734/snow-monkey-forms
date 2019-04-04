@@ -9,29 +9,22 @@ namespace Snow_Monkey\Plugin\Forms\App\Model;
 
 class Responser {
 	protected $data = [];
-	protected $setting;
+	protected $controls = [];
+	protected $action = [];
+	protected $message = '';
 
-	public function __construct( array $data = [], Setting $setting ) {
-		$this->data    = $data;
-		$this->setting = $setting;
+	public function __construct( array $data = [] ) {
+		$this->data = $data;
 	}
 
-	public function get_response_data() {
-		return [
-			'data'     => $this->data,
-			'controls' => [],
-			'action'   => [],
-			'message'  => '',
-		];
-	}
-
-	public function send( $response_data ) {
-		if ( isset( $response_data['action'] ) ) {
-			$response_data['action'] = implode( '', $response_data['action'] );
-		}
-
+	public function send( array $controls = [], array $action = [], $message = '' ) {
 		echo json_encode(
-			$response_data,
+			[
+				'data'     => $this->data,
+				'controls' => $controls,
+				'action'   => implode( '', $action ),
+				'message'  => $message,
+			],
 			JSON_UNESCAPED_UNICODE
 		);
 	}

@@ -7,15 +7,18 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
-use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Contract;
 
-class Complete extends Responser {
-	public function get_response_data() {
-		return array_merge(
-			parent::get_response_data(),
-			[
-				'message' => $this->setting->get( 'complete_message' ),
-			]
-		);
+class Complete extends Contract\Controller {
+	protected function set_controls() {
+		return $this->controls;
+	}
+
+	protected function set_action() {
+		return $this->action;
+	}
+
+	protected function set_message() {
+		return $this->setting->get( 'complete_message' );
 	}
 }

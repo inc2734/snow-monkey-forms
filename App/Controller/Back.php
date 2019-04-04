@@ -7,28 +7,44 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
-use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Back extends Responser {
-	public function get_response_data() {
+class Back extends Contract\Controller {
+	protected function set_controls() {
 		$controls = [];
-		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
-			$control['attributes'] = array_merge( $attributes, [ 'value' => $this->get( $control['attributes']['name'] ) ] );
+		$setting_controls = $this->setting->get( 'controls' );
 
-			$controls[ $control['attributes']['name'] ] = Helper::control( $control['type'], $control );
+		foreach ( $setting_controls as $control ) {
+			$type       = $control['type'];
+			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
+			$name       = isset( $attributes['name'] ) ? $attributes['name'] : null;
+
+			if ( '' === $name || is_null( $name ) ) {
+				continue;
+			}
+
+			$control['attributes'] = array_merge(
+				$attributes,
+				[
+					'value' => $this->responser->get( $name ),
+				]
+			);
+
+			$controls[ $name ] = Helper::control( $type, $control );
 		}
 
-		return array_merge(
-			parent::get_response_data(),
-			[
-				'controls' => $controls,
-				'action'   => [
-					Helper::control( 'button', [ 'attributes' =>[ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
-					Helper::control( 'hidden', [ 'attributes' =>[ 'name' => '_method', 'value' => 'confirm' ] ] ),
-				],
-			]
-		);
+		return $controls;
+	}
+
+	protected function set_action() {
+		return [
+			Helper::control( 'button', [ 'attributes' => [ 'value' => '確認', 'data-action' => 'confirm' ] ] ),
+			Helper::control( 'hidden', [ 'attributes' => [ 'name' => '_method', 'value' => 'confirm' ] ] ),
+		];
+	}
+
+	protected function set_message() {
+		return $this->message;
 	}
 }
