@@ -17,7 +17,7 @@ class Button extends Contract\Control {
 	public function render() {
 		return sprintf(
 			'<button class="c-btn" type="submit" %2$s>%1$s</button>',
-			$this->value,
+			esc_html( $this->value ),
 			$this->generate_attributes()
 		);
 	}

@@ -5,8 +5,6 @@
  * @license GPL-2.0+
  */
 
-require_once( __DIR__ . '/../vendor/autoload.php' );
-
 use Snow_Monkey\Plugin\Forms\App\DataStore;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Validator;

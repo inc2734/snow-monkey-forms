@@ -23,7 +23,7 @@ class Responser {
 				'data'     => $this->data,
 				'controls' => $controls,
 				'action'   => implode( '', $action ),
-				'message'  => $message,
+				'message'  => wp_kses_post( $message ),
 			],
 			JSON_UNESCAPED_UNICODE
 		);

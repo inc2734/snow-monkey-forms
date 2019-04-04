@@ -39,17 +39,16 @@ class Confirm extends Contract\Controller {
 					}
 				}
 
-				$label  = implode( ', ', $labels );
+				$value  = implode( ', ', $labels );
 				$hidden = implode( '', $hiddens );
 
 			} else {
 
-				$label = $value;
 				$hidden = Helper::control( 'hidden', [ 'attributes' => [ 'name'  => $name, 'value' => $value ] ] );
 
 			}
 
-			$controls[ $name ] = implode( '', [ $label, $hidden ] );
+			$controls[ $name ] = implode( '', [ esc_html( $value ), $hidden ] );
 		}
 
 		return $controls;

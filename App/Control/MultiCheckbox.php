@@ -41,7 +41,7 @@ class MultiCheckbox extends Contract\Control {
 			$controls[] = sprintf(
 				'<label>%1$s%2$s</label>',
 				$control->render(),
-				$label
+				esc_html( $label )
 			);
 		}
 

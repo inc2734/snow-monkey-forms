@@ -27,6 +27,7 @@ class Bootstrap {
 	public function _plugins_loaded() {
 		add_shortcode( 'snow_monkey_form', [ $this, '_shortcode_form' ] );
 		add_action( 'wp_footer', [ $this, '_script' ], 999999 );
+		add_action( 'rest_api_init', [ $this, '_endpoint' ] );
 	}
 
 	public function _shortcode_form( $attributes ) {
@@ -94,7 +95,7 @@ jQuery(
 					event.preventDefault();
 
 					$.post(
-						'<?php echo SNOW_MONKEY_FORMS_URL; ?>/json/',
+						'<?php echo home_url(); ?>/wp-json/snow-monkey-form/v1/view',
 						form.serialize()
 					).done(
 						function( response ) {
@@ -138,6 +139,21 @@ jQuery(
 );
 </script>
 		<?php
+	}
+
+	public function _endpoint() {
+		register_rest_route(
+			'snow-monkey-form/v1',
+			'/view',
+			[
+				'methods'  => 'POST',
+				'callback' => function() {
+					ob_start();
+					include( SNOW_MONKEY_FORMS_PATH . '/endpoint/view.php' );
+					return ob_get_clean();
+				},
+			]
+		);
 	}
 }
 

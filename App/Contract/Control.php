@@ -36,14 +36,14 @@ abstract class Control {
 		foreach ( get_object_vars( $this ) as $key => $value ) {
 			if ( 'data' === $key ) {
 				foreach ( $value as $data_key => $data_value ) {
-					$attributes[] = sprintf( '%s="%s"', $data_key, $data_value );
+					$attributes[] = $this->_generate_attribute_string( $data_key, $data_value );
 				}
 				continue;
 			}
 
 			if ( 'area' === $key ) {
 				foreach ( $value as $area_key => $area_value ) {
-					$attributes[] = sprintf( '%s="%s"', $area_key, $area_value );
+					$attributes[] = $tthis->_generate_attribute_string( $area_key, $area_value );
 				}
 				continue;
 			}
@@ -52,10 +52,18 @@ abstract class Control {
 				continue;
 			}
 
-			$attributes[] = sprintf( '%s="%s"', $key, $value );
+			$attributes[] = $this->_generate_attribute_string( $key, $value );
 		}
 
 		$attributes = implode( ' ', $attributes );
 		return $attributes ? $attributes : null;
+	}
+
+	protected function _generate_attribute_string( $key, $value ) {
+		return sprintf(
+			'%s="%s"',
+			esc_attr( $key ),
+			esc_attr( $value )
+		);
 	}
 }
