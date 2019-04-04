@@ -13,13 +13,12 @@ class ConfirmResponser extends Responser {
 	public function get_response_data() {
 		$controls = [];
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
-			$value = $this->get( $attributes['name'] );
+			$value = $this->get( $control['attributes']['name'] );
 
 			$label = $value;
 			if ( is_array( $value ) ) {
 				$labels = [];
-				$children = isset( $control['children'] ) ? $control['children'] : [];
+				$children = isset( $control['attributes']['children'] ) ? $control['attributes']['children'] : [];
 				foreach ( $children as $child ) {
 					$child_attributes = isset( $child['attributes'] ) ? $child['attributes'] : [];
 					if ( isset( $child_attributes['value'] ) && in_array( $child_attributes['value'], $value ) ) {

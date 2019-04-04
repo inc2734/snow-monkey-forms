@@ -34,28 +34,28 @@ class Setting {
 					],
 				],
 				[
-					'type'       => 'checkbox',
+					'type'       => 'multi-checkbox',
 					'label'      => '趣味',
 					'attributes' => [
 						'name'  => '趣味',
-					],
-					'children' => [
-						[
-							'label'      => 'サッカー',
-							'attributes' => [
-								'value' => 'soccer',
+						'children' => [
+							[
+								'label'      => 'サッカー',
+								'attributes' => [
+									'value' => 'soccer',
+								],
 							],
-						],
-						[
-							'label'      => '野球',
-							'attributes' => [
-								'value' => 'baseball',
+							[
+								'label'      => '野球',
+								'attributes' => [
+									'value' => 'baseball',
+								],
 							],
-						],
-						[
-							'label'      => 'テニス',
-							'attributes' => [
-								'value' => 'tennis',
+							[
+								'label'      => 'テニス',
+								'attributes' => [
+									'value' => 'tennis',
+								],
 							],
 						],
 					],
