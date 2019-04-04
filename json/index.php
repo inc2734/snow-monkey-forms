@@ -9,20 +9,19 @@ require_once( __DIR__ . '/../vendor/autoload.php' );
 
 use Snow_Monkey\Plugin\Forms\App\DataStore;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Model\Validator;
 use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
 
 $data    = filter_input_array( INPUT_POST );
 $form_id = $data['_formid'];
 $setting = DataStore::get( $form_id );
 
-$responser = new Responser( $data, $setting );
+$responser = new Responser( $data );
+$validator = new Validator( $responser, $setting );
 
-foreach ( $setting->get( 'controls' ) as $control ) {
-	if ( ! empty( $control['require'] ) && '' === $responser->get( $control['attributes']['name'] ) ) {
-		$data['_method'] = 'error';
-		break;
-	}
+if ( ! $validator->is_valid() ) {
+	$data['_method'] = 'error';
 }
 
-$controller = Dispatcher::dispatch( $data['_method'], $responser, $setting );
+$controller = Dispatcher::dispatch( $data['_method'], $responser, $setting, $validator );
 $controller->send();

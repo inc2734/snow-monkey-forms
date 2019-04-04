@@ -30,12 +30,8 @@ class Error extends Contract\Controller {
 				]
 			);
 
-			$form_control = Helper::control( $control['type'], $control );
-
-			$error_message = ! empty( $control['require'] ) && '' === $this->responser->get( $name )
-				? '未入力です'
-				: '';
-
+			$form_control      = Helper::control( $control['type'], $control );
+			$error_message     = $this->validator->get_error_message( $name );
 			$controls[ $name ] = $form_control . $error_message;
 		}
 
