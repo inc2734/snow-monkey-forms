@@ -21,9 +21,11 @@ class Setting {
 				[
 					'type'       => 'text',
 					'label'      => 'お名前 ※',
-					'require'    => true,
 					'attributes' => [
 						'name' => 'お名前',
+					],
+					'validations' => [
+						'required' => true,
 					],
 				],
 				[
@@ -35,7 +37,7 @@ class Setting {
 				],
 				[
 					'type'       => 'multi-checkbox',
-					'label'      => '趣味',
+					'label'      => '趣味 ※',
 					'attributes' => [
 						'name'  => '趣味',
 						'children' => [
@@ -59,6 +61,9 @@ class Setting {
 							],
 						],
 					],
+					'validations' => [
+						'required' => true,
+					],
 				],
 			];
 
@@ -68,9 +73,11 @@ class Setting {
 				[
 					'type'       => 'text',
 					'label'      => 'お名前 ※',
-					'require'    => true,
 					'attributes' => [
 						'name' => 'お名前',
+					],
+					'validations' => [
+						'required' => true,
 					],
 				],
 			];

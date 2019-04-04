@@ -25,26 +25,31 @@ class Confirm extends Contract\Controller {
 			}
 
 			$value = $this->responser->get( $name );
-			$label = $value;
 
 			if ( is_array( $value ) ) {
-				$labels = [];
+				$labels  = [];
+				$hiddens = [];
+
 				foreach ( $children as $child ) {
 					$child_attributes = isset( $child['attributes'] ) ? $child['attributes'] : [];
-					if ( isset( $child_attributes['value'] ) && in_array( $child_attributes['value'], $value ) ) {
-						$labels[] = $child['label'];
+					$child_value      = isset( $child_attributes['value'] ) ? $child_attributes['value'] : null;
+					if ( ! is_null( $child_value ) && in_array( $child_value, $value ) ) {
+						$labels[]  = $child['label'];
+						$hiddens[] = Helper::control( 'hidden', [ 'attributes' => [ 'name'  => $name . '[]', 'value' => $child_value ] ] );
 					}
 				}
-				$label = implode( ', ', $labels );
+
+				$label  = implode( ', ', $labels );
+				$hidden = implode( '', $hiddens );
+
+			} else {
+
+				$label = $value;
+				$hidden = Helper::control( 'hidden', [ 'attributes' => [ 'name'  => $name, 'value' => $value ] ] );
+
 			}
 
-			$controls[ $name ] = implode(
-				'',
-				[
-					$label,
-					Helper::control( 'hidden', [ 'attributes' => [ 'name'  => $name, 'value' => $value ] ] ),
-				]
-			);
+			$controls[ $name ] = implode( '', [ $label, $hidden ] );
 		}
 
 		return $controls;

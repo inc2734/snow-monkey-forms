@@ -7,6 +7,8 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Validation;
+
 class Validator {
 
 	protected $responser = [];
@@ -17,34 +19,49 @@ class Validator {
 		$this->setting   = $setting;
 	}
 
-	public function is_valid() {
+	public function validate() {
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			if ( ! empty( $control['require'] ) && '' === $this->responser->get( $control['attributes']['name'] ) ) {
-				return false;
+			$attributes  = isset( $control['attributes'] ) ? $control['attributes'] : [];
+			$name        = isset( $attributes['name'] ) ? $attributes['name'] : null;
+			$validations = isset( $control['validations'] ) ? $control['validations'] : [];
+
+			if ( '' === $name || is_null( $name ) ) {
+				continue;
+			}
+
+			foreach ( $validations as $validation_name => $validation ) {
+				if ( 'required' === $validation_name && $validation ) {
+					if ( false === Validation\Required::validate( $this->responser->get( $name ) ) ) {
+						return false;
+					}
+				}
 			}
 		}
+
 		return true;
 	}
 
 	public function get_error_message( $target ) {
+		$error_messages = [];
+
 		foreach ( $this->setting->get( 'controls' ) as $control ) {
-			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
-			$name       = isset( $attributes['name'] ) ? $attributes['name'] : null;
-			$require    = isset( $control['require'] ) ? $control['require'] : false;
+			$attributes  = isset( $control['attributes'] ) ? $control['attributes'] : [];
+			$name        = isset( $attributes['name'] ) ? $attributes['name'] : null;
+			$validations = isset( $control['validations'] ) ? $control['validations'] : [];
 
 			if ( '' === $name || is_null( $name ) || $target !== $name ) {
 				continue;
 			}
 
-			if ( ! $require ) {
-				continue;
+			foreach ( $validations as $validation_name => $validation ) {
+				if ( 'required' === $validation_name && $validation ) {
+					if ( false === Validation\Required::validate( $this->responser->get( $name ) ) ) {
+						$error_messages[] = Validation\Required::get_message();
+					}
+				}
 			}
 
-			if ( '' !== $this->responser->get( $name ) && null !== $this->responser->get( $name ) ) {
-				continue;
-			}
-
-			return '未入力です';
+			return implode( ' ', $error_messages );
 		}
 	}
 }

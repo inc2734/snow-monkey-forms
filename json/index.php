@@ -19,7 +19,7 @@ $setting = DataStore::get( $form_id );
 $responser = new Responser( $data );
 $validator = new Validator( $responser, $setting );
 
-if ( ! $validator->is_valid() ) {
+if ( ! $validator->validate() ) {
 	$data['_method'] = 'error';
 }
 
