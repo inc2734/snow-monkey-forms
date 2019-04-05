@@ -29,9 +29,16 @@ class Setting {
 		}
 
 		preg_replace_callback(
-			'|<!-- wp:snow-monkey-forms/([^ ]+?) ({[^}]*?}).?/-->|ms',
+			'|<!-- wp:snow-monkey-forms/([^ ]+?) ({.+?}) /-->|ms',
 			function( $matches ) {
-				$control = Helper::control( $matches[1], json_decode( $matches[2], JSON_OBJECT_AS_ARRAY ) );
+				if ( ! isset( $matches[1] ) || ! isset( $matches[2] ) ) {
+					return;
+				}
+
+				$type       = $matches[1];
+				$attributes = json_decode( $matches[2], true );
+				$control    = Helper::control( $type, Helper::block_meta_normalization( $attributes ) );
+
 				if ( $control ) {
 					$this->controls[] = $control;
 				}

@@ -39,4 +39,12 @@ class Helper {
 		include( SNOW_MONKEY_FORMS_PATH . '/block/' . $slug . '/view.php' );
 		return ob_get_clean();
 	}
+
+	public static function block_meta_normalization( array $attributes ) {
+		if ( isset( $attributes['validations'] ) ) {
+			$attributes['validations'] = json_decode( $attributes['validations'], true );
+		}
+
+		return $attributes;
+	}
 }

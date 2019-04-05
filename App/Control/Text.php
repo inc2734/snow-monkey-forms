@@ -12,6 +12,7 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 class Text extends Contract\Control {
 	public $name = '';
 	public $value = '';
+	protected $validations = [];
 
 	public function render() {
 		return sprintf(

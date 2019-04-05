@@ -58,11 +58,14 @@ class Validator {
 		$validation_map = [];
 
 		foreach ( $setting->get( 'controls' ) as $control ) {
-			if ( is_null( $control->get( 'name' ) ) || ! $control->get( 'validations' ) ) {
+			$name        = $control->get( 'name' );
+			$validations = $control->get( 'validations' );
+
+			if ( is_null( $name ) || ! $validations ) {
 				continue;
 			}
 
-			$validation_map[ $name ] = (array) $control->get( 'validations' );
+			$validation_map[ $name ] = (array) $validations;
 		}
 
 		return $validation_map;

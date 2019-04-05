@@ -22,6 +22,10 @@ add_action(
 						'type'    => 'string',
 						'default' => '',
 					],
+					'validations' => [
+						'type'    => 'string',
+						'default' => '{}',
+ 					]
 				],
 				'render_callback' => function( $attributes, $content ) {
 					return Helper::dynamic_block( 'text', $attributes, $content );

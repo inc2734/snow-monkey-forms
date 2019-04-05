@@ -1,8 +1,11 @@
 'use strict';
 
+const { merge } = lodash;
+
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
-const { TextControl } = wp.components;
+const { InspectorControls } = wp.editor;
+const { PanelBody, TextControl, ToggleControl } = wp.components;
 const { __ } = wp.i18n;
 
 registerBlockType( 'snow-monkey-forms/text', {
@@ -14,10 +17,24 @@ registerBlockType( 'snow-monkey-forms/text', {
 	},
 
 	edit( { attributes, setAttributes } ) {
-		const { name, value } = attributes;
+		const { name, value, validations } = attributes;
+
+		const parsedValidations = JSON.parse( validations );
 
 		return (
 			<Fragment>
+				<InspectorControls>
+					<PanelBody title={ __( 'Validation', 'snow-monkey-forms' ) }>
+						<ToggleControl
+							label={ __( 'Required', 'snow-monkey-blocks' ) }
+							checked={ !! parsedValidations['required'] }
+							onChange={ ( value ) => {
+								setAttributes( { validations: JSON.stringify( merge( parsedValidations, { required: value } ) ) } );
+							} }
+						/>
+					</PanelBody>
+				</InspectorControls>
+
 				<TextControl
 					label={ __( 'name', 'snow-monkey-forms' ) }
 					value={ name }
