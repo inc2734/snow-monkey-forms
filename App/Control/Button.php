@@ -10,15 +10,15 @@ namespace Snow_Monkey\Plugin\Forms\App\Control;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 
 class Button extends Contract\Control {
-	protected $name = '';
-	protected $value = '';
-	protected $data = [];
+	public $name = '';
+	public $value = '';
+	public $data = [];
 
 	public function render() {
 		return sprintf(
 			'<button class="c-btn" type="submit" %2$s>%1$s</button>',
 			esc_html( $this->value ),
-			$this->generate_attributes()
+			$this->generate_attributes( get_object_vars( $this ) )
 		);
 	}
 }

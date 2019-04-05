@@ -10,9 +10,10 @@ namespace Snow_Monkey\Plugin\Forms\App\Control;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 
 class MultiCheckbox extends Contract\Control {
-	protected $name = '';
-	protected $value = '';
-	protected $children = [];
+	public $name = '';
+	public $value = '';
+
+	private $children = [];
 
 	public function render() {
 		$values = is_array( $this->value ) ? $this->value : explode( static::GLUE, $this->value );

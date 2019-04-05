@@ -16,26 +16,16 @@ class Error extends Contract\Controller {
 		$setting_controls = $this->setting->get( 'controls' );
 
 		foreach ( $setting_controls as $control ) {
-			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
-			$name       = isset( $attributes['name'] ) ? $attributes['name'] : null;
-			$label      = isset( $attributes['label'] ) ? $attributes['label'] : null;
-
-			if ( '' === $name || is_null( $name ) ) {
+			$name = $control->get( 'name' );
+			if ( is_null( $name ) || '' === $name ) {
 				continue;
 			}
 
-			if ( is_null( $label ) ) {
-				$control['attributes'] = array_merge(
-					$attributes,
-					[
-						'value' => $this->responser->get( $name ),
-					]
-				);
-			}
+			$posted_value = $this->responser->get( $name );
+			$control->set( 'value', $posted_value );
 
-			$form_control      = Helper::control( $control['type'], $control['attributes'] );
-			$error_message     = $this->validator->get_error_message( $name );
-			$controls[ $name ] = $form_control . $error_message;
+			$error_message = $this->validator->get_error_message( $name );
+			$controls[ $name ] = $control->render() . $error_message;
 		}
 
 		return $controls;
@@ -43,8 +33,8 @@ class Error extends Contract\Controller {
 
 	protected function set_action() {
 		return [
-			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ),
-			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ),
+			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->render(),
+			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->render(),
 		];
 	}
 

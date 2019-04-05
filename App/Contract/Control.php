@@ -11,6 +11,8 @@ abstract class Control {
 	const GLUE = '@@@';
 
 	public function __construct( array $attributes ) {
+		$properties = array_keys( get_object_vars( $this ) );
+
 		foreach ( $attributes as $attribute => $value ) {
 			if ( 0 === strpos( $attribute, 'data-' ) && isset( $this->data ) ) {
 				$this->data[ $attribute ] = $value;
@@ -22,7 +24,7 @@ abstract class Control {
 				continue;
 			}
 
-			if ( array_key_exists( $attribute, get_object_vars( $this ) ) ) {
+			if ( in_array( $attribute, $properties ) ) {
 				$this->$attribute = $value;
 			}
 		}
@@ -30,10 +32,10 @@ abstract class Control {
 
 	abstract public function render();
 
-	public function generate_attributes() {
+	public function generate_attributes( array $_attributes ) {
 		$attributes = [];
 
-		foreach ( get_object_vars( $this ) as $key => $value ) {
+		foreach ( $_attributes as $key => $value ) {
 			if ( 'data' === $key ) {
 				foreach ( $value as $data_key => $data_value ) {
 					$attributes[] = $this->_generate_attribute_string( $data_key, $data_value );
@@ -73,5 +75,19 @@ abstract class Control {
 			esc_attr( $key ),
 			esc_attr( $value )
 		);
+	}
+
+	public function get( $attribute ) {
+		$properties = array_keys( get_object_vars( $this ) );
+		return in_array( $attribute, $properties ) ? $this->$attribute : null;
+	}
+
+	public function set( $attribute, $value ) {
+		$properties = array_keys( json_decode( json_encode( $this ), true ) );
+		if ( in_array( $attribute, $properties ) ) {
+			$this->$attribute = $value;
+			return true;
+		}
+		return false;
 	}
 }

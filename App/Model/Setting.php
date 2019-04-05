@@ -7,6 +7,8 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Helper;
+
 class Setting {
 	protected $controls = [];
 	protected $complete_message = '';
@@ -26,15 +28,13 @@ class Setting {
 			return;
 		}
 
-		// @todo $this->controls は連想配列じゃなくて、Control の配列にしたほうが良い気がする
-		// 連想配列だと Controller の中で type を意識しないといけないようになる
 		preg_replace_callback(
 			'|<!-- wp:snow-monkey-forms/([^ ]+?) ({[^}]*?}).?/-->|ms',
 			function( $matches ) {
-				$this->controls[] = [
-					'type'       => $matches[1],
-					'attributes' => json_decode( $matches[2], JSON_OBJECT_AS_ARRAY ),
-				];
+				$control = Helper::control( $matches[1], json_decode( $matches[2], JSON_OBJECT_AS_ARRAY ) );
+				if ( $control ) {
+					$this->controls[] = $control;
+				}
 			},
 			$_posts[0]->post_content
 		);

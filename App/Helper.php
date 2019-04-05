@@ -13,28 +13,23 @@ class Helper {
 	public static function control( $type, array $attributes = [] ) {
 		if ( 'text' === $type ) {
 
-			$control = new Control\Text( $attributes );
-			return $control->render();
+			return new Control\Text( $attributes );
 
 		} elseif ( 'multi-checkbox' === $type ) {
 
-			$control = new Control\MultiCheckbox( $attributes );
-			return $control->render();
+			return new Control\MultiCheckbox( $attributes );
 
 		} elseif ( 'checkbox' === $type ) {
 
-			$control = new Control\Checkbox( $attributes );
-			return $control->render();
+			return new Control\Checkbox( $attributes );
 
 		} elseif ( 'hidden' === $type ) {
 
-			$control = new Control\Hidden( $attributes );
-			return $control->render();
+			return new Control\Hidden( $attributes );
 
 		} elseif ( 'button' === $type ) {
 
-			$control = new Control\Button( $attributes );
-			return $control->render();
+			return new Control\Button( $attributes );
 
 		}
 	}

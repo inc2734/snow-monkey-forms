@@ -10,13 +10,13 @@ namespace Snow_Monkey\Plugin\Forms\App\Control;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 
 class Text extends Contract\Control {
-	protected $name = '';
-	protected $value = '';
+	public $name = '';
+	public $value = '';
 
 	public function render() {
 		return sprintf(
 			'<input class="c-form-control" type="text" %1$s>',
-			$this->generate_attributes()
+			$this->generate_attributes( get_object_vars( $this ) )
 		);
 	}
 }

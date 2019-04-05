@@ -47,11 +47,11 @@ add_shortcode(
 					<?php echo apply_filters( 'the_content', $_posts[0]->post_content ); ?>
 
 					<p class="snow-monkey-form__action">
-						<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ); ?>
-						<?php echo Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ); ?>
+						<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->render(); ?>
+						<?php echo Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->render(); ?>
 					</p>
 				</div>
-				<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] ); ?>
+				<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] )->render(); ?>
 			</form>
 			<?php
 			echo ob_get_clean();
@@ -71,17 +71,22 @@ add_shortcode(
 					<p>
 						<?php echo esc_html( $control['label'] ); ?><br>
 						<span class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $control['attributes']['name'] ); ?>">
-							<?php echo Helper::control( $control['type'], $control['attributes'] ); ?>
+							<?php
+							$control = Helper::control( $control['type'], $control['attributes'] );
+							if ( $control ) {
+								$control->render();
+							}
+							?>
 						</span>
 					</p>
 				<?php endforeach; ?>
 
 				<p class="snow-monkey-form__action">
-					<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ); ?>
-					<?php echo Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ); ?>
+					<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->render(); ?>
+					<?php echo Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->render(); ?>
 				</p>
 			</div>
-			<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] ); ?>
+			<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] )->render(); ?>
 		</form>
 		<?php
 		return ob_get_clean();

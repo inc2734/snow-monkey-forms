@@ -16,44 +16,23 @@ class Back extends Contract\Controller {
 		$setting_controls = $this->setting->get( 'controls' );
 
 		foreach ( $setting_controls as $control ) {
-			$type       = $control['type'];
-			$attributes = isset( $control['attributes'] ) ? $control['attributes'] : [];
-			$name       = isset( $attributes['name'] ) ? $attributes['name'] : null;
-
-			if ( '' === $name || is_null( $name ) ) {
+			$name = $control->get( 'name' );
+			if ( is_null( $name ) || '' === $name ) {
 				continue;
 			}
 
-			$value = $this->responser->get( $name );
+			$value = $control->get( 'value' );
+			$posted_value = $this->responser->get( $name );
 
-			if ( 'checkbox' === $type || 'radio' === $type ) {
-				if ( isset( $attributes['value'] ) && $attributes['value'] === $value ) {
-					$control['attributes'] = array_merge(
-						$attributes,
-						[
-							'checked' => 'checked',
-						]
-					);
-				}
-			} elseif ( 'select' === $type ) {
-				if ( isset( $attributes['value'] ) && $attributes['value'] === $value ) {
-					$control['attributes'] = array_merge(
-						$attributes,
-						[
-							'selected' => 'selected',
-						]
-					);
-				}
+			if ( ! is_null( $control->get( 'checked' ) ) && $value === $posted_value ) {
+				$control->set( 'checked', true );
+			} elseif ( ! is_null( $control->get( 'selected' ) ) && $value === $posted_value ) {
+				$control->set( 'selected', true );
 			} else {
-				$control['attributes'] = array_merge(
-					$attributes,
-					[
-						'value' => $value,
-					]
-				);
+				$control->set( 'value', $posted_value );
 			}
 
-			$controls[ $name ] = Helper::control( $type, $control['attributes'] );
+			$controls[ $name ] = $control->render();
 		}
 
 		return $controls;
@@ -61,8 +40,8 @@ class Back extends Contract\Controller {
 
 	protected function set_action() {
 		return [
-			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] ),
-			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] ),
+			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->render(),
+			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->render(),
 		];
 	}
 

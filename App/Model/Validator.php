@@ -58,15 +58,11 @@ class Validator {
 		$validation_map = [];
 
 		foreach ( $setting->get( 'controls' ) as $control ) {
-			$attributes  = isset( $control['attributes'] ) ? $control['attributes'] : [];
-			$name        = isset( $attributes['name'] ) ? $attributes['name'] : null;
-			$validations = isset( $control['validations'] ) ? $control['validations'] : [];
-
-			if ( '' === $name || is_null( $name ) || ! $validations ) {
+			if ( is_null( $control->get( 'name' ) ) || ! $control->get( 'validations' ) ) {
 				continue;
 			}
 
-			$validation_map[ $name ] = $validations;
+			$validation_map[ $name ] = (array) $control->get( 'validations' );
 		}
 
 		return $validation_map;
