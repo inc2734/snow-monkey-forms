@@ -21,18 +21,7 @@ class Back extends Contract\Controller {
 				continue;
 			}
 
-			$value = $control->get( 'value' );
-			$posted_value = $this->responser->get( $name );
-
-			// @todo checked, selected な control も value を set すれば checked, selected されるようにする
-			// 子 Control で set を上書きする
-			if ( ! is_null( $control->get( 'checked' ) ) ) {
-				$control->set( 'checked', $value === $posted_value );
-			} elseif ( ! is_null( $control->get( 'selected' ) ) ) {
-				$control->set( 'selected', $value === $posted_value );
-			} else {
-				$control->set( 'value', $posted_value );
-			}
+			$control->set( 'value', $this->responser->get( $name ) );
 
 			$controls[ $name ] = $control->render();
 		}

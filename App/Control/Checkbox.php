@@ -27,4 +27,13 @@ class Checkbox extends Contract\Control {
 			esc_html( $label )
 		);
 	}
+
+	public function set( $attribute, $value ) {
+		if ( 'value' === $attribute ) {
+			$this->checked = $this->value === $value;
+			return true;
+		}
+
+		return parent::set( $attribute, $value );
+	}
 }
