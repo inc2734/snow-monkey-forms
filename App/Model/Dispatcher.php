@@ -14,8 +14,9 @@ class Dispatcher {
 		try {
 			if ( class_exists( $class_name ) ) {
 				$controller = new $class_name( $responser, $setting, $validator );
+			} else {
+				throw new \Exception( sprintf( 'The class %1$s is not found.', $class_name ) );
 			}
-			throw new \Exception( sprintf( 'The class %1$s is not found.', $class_name ) );
 		} catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
 			$controller = new \Snow_Monkey\Plugin\Forms\App\Controller\Back( $responser, $setting, $validator );

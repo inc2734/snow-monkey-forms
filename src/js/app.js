@@ -26,17 +26,18 @@ const send = ( form ) => {
 					const method = response.data._method;
 
 					actionArea.html( response.action );
+					form.find( '.snow-monkey-form__placeholder' ).html( '' );
 
 					if ( '' === method || 'back' === method || 'error' === method || 'confirm' === method ) {
 						$.each(
 							response.controls,
 							( key, control ) => {
 								const placeholder = form.find( `.snow-monkey-form__placeholder[data-name="${ key }"]` );
-								placeholder.html( '' ).append( control );
+								placeholder.html( control );
 							}
 						);
 					} else if ( 'complete' === method ) {
-						form.html( '' ).append( response.message );
+						form.html( response.message );
 					} else {
 						form.html( '' );
 					}
