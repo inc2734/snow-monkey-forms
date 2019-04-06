@@ -4,8 +4,7 @@
  * Add validations controls
  */
 
-import { withInspectorControls } from '../../block/hooks/validations';
-wp.hooks.addFilter( 'editor.BlockEdit', 'snow-monkey-forms/withInspectorControls/validations', withInspectorControls );
+import '../../block/hooks/validations';
 
 /**
  * Import blocks

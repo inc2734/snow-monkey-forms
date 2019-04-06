@@ -6,9 +6,10 @@ const { Fragment } = wp.element;
 const { InspectorControls } = wp.editor;
 const { PanelBody, ToggleControl } = wp.components;
 const { createHigherOrderComponent } = wp.compose;
+const { addFilter } = wp.hooks;
 const { __ } = wp.i18n;
 
-export const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
+const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
 		const { attributes, setAttributes } = props;
 		const { validations } = attributes;
@@ -37,3 +38,5 @@ export const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) =
 		);
 	};
 }, 'withInspectorControls' );
+
+addFilter( 'editor.BlockEdit', 'snow-monkey-forms/withInspectorControls/validations', withInspectorControls );
