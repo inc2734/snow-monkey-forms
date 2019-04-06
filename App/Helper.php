@@ -11,14 +11,18 @@ use Snow_Monkey\Plugin\Forms\App\Control;
 
 class Helper {
 	public static function control( $type, array $attributes = [] ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . ucfirst( strtolower( $type ) );
+		$class_name_array = array_map( function( $string ) {
+			return ucfirst( strtolower( $string ) );
+		}, explode( '-', $type ) );
+
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . implode( '', $class_name_array );
 
 		try {
 			if ( class_exists( $class_name ) ) {
 				return new $class_name( $attributes );
 			}
-			throw new Exception( sprintf( 'The class %1$s is not found.', $class_name ) );
-		} catch( Exception $e ) {
+			throw new \Exception( sprintf( 'The class %1$s is not found.', $class_name ) );
+		} catch( \Exception $e ) {
 			error_log( $e->getMessage() );
 			return;
 		}
