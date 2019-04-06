@@ -53,7 +53,7 @@ class Bootstrap {
 
 		wp_add_inline_script(
 			'snow-monkey-forms',
-			'var snow_monkey_forms = ' . json_encode(
+			'var snowmonkeyforms = ' . json_encode(
 				[
 					'view_json_url' => home_url() . '/wp-json/snow-monkey-form/v1/view',
 				]

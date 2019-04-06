@@ -20,7 +20,8 @@ module.exports = {
   },
   externals: {
     react: 'React',
-    jquery: 'jQuery'
+    jquery: 'jQuery',
+		snowmonkeyforms: 'snowmonkeyforms'
   },
   resolve: {
     extensions: ['.js', '.jsx']
