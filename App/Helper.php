@@ -11,26 +11,16 @@ use Snow_Monkey\Plugin\Forms\App\Control;
 
 class Helper {
 	public static function control( $type, array $attributes = [] ) {
-		if ( 'text' === $type ) {
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . ucfirst( strtolower( $type ) );
 
-			return new Control\Text( $attributes );
-
-		} elseif ( 'multi-checkbox' === $type ) {
-
-			return new Control\MultiCheckbox( $attributes );
-
-		} elseif ( 'checkbox' === $type ) {
-
-			return new Control\Checkbox( $attributes );
-
-		} elseif ( 'hidden' === $type ) {
-
-			return new Control\Hidden( $attributes );
-
-		} elseif ( 'button' === $type ) {
-
-			return new Control\Button( $attributes );
-
+		try {
+			if ( class_exists( $class_name ) ) {
+				return new $class_name( $attributes );
+			}
+			throw new Exception( sprintf( 'The class %1$s is not found.', $class_name ) );
+		} catch( Exception $e ) {
+			error_log( $e->getMessage() );
+			return;
 		}
 	}
 
