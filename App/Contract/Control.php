@@ -24,6 +24,10 @@ abstract class Control {
 				continue;
 			}
 
+			if ( 'validations' === $attribute && isset( $this->validations ) && is_array( $value ) ) {
+				$value = array_merge( $this->validations, $value );
+			}
+
 			if ( in_array( $attribute, $properties ) ) {
 				$this->$attribute = $value;
 			}

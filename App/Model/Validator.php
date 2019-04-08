@@ -7,7 +7,7 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
-use Snow_Monkey\Plugin\Forms\App\Validation;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Validator {
 
@@ -25,10 +25,17 @@ class Validator {
 	public function validate() {
 		foreach ( $this->validation_map as $name => $validations ) {
 			foreach ( $validations as $validation_name => $validation ) {
-				if ( 'required' === $validation_name && $validation ) {
-					if ( false === Validation\Required::validate( $this->responser->get( $name ) ) ) {
-						return false;
-					}
+				if ( ! $validation ) {
+					continue;
+				}
+
+				$validation_class = $this->_get_validation_class( $validation_name );
+				if ( ! $validation_class ) {
+					continue;
+				}
+
+				if ( false === $validation_class::validate( $this->responser->get( $name ) ) ) {
+					return false;
 				}
 			}
 		}
@@ -44,10 +51,17 @@ class Validator {
 		}
 
 		foreach ( $this->validation_map[ $name ] as $validation_name => $validation ) {
-			if ( 'required' === $validation_name && $validation ) {
-				if ( false === Validation\Required::validate( $this->responser->get( $name ) ) ) {
-					$error_messages[] = Validation\Required::get_message();
-				}
+			if ( ! $validation ) {
+				continue;
+			}
+
+			$validation_class = $this->_get_validation_class( $validation_name );
+			if ( ! $validation_class ) {
+				continue;
+			}
+
+			if ( false === $validation_class::validate( $this->responser->get( $name ) ) ) {
+				$error_messages[] = $validation_class::get_message();
 			}
 		}
 
@@ -69,5 +83,20 @@ class Validator {
 		}
 
 		return $validation_map;
+	}
+
+	protected function _get_validation_class( $validation_name ) {
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Validation\\' . Helper::generate_class_name( $validation_name );
+
+		try {
+			if ( class_exists( $class_name ) ) {
+				return $class_name;
+			}
+			throw new \Exception( sprintf( 'The class %1$s is not found.', $class_name ) );
+		} catch( \Exception $e ) {
+			error_log( $e->getMessage() );
+		}
+
+		return false;
 	}
 }

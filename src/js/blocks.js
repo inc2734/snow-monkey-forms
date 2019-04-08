@@ -11,4 +11,5 @@ import '../../block/hooks/validations';
  */
 
 import '../../block/text/block';
+import '../../block/email/block';
 import '../../block/checkbox/block';

@@ -10,12 +10,16 @@ namespace Snow_Monkey\Plugin\Forms\App;
 use Snow_Monkey\Plugin\Forms\App\Control;
 
 class Helper {
-	public static function control( $type, array $attributes = [] ) {
+	public static function generate_class_name( $string ) {
 		$class_name_array = array_map( function( $string ) {
 			return ucfirst( strtolower( $string ) );
-		}, explode( '-', $type ) );
+		}, explode( '-', $string ) );
 
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . implode( '', $class_name_array );
+		return implode( '', $class_name_array );
+	}
+
+	public static function control( $type, array $attributes = [] ) {
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type );
 
 		try {
 			if ( class_exists( $class_name ) ) {
