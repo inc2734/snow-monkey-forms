@@ -13,6 +13,7 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Checkbox extends Contract\Control {
 	public    $name    = '';
 	public    $checked = false;
+	public    $data    = [];
 	protected $value   = '';
 	protected $label   = '';
 	protected $validations = [];
@@ -45,6 +46,12 @@ class Checkbox extends Contract\Control {
 	}
 
 	public function error( $error_message = '' ) {
+		if ( ! $error_message ) {
+			return $this->input();
+		}
+
+		$this->data['invalid'] = true;
+
 		return sprintf(
 			'%1$s%2$s',
 			$this->input(),

@@ -13,6 +13,7 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Text extends Contract\Control {
 	public $name = '';
 	public $value = '';
+	public $data = [];
 	protected $validations = [];
 
 	public function input() {
@@ -35,12 +36,11 @@ class Text extends Contract\Control {
 			return $this->input();
 		}
 
+		$this->data['invalid'] = true;
+
 		return sprintf(
 			'%1$s%2$s',
-			sprintf(
-				'<input class="c-form-control c-form-control--error" type="text" %1$s>',
-				$this->generate_attributes( get_object_vars( $this ) )
-			),
+			$this->input(),
 			$error_message
 		);
 	}
