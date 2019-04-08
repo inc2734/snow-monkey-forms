@@ -21,6 +21,6 @@ class Email extends Contract\Validation {
 	}
 
 	public static function get_message() {
-		return 'メールアドレスの形式ではありません';
+		return __( 'Please enter a valid Email address.', 'snow-monkey-forms' );
 	}
 }

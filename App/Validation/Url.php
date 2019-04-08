@@ -19,6 +19,6 @@ class Url extends Contract\Validation {
 	}
 
 	public static function get_message() {
-		return 'URLの形式ではありません';
+		return __( 'Please enter a valid URL.', 'snow-monkey-forms' );
 	}
 }

@@ -19,6 +19,6 @@ class Required extends Contract\Validation {
 	}
 
 	public static function get_message() {
-		return '未入力です';
+		return __( 'Please enter.', 'snow-monkey-forms' );
 	}
 }
