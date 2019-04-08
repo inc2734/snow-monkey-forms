@@ -25,7 +25,6 @@ add_shortcode(
 		$form_id = $attributes['id'];
 		$setting = DataStore::get( $form_id );
 
-		//////////////////////////////////////////////////////////////////////////////
 		$_posts = get_posts(
 			[
 				'post_type'        => 'snow-monkey-forms',
@@ -36,59 +35,27 @@ add_shortcode(
 			]
 		);
 
-		if ( $_posts ) {
-			ob_start();
-			echo '<pre>';
-			var_dump( esc_html( $_posts[0]->post_content ) );
-			echo '</pre>';
-			?>
-			<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action="">
-				<div class="p-entry-content">
-					<?php echo apply_filters( 'the_content', $_posts[0]->post_content ); ?>
-
-					<p class="snow-monkey-form__action">
-						<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->render(); ?>
-						<?php echo Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->render(); ?>
-					</p>
-				</div>
-				<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] )->render(); ?>
-			</form>
-			<?php
-			echo ob_get_clean();
-		}
-		return;
-		//////////////////////////////////////////////////////////////////////////////
-
-		if ( ! $setting->get( 'controls' ) ) {
+		if ( ! $_posts ) {
 			return;
 		}
 
 		ob_start();
+		echo '<pre>';
+		var_dump( esc_html( $_posts[0]->post_content ) );
+		echo '</pre>';
 		?>
 		<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action="">
 			<div class="p-entry-content">
-				<?php foreach ( $setting->get( 'controls' ) as $control ) : ?>
-					<p>
-						<?php echo esc_html( $control['label'] ); ?><br>
-						<span class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $control['attributes']['name'] ); ?>">
-							<?php
-							$control = Helper::control( $control['type'], $control['attributes'] );
-							if ( $control ) {
-								$control->render();
-							}
-							?>
-						</span>
-					</p>
-				<?php endforeach; ?>
+				<?php echo apply_filters( 'the_content', $_posts[0]->post_content ); ?>
 
 				<p class="snow-monkey-form__action">
-					<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->render(); ?>
-					<?php echo Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->render(); ?>
+					<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->input(); ?>
+					<?php echo Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->input(); ?>
 				</p>
 			</div>
-			<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] )->render(); ?>
+			<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] )->input(); ?>
 		</form>
 		<?php
-		return ob_get_clean();
+		echo ob_get_clean();
 	}
 );

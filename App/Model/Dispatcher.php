@@ -7,9 +7,11 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Helper;
+
 class Dispatcher {
 	public static function dispatch( $method, Responser $responser, Setting $setting, Validator $validator ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Controller\\' . ucfirst( strtolower( $method ) );
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Controller\\' . Helper::generate_class_name( $method );
 
 		try {
 			if ( class_exists( $class_name ) ) {

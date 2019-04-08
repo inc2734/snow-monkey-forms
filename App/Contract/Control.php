@@ -34,7 +34,9 @@ abstract class Control {
 		}
 	}
 
-	abstract public function render();
+	abstract public function input();
+	abstract public function confirm();
+	abstract public function error( $error_message = '' );
 
 	public function generate_attributes( array $_attributes ) {
 		$attributes = [];

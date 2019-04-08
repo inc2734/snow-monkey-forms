@@ -23,7 +23,7 @@ class Back extends Contract\Controller {
 
 			$control->set( 'value', $this->responser->get( $name ) );
 
-			$controls[ $name ] = $control->render();
+			$controls[ $name ] = $control->input();
 		}
 
 		return $controls;
@@ -31,8 +31,8 @@ class Back extends Contract\Controller {
 
 	protected function set_action() {
 		return [
-			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->render(),
-			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->render(),
+			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->input(),
+			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->input(),
 		];
 	}
 

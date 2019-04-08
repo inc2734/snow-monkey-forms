@@ -8,6 +8,7 @@
 namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Checkbox extends Contract\Control {
 	public    $name    = '';
@@ -16,7 +17,7 @@ class Checkbox extends Contract\Control {
 	protected $label   = '';
 	protected $validations = [];
 
-	public function render() {
+	public function input() {
 		$attributes = get_object_vars( $this );
 		unset( $attributes['label'] );
 
@@ -26,6 +27,28 @@ class Checkbox extends Contract\Control {
 			'<label><input type="checkbox" %1$s>%2$s</label>',
 			$this->generate_attributes( $attributes ),
 			esc_html( $label )
+		);
+	}
+
+	public function confirm() {
+		if ( ! $this->checked ) {
+			return;
+		}
+
+		$label = ! is_null( $this->label ) && '' !== $this->label ? $this->label : $this->value;
+
+		return sprintf(
+			'%1$s%2$s',
+			esc_html( $label ),
+			Helper::control( 'hidden', [ 'name' => $this->name, 'value' => $this->value ] )->input()
+		);
+	}
+
+	public function error( $error_message = '' ) {
+		return sprintf(
+			'%1$s%2$s',
+			$this->input(),
+			$error_message
 		);
 	}
 

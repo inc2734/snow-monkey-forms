@@ -24,7 +24,7 @@ class Error extends Contract\Controller {
 			$control->set( 'value', $this->responser->get( $name ) );
 
 			$error_message = $this->validator->get_error_message( $name );
-			$controls[ $name ] = $control->render() . $error_message;
+			$controls[ $name ] = $control->error( $error_message );
 		}
 
 		return $controls;
@@ -32,8 +32,8 @@ class Error extends Contract\Controller {
 
 	protected function set_action() {
 		return [
-			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->render(),
-			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->render(),
+			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->input(),
+			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->input(),
 		];
 	}
 

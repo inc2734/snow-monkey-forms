@@ -19,10 +19,18 @@ class Hidden extends Contract\Control {
 		$this->value = is_array( $this->value ) ? implode( static::GLUE, $this->value ) : $this->value;
 	}
 
-	public function render() {
+	public function input() {
 		return sprintf(
 			'<input type="hidden" %1$s>',
 			$this->generate_attributes( get_object_vars( $this ) )
 		);
+	}
+
+	public function confirm() {
+		return $this->input();
+	}
+
+	public function error( $error_message = '' ) {
+		return $this->input();
 	}
 }
