@@ -32,10 +32,6 @@ class Text extends Contract\Control {
 	}
 
 	public function error( $error_message = '' ) {
-		if ( ! $error_message ) {
-			return $this->input();
-		}
-
 		$this->data['invalid'] = true;
 
 		return sprintf(

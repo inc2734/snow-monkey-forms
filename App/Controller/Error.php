@@ -24,7 +24,7 @@ class Error extends Contract\Controller {
 			$control->set( 'value', $this->responser->get( $name ) );
 
 			$error_message = $this->validator->get_error_message( $name );
-			$controls[ $name ] = $control->error( $error_message );
+			$controls[ $name ] = $error_message ? $control->error( $error_message ) : $control->input();
 		}
 
 		return $controls;
