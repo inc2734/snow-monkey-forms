@@ -10,7 +10,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Control;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Checkbox extends Contract\Control {
+class Radio extends Contract\Control {
 	public    $name    = '';
 	public    $checked = false;
 	public    $data    = [];
@@ -26,9 +26,9 @@ class Checkbox extends Contract\Control {
 
 		return sprintf(
 			'<label>
-				<span class="c-checkbox" aria-checked="false">
-					<input type="checkbox" %1$s>
-					<span class="c-checkbox__control"></span>
+				<span class="c-radio" aria-checked="false">
+					<input type="radio" %1$s>
+					<span class="c-radio__control"></span>
 				</span>
 				%2$s
 			</label>',

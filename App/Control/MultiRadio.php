@@ -10,7 +10,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Control;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Select extends Contract\Control {
+class MultiRadio extends Contract\Control {
 	public    $name     = '';
 	public    $data     = [];
 	public    $value    = '';
@@ -19,20 +19,23 @@ class Select extends Contract\Control {
 
 	public function input() {
 		$attributes = get_object_vars( $this );
+		unset( $attributes['name'] );
 		unset( $attributes['value'] );
 
 		$options = [];
 		foreach ( $this->options as $value => $label ) {
-			$options[] = sprintf(
-				'<option value="%1$s" %3$s>%2$s</option>',
-				esc_attr( $value ),
-				esc_html( $label ),
-				selected( $value, $this->value, false )
-			);
+			$option_attributes = [
+				'name'    => $this->name,
+				'value'   => $value,
+				'label'   => $label,
+				'checked' => $value === $this->value,
+			];
+
+			$options[] = Helper::control( 'radio', $option_attributes )->input();
 		}
 
 		return sprintf(
-			'<span class="c-select" aria-selected="false"><select %1$s>%2$s</select><span class="c-select__label"></span></span>',
+			'<span class="c-multi-radio" %1$s>%2$s</span>',
 			$this->generate_attributes( $attributes ),
 			implode( '', $options )
 		);
