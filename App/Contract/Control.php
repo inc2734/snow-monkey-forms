@@ -14,12 +14,12 @@ abstract class Control {
 		$properties = array_keys( get_object_vars( $this ) );
 
 		foreach ( $attributes as $attribute => $value ) {
-			if ( 0 === strpos( $attribute, 'data-' ) && isset( $this->data ) ) {
+			if ( 0 === strpos( $attribute, 'data-' ) && isset( $this->data ) && ! is_array( $value ) ) {
 				$this->data[ $attribute ] = $value;
 				continue;
 			}
 
-			if ( 0 === strpos( $attribute, 'aria-' ) && isset( $this->aria ) ) {
+			if ( 0 === strpos( $attribute, 'aria-' ) && isset( $this->aria ) && ! is_array( $value ) ) {
 				$this->aria[ $attribute ] = $value;
 				continue;
 			}
@@ -29,9 +29,18 @@ abstract class Control {
 			}
 
 			if ( in_array( $attribute, $properties ) ) {
-				$this->$attribute = $value;
+				if ( is_array( $this->$attribute ) ) {
+					$this->$attribute = ! is_array( $value ) ? $this->$attribute : $value;
+				} else {
+					$this->$attribute = is_array( $value ) ? $this->$attribute : $value;
+				}
 			}
 		}
+
+		$this->_init();
+	}
+
+	protected function _init() {
 	}
 
 	abstract public function input();

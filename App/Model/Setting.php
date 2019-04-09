@@ -45,61 +45,6 @@ class Setting {
 			},
 			$_posts[0]->post_content
 		);
-
-		// @todo 本当はここでデータベースから情報を取得して設定する
-		/*
-		$this->controls = [
-			[
-				'type'       => 'text',
-				'label'      => 'お名前 ※',
-				'attributes' => [
-					'name' => 'お名前',
-				],
-				'validations' => [
-					'required' => true,
-				],
-			],
-			[
-				'type'       => 'text',
-				'label'      => 'ご住所',
-				'attributes' => [
-					'name' => 'ご住所',
-				],
-			],
-			[
-				'type'       => 'multi-checkbox',
-				'label'      => '趣味 ※',
-				'attributes' => [
-					'name'  => '趣味',
-					'children' => [
-						[
-							'label'      => 'サッカー',
-							'attributes' => [
-								'value' => 'soccer',
-							],
-						],
-						[
-							'label'      => '野球',
-							'attributes' => [
-								'value' => 'baseball',
-							],
-						],
-						[
-							'label'      => 'テニス',
-							'attributes' => [
-								'value' => 'tennis',
-							],
-						],
-					],
-				],
-				'validations' => [
-					'required' => true,
-				],
-			],
-		];
-
-		$this->complete_message = '送信しました！';
-		*/
 	}
 
 	public function get( $key ) {

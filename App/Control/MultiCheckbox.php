@@ -17,8 +17,7 @@ class MultiCheckbox extends Contract\Control {
 	protected $options     = [];
 	protected $validations = [];
 
-	public function __construct( array $attributes ) {
-		parent::__construct( $attributes );
+	public function _init() {
 		$this->name = $this->name . '[]';
 	}
 

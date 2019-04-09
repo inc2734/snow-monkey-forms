@@ -24,7 +24,6 @@ const send = ( form ) => {
 				( response ) => {
 					response = JSON.parse( response );
 					const method = response.data._method;
-					console.log(response);
 
 					actionArea.html( response.action );
 					form.find( '.snow-monkey-form__placeholder' ).html( '' );
