@@ -14,3 +14,4 @@ import '../../block/text/block';
 import '../../block/email/block';
 import '../../block/url/block';
 import '../../block/checkbox/block';
+import '../../block/select/block';

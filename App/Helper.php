@@ -40,7 +40,21 @@ class Helper {
 
 	public static function block_meta_normalization( array $attributes ) {
 		if ( isset( $attributes['validations'] ) ) {
-			$attributes['validations'] = json_decode( $attributes['validations'], true );
+			$attributes['validations'] = ! $attributes['validations']
+																	? []
+																	: json_decode( $attributes['validations'], true );
+		}
+
+		if ( isset( $attributes['options'] ) ) {
+			$attributes['options'] = ! $attributes['options']
+															? []
+															: json_decode(
+																	sprintf(
+																		'{%1$s}',
+																		str_replace( [ "\r\n", "\r", "\n" ], ',', $attributes['options'] )
+																	),
+																	true
+																);
 		}
 
 		return $attributes;
