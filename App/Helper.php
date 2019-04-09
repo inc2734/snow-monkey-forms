@@ -40,21 +40,32 @@ class Helper {
 
 	public static function block_meta_normalization( array $attributes ) {
 		if ( isset( $attributes['validations'] ) ) {
-			$attributes['validations'] = ! $attributes['validations']
-																	? []
-																	: json_decode( $attributes['validations'], true );
+			$validations = json_decode( $attributes['validations'], true );
+			$validations = is_array( $validations ) ? $validations : [];
+
+			$attributes['validations'] = $attributes['validations'] ? $validations : [];
 		}
 
 		if ( isset( $attributes['options'] ) ) {
-			$attributes['options'] = ! $attributes['options']
-															? []
-															: json_decode(
-																	sprintf(
-																		'{%1$s}',
-																		str_replace( [ "\r\n", "\r", "\n" ], ',', $attributes['options'] )
-																	),
-																	true
-																);
+			$options = [];
+
+			preg_replace_callback(
+				'@([^\r\n|\n|\r]*)[\r\n|\n|\r]?@sm',
+				function( $matches ) use( &$options ) {
+					if ( ! isset( $matches[1] ) ) {
+						return;
+					}
+
+					$decoded = json_decode( sprintf( '{%1$s}', $matches[1] ), true );
+					$decoded = is_array( $decoded ) ? $decoded : [ $matches[1] => $matches[1] ];
+					$options = array_merge( $options, $decoded );
+				},
+				$attributes['options']
+			);
+
+			$options = array_filter( $options );
+
+			$attributes['options'] = $options ? $options : [];
 		}
 
 		return $attributes;
