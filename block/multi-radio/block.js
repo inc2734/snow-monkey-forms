@@ -31,7 +31,7 @@ registerBlockType( 'snow-monkey-forms/multi-radio', {
 				<TextareaControl
 					label={ __( 'options', 'snow-monkey-forms' ) }
 					value={ options }
-					description={ __( '"value" : "label"&crarr;', 'snow-monkey-forms' ) }
+					help={ __( '"value" : "label"\u21B5', 'snow-monkey-forms' ) }
 					onChange={ ( attribute ) => setAttributes( { options: attribute } ) }
 				/>
 			</Fragment>

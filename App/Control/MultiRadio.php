@@ -11,10 +11,10 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class MultiRadio extends Contract\Control {
-	public    $name     = '';
-	public    $data     = [];
-	public    $value    = '';
-	protected $options  = [];
+	public    $name        = '';
+	public    $data        = [];
+	public    $value       = '';
+	protected $options     = [];
 	protected $validations = [];
 
 	public function input() {

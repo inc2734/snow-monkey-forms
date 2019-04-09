@@ -68,6 +68,13 @@ class Helper {
 			$attributes['options'] = $options ? $options : [];
 		}
 
+		if ( isset( $attributes['values'] ) ) {
+			$values = str_replace( [ "\r\n", "\r", "\n" ], "\n", $attributes['values'] );
+			$values = explode( "\n", $values );
+			$values = array_filter( $values );
+			$attributes['values'] = $values;
+		}
+
 		return $attributes;
 	}
 }

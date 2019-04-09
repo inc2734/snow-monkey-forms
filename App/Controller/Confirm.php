@@ -21,7 +21,9 @@ class Confirm extends Contract\Controller {
 				continue;
 			}
 
-			$control->set( 'value', $this->responser->get( $name ) );
+			$value = $this->responser->get( $name );
+			$control->set( 'value', is_null( $value ) || is_array( $value ) ? '' : $value );
+			$control->set( 'values', is_null( $value ) || ! is_array( $value ) ? [] : $value );
 
 			$controls[ $name ] = $control->confirm();
 		}

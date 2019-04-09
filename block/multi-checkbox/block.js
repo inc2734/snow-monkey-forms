@@ -5,8 +5,8 @@ const { Fragment } = wp.element;
 const { TextControl, TextareaControl } = wp.components;
 const { __ } = wp.i18n;
 
-registerBlockType( 'snow-monkey-forms/select', {
-	title: __( 'Select', 'snow-monkey-forms' ),
+registerBlockType( 'snow-monkey-forms/multi-checkbox', {
+	title: __( 'Multi checkbox', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',
 	supports: {
@@ -14,7 +14,7 @@ registerBlockType( 'snow-monkey-forms/select', {
 	},
 
 	edit( { attributes, setAttributes } ) {
-		const { name, value, options } = attributes;
+		const { name, values, options } = attributes;
 
 		return (
 			<Fragment>
@@ -23,10 +23,11 @@ registerBlockType( 'snow-monkey-forms/select', {
 					value={ name }
 					onChange={ ( attribute ) => setAttributes( { name: attribute } ) }
 				/>
-				<TextControl
-					label={ __( 'value', 'snow-monkey-forms' ) }
-					value={ value }
-					onChange={ ( attribute ) => setAttributes( { value: attribute } ) }
+				<TextareaControl
+					label={ __( 'values', 'snow-monkey-forms' ) }
+					value={ values }
+					help={ __( 'value\u21B5', 'snow-monkey-forms' ) }
+					onChange={ ( attribute ) => setAttributes( { values: attribute } ) }
 				/>
 				<TextareaControl
 					label={ __( 'options', 'snow-monkey-forms' ) }
