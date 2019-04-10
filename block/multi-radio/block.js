@@ -2,7 +2,7 @@
 
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
-const { TextControl, TextareaControl } = wp.components;
+const { TextControl, TextareaControl, ServerSideRender } = wp.components;
 const { __ } = wp.i18n;
 
 registerBlockType( 'snow-monkey-forms/multi-radio', {
@@ -13,10 +13,10 @@ registerBlockType( 'snow-monkey-forms/multi-radio', {
 		customClassName: false,
 	},
 
-	edit( { attributes, setAttributes } ) {
+	edit( { attributes, setAttributes, isSelected } ) {
 		const { name, value, options } = attributes;
 
-		return (
+		return !! isSelected ? (
 			<Fragment>
 				<TextControl
 					label={ __( 'name', 'snow-monkey-forms' ) }
@@ -35,6 +35,11 @@ registerBlockType( 'snow-monkey-forms/multi-radio', {
 					onChange={ ( attribute ) => setAttributes( { options: attribute } ) }
 				/>
 			</Fragment>
+		) : (
+			<ServerSideRender
+				block="snow-monkey-forms/multi-radio"
+				attributes={ attributes }
+			/>
 		);
 	},
 

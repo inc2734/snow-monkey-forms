@@ -2,7 +2,7 @@
 
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
-const { TextControl, ToggleControl } = wp.components;
+const { TextControl, ToggleControl, ServerSideRender } = wp.components;
 const { __ } = wp.i18n;
 
 registerBlockType( 'snow-monkey-forms/checkbox', {
@@ -13,10 +13,10 @@ registerBlockType( 'snow-monkey-forms/checkbox', {
 		customClassName: false,
 	},
 
-	edit( { attributes, setAttributes } ) {
+	edit( { attributes, setAttributes, isSelected } ) {
 		const { name, label, value, checked } = attributes;
 
-		return (
+		return !! isSelected ? (
 			<Fragment>
 				<TextControl
 					label={ __( 'Label', 'snow-monkey-forms' ) }
@@ -39,6 +39,11 @@ registerBlockType( 'snow-monkey-forms/checkbox', {
 					onChange={ ( attribute ) => setAttributes( { checked: attribute } ) }
 				/>
 			</Fragment>
+		) : (
+			<ServerSideRender
+				block="snow-monkey-forms/checkbox"
+				attributes={ attributes }
+			/>
 		);
 	},
 

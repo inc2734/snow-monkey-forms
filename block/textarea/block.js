@@ -2,7 +2,7 @@
 
 const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
-const { TextControl, TextareaControl } = wp.components;
+const { TextControl, TextareaControl, ServerSideRender } = wp.components;
 const { __ } = wp.i18n;
 
 registerBlockType( 'snow-monkey-forms/textarea', {
@@ -13,10 +13,10 @@ registerBlockType( 'snow-monkey-forms/textarea', {
 		customClassName: false,
 	},
 
-	edit( { attributes, setAttributes } ) {
+	edit( { attributes, setAttributes, isSelected } ) {
 		const { name, value } = attributes;
 
-		return (
+		return !! isSelected ? (
 			<Fragment>
 				<TextControl
 					label={ __( 'name', 'snow-monkey-forms' ) }
@@ -29,6 +29,11 @@ registerBlockType( 'snow-monkey-forms/textarea', {
 					onChange={ ( attribute ) => setAttributes( { value: attribute } ) }
 				/>
 			</Fragment>
+		) : (
+			<ServerSideRender
+				block="snow-monkey-forms/textarea"
+				attributes={ attributes }
+			/>
 		);
 	},
 
