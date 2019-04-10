@@ -64,7 +64,7 @@ class MultiCheckbox extends Contract\Control {
 				'checked' => $checked,
 			];
 
-			$options[] = Helper::control( 'radio', $option_attributes )->confirm();
+			$options[] = Helper::control( 'checkbox', $option_attributes )->confirm();
 		}
 
 		return implode( ', ', $options );

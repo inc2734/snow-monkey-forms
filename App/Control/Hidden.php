@@ -13,12 +13,6 @@ class Hidden extends Contract\Control {
 	public $name = '';
 	public $value = '';
 
-	public function __construct( array $attributes ) {
-		parent::__construct( $attributes );
-
-		$this->value = is_array( $this->value ) ? implode( static::GLUE, $this->value ) : $this->value;
-	}
-
 	public function input() {
 		return sprintf(
 			'<input type="hidden" %1$s>',

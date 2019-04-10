@@ -8,7 +8,6 @@
 namespace Snow_Monkey\Plugin\Forms\App\Contract;
 
 abstract class Control {
-	const GLUE = '@@@';
 
 	public function __construct( array $attributes ) {
 		$properties = array_keys( get_object_vars( $this ) );
