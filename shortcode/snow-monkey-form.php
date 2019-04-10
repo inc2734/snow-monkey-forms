@@ -40,9 +40,6 @@ add_shortcode(
 		}
 
 		ob_start();
-		echo '<pre>';
-		var_dump( esc_html( $_posts[0]->post_content ) );
-		echo '</pre>';
 		?>
 		<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action="">
 			<div class="p-entry-content">
@@ -56,6 +53,6 @@ add_shortcode(
 			<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] )->input(); ?>
 		</form>
 		<?php
-		echo ob_get_clean();
+	 	return ob_get_clean();
 	}
 );
