@@ -39,6 +39,7 @@ class Bootstrap {
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
 		add_action( 'rest_api_init', [ $this, '_endpoint' ] );
 		add_action( 'init', [ $this, '_register_post_type' ] );
+		add_action( 'init', [ $this, '_register_meta' ] );
 		add_filter( 'block_categories', [ $this, '_block_categories' ] );
 	}
 
@@ -68,7 +69,7 @@ class Bootstrap {
 		}
 
 		wp_enqueue_script(
-			'snow-monkey-forms-editor',
+			'snow-monkey-forms-blocks',
 			SNOW_MONKEY_FORMS_URL . '/dist/js/blocks.min.js',
 			[ 'wp-blocks', 'wp-element', 'wp-i18n' ],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/blocks.min.js' ),
@@ -76,9 +77,17 @@ class Bootstrap {
 		);
 
 		wp_set_script_translations(
-			'snow-monkey-forms-editor',
+			'snow-monkey-forms-blocks',
 			'snow-monkey-forms',
 			SNOW_MONKEY_FORMS_PATH . '/languages'
+		);
+
+		wp_enqueue_script(
+			'snow-monkey-forms-editor',
+			SNOW_MONKEY_FORMS_URL . '/dist/js/editor.min.js',
+			[ 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-i18n' ],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/editor.min.js' ),
+			true
 		);
 	}
 
@@ -105,7 +114,75 @@ class Bootstrap {
 				'public'       => false,
 				'show_ui'      => true,
 				'show_in_rest' => true,
-				'supports'     => [ 'title', 'editor' ],
+				'supports'     => [ 'title', 'editor', 'custom-fields' ],
+			]
+		);
+	}
+
+	public function _register_meta() {
+		register_meta(
+			'post',
+			'administrator_email_to',
+			[
+				'show_in_rest'   => true,
+				'single'         => true,
+				'type'           => 'string',
+				'object_subtype' => 'snow-monkey-forms',
+			]
+		);
+
+		register_meta(
+			'post',
+			'administrator_email_subject',
+			[
+				'show_in_rest'   => true,
+				'single'         => true,
+				'type'           => 'string',
+				'object_subtype' => 'snow-monkey-forms',
+			]
+		);
+
+		register_meta(
+			'post',
+			'administrator_email_body',
+			[
+				'show_in_rest'   => true,
+				'single'         => true,
+				'type'           => 'string',
+				'object_subtype' => 'snow-monkey-forms',
+			]
+		);
+
+		register_meta(
+			'post',
+			'auto_reply_email_to',
+			[
+				'show_in_rest'   => true,
+				'single'         => true,
+				'type'           => 'string',
+				'object_subtype' => 'snow-monkey-forms',
+			]
+		);
+
+		register_meta(
+			'post',
+			'auto_reply_email_subject',
+			[
+				'show_in_rest'   => true,
+				'single'         => true,
+				'type'           => 'string',
+				'object_subtype' => 'snow-monkey-forms',
+			]
+		);
+
+		register_meta(
+			'post',
+			'auto_reply_email_body',
+			[
+				'show_in_rest'   => true,
+				'single'         => true,
+				'type'           => 'string',
+				'object_subtype' => 'snow-monkey-forms',
 			]
 		);
 	}

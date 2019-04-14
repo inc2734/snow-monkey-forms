@@ -23,6 +23,7 @@
     "build": "npm-run-all -p js",
     "js:app": "webpack src/js/app.js -o dist/js/app.min.js --config webpack.config.js",
     "js:blocks": "webpack src/js/blocks.js -o dist/js/blocks.min.js --config webpack.config.js",
+    "js:editor": "webpack src/js/editor.js -o dist/js/editor.min.js --config webpack.config.js",
     "js": "npm run clean:js && npm-run-all -p js:*",
     "lint": "./node_modules/.bin/eslint ."
   }
