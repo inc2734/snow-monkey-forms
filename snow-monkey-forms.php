@@ -61,6 +61,13 @@ class Bootstrap {
 			),
 			'before'
 		);
+
+		wp_enqueue_style(
+			'snow-monkey-forms',
+			SNOW_MONKEY_FORMS_URL . '/dist/css/app.min.css',
+			[],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/app.min.css' )
+		);
 	}
 
 	public function _enqueue_block_editor_assets() {

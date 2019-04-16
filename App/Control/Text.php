@@ -35,7 +35,10 @@ class Text extends Contract\Control {
 		$this->data['invalid'] = true;
 
 		return sprintf(
-			'%1$s%2$s',
+			'%1$s%
+			<div class="snow-monkey-form-error-messages">
+				%2$s
+			</div>',
 			$this->input(),
 			$error_message
 		);
