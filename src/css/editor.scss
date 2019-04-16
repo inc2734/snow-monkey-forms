@@ -5,3 +5,17 @@
     font-weight: bold;
   }
 }
+
+.editor-block-list__layout {
+  @media (min-width: 600px) {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+}
+
+[data-type="snow-monkey-forms/form--input"],
+[data-type="snow-monkey-forms/form--complete"] {
+  > .editor-block-mover {
+    display: none;
+  }
+}

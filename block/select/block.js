@@ -9,7 +9,6 @@ registerBlockType( 'snow-monkey-forms/select', {
 	title: __( 'Select', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',
-	parent: [ 'snow-monkey-forms/form--input' ],
 	supports: {
 		customClassName: false,
 	},

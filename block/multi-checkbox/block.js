@@ -9,7 +9,6 @@ registerBlockType( 'snow-monkey-forms/multi-checkbox', {
 	title: __( 'Multi checkbox', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',
-	parent: [ 'snow-monkey-forms/form--input' ],
 	supports: {
 		customClassName: false,
 	},

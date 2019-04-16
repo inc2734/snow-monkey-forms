@@ -9,7 +9,6 @@ registerBlockType( 'snow-monkey-forms/checkbox', {
 	title: __( 'Checkbox', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',
-	parent: [ 'snow-monkey-forms/form--input' ],
 	supports: {
 		customClassName: false,
 	},
