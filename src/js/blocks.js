@@ -10,6 +10,8 @@ import '../../block/hooks/validations';
  * Import blocks
  */
 
+import '../../block/form/input/block';
+import '../../block/form/complete/block';
 import '../../block/text/block';
 import '../../block/email/block';
 import '../../block/url/block';

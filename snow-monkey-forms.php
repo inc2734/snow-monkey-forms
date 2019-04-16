@@ -89,6 +89,13 @@ class Bootstrap {
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/editor.min.js' ),
 			true
 		);
+
+		wp_enqueue_style(
+			'snow-monkey-forms-editor',
+			SNOW_MONKEY_FORMS_URL . '/dist/css/editor.min.css',
+			[],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.min.css' )
+		);
 	}
 
 	public function _endpoint() {
@@ -115,6 +122,11 @@ class Bootstrap {
 				'show_ui'      => true,
 				'show_in_rest' => true,
 				'supports'     => [ 'title', 'editor', 'custom-fields' ],
+				'template' => [
+					[ 'snow-monkey-forms/form--input', [], [] ],
+					[ 'snow-monkey-forms/form--complete', [], [] ],
+				],
+				'template_lock' => 'insert',
 			]
 		);
 	}

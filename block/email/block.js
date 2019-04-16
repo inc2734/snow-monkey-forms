@@ -9,6 +9,7 @@ registerBlockType( 'snow-monkey-forms/email', {
 	title: __( 'Email', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',
+	parent: [ 'snow-monkey-forms/form--input' ],
 	supports: {
 		customClassName: false,
 	},

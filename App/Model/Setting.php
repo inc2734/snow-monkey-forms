@@ -12,7 +12,8 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Setting {
 	protected $controls = [];
 
-	protected $complete_message;
+	protected $input_content;
+	protected $complete_content;
 
 	protected $administrator_email_to;
 	protected $administrator_email_subject;
@@ -37,23 +38,14 @@ class Setting {
 			return;
 		}
 
-		preg_replace_callback(
-			'|<!-- wp:snow-monkey-forms/([^ ]+?) ({.+?}) /-->|ms',
-			function( $matches ) {
-				if ( ! isset( $matches[1] ) || ! isset( $matches[2] ) ) {
-					return;
-				}
+		$this->input_content    = $this->_extract_input_content( $_posts[0]->post_content );
+		$this->complete_content = $this->_extract_complete_content( $_posts[0]->post_content );
 
-				$type       = $matches[1];
-				$attributes = json_decode( $matches[2], true );
-				$control    = Helper::control( $type, Helper::block_meta_normalization( $attributes ) );
+		if ( ! $this->input_content ) {
+			return;
+		}
 
-				if ( $control ) {
-					$this->controls[] = $control;
-				}
-			},
-			$_posts[0]->post_content
-		);
+		$this->_set_controls( $this->input_content );
 
 		$this->administrator_email_to      = get_post_meta( $form_id, 'administrator_email_to', true );
 		$this->administrator_email_subject = get_post_meta( $form_id, 'administrator_email_subject', true );
@@ -69,5 +61,45 @@ class Setting {
 		if ( in_array( $key, $properties ) ) {
 			return $this->$key;
 		}
+	}
+
+	private function _extract_input_content( $post_content ) {
+		$match = preg_match(
+			'|<!-- wp:snow-monkey-forms/form--input -->(.*?)<!-- /wp:snow-monkey-forms/form--input -->|ms',
+			$post_content,
+			$matches
+		);
+
+		return $match ? $matches[1] : null;;
+	}
+
+	private function _extract_complete_content( $post_content ) {
+		$match = preg_match(
+			'|<!-- wp:snow-monkey-forms/form--complete -->(.*?)<!-- /wp:snow-monkey-forms/form--complete -->|ms',
+			$post_content,
+			$matches
+		);
+
+		return $match ? $matches[1] : null;;
+	}
+
+	private function _set_controls( $input_content ) {
+		preg_replace_callback(
+			'|<!-- wp:snow-monkey-forms/([^ ]+?) ({.+?}) /-->|ms',
+			function( $matches ) {
+				if ( ! isset( $matches[1] ) || ! isset( $matches[2] ) ) {
+					return;
+				}
+
+				$type       = $matches[1];
+				$attributes = json_decode( $matches[2], true );
+				$control    = Helper::control( $type, Helper::block_meta_normalization( $attributes ) );
+
+				if ( $control ) {
+					$this->controls[] = $control;
+				}
+			},
+			$input_content
+		);
 	}
 }

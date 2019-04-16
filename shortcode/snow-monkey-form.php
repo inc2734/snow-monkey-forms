@@ -25,17 +25,7 @@ add_shortcode(
 		$form_id = $attributes['id'];
 		$setting = DataStore::get( $form_id );
 
-		$_posts = get_posts(
-			[
-				'post_type'        => 'snow-monkey-forms',
-				'post__in'         => [ $form_id ],
-				'posts_per_page'   => 1,
-				'suppress_filters' => false,
-				'no_found_rows'    => true,
-			]
-		);
-
-		if ( ! $_posts ) {
+		if ( ! $setting->get( 'input_content' ) ) {
 			return;
 		}
 
@@ -43,7 +33,7 @@ add_shortcode(
 		?>
 		<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action="">
 			<div class="p-entry-content">
-				<?php echo apply_filters( 'the_content', $_posts[0]->post_content ); ?>
+				<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); ?>
 
 				<p class="snow-monkey-form__action">
 					<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->input(); ?>

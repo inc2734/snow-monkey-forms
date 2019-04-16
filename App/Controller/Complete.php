@@ -19,6 +19,6 @@ class Complete extends Contract\Controller {
 	}
 
 	protected function set_message() {
-		return $this->setting->get( 'complete_message' );
+		return $this->setting->get( 'complete_content' );
 	}
 }
