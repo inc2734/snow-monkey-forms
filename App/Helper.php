@@ -51,7 +51,7 @@ class Helper {
 
 			preg_replace_callback(
 				'@([^\r\n|\n|\r]*)[\r\n|\n|\r]?@sm',
-				function( $matches ) use( &$options ) {
+				function( $matches ) use ( &$options ) {
 					if ( ! isset( $matches[1] ) ) {
 						return;
 					}

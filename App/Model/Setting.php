@@ -11,7 +11,16 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Setting {
 	protected $controls = [];
-	protected $complete_message = '';
+
+	protected $complete_message;
+
+	protected $administrator_email_to;
+	protected $administrator_email_subject;
+	protected $administrator_email_body;
+
+	protected $auto_reply_email_to;
+	protected $auto_reply_email_subject;
+	protected $auto_reply_email_body;
 
 	public function __construct( $form_id ) {
 		$_posts = get_posts(
@@ -45,10 +54,19 @@ class Setting {
 			},
 			$_posts[0]->post_content
 		);
+
+		$this->administrator_email_to      = get_post_meta( $form_id, 'administrator_email_to', true );
+		$this->administrator_email_subject = get_post_meta( $form_id, 'administrator_email_subject', true );
+		$this->administrator_email_body    = get_post_meta( $form_id, 'administrator_email_body', true );
+
+		$this->auto_reply_email_to      = get_post_meta( $form_id, 'auto_reply_email_to', true );
+		$this->auto_reply_email_subject = get_post_meta( $form_id, 'auto_reply_email_subject', true );
+		$this->auto_reply_email_body    = get_post_meta( $form_id, 'auto_reply_email_body', true );
 	}
 
 	public function get( $key ) {
-		if ( isset( $this->$key ) ) {
+		$properties = array_keys( get_object_vars( $this ) );
+		if ( in_array( $key, $properties ) ) {
 			return $this->$key;
 		}
 	}
