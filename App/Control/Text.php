@@ -13,7 +13,7 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Text extends Contract\Control {
 	public $name = '';
 	public $value = '';
-	public $data = [];
+	protected $data = [];
 	protected $validations = [];
 
 	public function input() {
@@ -32,14 +32,15 @@ class Text extends Contract\Control {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['invalid'] = true;
+		$this->data['data-invalid'] = true;
+		$attributes = get_object_vars( $this );
 
 		return sprintf(
 			'%1$s%
 			<div class="snow-monkey-form-error-messages">
 				%2$s
 			</div>',
-			$this->input(),
+			Helper::control( 'text', $attributes )->input(),
 			$error_message
 		);
 	}

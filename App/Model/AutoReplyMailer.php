@@ -1,0 +1,56 @@
+<?php
+/**
+ * @package snow-monkey-forms
+ * @author inc2734
+ * @license GPL-2.0+
+ */
+
+namespace Snow_Monkey\Plugin\Forms\App\Model;
+
+use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Model\Setting;
+use Snow_Monkey\Plugin\Forms\App\Model\MailParser;
+use Snow_Monkey\Plugin\Forms\App\Model\Mailer;
+
+class AutoReplyMailer {
+
+	protected $responser;
+	protected $setting;
+
+	public function __construct( Responser $responser, Setting $setting ) {
+		$this->responser = $responser;
+		$this->setting = $setting;
+	}
+
+	public function should_send() {
+		$mail_parser = new MailParser( $this->responser );
+		$to = $mail_parser->parse( $this->setting->get( 'auto_reply_email_to' ) );
+		return ! is_null( $to ) && '' !== $to;
+	}
+
+	public function send() {
+		try {
+			$this->_send();
+		} catch ( \Exception $e ) {
+			error_log( $e->getMessage() );
+		}
+	}
+
+	protected function _send() {
+		$mail_parser = new MailParser( $this->responser );
+
+		$mailer = new Mailer(
+			[
+				'to'      => $mail_parser->parse( $this->setting->get( 'auto_reply_email_to' ) ),
+				'subject' => $mail_parser->parse( $this->setting->get( 'auto_reply_email_subject' ) ),
+				'body'    => $mail_parser->parse( $this->setting->get( 'auto_reply_email_body' ) ),
+			]
+		);
+
+		$is_sended = $mailer->send();
+
+		if ( ! $is_sended ) {
+			throw new \Exception( '[Snow Monkey Forms] Failed to send auto reply email.' );
+		}
+	}
+}

@@ -21,10 +21,10 @@ class Hidden extends Contract\Control {
 	}
 
 	public function confirm() {
-		return $this->input();
+		return Helper::control( 'hidden', get_object_vars( $this ) )->input();
 	}
 
 	public function error( $error_message = '' ) {
-		return $this->input();
+		return Helper::control( 'hidden', get_object_vars( $this ) )->input();
 	}
 }

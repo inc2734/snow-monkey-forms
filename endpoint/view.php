@@ -9,8 +9,8 @@ use Snow_Monkey\Plugin\Forms\App\DataStore;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Validator;
 use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
-use Snow_Monkey\Plugin\Forms\App\Model\MailParser;
-use Snow_Monkey\Plugin\Forms\App\Model\Mailer;
+use Snow_Monkey\Plugin\Forms\App\Model\AdministratorMailer;
+use Snow_Monkey\Plugin\Forms\App\Model\AutoReplyMailer;
 
 $data    = filter_input_array( INPUT_POST );
 $form_id = $data['_formid'];
@@ -23,18 +23,23 @@ if ( ! $validator->validate() ) {
 	$data['_method'] = 'error';
 }
 
+if ( 'complete' === $data['_method'] ) {
+	$administrator_mailer = new AdministratorMailer( $responser, $setting );
+	$is_administrator_mail_sended = $administrator_mailer->send();
+	if ( ! $is_administrator_mail_sended ) {
+		$data['_method'] = 'system-error';
+		$setting->set_system_error_message( __( 'Failed to send administrator email.', 'snow-monkey-forms' ) );
+	}
+
+	$auto_reply_mailer = new AutoReplyMailer( $responser, $setting );
+	if ( $auto_reply_mailer->should_send() ) {
+		$is_auto_reply_mail_sended = $auto_reply_mailer->send();
+		if ( ! $is_auto_reply_mail_sended ) {
+			$data['_method'] = 'system-error';
+			$setting->set_system_error_message( __( 'Failed to send auto reply email.', 'snow-monkey-forms' ) );
+		}
+	}
+}
+
 $controller = Dispatcher::dispatch( $data['_method'], $responser, $setting, $validator );
 $controller->send();
-
-if ( 'complete' === $data['_method'] ) {
-	$mail_parser = new MailParser( $responser );
-
-	$mailer = new Mailer(
-		[
-			'to'      => $setting->get( 'administrator_email_to' ),
-			'subject' => $setting->get( 'administrator_email_subject' ),
-			'body'    => $mail_parser->parse( $setting->get( 'administrator_email_body' ) ),
-		]
-	);
-	$mailer->send();
-}

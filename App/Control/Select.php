@@ -12,14 +12,15 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Select extends Contract\Control {
 	public    $name     = '';
-	public    $data     = [];
 	public    $value    = '';
+	protected $data     = [];
 	protected $options  = [];
 	protected $validations = [];
 
 	public function input() {
 		$attributes = get_object_vars( $this );
 		unset( $attributes['value'] );
+		unset( $attributes['data'] );
 
 		$options = [];
 		foreach ( $this->options as $value => $label ) {
@@ -32,7 +33,11 @@ class Select extends Contract\Control {
 		}
 
 		return sprintf(
-			'<span class="c-select" aria-selected="false"><select %1$s>%2$s</select><span class="c-select__label"></span></span>',
+			'<span class="c-select" aria-selected="false" %1$s>
+				<select %2$s>%3$s</select>
+				<span class="c-select__label"></span>
+			</span>',
+			$this->generate_attributes( [ 'data' => $this->data ] ),
 			$this->generate_attributes( $attributes ),
 			implode( '', $options )
 		);
@@ -51,14 +56,15 @@ class Select extends Contract\Control {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['invalid'] = true;
+		$this->data['data-invalid'] = true;
+		$attributes = get_object_vars( $this );
 
 		return sprintf(
 			'%1$s
 			<div class="snow-monkey-form-error-messages">
 				%2$s
 			</div>',
-			$this->input(),
+			Helper::control( 'select', $attributes )->input(),
 			$error_message
 		);
 	}

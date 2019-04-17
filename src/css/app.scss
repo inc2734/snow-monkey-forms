@@ -2,3 +2,30 @@
   margin-top: .5em;
   color: #cc3033;
 }
+
+.c-label {
+  display: inline-flex;
+  align-items: center;
+
+  > .c-radio,
+  > .c-checkbox {
+    margin-right: .25rem;
+  }
+}
+
+.c-multi-radio,
+.c-multi-checkbox {
+  > .c-label + .c-label {
+    margin-left: 1em;
+  }
+}
+
+.c-form-control[data-invalid="1"],
+.c-select[data-invalid="1"] {
+  border-color: #d98585;
+}
+
+.c-checkbox[data-invalid="1"] > .c-checkbox__control::before,
+.c-radio[data-invalid="1"] > .c-radio__control::before {
+  border-color: #d98585;
+}

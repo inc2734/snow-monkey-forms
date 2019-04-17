@@ -24,16 +24,16 @@ registerBlockType( 'snow-monkey-forms/multi-checkbox', {
 					onChange={ ( attribute ) => setAttributes( { name: attribute } ) }
 				/>
 				<TextareaControl
-					label={ __( 'values', 'snow-monkey-forms' ) }
-					value={ values }
-					help={ __( 'value\u21B5', 'snow-monkey-forms' ) }
-					onChange={ ( attribute ) => setAttributes( { values: attribute } ) }
-				/>
-				<TextareaControl
 					label={ __( 'options', 'snow-monkey-forms' ) }
 					value={ options }
 					help={ __( '"value" : "label"\u21B5', 'snow-monkey-forms' ) }
 					onChange={ ( attribute ) => setAttributes( { options: attribute } ) }
+				/>
+				<TextareaControl
+					label={ __( 'values', 'snow-monkey-forms' ) }
+					value={ values }
+					help={ __( 'value\u21B5', 'snow-monkey-forms' ) }
+					onChange={ ( attribute ) => setAttributes( { values: attribute } ) }
 				/>
 			</Fragment>
 		) : (

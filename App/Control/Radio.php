@@ -13,7 +13,7 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Radio extends Contract\Control {
 	public    $name    = '';
 	public    $checked = false;
-	public    $data    = [];
+	protected $data    = [];
 	protected $value   = '';
 	protected $label   = '';
 	protected $validations = [];
@@ -21,17 +21,19 @@ class Radio extends Contract\Control {
 	public function input() {
 		$attributes = get_object_vars( $this );
 		unset( $attributes['label'] );
+		unset( $attributes['data'] );
 
 		$label = '' === $this->label || is_null( $this->label ) ? $this->value : $this->label;
 
 		return sprintf(
-			'<label>
-				<span class="c-radio" aria-checked="false">
-					<input type="radio" %1$s>
+			'<label class="c-label">
+				<span class="c-radio" aria-checked="false" %1$s>
+					<input type="radio" %2$s>
 					<span class="c-radio__control"></span>
 				</span>
-				%2$s
+				%3$s
 			</label>',
+			$this->generate_attributes( [ 'data' => $this->data ] ),
 			$this->generate_attributes( $attributes ),
 			esc_html( $label )
 		);
@@ -52,14 +54,15 @@ class Radio extends Contract\Control {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['invalid'] = true;
+		$this->data['data-invalid'] = true;
+		$attributes = get_object_vars( $this );
 
 		return sprintf(
 			'%1$s
 			<div class="snow-monkey-form-error-messages">
 				%2$s
 			</div>',
-			$this->input(),
+			Helper::control( 'radio', $attributes )->input(),
 			$error_message
 		);
 	}

@@ -8,11 +8,12 @@
 namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Button extends Contract\Control {
 	public $name = '';
 	public $value = '';
-	public $data = [];
+	protected $data = [];
 
 	public function input() {
 		return sprintf(
@@ -23,10 +24,10 @@ class Button extends Contract\Control {
 	}
 
 	public function confirm() {
-		return $this->input();
+		return Helper::control( 'button', get_object_vars( $this ) )->input();
 	}
 
 	public function error( $error_message = '' ) {
-		return $this->input();
+		return Helper::control( 'button', get_object_vars( $this ) )->input();
 	}
 }

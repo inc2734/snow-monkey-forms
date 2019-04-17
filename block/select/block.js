@@ -23,16 +23,16 @@ registerBlockType( 'snow-monkey-forms/select', {
 					value={ name }
 					onChange={ ( attribute ) => setAttributes( { name: attribute } ) }
 				/>
-				<TextControl
-					label={ __( 'value', 'snow-monkey-forms' ) }
-					value={ value }
-					onChange={ ( attribute ) => setAttributes( { value: attribute } ) }
-				/>
 				<TextareaControl
 					label={ __( 'options', 'snow-monkey-forms' ) }
 					value={ options }
 					help={ __( '"value" : "label"\u21B5', 'snow-monkey-forms' ) }
 					onChange={ ( attribute ) => setAttributes( { options: attribute } ) }
+				/>
+				<TextControl
+					label={ __( 'value', 'snow-monkey-forms' ) }
+					value={ value }
+					onChange={ ( attribute ) => setAttributes( { value: attribute } ) }
 				/>
 			</Fragment>
 		) : (

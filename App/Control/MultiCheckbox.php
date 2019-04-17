@@ -12,13 +12,13 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class MultiCheckbox extends Contract\Control {
 	public    $name        = '';
-	public    $data        = [];
 	public    $values      = [];
+	protected $data        = [];
 	protected $options     = [];
 	protected $validations = [];
 
 	public function _init() {
-		$this->name = $this->name . '[]';
+		$this->name = $this->get( 'name' ) . '[]';
 	}
 
 	public function input() {
@@ -33,6 +33,7 @@ class MultiCheckbox extends Contract\Control {
 				'value'   => $value,
 				'label'   => $label,
 				'checked' => in_array( $value, $this->values ),
+				'data'    => $this->data,
 			];
 
 			$options[] = Helper::control( 'checkbox', $option_attributes )->input();
@@ -71,14 +72,15 @@ class MultiCheckbox extends Contract\Control {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['invalid'] = true;
+		$this->data['data-invalid'] = true;
+		$attributes = get_object_vars( $this );
 
 		return sprintf(
 			'%1$s
 			<div class="snow-monkey-form-error-messages">
 				%2$s
 			</div>',
-			$this->input(),
+			Helper::control( 'multi-checkbox', $attributes )->input(),
 			$error_message
 		);
 	}

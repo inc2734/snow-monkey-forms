@@ -13,7 +13,7 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Checkbox extends Contract\Control {
 	public    $name    = '';
 	public    $checked = false;
-	public    $data    = [];
+	protected $data    = [];
 	protected $value   = '';
 	protected $label   = '';
 	protected $validations = [];
@@ -21,17 +21,19 @@ class Checkbox extends Contract\Control {
 	public function input() {
 		$attributes = get_object_vars( $this );
 		unset( $attributes['label'] );
+		unset( $attributes['data'] );
 
 		$label = '' === $this->label || is_null( $this->label ) ? $this->value : $this->label;
 
 		return sprintf(
-			'<label>
-				<span class="c-checkbox" aria-checked="false">
-					<input type="checkbox" %1$s>
+			'<label class="c-label">
+				<span class="c-checkbox" aria-checked="false" %1$s>
+					<input type="checkbox" %2$s>
 					<span class="c-checkbox__control"></span>
 				</span>
-				%2$s
+				%3$s
 			</label>',
+			$this->generate_attributes( [ 'data' => $this->data ] ),
 			$this->generate_attributes( $attributes ),
 			esc_html( $label )
 		);
@@ -52,14 +54,15 @@ class Checkbox extends Contract\Control {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['invalid'] = true;
+		$this->data['data-invalid'] = true;
+		$attributes = get_object_vars( $this );
 
 		return sprintf(
 			'%1$s
 			<div class="snow-monkey-form-error-messages">
 				%2$s
 			</div>',
-			$this->input(),
+			Helper::control( 'checkbox', $attributes )->input(),
 			$error_message
 		);
 	}

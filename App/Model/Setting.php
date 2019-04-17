@@ -11,6 +11,7 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Setting {
 	protected $controls = [];
+	protected $system_error_messages = [];
 
 	protected $input_content;
 	protected $complete_content;
@@ -61,6 +62,10 @@ class Setting {
 		if ( in_array( $key, $properties ) ) {
 			return $this->$key;
 		}
+	}
+
+	public function set_system_error_message( $message ) {
+		$this->system_error_messages[] = $message;
 	}
 
 	private function _extract_input_content( $post_content ) {

@@ -12,8 +12,8 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class MultiRadio extends Contract\Control {
 	public    $name        = '';
-	public    $data        = [];
 	public    $value       = '';
+	protected $data        = [];
 	protected $options     = [];
 	protected $validations = [];
 
@@ -29,6 +29,7 @@ class MultiRadio extends Contract\Control {
 				'value'   => $value,
 				'label'   => $label,
 				'checked' => $value === $this->value,
+				'data'    => $this->data,
 			];
 
 			$options[] = Helper::control( 'radio', $option_attributes )->input();
@@ -54,14 +55,15 @@ class MultiRadio extends Contract\Control {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['invalid'] = true;
+		$this->data['data-invalid'] = true;
+		$attributes = get_object_vars( $this );
 
 		return sprintf(
 			'%1$s
 			<div class="snow-monkey-form-error-messages">
 				%2$s
 			</div>',
-			$this->input(),
+			Helper::control( 'multi-radio', $attributes )->input(),
 			$error_message
 		);
 	}
