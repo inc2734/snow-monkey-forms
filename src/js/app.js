@@ -17,6 +17,6 @@ $( document ).on(
 	( event ) => {
 		$( event.currentTarget ).removeAttr( 'data-invalid' );
 		$( event.currentTarget ).find( '[data-invalid="1"]' ).removeAttr( 'data-invalid' );
-		$( event.currentTarget ).parent().find( '.snow-monkey-form-error-messages' ).remove();
+		$( event.currentTarget ).closest( '.snow-monkey-form__placeholder' ).find( '.snow-monkey-form-error-messages' ).remove();
 	}
 );
