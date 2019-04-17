@@ -11,6 +11,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\Validator;
 use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
 use Snow_Monkey\Plugin\Forms\App\Model\AdministratorMailer;
 use Snow_Monkey\Plugin\Forms\App\Model\AutoReplyMailer;
+use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 
 $data    = filter_input_array( INPUT_POST );
 $form_id = $data['_formid'];
@@ -21,6 +22,11 @@ $validator = new Validator( $responser, $setting );
 
 if ( ! $validator->validate() ) {
 	$data['_method'] = 'error';
+}
+
+if ( ! Csrf::validate() ) {
+	$data['_method'] = 'system-error';
+	$setting->set_system_error_message( __( 'Invalid access.', 'snow-monkey-forms' ) );
 }
 
 if ( 'complete' === $data['_method'] ) {

@@ -15,6 +15,8 @@
 
 namespace Snow_Monkey\Plugin\Forms;
 
+use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
+
 define( 'SNOW_MONKEY_FORMS_URL', plugin_dir_url( __FILE__ ) );
 define( 'SNOW_MONKEY_FORMS_PATH', plugin_dir_path( __FILE__ ) );
 
@@ -41,6 +43,8 @@ class Bootstrap {
 		add_action( 'init', [ $this, '_register_post_type' ] );
 		add_action( 'init', [ $this, '_register_meta' ] );
 		add_filter( 'block_categories', [ $this, '_block_categories' ] );
+
+		Csrf::save_token();
 	}
 
 	public function _enqueue_assets() {

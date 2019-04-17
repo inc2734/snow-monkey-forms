@@ -7,6 +7,7 @@
 
 use Snow_Monkey\Plugin\Forms\App\DataStore;
 use Snow_Monkey\Plugin\Forms\App\Helper;
+use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 
 add_shortcode(
 	'snow_monkey_form',
@@ -41,6 +42,7 @@ add_shortcode(
 				</p>
 			</div>
 			<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] )->input(); ?>
+			<?php echo Csrf::token_control(); ?>
 		</form>
 		<?php
 	 	return ob_get_clean();

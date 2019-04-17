@@ -17,7 +17,7 @@ export default function send( form ) {
 			).done(
 				( response ) => {
 					response = JSON.parse( response );
-					const method = response.data._method;
+					const method = response.method;
 
 					actionArea.html( response.action );
 					form.find( '.snow-monkey-form__placeholder' ).html( '' );
@@ -30,7 +30,7 @@ export default function send( form ) {
 								placeholder.html( control );
 							}
 						);
-					} else if ( 'complete' === method ) {
+					} else if ( 'complete' === method || 'system-error' === method ) {
 						form.html( response.message );
 					} else {
 						form.html( '' );

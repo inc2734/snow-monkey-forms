@@ -13,6 +13,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\Validator;
 
 abstract class Controller {
 
+	protected $method;
 	protected $responser;
 	protected $setting;
 	protected $validator;
@@ -21,7 +22,8 @@ abstract class Controller {
 	protected $action   = [];
 	protected $message  = '';
 
-	public function __construct( Responser $responser, Setting $setting, Validator $validator ) {
+	public function __construct( $method, Responser $responser, Setting $setting, Validator $validator ) {
+		$this->method    = $method;
 		$this->responser = $responser;
 		$this->setting   = $setting;
 		$this->validator = $validator;
@@ -36,6 +38,6 @@ abstract class Controller {
 	abstract protected function set_message();
 
 	public function send() {
-		$this->responser->send( $this->controls, $this->action, $this->message );
+		$this->responser->send( $this->method, $this->controls, $this->action, $this->message );
 	}
 }

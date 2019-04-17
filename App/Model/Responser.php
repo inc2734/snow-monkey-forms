@@ -17,9 +17,10 @@ class Responser {
 		$this->data = $data;
 	}
 
-	public function send( array $controls = [], array $action = [], $message = '' ) {
+	public function send( $method, array $controls = [], array $action = [], $message = '' ) {
 		echo json_encode(
 			[
+				'method'   => $method,
 				'data'     => $this->data,
 				'controls' => $controls,
 				'action'   => implode( '', $action ),
