@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin name: Snow Monkey Forms
- * Version: 0.0.1
+ * Version: 0.0.2
  * Author: inc2734
  * Author URI: https://2inc.org
  * License: GPL2 or later

@@ -29,3 +29,9 @@
 .c-radio[data-invalid="1"] > .c-radio__control::before {
   border-color: #d98585;
 }
+
+.snow-monkey-form__action {
+  .c-btn + .c-btn {
+    margin-left: .5em;
+  }
+}

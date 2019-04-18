@@ -30,10 +30,13 @@ class AutoReplyMailer {
 
 	public function send() {
 		try {
-			$this->_send();
+			$is_sended = $this->_send();
 		} catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
+			$is_sended = false;
 		}
+
+		return $is_sended;
 	}
 
 	protected function _send() {
@@ -52,5 +55,7 @@ class AutoReplyMailer {
 		if ( ! $is_sended ) {
 			throw new \Exception( '[Snow Monkey Forms] Failed to send auto reply email.' );
 		}
+
+		return $is_sended;
 	}
 }
