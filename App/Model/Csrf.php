@@ -23,7 +23,7 @@ class Csrf {
 
 	public static function save_token() {
 		static::$token = ! static::saved_token() ? static::generate_token() : static::saved_token();
-		if ( ! static::saved_token() ) {
+		if ( ! static::saved_token() && ! headers_sent() ) {
 			setcookie( static::KEY, static::token(), 0, '/' );
 		}
 	}

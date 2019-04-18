@@ -33,6 +33,10 @@
     "css:app": "node-sass src/css/app.scss dist/css/app.min.css && postcss dist/css/app.min.css -r -c=postcss.config.js",
     "css:editor": "node-sass src/css/editor.scss dist/css/editor.min.css && postcss dist/css/editor.min.css -r -c=postcss.config.js",
     "css": "npm run clean:css && npm-run-all -p css:*",
-    "lint": "./node_modules/.bin/eslint ."
+    "lint": "./node_modules/.bin/eslint .",
+    "clean:zip": "rimraf snow-monkey-forms.zip",
+    "zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/bin' --exclude='/tests' --exclude='package*.json' . snow-monkey-forms && cd snow-monkey-forms && composer install --no-dev",
+    "zip:archive": "zip -9 -qmr snow-monkey-forms.zip snow-monkey-forms",
+    "zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive"
   }
 }

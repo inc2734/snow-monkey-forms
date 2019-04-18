@@ -93,7 +93,7 @@ class Validator {
 				return $class_name;
 			}
 			throw new \Exception( sprintf( '[Snow Monkey Forms] The class %1$s is not found.', $class_name ) );
-		} catch( \Exception $e ) {
+		} catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
 		}
 

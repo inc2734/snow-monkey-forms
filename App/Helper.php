@@ -26,7 +26,7 @@ class Helper {
 				return new $class_name( $attributes );
 			}
 			throw new \Exception( sprintf( '[Snow Monkey Forms] The class %1$s is not found.', $class_name ) );
-		} catch( \Exception $e ) {
+		} catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
 			return;
 		}

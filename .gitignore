@@ -5,3 +5,5 @@ node_modules/
 vendor/
 dist/
 *.sql
+snow-monkey-forms/
+snow-monkey-forms.zip
