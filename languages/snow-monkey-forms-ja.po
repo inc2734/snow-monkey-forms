@@ -1,0 +1,181 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Snow Monkey Forms\n"
+"POT-Creation-Date: 2019-04-18 22:08+0900\n"
+"PO-Revision-Date: 2019-04-18 22:11+0900\n"
+"Last-Translator: inc2734 <inc@2inc.org>\n"
+"Language-Team: inc2734 <inc@2inc.org>\n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.4\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: snow-monkey-forms.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SearchPathExcluded-2: tests\n"
+"X-Poedit-SearchPathExcluded-3: dist\n"
+
+#: App/Validation/Email.php:24
+msgid "Please enter a valid Email address."
+msgstr "有効なメールアドレスを入力してください。"
+
+#: App/Validation/Required.php:22
+msgid "Please enter."
+msgstr "入力してください。"
+
+#: App/Validation/Url.php:22
+msgid "Please enter a valid URL."
+msgstr "有効な URL を入力してください。"
+
+#: endpoint/view.php:29
+msgid "Invalid access."
+msgstr "無効なアクセスです。"
+
+#: endpoint/view.php:37
+msgid "Failed to send administrator email."
+msgstr "管理者メールの送信に失敗しました。"
+
+#: endpoint/view.php:45
+msgid "Failed to send auto reply email."
+msgstr "自動返信メールの送信に失敗しました。"
+
+#. Plugin Name of the plugin/theme
+#: snow-monkey-forms.php:169 snow-monkey-forms.php:254
+msgid "Snow Monkey Forms"
+msgstr "Snow Monkey Forms"
+
+#: block/checkbox/block.js:9
+msgid "Checkbox"
+msgstr "チェックボックス"
+
+#: block/checkbox/block.js:22 block/radio/block.js:22
+msgid "Label"
+msgstr "ラベル"
+
+#: block/checkbox/block.js:27 block/email/block.js:22
+#: block/multi-checkbox/block.js:22 block/multi-radio/block.js:22
+#: block/radio/block.js:27 block/select/block.js:22 block/text/block.js:22
+#: block/textarea/block.js:22 block/url/block.js:22
+msgid "name"
+msgstr "name"
+
+#: block/checkbox/block.js:32 block/email/block.js:27
+#: block/multi-radio/block.js:33 block/radio/block.js:32
+#: block/select/block.js:33 block/text/block.js:27 block/textarea/block.js:27
+#: block/url/block.js:27
+msgid "value"
+msgstr "value"
+
+#: block/checkbox/block.js:37 block/radio/block.js:37
+msgid "checked"
+msgstr "checked"
+
+#: block/email/block.js:9
+msgid "Email"
+msgstr "メール"
+
+#: block/form/complete/block.js:8 block/form/complete/block.js:20
+msgid "Complete"
+msgstr "完了画面"
+
+#: block/form/input/block.js:8 block/form/input/block.js:20
+msgid "Input"
+msgstr "入力画面"
+
+#: block/hooks/validations.js:27
+msgid "Validation"
+msgstr "バリデーション"
+
+#: block/hooks/validations.js:29
+msgid "Required"
+msgstr "必須"
+
+#: block/multi-checkbox/block.js:9
+msgid "Multi checkbox"
+msgstr "複数チェックボックス"
+
+#: block/multi-checkbox/block.js:27 block/multi-radio/block.js:27
+#: block/select/block.js:27
+msgid "options"
+msgstr "options"
+
+#: block/multi-checkbox/block.js:29 block/multi-radio/block.js:29
+#: block/select/block.js:29
+msgid "\"value\" : \"label\"↵"
+msgstr "“value” : “label”↵"
+
+#: block/multi-checkbox/block.js:33
+msgid "values"
+msgstr "values"
+
+#: block/multi-checkbox/block.js:35
+msgid "value↵"
+msgstr "value↵"
+
+#: block/multi-radio/block.js:9
+msgid "Multi radio"
+msgstr "複数ラジオボタン"
+
+#: block/radio/block.js:9
+msgid "Radio"
+msgstr "ラジオボタン"
+
+#: block/select/block.js:9
+msgid "Select"
+msgstr "セレクトボックス"
+
+#: block/text/block.js:9
+msgid "Text"
+msgstr "テキスト"
+
+#: block/textarea/block.js:9
+msgid "Textarea"
+msgstr "テキストエリア"
+
+#: block/url/block.js:9
+msgid "URL"
+msgstr "URL"
+
+#: src/js/editor.js:26 src/js/editor.js:51
+msgid "Form settings"
+msgstr "フォーム設定"
+
+#: src/js/editor.js:29
+msgid "Administrator email"
+msgstr "管理者宛メール"
+
+#: src/js/editor.js:38
+msgid "Auto reply email"
+msgstr "自動返信メール"
+
+#: src/js/plugin-sidebar/administrator-email-body.js:10
+#: src/js/plugin-sidebar/auto-reply-email-body.js:10
+msgid "Body"
+msgstr "Body"
+
+#: src/js/plugin-sidebar/administrator-email-subject.js:10
+#: src/js/plugin-sidebar/auto-reply-email-subject.js:10
+msgid "Subject"
+msgstr "件名"
+
+#: src/js/plugin-sidebar/administrator-email-to.js:10
+#: src/js/plugin-sidebar/auto-reply-email-to.js:10
+msgid "To"
+msgstr "To"
+
+#. Author of the plugin/theme
+msgid "inc2734"
+msgstr "inc2734"
+
+#. Author URI of the plugin/theme
+msgid "https://2inc.org"
+msgstr "https://2inc.org"

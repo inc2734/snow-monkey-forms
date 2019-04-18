@@ -6,26 +6,27 @@
     "@babel/core": "^7.4.3",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.4.3",
-    "babel-loader": "^8.0.5",
+    "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.5",
+    "cssnano": "^4.1.10",
     "eslint": "^5.16.0",
     "eslint-config-wordpress": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-wordpress": "git://github.com/WordPress-Coding-Standards/eslint-plugin-wordpress.git#1774343f6226052a46b081e01db3fca8793cc9f1",
+    "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
+    "po2json": "^1.0.0-alpha",
+    "postcss-cli": "^6.1.2",
     "rimraf": "^2.6.3",
     "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "autoprefixer": "^9.5.1",
-    "cssnano": "^4.1.10",
-    "node-sass": "^4.11.0",
-    "postcss-cli": "^6.1.2"
+    "webpack-cli": "^3.3.0"
   },
   "scripts": {
     "clean:js": "rimraf dist/js",
     "clean:css": "rimraf dist/css",
-    "build": "npm-run-all -p js css",
+    "build": "npm-run-all -p js css po2json",
     "js:app": "webpack src/js/app.js -o dist/js/app.min.js --config webpack.config.js",
     "js:blocks": "webpack src/js/blocks.js -o dist/js/blocks.min.js --config webpack.config.js",
     "js:editor": "webpack src/js/editor.js -o dist/js/editor.min.js --config webpack.config.js",
@@ -37,6 +38,9 @@
     "clean:zip": "rimraf snow-monkey-forms.zip",
     "zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/bin' --exclude='/tests' --exclude='package*.json' . snow-monkey-forms && cd snow-monkey-forms && composer install --no-dev",
     "zip:archive": "zip -9 -qmr snow-monkey-forms.zip snow-monkey-forms",
-    "zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive"
+    "zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive",
+    "po2json:snow-monkey-forms-editor": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms-editor.json -f jed",
+    "po2json:snow-monkey-forms-blocks": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms-blocks.json -f jed",
+    "po2json": "npm-run-all -p po2json:*"
   }
 }

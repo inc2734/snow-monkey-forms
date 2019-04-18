@@ -1,44 +1,45 @@
 sudo: false
 language: php
-
 php:
-  - 7.1
-  - 7.2
-
+- 7.2
+- 7.3
 env:
   global:
   - WP_VERSION=latest WP_MULTISITE=0
-
 notifications:
   email:
     on_success: never
     on_failure: change
-
 branches:
   only:
-    - master
-    - develop
-    - "/\\d+\\.\\d+\\.\\d+?.*/"
-
+  - master
+  - develop
+  - "/\\d+\\.\\d+\\.\\d+?.*/"
 cache:
   directories:
-    - $HOME/.composer/cache
-    - node_modules
-    - vendor
-
+  - "$HOME/.composer/cache"
+  - node_modules
+  - vendor
 install:
-  - nvm install 8
-  - npm install
-  - composer install
-
+- nvm install 8
+- npm install
+- composer install
 before_script:
-  - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
-
+- bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
 script:
-  - composer test
-
+- composer test
 before_deploy:
-  - npm run build
-  - npm run zip
-  - ls -la snow-monkey-forms.zip
-  - export RELEASE_FILE=$(ls snow-monkey-forms.zip)
+- npm run build
+- npm run zip
+- ls -la snow-monkey-forms.zip
+- export RELEASE_FILE=$(ls snow-monkey-forms.zip)
+deploy:
+  provider: releases
+  api_key:
+    secure: nrOqxoyAaURw7yRxwvR2NXLNmf98Tjs8M/zy6IUpugJ4zFDTFhKbYPu7mP97wXZuc4i5C/YV9It6xBO0lciIAMmHwzUkEyLGyFVJTAhCeZtWzeW63qGJXGMUiRfklwAAyCNj1mnTBUBEenXwdt+RDwMa0gP0bevC39KbdpJ0Pw80gB+yYpXkf61b1fnAo6/NFzdjNMXSlyi1BdYrgzWhZd2RHfEg5MnZxFHPUFJzas7FisWl+O2gPITBg7cDj9x5kdntXrjFc21a2KLDFSzMUW1cinP2zsGyace8NQ02AFR7sw66ooGmnPcbtOZiJeNDogrJ8JSUX6XPBJMVfNGkJfrAgoiIVC4pg+Aq0fxfY2SqkO0mnkfgTXOP0sUsUKYAG3A0rxTP9dtU2aCQdXoPmSZ725EZMSUykZpcnpLxIUY0GaXCjb4AbvfPRXEVr9YSbU4H02TFhX4iyUrPcOxWE3vO1iJoVJUt8awtwKrOCKHiB0JfsgyAchAdYslne+FkrQV8Sbwf6HeKrm2J8m5Vt7hy22DOW1O6vgFF5kil4uTrjF4/ZgFmn6Hhqj8MKF2b2n+pKKXXiY0RA7kR/Mk+CujdPDg3qWV25N2fmNyhPS3XsUvVZC9AjXvrxqJygRPQZVbvyOVhCctSWyW7/CKPUvXvZg4f+lp0zthlc/O2Eaw=
+  file: "${RELEASE_FILE}"
+  skip_cleanup: true
+  on:
+    tags: true
+    php: 7.3
+    repo: inc2734/snow-monkey-forms

@@ -6,7 +6,7 @@
  * Author URI: https://2inc.org
  * License: GPL2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain: snow-monkey-blocks
+ * Text Domain: snow-monkey-forms
  *
  * @package snow-monkey-forms
  * @author inc2734
@@ -17,8 +17,8 @@ namespace Snow_Monkey\Plugin\Forms;
 
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 
-define( 'SNOW_MONKEY_FORMS_URL', plugin_dir_url( __FILE__ ) );
-define( 'SNOW_MONKEY_FORMS_PATH', plugin_dir_path( __FILE__ ) );
+define( 'SNOW_MONKEY_FORMS_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+define( 'SNOW_MONKEY_FORMS_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 require_once( SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php' );
 
@@ -30,6 +30,13 @@ class Bootstrap {
 
 	public function _plugins_loaded() {
 		load_plugin_textdomain( 'snow-monkey-forms', false, basename( __DIR__ ) . '/languages' );
+		add_filter( 'load_textdomain_mofile', [ $this, '_load_textdomain_mofile' ], 10, 2 );
+		load_plugin_textdomain( 'snow-monkey-forms', false, basename( __DIR__ ) . '/languages' );
+
+		$theme = wp_get_theme();
+		if ( 'snow-monkey' !== $theme->template && 'snow-monkey/resources' !== $theme->template ) {
+			return;
+		}
 
 		Csrf::save_token();
 
@@ -48,6 +55,27 @@ class Bootstrap {
 		add_action( 'init', [ $this, '_register_post_type' ] );
 		add_action( 'init', [ $this, '_register_meta' ] );
 		add_filter( 'block_categories', [ $this, '_block_categories' ] );
+	}
+
+	/**
+	 * When local .mo file exists, load this.
+	 *
+	 * @param string $mofile
+	 * @param string $domain
+	 * @return string
+	 */
+	public function _load_textdomain_mofile( $mofile, $domain ) {
+		if ( 'snow-monkey-forms' !== $domain ) {
+			return $mofile;
+		}
+
+		$mofilename   = basename( $mofile );
+		$local_mofile = SNOW_MONKEY_FORMS_PATH . '/languages/' . $mofilename;
+		if ( ! file_exists( $local_mofile ) ) {
+			return $mofile;
+		}
+
+		return $local_mofile;
 	}
 
 	public function _enqueue_assets() {
@@ -102,6 +130,12 @@ class Bootstrap {
 			[ 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-i18n' ],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/editor.min.js' ),
 			true
+		);
+
+		wp_set_script_translations(
+			'snow-monkey-forms-editor',
+			'snow-monkey-forms',
+			SNOW_MONKEY_FORMS_PATH . '/languages'
 		);
 
 		wp_enqueue_style(
@@ -236,4 +270,5 @@ class Bootstrap {
 	}
 }
 
+require_once( SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php' );
 new Bootstrap();

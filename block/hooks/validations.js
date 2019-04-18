@@ -26,7 +26,7 @@ const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
 				<InspectorControls>
 					<PanelBody title={ __( 'Validation', 'snow-monkey-forms' ) }>
 						<ToggleControl
-							label={ __( 'Required', 'snow-monkey-blocks' ) }
+							label={ __( 'Required', 'snow-monkey-forms' ) }
 							checked={ !! parsedValidations.required }
 							onChange={ ( value ) => {
 								setAttributes( { validations: JSON.stringify( merge( parsedValidations, { required: value } ) ) } );
