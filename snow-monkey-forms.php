@@ -99,9 +99,9 @@ class Bootstrap {
 
 		wp_enqueue_style(
 			'snow-monkey-forms',
-			SNOW_MONKEY_FORMS_URL . '/dist/css/app.min.css',
-			[],
-			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/app.min.css' )
+			SNOW_MONKEY_FORMS_URL . '/dist/css/app.css',
+			[ \Framework\Helper::get_main_style_handle() ],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/app.css' )
 		);
 	}
 
