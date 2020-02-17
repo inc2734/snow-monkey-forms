@@ -13,5 +13,5 @@ if ( ! isset( $attributes['name'] ) ) {
 ?>
 
 <div class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $attributes['name'] ); ?>">
-	<?php echo Helper::control( 'url', Helper::block_meta_normalization( $attributes ) )->input(); ?>
+	<?php Helper::the_control( 'url', $attributes ); ?>
 </div>

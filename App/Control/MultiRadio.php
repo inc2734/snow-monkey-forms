@@ -11,10 +11,30 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class MultiRadio extends Contract\Control {
-	public    $name        = '';
-	public    $value       = '';
-	protected $data        = [];
-	protected $options     = [];
+
+	/**
+	 * @var string
+	 */
+	public $name = '';
+
+	/**
+	 * @var string
+	 */
+	public $value = '';
+
+	/**
+	 * @var array
+	 */
+	protected $data = [];
+
+	/**
+	 * @var array
+	 */
+	protected $options = [];
+
+	/**
+	 * @var array
+	 */
 	protected $validations = [];
 
 	public function input() {
@@ -50,7 +70,13 @@ class MultiRadio extends Contract\Control {
 		return sprintf(
 			'%1$s%2$s',
 			esc_html( $this->options[ $this->value ] ),
-			Helper::control( 'hidden', [ 'name' => $this->name, 'value' => $this->value ] )->input()
+			Helper::control(
+				'hidden',
+				[
+					'name'  => $this->name,
+					'value' => $this->value,
+				]
+			)->input()
 		);
 	}
 

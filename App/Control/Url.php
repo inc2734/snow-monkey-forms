@@ -11,9 +11,25 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Url extends Contract\Control {
+
+	/**
+	 * @var string
+	 */
 	public $name = '';
+
+	/**
+	 * @var string
+	 */
 	public $value = '';
+
+	/**
+	 * @var array
+	 */
 	protected $data = [];
+
+	/**
+	 * @var array
+	 */
 	protected $validations = [
 		'url' => true,
 	];
@@ -29,7 +45,13 @@ class Url extends Contract\Control {
 		return sprintf(
 			'%1$s%2$s',
 			esc_html( $this->value ),
-			Helper::control( 'hidden', [ 'name' => $this->name, 'value' => $this->value ] )->input()
+			Helper::control(
+				'hidden',
+				[
+					'name'  => $this->name,
+					'value' => $this->value,
+				]
+			)->input()
 		);
 	}
 

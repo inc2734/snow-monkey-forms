@@ -11,10 +11,30 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class MultiCheckbox extends Contract\Control {
-	public    $name        = '';
-	public    $values      = [];
-	protected $data        = [];
-	protected $options     = [];
+
+	/**
+	 * @var string
+	 */
+	public $name = '';
+
+	/**
+	 * @var array
+	 */
+	public $values = [];
+
+	/**
+	 * @var array
+	 */
+	protected $data = [];
+
+	/**
+	 * @var array
+	 */
+	protected $options = [];
+
+	/**
+	 * @var array
+	 */
 	protected $validations = [];
 
 	public function _init() {

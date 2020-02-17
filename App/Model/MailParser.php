@@ -11,6 +11,9 @@ use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 
 class MailParser {
 
+	/**
+	 * @var Responser
+	 */
 	protected $responser;
 
 	public function __construct( Responser $responser ) {

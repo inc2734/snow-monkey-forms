@@ -11,7 +11,14 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Validator {
 
-	protected $responser = [];
+	/**
+	 * @var Responser
+	 */
+	protected $responser;
+
+	/**
+	 * @var Setting
+	 */
 	protected $setting;
 
 	protected $validation_map = [];

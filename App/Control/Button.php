@@ -11,8 +11,20 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Button extends Contract\Control {
+
+	/**
+	 * @var string
+	 */
 	public $name = '';
+
+	/**
+	 * @var string
+	 */
 	public $value = '';
+
+	/**
+	 * @var array
+	 */
 	protected $data = [];
 
 	public function input() {

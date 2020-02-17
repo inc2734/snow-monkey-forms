@@ -14,7 +14,14 @@ use Snow_Monkey\Plugin\Forms\App\Model\Mailer;
 
 class AdministratorMailer {
 
+	/**
+	 * @var Responser
+	 */
 	protected $responser;
+
+	/**
+	 * @var Setting
+	 */
 	protected $setting;
 
 	public function __construct( Responser $responser, Setting $setting ) {

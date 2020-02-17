@@ -10,7 +10,15 @@ namespace Snow_Monkey\Plugin\Forms\App\Control;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 
 class Hidden extends Contract\Control {
+
+	/**
+	 * @var string
+	 */
 	public $name = '';
+
+	/**
+	 * @var string
+	 */
 	public $value = '';
 
 	public function input() {

@@ -8,9 +8,25 @@
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
 class Responser {
+
+	/**
+	 * @var array
+	 */
 	protected $data = [];
+
+	/**
+	 * @var array
+	 */
 	protected $controls = [];
+
+	/**
+	 * @var array
+	 */
 	protected $action = [];
+
+	/**
+	 * @var string
+	 */
 	protected $message = '';
 
 	public function __construct( array $data = [] ) {

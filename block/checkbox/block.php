@@ -33,7 +33,7 @@ add_action(
 					'validations' => [
 						'type'    => 'string',
 						'default' => '{}',
- 					],
+					],
 				],
 				'render_callback' => function( $attributes, $content ) {
 					return Helper::dynamic_block( 'checkbox', $attributes, $content );

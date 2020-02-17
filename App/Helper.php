@@ -11,9 +11,12 @@ use Snow_Monkey\Plugin\Forms\App\Control;
 
 class Helper {
 	public static function generate_class_name( $string ) {
-		$class_name_array = array_map( function( $string ) {
-			return ucfirst( strtolower( $string ) );
-		}, explode( '-', $string ) );
+		$class_name_array = array_map(
+			function( $string ) {
+				return ucfirst( strtolower( $string ) );
+			},
+			explode( '-', $string )
+		);
 
 		return implode( '', $class_name_array );
 	}
@@ -30,6 +33,10 @@ class Helper {
 			error_log( $e->getMessage() );
 			return;
 		}
+	}
+
+	public static function the_control( $type, $attributes ) {
+		echo static::control( $type, static::block_meta_normalization( $attributes ) )->input(); // xss ok.
 	}
 
 	public static function dynamic_block( $slug, $attributes, $content = null ) {

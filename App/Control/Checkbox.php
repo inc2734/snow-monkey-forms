@@ -11,11 +11,35 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Checkbox extends Contract\Control {
-	public    $name    = '';
-	public    $checked = false;
-	protected $data    = [];
-	protected $value   = '';
-	protected $label   = '';
+
+	/**
+	 * @var string
+	 */
+	public $name = '';
+
+	/**
+	 * @var boolean
+	 */
+	public $checked = false;
+
+	/**
+	 * @var array
+	 */
+	protected $data = [];
+
+	/**
+	 * @var string
+	 */
+	protected $value = '';
+
+	/**
+	 * @var string
+	 */
+	protected $label = '';
+
+	/**
+	 * @var array
+	 */
 	protected $validations = [];
 
 	public function input() {
@@ -49,7 +73,13 @@ class Checkbox extends Contract\Control {
 		return sprintf(
 			'%1$s%2$s',
 			esc_html( $label ),
-			Helper::control( 'hidden', [ 'name' => $this->name, 'value' => $this->value ] )->input()
+			Helper::control(
+				'hidden',
+				[
+					'name'  => $this->name,
+					'value' => $this->value,
+				]
+			)->input()
 		);
 	}
 

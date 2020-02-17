@@ -9,8 +9,19 @@ namespace Snow_Monkey\Plugin\Forms\App\Model;
 
 class Mailer {
 
+	/**
+	 * @var string
+	 */
 	protected $to;
+
+	/**
+	 * @var string
+	 */
 	protected $subject;
+
+	/**
+	 * @var string
+	 */
 	protected $body;
 
 	public function __construct( $args ) {

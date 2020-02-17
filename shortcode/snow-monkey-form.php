@@ -34,17 +34,43 @@ add_shortcode(
 		?>
 		<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action="">
 			<div class="p-entry-content">
-				<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); ?>
+				<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
 
 				<p class="snow-monkey-form__action">
-					<?php echo Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->input(); ?>
-					<?php echo Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->input(); ?>
+					<?php
+					Helper::the_control(
+						'button',
+						[
+							'value'       => '確認',
+							'data-action' => 'confirm',
+						]
+					);
+					?>
+					<?php
+					Helper::the_control(
+						'hidden',
+						[
+							'name'  => '_method',
+							'value' => 'confirm',
+						]
+					);
+					?>
 				</p>
 			</div>
-			<?php echo Helper::control( 'hidden', [ 'name' => '_formid', 'value' => $form_id ] )->input(); ?>
-			<?php echo Csrf::token_control(); ?>
+
+			<?php
+			Helper::the_control(
+				'hidden',
+				[
+					'name'  => '_formid',
+					'value' => $form_id,
+				]
+			);
+			?>
+
+			<?php Csrf::the_control(); ?>
 		</form>
 		<?php
-	 	return ob_get_clean();
+		return ob_get_clean();
 	}
 );

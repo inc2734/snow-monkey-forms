@@ -13,9 +13,24 @@ use Snow_Monkey\Plugin\Forms\App\Model\Validator;
 
 abstract class Controller {
 
+	/**
+	 * @var string confirm|complete
+	 */
 	protected $method;
+
+	/**
+	 * @var Responser
+	 */
 	protected $responser;
+
+	/**
+	 * @var Setting
+	 */
 	protected $setting;
+
+	/**
+	 * @var Validator
+	 */
 	protected $validator;
 
 	protected $controls = [];

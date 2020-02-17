@@ -11,6 +11,7 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Back extends Contract\Controller {
+
 	protected function set_controls() {
 		$controls = [];
 		$setting_controls = $this->setting->get( 'controls' );
@@ -33,8 +34,20 @@ class Back extends Contract\Controller {
 
 	protected function set_action() {
 		return [
-			Helper::control( 'button', [ 'value' => '確認', 'data-action' => 'confirm' ] )->input(),
-			Helper::control( 'hidden', [ 'name' => '_method', 'value' => 'confirm' ] )->input(),
+			Helper::control(
+				'button',
+				[
+					'value'       => '確認',
+					'data-action' => 'confirm',
+				]
+			)->input(),
+			Helper::control(
+				'hidden',
+				[
+					'name'  => '_method',
+					'value' => 'confirm',
+				]
+			)->input(),
 		];
 	}
 

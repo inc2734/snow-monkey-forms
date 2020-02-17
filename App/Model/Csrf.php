@@ -28,8 +28,18 @@ class Csrf {
 		}
 	}
 
-	public static function token_control() {
-		return Helper::control( 'hidden', [ 'name' => static::KEY, 'value' => static::token() ] )->input();
+	public static function control() {
+		return Helper::control(
+			'hidden',
+			[
+				'name'  => static::KEY,
+				'value' => static::token(),
+			]
+		)->input();
+	}
+
+	public static function the_control() {
+		echo static::control(); // xss ok.
 	}
 
 	public static function token() {

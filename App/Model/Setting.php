@@ -10,18 +10,55 @@ namespace Snow_Monkey\Plugin\Forms\App\Model;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Setting {
+
+	/**
+	 * @var array
+	 */
 	protected $controls = [];
+
+	/**
+	 * @var array
+	 */
 	protected $system_error_messages = [];
 
+	/**
+	 * @var string
+	 */
 	protected $input_content;
+
+	/**
+	 * @var string
+	 */
 	protected $complete_content;
 
+	/**
+	 * @var string
+	 */
 	protected $administrator_email_to;
+
+	/**
+	 * @var string
+	 */
 	protected $administrator_email_subject;
+
+	/**
+	 * @var string
+	 */
 	protected $administrator_email_body;
 
+	/**
+	 * @var string
+	 */
 	protected $auto_reply_email_to;
+
+	/**
+	 * @var string
+	 */
 	protected $auto_reply_email_subject;
+
+	/**
+	 * @var string
+	 */
 	protected $auto_reply_email_body;
 
 	public function __construct( $form_id ) {
@@ -75,7 +112,7 @@ class Setting {
 			$matches
 		);
 
-		return $match ? $matches[1] : null;;
+		return $match ? $matches[1] : null;
 	}
 
 	private function _extract_complete_content( $post_content ) {
@@ -85,7 +122,7 @@ class Setting {
 			$matches
 		);
 
-		return $match ? $matches[1] : null;;
+		return $match ? $matches[1] : null;
 	}
 
 	private function _set_controls( $input_content ) {
