@@ -1,9 +1,8 @@
-'use strict';
-
-const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { TextControl, TextareaControl, ServerSideRender } = wp.components;
-const { __ } = wp.i18n;
+import { registerBlockType } from '@wordpress/blocks';
+import { Fragment } from '@wordpress/element';
+import { TextControl, TextareaControl } from '@wordpress/components';
+import ServerSideRender from '@wordpress/server-side-render';
+import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'snow-monkey-forms/select', {
 	title: __( 'Select', 'snow-monkey-forms' ),

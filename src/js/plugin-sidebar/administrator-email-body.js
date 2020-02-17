@@ -1,8 +1,6 @@
-'use strict';
-
-const { TextareaControl } = wp.components;
-const { __ } = wp.i18n;
-const { withSelect, withDispatch } = wp.data;
+import { TextareaControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { withSelect, withDispatch } from '@wordpress/data';
 
 const Control = ( props ) => {
 	return (

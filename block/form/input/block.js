@@ -1,8 +1,6 @@
-'use strict';
-
-const { registerBlockType } = wp.blocks;
-const { InnerBlocks } = wp.editor;
-const { __ } = wp.i18n;
+import { registerBlockType } from '@wordpress/blocks';
+import { InnerBlocks } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'snow-monkey-forms/form--input', {
 	title: __( 'Input', 'snow-monkey-forms' ),

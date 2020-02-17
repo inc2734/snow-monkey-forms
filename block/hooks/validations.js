@@ -1,13 +1,10 @@
-'use strict';
+import { merge } from 'lodash';
 
-const { merge } = lodash;
-
-const { Fragment } = wp.element;
-const { InspectorControls } = wp.editor;
-const { PanelBody, ToggleControl } = wp.components;
-const { createHigherOrderComponent } = wp.compose;
-const { addFilter } = wp.hooks;
-const { __ } = wp.i18n;
+import { InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, ToggleControl } from '@wordpress/components';
+import { createHigherOrderComponent } from '@wordpress/compose';
+import { addFilter } from '@wordpress/hooks';
+import { __ } from '@wordpress/i18n';
 
 const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
@@ -21,7 +18,7 @@ const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
 		const parsedValidations = JSON.parse( validations );
 
 		return (
-			<Fragment>
+			<>
 				<BlockEdit { ...props } />
 				<InspectorControls>
 					<PanelBody title={ __( 'Validation', 'snow-monkey-forms' ) }>
@@ -34,7 +31,7 @@ const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
 						/>
 					</PanelBody>
 				</InspectorControls>
-			</Fragment>
+			</>
 		);
 	};
 }, 'withInspectorControls' );

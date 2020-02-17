@@ -1,7 +1,4 @@
-'use strict';
-
 import $ from 'jquery';
-import snowmonkeyforms from 'snowmonkeyforms';
 
 export default function send( form ) {
 	const actionArea = form.find( '.snow-monkey-form__action' );

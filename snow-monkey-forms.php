@@ -79,11 +79,12 @@ class Bootstrap {
 	}
 
 	public function _enqueue_assets() {
+		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms',
-			SNOW_MONKEY_FORMS_URL . '/dist/js/app.min.js',
-			[ 'jquery' ],
-			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.min.js' ),
+			SNOW_MONKEY_FORMS_URL . '/dist/js/app.js',
+			$asset['dependencies'],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.js' ),
 			true
 		);
 
@@ -110,11 +111,12 @@ class Bootstrap {
 			return;
 		}
 
+		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/blocks.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms-blocks',
-			SNOW_MONKEY_FORMS_URL . '/dist/js/blocks.min.js',
-			[ 'wp-blocks', 'wp-element', 'wp-i18n' ],
-			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/blocks.min.js' ),
+			SNOW_MONKEY_FORMS_URL . '/dist/js/blocks.js',
+			$asset['dependencies'],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/blocks.js' ),
 			true
 		);
 
@@ -124,11 +126,12 @@ class Bootstrap {
 			SNOW_MONKEY_FORMS_PATH . '/languages'
 		);
 
+		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/editor.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms-editor',
-			SNOW_MONKEY_FORMS_URL . '/dist/js/editor.min.js',
-			[ 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-i18n' ],
-			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/editor.min.js' ),
+			SNOW_MONKEY_FORMS_URL . '/dist/js/editor.js',
+			$asset['dependencies'],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/editor.js' ),
 			true
 		);
 
@@ -140,9 +143,9 @@ class Bootstrap {
 
 		wp_enqueue_style(
 			'snow-monkey-forms-editor',
-			SNOW_MONKEY_FORMS_URL . '/dist/css/editor.min.css',
+			SNOW_MONKEY_FORMS_URL . '/dist/css/editor.css',
 			[],
-			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.min.css' )
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.css' )
 		);
 	}
 

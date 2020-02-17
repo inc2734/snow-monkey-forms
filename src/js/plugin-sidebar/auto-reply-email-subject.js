@@ -1,8 +1,6 @@
-'use strict';
-
-const { TextControl } = wp.components;
-const { __ } = wp.i18n;
-const { withSelect, withDispatch } = wp.data;
+import { TextControl } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
+import { withSelect, withDispatch } from '@wordpress/data';
 
 const Control = ( props ) => {
 	return (

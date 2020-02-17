@@ -1,9 +1,8 @@
-'use strict';
-
-const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
-const { TextControl, ToggleControl, ServerSideRender } = wp.components;
-const { __ } = wp.i18n;
+import { registerBlockType } from '@wordpress/blocks';
+import { Fragment } from '@wordpress/element';
+import { TextControl, ToggleControl } from '@wordpress/components';
+import ServerSideRender from '@wordpress/server-side-render';
+import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'snow-monkey-forms/checkbox', {
 	title: __( 'Checkbox', 'snow-monkey-forms' ),

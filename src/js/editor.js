@@ -1,11 +1,8 @@
-'use strict';
-
-const { Fragment } = wp.element;
-const { PluginSidebar, PluginMoreMenuItem } = wp.editPost;
-const { PanelBody } = wp.components;
-const { dispatch } = wp.data;
-const { registerPlugin } = wp.plugins;
-const { __ } = wp.i18n;
+import { PluginSidebar, PluginMoreMenuItem } from '@wordpress/edit-post';
+import { PanelBody } from '@wordpress/components';
+import { dispatch } from '@wordpress/data';
+import { registerPlugin } from '@wordpress/plugins';
+import { __ } from '@wordpress/i18n';
 
 import AdministratorEmailToControl from './plugin-sidebar/administrator-email-to';
 import AdministratorEmailSubjectControl from './plugin-sidebar/administrator-email-subject';
@@ -19,7 +16,7 @@ registerPlugin(
 	{
 		render() {
 			return (
-				<Fragment>
+				<>
 					<PluginSidebar
 						name="plugin-snow-monkey-form-sidebar"
 						icon="feedback"
@@ -50,7 +47,7 @@ registerPlugin(
 					>
 						{ __( 'Form settings', 'snow-monkey-forms' ) }
 					</PluginMoreMenuItem>
-				</Fragment>
+				</>
 			);
 		},
 	}
