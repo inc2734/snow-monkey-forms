@@ -15,8 +15,10 @@ const Control = ( props ) => {
 const ControlWithData = withSelect( ( select ) => {
 	const { getEditedPostAttribute } = select( 'core/editor' );
 
+	const meta = getEditedPostAttribute( 'meta' );
+
 	return {
-		auto_reply_email_subject: getEditedPostAttribute( 'meta' )[ 'auto_reply_email_subject' ],
+		auto_reply_email_subject: meta.auto_reply_email_subject,
 	};
 } )( Control );
 
@@ -24,6 +26,7 @@ export default withDispatch( ( dispatch ) => {
 	const { editPost } = dispatch( 'core/editor' );
 
 	return {
-		setMetaFieldValue: ( value ) => editPost( { meta: { auto_reply_email_subject: value } } ),
+		setMetaFieldValue: ( value ) =>
+			editPost( { meta: { auto_reply_email_subject: value } } ),
 	};
 } )( ControlWithData );

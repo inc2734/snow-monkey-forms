@@ -21,12 +21,20 @@ const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
 			<>
 				<BlockEdit { ...props } />
 				<InspectorControls>
-					<PanelBody title={ __( 'Validation', 'snow-monkey-forms' ) }>
+					<PanelBody
+						title={ __( 'Validation', 'snow-monkey-forms' ) }
+					>
 						<ToggleControl
 							label={ __( 'Required', 'snow-monkey-forms' ) }
 							checked={ !! parsedValidations.required }
 							onChange={ ( value ) => {
-								setAttributes( { validations: JSON.stringify( merge( parsedValidations, { required: value } ) ) } );
+								setAttributes( {
+									validations: JSON.stringify(
+										merge( parsedValidations, {
+											required: value,
+										} )
+									),
+								} );
 							} }
 						/>
 					</PanelBody>
@@ -36,4 +44,8 @@ const withInspectorControls = createHigherOrderComponent( ( BlockEdit ) => {
 	};
 }, 'withInspectorControls' );
 
-addFilter( 'editor.BlockEdit', 'snow-monkey-forms/withInspectorControls/validations', withInspectorControls );
+addFilter(
+	'editor.BlockEdit',
+	'snow-monkey-forms/withInspectorControls/validations',
+	withInspectorControls
+);

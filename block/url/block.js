@@ -20,12 +20,16 @@ registerBlockType( 'snow-monkey-forms/url', {
 				<TextControl
 					label={ __( 'name', 'snow-monkey-forms' ) }
 					value={ name }
-					onChange={ ( attribute ) => setAttributes( { name: attribute } ) }
+					onChange={ ( attribute ) =>
+						setAttributes( { name: attribute } )
+					}
 				/>
 				<TextControl
 					label={ __( 'value', 'snow-monkey-forms' ) }
 					value={ value }
-					onChange={ ( attribute ) => setAttributes( { value: attribute } ) }
+					onChange={ ( attribute ) =>
+						setAttributes( { value: attribute } )
+					}
 				/>
 			</Fragment>
 		) : (

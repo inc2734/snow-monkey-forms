@@ -15,8 +15,10 @@ const Control = ( props ) => {
 const ControlWithData = withSelect( ( select ) => {
 	const { getEditedPostAttribute } = select( 'core/editor' );
 
+	const meta = getEditedPostAttribute( 'meta' );
+
 	return {
-		administrator_email_body: getEditedPostAttribute( 'meta' )[ 'administrator_email_body' ],
+		administrator_email_body: meta.administrator_email_body,
 	};
 } )( Control );
 
@@ -24,6 +26,7 @@ export default withDispatch( ( dispatch ) => {
 	const { editPost } = dispatch( 'core/editor' );
 
 	return {
-		setMetaFieldValue: ( value ) => editPost( { meta: { administrator_email_body: value } } ),
+		setMetaFieldValue: ( value ) =>
+			editPost( { meta: { administrator_email_body: value } } ),
 	};
 } )( ControlWithData );

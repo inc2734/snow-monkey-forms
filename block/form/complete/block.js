@@ -18,9 +18,7 @@ registerBlockType( 'snow-monkey-forms/form--complete', {
 					{ __( 'Complete', 'snow-monkey-forms' ) }
 				</div>
 				<div className="components-panel__body is-opened">
-					<InnerBlocks
-						templateLock={ false }
-					/>
+					<InnerBlocks templateLock={ false } />
 				</div>
 			</div>
 		);

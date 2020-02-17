@@ -20,22 +20,30 @@ registerBlockType( 'snow-monkey-forms/checkbox', {
 				<TextControl
 					label={ __( 'Label', 'snow-monkey-forms' ) }
 					value={ label }
-					onChange={ ( attribute ) => setAttributes( { label: attribute } ) }
+					onChange={ ( attribute ) =>
+						setAttributes( { label: attribute } )
+					}
 				/>
 				<TextControl
 					label={ __( 'name', 'snow-monkey-forms' ) }
 					value={ name }
-					onChange={ ( attribute ) => setAttributes( { name: attribute } ) }
+					onChange={ ( attribute ) =>
+						setAttributes( { name: attribute } )
+					}
 				/>
 				<TextControl
 					label={ __( 'value', 'snow-monkey-forms' ) }
 					value={ value }
-					onChange={ ( attribute ) => setAttributes( { value: attribute } ) }
+					onChange={ ( attribute ) =>
+						setAttributes( { value: attribute } )
+					}
 				/>
 				<ToggleControl
 					label={ __( 'checked', 'snow-monkey-forms' ) }
 					checked={ checked }
-					onChange={ ( attribute ) => setAttributes( { checked: attribute } ) }
+					onChange={ ( attribute ) =>
+						setAttributes( { checked: attribute } )
+					}
 				/>
 			</Fragment>
 		) : (

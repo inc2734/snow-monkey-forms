@@ -20,18 +20,27 @@ registerBlockType( 'snow-monkey-forms/select', {
 				<TextControl
 					label={ __( 'name', 'snow-monkey-forms' ) }
 					value={ name }
-					onChange={ ( attribute ) => setAttributes( { name: attribute } ) }
+					onChange={ ( attribute ) =>
+						setAttributes( { name: attribute } )
+					}
 				/>
 				<TextareaControl
 					label={ __( 'options', 'snow-monkey-forms' ) }
 					value={ options }
-					help={ __( '"value" : "label"\u21B5', 'snow-monkey-forms' ) }
-					onChange={ ( attribute ) => setAttributes( { options: attribute } ) }
+					help={ __(
+						'"value" : "label"\u21B5',
+						'snow-monkey-forms'
+					) }
+					onChange={ ( attribute ) =>
+						setAttributes( { options: attribute } )
+					}
 				/>
 				<TextControl
 					label={ __( 'value', 'snow-monkey-forms' ) }
 					value={ value }
-					onChange={ ( attribute ) => setAttributes( { value: attribute } ) }
+					onChange={ ( attribute ) =>
+						setAttributes( { value: attribute } )
+					}
 				/>
 			</Fragment>
 		) : (
