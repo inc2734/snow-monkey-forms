@@ -44,7 +44,7 @@ class Bootstrap {
 			require_once( $file );
 		}
 
-		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/block.php' ) as $file ) {
+		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/index.php' ) as $file ) {
 			require_once( $file );
 		}
 

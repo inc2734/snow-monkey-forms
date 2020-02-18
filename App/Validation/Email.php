@@ -21,6 +21,6 @@ class Email extends Contract\Validation {
 	}
 
 	public static function get_message() {
-		return __( 'Please enter a valid Email address.', 'snow-monkey-forms' );
+		return __( 'Please enter a valid email address.', 'snow-monkey-forms' );
 	}
 }
