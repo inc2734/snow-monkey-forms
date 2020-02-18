@@ -1,5 +1,4 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { Fragment } from '@wordpress/element';
 import { TextControl, ToggleControl } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
@@ -16,7 +15,7 @@ registerBlockType( 'snow-monkey-forms/checkbox', {
 		const { name, label, value, checked } = attributes;
 
 		return !! isSelected ? (
-			<Fragment>
+			<>
 				<TextControl
 					label={ __( 'Label', 'snow-monkey-forms' ) }
 					value={ label }
@@ -45,7 +44,7 @@ registerBlockType( 'snow-monkey-forms/checkbox', {
 						setAttributes( { checked: attribute } )
 					}
 				/>
-			</Fragment>
+			</>
 		) : (
 			<ServerSideRender
 				block="snow-monkey-forms/checkbox"

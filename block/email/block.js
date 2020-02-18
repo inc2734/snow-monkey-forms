@@ -1,5 +1,4 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { Fragment } from '@wordpress/element';
 import { TextControl } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
@@ -16,7 +15,7 @@ registerBlockType( 'snow-monkey-forms/email', {
 		const { name, value } = attributes;
 
 		return !! isSelected ? (
-			<Fragment>
+			<>
 				<TextControl
 					label={ __( 'name', 'snow-monkey-forms' ) }
 					value={ name }
@@ -31,7 +30,7 @@ registerBlockType( 'snow-monkey-forms/email', {
 						setAttributes( { value: attribute } )
 					}
 				/>
-			</Fragment>
+			</>
 		) : (
 			<ServerSideRender
 				block="snow-monkey-forms/email"
