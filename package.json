@@ -19,7 +19,7 @@
     "build": "npm-run-all -p js css po2json",
     "js:app": "wp-scripts build src/js/app --output-path=dist/js",
     "js:blocks": "wp-scripts build src/js/blocks --output-path=dist/js",
-    "js:editor": "wp-scripts build src/js/editor --output-path=dist/js",
+    "js:plugin-sidebar": "wp-scripts build src/js/plugin-sidebar --output-path=dist/js",
     "js": "npm run clean:js && npm-run-all -p js:*",
     "css:build": "node-sass src/css -o dist/css && postcss dist/css/*.css -r",
     "css": "npm run clean:css && npm-run-all -p css:*",
@@ -31,8 +31,8 @@
     "zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/bin' --exclude='/tests' --exclude='package*.json' . snow-monkey-forms && cd snow-monkey-forms && composer install --no-dev",
     "zip:archive": "zip -9 -qmr snow-monkey-forms.zip snow-monkey-forms",
     "zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive",
-    "po2json:snow-monkey-forms-editor": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms-editor.json -f jed",
-    "po2json:snow-monkey-forms-blocks": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms-blocks.json -f jed",
+    "po2json:snow-monkey-forms@plugin-sidebar": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms@plugin-sidebar.json -f jed",
+    "po2json:snow-monkey-forms@blocks": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms@blocks.json -f jed",
     "po2json": "npm-run-all -p po2json:*"
   }
 }
