@@ -12,6 +12,6 @@ if ( ! isset( $attributes['name'] ) ) {
 }
 ?>
 
-<div class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $attributes['name'] ); ?>">
+<div class="smf-placeholder" data-name="<?php echo esc_attr( $attributes['name'] ); ?>">
 	<?php Helper::the_control( 'checkbox', $attributes ); ?>
 </div>

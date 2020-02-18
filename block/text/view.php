@@ -12,6 +12,13 @@ if ( ! isset( $attributes['name'] ) ) {
 }
 ?>
 
-<div class="snow-monkey-form__placeholder" data-name="<?php echo esc_attr( $attributes['name'] ); ?>">
-	<?php Helper::the_control( 'text', $attributes ); ?>
+<div class="smf-item">
+	<div class="smf-item__label">
+		<?php echo esc_html( $attributes['label'] ); ?>
+	</div>
+	<div class="smf-item__control">
+		<div class="smf-placeholder" data-name="<?php echo esc_attr( $attributes['name'] ); ?>">
+			<?php Helper::the_control( 'text', $attributes ); ?>
+		</div>
+	</div>
 </div>

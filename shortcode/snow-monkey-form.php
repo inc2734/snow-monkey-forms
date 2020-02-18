@@ -36,7 +36,7 @@ add_shortcode(
 			<div class="p-entry-content">
 				<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
 
-				<p class="snow-monkey-form__action">
+				<p class="smf-action">
 					<?php
 					Helper::the_control(
 						'button',

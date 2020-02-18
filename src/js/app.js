@@ -8,15 +8,11 @@ $( document ).on( 'click', '[data-action="back"]', ( event ) =>
 		.attr( 'value', 'back' )
 );
 
-$( document ).on(
-	'click',
-	'.snow-monkey-form__action [type="submit"]',
-	( event ) => {
-		$( event.currentTarget )
-			.find( '.smf-sending' )
-			.attr( 'aria-hidden', 'false' );
-	}
-);
+$( document ).on( 'click', '.smf-action [type="submit"]', ( event ) => {
+	$( event.currentTarget )
+		.find( '.smf-sending' )
+		.attr( 'aria-hidden', 'false' );
+} );
 
 $( '.snow-monkey-form' ).each( ( i, e ) => send( $( e ) ) );
 
@@ -26,7 +22,7 @@ $( document ).on( 'change keyup', '[data-invalid="1"]', ( event ) => {
 		.find( '[data-invalid="1"]' )
 		.removeAttr( 'data-invalid' );
 	$( event.currentTarget )
-		.closest( '.snow-monkey-form__placeholder' )
+		.closest( '.smf-placeholder' )
 		.find( '.snow-monkey-form-error-messages' )
 		.remove();
 } );

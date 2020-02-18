@@ -7,12 +7,20 @@ import { __ } from '@wordpress/i18n';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
-	const { name, value } = attributes;
+	const { label, name, value } = attributes;
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Settings', 'snow-monkey-blocks' ) }>
+					<TextControl
+						label={ __( 'Label', 'snow-monkey-forms' ) }
+						value={ label }
+						onChange={ ( attribute ) =>
+							setAttributes( { label: attribute } )
+						}
+					/>
+
 					<TextControl
 						label={ __( 'name', 'snow-monkey-forms' ) }
 						value={ name }

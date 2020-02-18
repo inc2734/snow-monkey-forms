@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 export default function send( form ) {
-	const actionArea = form.find( '.snow-monkey-form__action' );
+	const actionArea = form.find( '.smf-action' );
 
 	form.on( 'submit', ( event ) => {
 		event.preventDefault();
@@ -16,7 +16,7 @@ export default function send( form ) {
 				const method = response.method;
 
 				actionArea.html( response.action );
-				form.find( '.snow-monkey-form__placeholder' ).html( '' );
+				form.find( '.smf-placeholder' ).html( '' );
 
 				if (
 					'' === method ||
@@ -26,7 +26,7 @@ export default function send( form ) {
 				) {
 					$.each( response.controls, ( key, control ) => {
 						const placeholder = form.find(
-							`.snow-monkey-form__placeholder[data-name="${ key }"]`
+							`.smf-placeholder[data-name="${ key }"]`
 						);
 						placeholder.html( control );
 					} );
