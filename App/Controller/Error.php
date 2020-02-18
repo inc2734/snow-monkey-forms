@@ -34,22 +34,25 @@ class Error extends Contract\Controller {
 	}
 
 	protected function set_action() {
-		return [
-			Helper::control(
-				'button',
-				[
-					'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-					'data-action' => 'confirm',
-				]
-			)->input(),
-			Helper::control(
-				'hidden',
-				[
-					'name'  => '_method',
-					'value' => 'confirm',
-				]
-			)->input(),
-		];
+		ob_start();
+
+		Helper::the_control(
+			'button',
+			[
+				'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+				'data-action' => 'confirm',
+			]
+		);
+
+		Helper::the_control(
+			'hidden',
+			[
+				'name'  => '_method',
+				'value' => 'confirm',
+			]
+		);
+
+		return ob_get_clean();
 	}
 
 	protected function set_message() {

@@ -34,7 +34,7 @@ abstract class Controller {
 	protected $validator;
 
 	protected $controls = [];
-	protected $action   = [];
+	protected $action   = '';
 	protected $message  = '';
 
 	public function __construct( $method, Responser $responser, Setting $setting, Validator $validator ) {

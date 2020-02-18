@@ -33,29 +33,33 @@ class Confirm extends Contract\Controller {
 	}
 
 	protected function set_action() {
-		return [
-			Helper::control(
-				'button',
-				[
-					'value'       => __( 'Back', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-					'data-action' => 'back',
-				]
-			)->input(),
-			Helper::control(
-				'button',
-				[
-					'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-					'data-action' => 'complete',
-				]
-			)->input(),
-			Helper::control(
-				'hidden',
-				[
-					'name'  => '_method',
-					'value' => 'complete',
-				]
-			)->input(),
-		];
+		ob_start();
+
+		Helper::the_control(
+			'button',
+			[
+				'value'       => __( 'Back', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+				'data-action' => 'back',
+			]
+		);
+
+		Helper::the_control(
+			'button',
+			[
+				'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+				'data-action' => 'complete',
+			]
+		);
+
+		Helper::the_control(
+			'hidden',
+			[
+				'name'  => '_method',
+				'value' => 'complete',
+			]
+		);
+
+		return ob_get_clean();
 	}
 
 	protected function set_message() {

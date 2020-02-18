@@ -33,13 +33,13 @@ class Responser {
 		$this->data = $data;
 	}
 
-	public function send( $method, array $controls = [], array $action = [], $message = '' ) {
+	public function send( $method, array $controls = [], $action = '', $message = '' ) {
 		echo json_encode(
 			[
 				'method'   => $method,
 				'data'     => $this->data,
 				'controls' => $controls,
-				'action'   => implode( '', $action ),
+				'action'   => $action,
 				'message'  => wp_kses_post( $message ),
 			],
 			JSON_UNESCAPED_UNICODE
