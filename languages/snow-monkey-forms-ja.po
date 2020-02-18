@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2019-04-18 22:08+0900\n"
-"PO-Revision-Date: 2019-04-18 22:11+0900\n"
+"POT-Creation-Date: 2020-02-18 15:38+0900\n"
+"PO-Revision-Date: 2020-02-18 15:40+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -24,8 +24,21 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: tests\n"
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
+#: App/Controller/Back.php:40 App/Controller/Error.php:41
+#: shortcode/snow-monkey-form.php:44
+msgid "Confirm"
+msgstr "確認画面へ"
+
+#: App/Controller/Confirm.php:40
+msgid "Back"
+msgstr "戻る"
+
+#: App/Controller/Confirm.php:47
+msgid "Send"
+msgstr "送信する"
+
 #: App/Validation/Email.php:24
-msgid "Please enter a valid Email address."
+msgid "Please enter a valid email address."
 msgstr "有効なメールアドレスを入力してください。"
 
 #: App/Validation/Required.php:22
@@ -49,128 +62,130 @@ msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:169 snow-monkey-forms.php:254
+#: snow-monkey-forms.php:184 snow-monkey-forms.php:269
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: block/checkbox/block.js:9
-msgid "Checkbox"
-msgstr "チェックボックス"
+#: block/checkbox/edit.js:15 block/email/edit.js:15
+#: block/multi-checkbox/edit.js:15 block/multi-radio/edit.js:15
+#: block/radio/edit.js:15 block/select/edit.js:15 block/text/edit.js:15
+#: block/textarea/edit.js:15 block/url/edit.js:15
+msgid "Settings"
+msgstr "設定"
 
-#: block/checkbox/block.js:22 block/radio/block.js:22
+#: block/checkbox/edit.js:17 block/radio/edit.js:17
 msgid "Label"
 msgstr "ラベル"
 
-#: block/checkbox/block.js:27 block/email/block.js:22
-#: block/multi-checkbox/block.js:22 block/multi-radio/block.js:22
-#: block/radio/block.js:27 block/select/block.js:22 block/text/block.js:22
-#: block/textarea/block.js:22 block/url/block.js:22
+#: block/checkbox/edit.js:25 block/email/edit.js:17
+#: block/multi-checkbox/edit.js:17 block/multi-radio/edit.js:17
+#: block/radio/edit.js:25 block/select/edit.js:17 block/text/edit.js:17
+#: block/textarea/edit.js:17 block/url/edit.js:17
 msgid "name"
 msgstr "name"
 
-#: block/checkbox/block.js:32 block/email/block.js:27
-#: block/multi-radio/block.js:33 block/radio/block.js:32
-#: block/select/block.js:33 block/text/block.js:27 block/textarea/block.js:27
-#: block/url/block.js:27
+#: block/checkbox/edit.js:33 block/email/edit.js:25
+#: block/multi-radio/edit.js:37 block/radio/edit.js:33 block/select/edit.js:37
+#: block/text/edit.js:25 block/textarea/edit.js:25 block/url/edit.js:25
 msgid "value"
 msgstr "value"
 
-#: block/checkbox/block.js:37 block/radio/block.js:37
+#: block/checkbox/edit.js:41 block/radio/edit.js:41
 msgid "checked"
 msgstr "checked"
 
-#: block/email/block.js:9
-msgid "Email"
-msgstr "メール"
+#: block/checkbox/index.js:9
+msgid "Checkbox"
+msgstr "チェックボックス"
 
-#: block/form/complete/block.js:8 block/form/complete/block.js:20
+#: block/email/index.js:9
+msgid "email"
+msgstr "email"
+
+#: block/form/complete/index.js:6 block/form/complete/index.js:18
 msgid "Complete"
 msgstr "完了画面"
 
-#: block/form/input/block.js:8 block/form/input/block.js:20
+#: block/form/input/index.js:6 block/form/input/index.js:18
 msgid "Input"
 msgstr "入力画面"
 
-#: block/hooks/validations.js:27
-msgid "Validation"
-msgstr "バリデーション"
-
-#: block/hooks/validations.js:29
-msgid "Required"
-msgstr "必須"
-
-#: block/multi-checkbox/block.js:9
-msgid "Multi checkbox"
-msgstr "複数チェックボックス"
-
-#: block/multi-checkbox/block.js:27 block/multi-radio/block.js:27
-#: block/select/block.js:27
+#: block/multi-checkbox/edit.js:25 block/multi-radio/edit.js:25
+#: block/select/edit.js:25
 msgid "options"
 msgstr "options"
 
-#: block/multi-checkbox/block.js:29 block/multi-radio/block.js:29
-#: block/select/block.js:29
-msgid "\"value\" : \"label\"↵"
-msgstr "“value” : “label”↵"
+#: block/multi-checkbox/edit.js:28 block/multi-radio/edit.js:28
+#: block/select/edit.js:28
+msgid "\"value\" : \"label\"\\u21B5"
+msgstr "“value” : “label”\\u21B5"
 
-#: block/multi-checkbox/block.js:33
+#: block/multi-checkbox/edit.js:37
 msgid "values"
 msgstr "values"
 
-#: block/multi-checkbox/block.js:35
-msgid "value↵"
-msgstr "value↵"
+#: block/multi-checkbox/edit.js:39
+msgid "value\\u21B5"
+msgstr "value\\u21B5"
 
-#: block/multi-radio/block.js:9
+#: block/multi-checkbox/index.js:9
+msgid "Multi checkbox"
+msgstr "複数チェックボックス"
+
+#: block/multi-radio/index.js:9
 msgid "Multi radio"
 msgstr "複数ラジオボタン"
 
-#: block/radio/block.js:9
+#: block/radio/index.js:9
 msgid "Radio"
 msgstr "ラジオボタン"
 
-#: block/select/block.js:9
+#: block/select/index.js:9
 msgid "Select"
 msgstr "セレクトボックス"
 
-#: block/text/block.js:9
+#: block/text/index.js:9
 msgid "Text"
 msgstr "テキスト"
 
-#: block/textarea/block.js:9
+#: block/textarea/index.js:9
 msgid "Textarea"
 msgstr "テキストエリア"
 
-#: block/url/block.js:9
+#: block/url/index.js:9
 msgid "URL"
 msgstr "URL"
 
-#: src/js/editor.js:26 src/js/editor.js:51
-msgid "Form settings"
-msgstr "フォーム設定"
+#: hoc/with-validations.js:27
+msgid "Validation"
+msgstr "バリデーション"
 
-#: src/js/editor.js:29
-msgid "Administrator email"
-msgstr "管理者宛メール"
+#: hoc/with-validations.js:33
+msgid "Required"
+msgstr "必須"
 
-#: src/js/editor.js:38
-msgid "Auto reply email"
-msgstr "自動返信メール"
-
-#: src/js/plugin-sidebar/administrator-email-body.js:10
-#: src/js/plugin-sidebar/auto-reply-email-body.js:10
+#: plugin-sidebar/administrator-email-body.js:8
+#: plugin-sidebar/auto-reply-email-body.js:8
 msgid "Body"
 msgstr "Body"
 
-#: src/js/plugin-sidebar/administrator-email-subject.js:10
-#: src/js/plugin-sidebar/auto-reply-email-subject.js:10
+#: plugin-sidebar/administrator-email-subject.js:8
+#: plugin-sidebar/auto-reply-email-subject.js:8
 msgid "Subject"
 msgstr "件名"
 
-#: src/js/plugin-sidebar/administrator-email-to.js:10
-#: src/js/plugin-sidebar/auto-reply-email-to.js:10
+#: plugin-sidebar/administrator-email-to.js:8
+#: plugin-sidebar/auto-reply-email-to.js:8
 msgid "To"
 msgstr "To"
+
+#: src/js/plugin-sidebar.js:18
+msgid "Administrator email"
+msgstr "管理者宛メール"
+
+#: src/js/plugin-sidebar.js:28
+msgid "Auto reply email"
+msgstr "自動返信メール"
 
 #. Author of the plugin/theme
 msgid "inc2734"
@@ -179,3 +194,6 @@ msgstr "inc2734"
 #. Author URI of the plugin/theme
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
+
+#~ msgid "value↵"
+#~ msgstr "value↵"

@@ -41,7 +41,7 @@ add_shortcode(
 					Helper::the_control(
 						'button',
 						[
-							'value'       => '確認',
+							'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
 							'data-action' => 'confirm',
 						]
 					);

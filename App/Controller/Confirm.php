@@ -37,14 +37,14 @@ class Confirm extends Contract\Controller {
 			Helper::control(
 				'button',
 				[
-					'value'       => '戻る',
+					'value'       => __( 'Back', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
 					'data-action' => 'back',
 				]
 			)->input(),
 			Helper::control(
 				'button',
 				[
-					'value'       => '送信',
+					'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
 					'data-action' => 'complete',
 				]
 			)->input(),

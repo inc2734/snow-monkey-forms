@@ -28,18 +28,27 @@ class Button extends Contract\Control {
 	protected $data = [];
 
 	public function input() {
+		$attributes = get_object_vars( $this );
+		unset( $attributes['value'] );
+
 		return sprintf(
 			'<button class="c-btn" type="submit" %2$s>%1$s</button>',
-			esc_html( $this->value ),
-			$this->generate_attributes( get_object_vars( $this ) )
+			wp_kses_post( $this->value ),
+			$this->generate_attributes( $attributes )
 		);
 	}
 
 	public function confirm() {
-		return Helper::control( 'button', get_object_vars( $this ) )->input();
+		$attributes = get_object_vars( $this );
+		unset( $attributes['value'] );
+
+		return Helper::control( 'button', $attributes )->input();
 	}
 
 	public function error( $error_message = '' ) {
-		return Helper::control( 'button', get_object_vars( $this ) )->input();
+		$attributes = get_object_vars( $this );
+		unset( $attributes['value'] );
+
+		return Helper::control( 'button', $attributes )->input();
 	}
 }

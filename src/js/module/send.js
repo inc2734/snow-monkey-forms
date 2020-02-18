@@ -6,8 +6,12 @@ export default function send( form ) {
 	form.on( 'submit', ( event ) => {
 		event.preventDefault();
 
+		const icon = actionArea.find( '.smf-sending' );
+
 		$.post( snowmonkeyforms.view_json_url, form.serialize() ).done(
 			( response ) => {
+				icon.attr( 'aria-hidden', 'true' );
+
 				response = JSON.parse( response );
 				const method = response.method;
 

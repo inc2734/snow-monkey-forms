@@ -126,7 +126,7 @@ class Bootstrap {
 			SNOW_MONKEY_FORMS_PATH . '/languages'
 		);
 
-		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/editor.asset.php' );
+		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/plugin-sidebar.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms@plugin-sidebar',
 			SNOW_MONKEY_FORMS_URL . '/dist/js/plugin-sidebar.js',
