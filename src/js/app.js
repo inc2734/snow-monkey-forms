@@ -23,6 +23,6 @@ $( document ).on( 'change keyup', '[data-invalid="1"]', ( event ) => {
 		.removeAttr( 'data-invalid' );
 	$( event.currentTarget )
 		.closest( '.smf-placeholder' )
-		.find( '.snow-monkey-form-error-messages' )
+		.find( '.smf-error-messages' )
 		.remove();
 } );

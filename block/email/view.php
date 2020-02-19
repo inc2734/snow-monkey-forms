@@ -12,7 +12,7 @@ if ( ! isset( $attributes['name'] ) ) {
 }
 ?>
 
-<div class="smf-item">
+<div class="smf-item" tabindex="-1">
 	<div class="smf-item__label">
 		<?php echo esc_html( $attributes['label'] ); ?>
 	</div>

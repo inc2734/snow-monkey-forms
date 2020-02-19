@@ -20,6 +20,9 @@ class Complete extends Contract\Controller {
 	}
 
 	protected function set_message() {
-		return $this->setting->get( 'complete_content' );
+		return sprintf(
+			'<div class="smf-complete-content" tabindex="-1">%1$s</div>',
+			wp_kses_post( $this->setting->get( 'complete_content' ) )
+		);
 	}
 }

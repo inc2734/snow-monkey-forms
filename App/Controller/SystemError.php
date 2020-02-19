@@ -20,6 +20,9 @@ class SystemError extends Contract\Controller {
 	}
 
 	protected function set_message() {
-		return implode( '<br>', $this->setting->get( 'system_error_messages' ) );
+		return sprintf(
+			'<div class="smf-system-error-content" tabindex="-1">%1$s</div>',
+			wp_kses_post( implode( '<br>', $this->setting->get( 'system_error_messages' ) ) )
+		);
 	}
 }

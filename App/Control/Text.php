@@ -59,7 +59,7 @@ class Text extends Contract\Control {
 
 		return sprintf(
 			'%1$s%
-			<div class="snow-monkey-form-error-messages">
+			<div class="smf-error-messages">
 				%2$s
 			</div>',
 			Helper::control( 'text', $attributes )->input(),

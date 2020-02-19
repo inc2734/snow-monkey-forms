@@ -40,7 +40,7 @@ class Responser {
 				'data'     => $this->data,
 				'controls' => $controls,
 				'action'   => $action,
-				'message'  => wp_kses_post( $message ),
+				'message'  => apply_filters( 'the_content', $message ),
 			],
 			JSON_UNESCAPED_UNICODE
 		);
