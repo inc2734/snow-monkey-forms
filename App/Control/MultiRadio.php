@@ -23,6 +23,11 @@ class MultiRadio extends Contract\Control {
 	public $value = '';
 
 	/**
+	 * @var boolean
+	 */
+	public $disabled = false;
+
+	/**
 	 * @var array
 	 */
 	protected $data = [];
@@ -45,11 +50,12 @@ class MultiRadio extends Contract\Control {
 		$options = [];
 		foreach ( $this->options as $value => $label ) {
 			$option_attributes = [
-				'name'    => $this->name,
-				'value'   => $value,
-				'label'   => $label,
-				'checked' => $value === $this->value,
-				'data'    => $this->data,
+				'name'     => $this->name,
+				'value'    => $value,
+				'disabled' => $this->disabled,
+				'label'    => $label,
+				'checked'  => $value === $this->value,
+				'data'     => $this->data,
 			];
 
 			$options[] = Helper::control( 'radio', $option_attributes )->input();

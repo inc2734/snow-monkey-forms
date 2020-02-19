@@ -41,7 +41,7 @@ const edit = ( { attributes, setAttributes } ) => {
 
 			<ServerSideRender
 				block="snow-monkey-forms/textarea"
-				attributes={ attributes }
+				attributes={ { ...attributes, disabled: true } }
 			/>
 		</>
 	);

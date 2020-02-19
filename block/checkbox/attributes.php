@@ -18,6 +18,10 @@ return [
 		'type'    => 'string',
 		'default' => '',
 	],
+	'disabled' => [
+		'type'    => 'boolean',
+		'default' => false,
+	],
 	'checked' => [
 		'type'    => 'boolean',
 		'default' => false,

@@ -53,7 +53,7 @@ const edit = ( { attributes, setAttributes } ) => {
 
 			<ServerSideRender
 				block="snow-monkey-forms/select"
-				attributes={ attributes }
+				attributes={ { ...attributes, disabled: true } }
 			/>
 		</>
 	);

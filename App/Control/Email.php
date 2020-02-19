@@ -23,6 +23,11 @@ class Email extends Contract\Control {
 	public $value = '';
 
 	/**
+	 * @var boolean
+	 */
+	public $disabled = false;
+
+	/**
 	 * @var array
 	 */
 	protected $data = [];

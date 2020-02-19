@@ -68,6 +68,14 @@ abstract class Control {
 				continue;
 			}
 
+			if ( 'disabled' === $key ) {
+				if ( ! $value ) {
+					continue;
+				} else {
+					$value = 'disabled';
+				}
+			}
+
 			if ( is_null( $value ) || is_array( $value ) ) {
 				continue;
 			}

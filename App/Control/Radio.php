@@ -23,6 +23,11 @@ class Radio extends Contract\Control {
 	public $checked = false;
 
 	/**
+	 * @var boolean
+	 */
+	public $disabled = false;
+
+	/**
 	 * @var array
 	 */
 	protected $data = [];

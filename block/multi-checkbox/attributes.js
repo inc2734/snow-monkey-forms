@@ -11,6 +11,10 @@ export default {
 		type: 'string',
 		default: '',
 	},
+	disabled: {
+		type: 'boolean',
+		default: false,
+	},
 	options: {
 		type: 'string',
 		default: '',

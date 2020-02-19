@@ -23,6 +23,11 @@ class MultiCheckbox extends Contract\Control {
 	public $values = [];
 
 	/**
+	 * @var boolean
+	 */
+	public $disabled = false;
+
+	/**
 	 * @var array
 	 */
 	protected $data = [];
@@ -49,11 +54,12 @@ class MultiCheckbox extends Contract\Control {
 		$options = [];
 		foreach ( $this->options as $value => $label ) {
 			$option_attributes = [
-				'name'    => $this->name,
-				'value'   => $value,
-				'label'   => $label,
-				'checked' => in_array( $value, $this->values ),
-				'data'    => $this->data,
+				'name'     => $this->name,
+				'value'    => $value,
+				'disabled' => $this->disabled,
+				'label'    => $label,
+				'checked'  => in_array( $value, $this->values ),
+				'data'     => $this->data,
 			];
 
 			$options[] = Helper::control( 'checkbox', $option_attributes )->input();

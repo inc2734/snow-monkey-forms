@@ -21,6 +21,11 @@ class Hidden extends Contract\Control {
 	 */
 	public $value = '';
 
+	/**
+	 * @var boolean
+	 */
+	public $disabled = false;
+
 	public function input() {
 		return sprintf(
 			'<input type="hidden" %1$s>',

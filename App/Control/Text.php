@@ -23,6 +23,11 @@ class Text extends Contract\Control {
 	public $value = '';
 
 	/**
+	 * @var boolean
+	 */
+	public $disabled = false;
+
+	/**
 	 * @var array
 	 */
 	protected $data = [];

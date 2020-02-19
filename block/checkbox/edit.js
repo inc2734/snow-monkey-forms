@@ -49,7 +49,7 @@ const edit = ( { attributes, setAttributes } ) => {
 
 			<ServerSideRender
 				block="snow-monkey-forms/checkbox"
-				attributes={ attributes }
+				attributes={ { ...attributes, disabled: true } }
 			/>
 		</>
 	);
