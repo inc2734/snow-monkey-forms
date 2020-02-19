@@ -196,69 +196,73 @@ class Bootstrap {
 	}
 
 	public function _register_meta() {
-		register_meta(
-			'post',
+		register_post_meta(
+			'snow-monkey-forms',
 			'administrator_email_to',
 			[
-				'show_in_rest'   => true,
-				'single'         => true,
-				'type'           => 'string',
-				'object_subtype' => 'snow-monkey-forms',
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
 			]
 		);
 
-		register_meta(
-			'post',
+		register_post_meta(
+			'snow-monkey-forms',
 			'administrator_email_subject',
 			[
-				'show_in_rest'   => true,
-				'single'         => true,
-				'type'           => 'string',
-				'object_subtype' => 'snow-monkey-forms',
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
 			]
 		);
 
-		register_meta(
-			'post',
+		register_post_meta(
+			'snow-monkey-forms',
 			'administrator_email_body',
 			[
-				'show_in_rest'   => true,
-				'single'         => true,
-				'type'           => 'string',
-				'object_subtype' => 'snow-monkey-forms',
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
 			]
 		);
 
-		register_meta(
-			'post',
+		register_post_meta(
+			'snow-monkey-forms',
 			'auto_reply_email_to',
 			[
-				'show_in_rest'   => true,
-				'single'         => true,
-				'type'           => 'string',
-				'object_subtype' => 'snow-monkey-forms',
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
 			]
 		);
 
-		register_meta(
-			'post',
+		register_post_meta(
+			'snow-monkey-forms',
 			'auto_reply_email_subject',
 			[
-				'show_in_rest'   => true,
-				'single'         => true,
-				'type'           => 'string',
-				'object_subtype' => 'snow-monkey-forms',
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
 			]
 		);
 
-		register_meta(
-			'post',
+		register_post_meta(
+			'snow-monkey-forms',
 			'auto_reply_email_body',
 			[
-				'show_in_rest'   => true,
-				'single'         => true,
-				'type'           => 'string',
-				'object_subtype' => 'snow-monkey-forms',
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'use_confirm_page',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'boolean',
 			]
 		);
 	}

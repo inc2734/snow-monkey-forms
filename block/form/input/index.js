@@ -4,7 +4,7 @@ import { select } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'snow-monkey-forms/form--input', {
-	title: __( 'Input', 'snow-monkey-forms' ),
+	title: __( 'Input page', 'snow-monkey-forms' ),
 	icon: 'editor-ul',
 	category: 'snow-monkey-forms',
 	parent: [ false ],

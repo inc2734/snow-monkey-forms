@@ -36,26 +36,43 @@ add_shortcode(
 			<div class="p-entry-content">
 				<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
 
-				<p class="smf-action">
+				<div class="smf-action">
 					<?php
-					Helper::the_control(
-						'button',
-						[
-							'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-							'data-action' => 'confirm',
-						]
-					);
+					if ( true === $setting->get( 'use_confirm_page' ) ) {
+						Helper::the_control(
+							'button',
+							[
+								'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+								'data-action' => 'confirm',
+							]
+						);
+
+						Helper::the_control(
+							'hidden',
+							[
+								'name'  => '_method',
+								'value' => 'confirm',
+							]
+						);
+					} else {
+						Helper::the_control(
+							'button',
+							[
+								'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+								'data-action' => 'complete',
+							]
+						);
+
+						Helper::the_control(
+							'hidden',
+							[
+								'name'  => '_method',
+								'value' => 'complete',
+							]
+						);
+					}
 					?>
-					<?php
-					Helper::the_control(
-						'hidden',
-						[
-							'name'  => '_method',
-							'value' => 'confirm',
-						]
-					);
-					?>
-				</p>
+				</div>
 			</div>
 
 			<?php

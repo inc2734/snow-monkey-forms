@@ -61,6 +61,11 @@ class Setting {
 	 */
 	protected $auto_reply_email_body;
 
+	/**
+	 * @var boolean
+	 */
+	protected $use_confirm_page = true;
+
 	public function __construct( $form_id ) {
 		$_posts = get_posts(
 			[
@@ -92,6 +97,9 @@ class Setting {
 		$this->auto_reply_email_to      = get_post_meta( $form_id, 'auto_reply_email_to', true );
 		$this->auto_reply_email_subject = get_post_meta( $form_id, 'auto_reply_email_subject', true );
 		$this->auto_reply_email_body    = get_post_meta( $form_id, 'auto_reply_email_body', true );
+
+		$use_confirm_page = get_post_meta( $form_id, 'use_confirm_page', true );
+		$this->use_confirm_page = ! $use_confirm_page ? false : true;
 	}
 
 	public function get( $key ) {

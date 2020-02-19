@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-18 15:38+0900\n"
-"PO-Revision-Date: 2020-02-18 15:40+0900\n"
+"POT-Creation-Date: 2020-02-19 15:41+0900\n"
+"PO-Revision-Date: 2020-02-19 15:42+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -24,16 +24,17 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: tests\n"
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
-#: App/Controller/Back.php:40 App/Controller/Error.php:41
-#: shortcode/snow-monkey-form.php:44
+#: App/Controller/Back.php:41 App/Controller/Error.php:43
+#: shortcode/snow-monkey-form.php:45
 msgid "Confirm"
 msgstr "確認画面へ"
 
-#: App/Controller/Confirm.php:40
+#: App/Controller/Confirm.php:41
 msgid "Back"
 msgstr "戻る"
 
-#: App/Controller/Confirm.php:47
+#: App/Controller/Confirm.php:49 App/Controller/Error.php:59
+#: shortcode/snow-monkey-form.php:61
 msgid "Send"
 msgstr "送信する"
 
@@ -62,7 +63,7 @@ msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:184 snow-monkey-forms.php:269
+#: snow-monkey-forms.php:184 snow-monkey-forms.php:273
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
@@ -73,20 +74,23 @@ msgstr "Snow Monkey Forms"
 msgid "Settings"
 msgstr "設定"
 
-#: block/checkbox/edit.js:17 block/radio/edit.js:17
+#: block/checkbox/edit.js:17 block/email/edit.js:17
+#: block/multi-checkbox/edit.js:17 block/multi-radio/edit.js:17
+#: block/radio/edit.js:17 block/select/edit.js:17 block/text/edit.js:17
+#: block/textarea/edit.js:17 block/url/edit.js:17
 msgid "Label"
 msgstr "ラベル"
 
-#: block/checkbox/edit.js:25 block/email/edit.js:17
-#: block/multi-checkbox/edit.js:17 block/multi-radio/edit.js:17
-#: block/radio/edit.js:25 block/select/edit.js:17 block/text/edit.js:17
-#: block/textarea/edit.js:17 block/url/edit.js:17
+#: block/checkbox/edit.js:25 block/email/edit.js:25
+#: block/multi-checkbox/edit.js:25 block/multi-radio/edit.js:25
+#: block/radio/edit.js:25 block/select/edit.js:25 block/text/edit.js:25
+#: block/textarea/edit.js:25 block/url/edit.js:25
 msgid "name"
 msgstr "name"
 
-#: block/checkbox/edit.js:33 block/email/edit.js:25
-#: block/multi-radio/edit.js:37 block/radio/edit.js:33 block/select/edit.js:37
-#: block/text/edit.js:25 block/textarea/edit.js:25 block/url/edit.js:25
+#: block/checkbox/edit.js:33 block/email/edit.js:33
+#: block/multi-radio/edit.js:45 block/radio/edit.js:33 block/select/edit.js:45
+#: block/text/edit.js:33 block/textarea/edit.js:33 block/url/edit.js:33
 msgid "value"
 msgstr "value"
 
@@ -102,29 +106,37 @@ msgstr "チェックボックス"
 msgid "email"
 msgstr "email"
 
-#: block/form/complete/index.js:6 block/form/complete/index.js:18
+#: block/form/complete/index.js:7
+msgid "Complete page"
+msgstr "完了画面"
+
+#: block/form/complete/index.js:31
 msgid "Complete"
 msgstr "完了画面"
 
-#: block/form/input/index.js:6 block/form/input/index.js:18
+#: block/form/input/index.js:7
+msgid "Input page"
+msgstr "入力画面"
+
+#: block/form/input/index.js:31
 msgid "Input"
 msgstr "入力画面"
 
-#: block/multi-checkbox/edit.js:25 block/multi-radio/edit.js:25
-#: block/select/edit.js:25
+#: block/multi-checkbox/edit.js:33 block/multi-radio/edit.js:33
+#: block/select/edit.js:33
 msgid "options"
 msgstr "options"
 
-#: block/multi-checkbox/edit.js:28 block/multi-radio/edit.js:28
-#: block/select/edit.js:28
+#: block/multi-checkbox/edit.js:36 block/multi-radio/edit.js:36
+#: block/select/edit.js:36
 msgid "\"value\" : \"label\"\\u21B5"
 msgstr "“value” : “label”\\u21B5"
 
-#: block/multi-checkbox/edit.js:37
+#: block/multi-checkbox/edit.js:45
 msgid "values"
 msgstr "values"
 
-#: block/multi-checkbox/edit.js:39
+#: block/multi-checkbox/edit.js:47
 msgid "value\\u21B5"
 msgstr "value\\u21B5"
 
@@ -179,13 +191,21 @@ msgstr "件名"
 msgid "To"
 msgstr "To"
 
-#: src/js/plugin-sidebar.js:18
+#: plugin-sidebar/use-confirm-page.js:8
+msgid "Use confirm page"
+msgstr "確認画面を使用する"
+
+#: src/js/plugin-sidebar.js:19
 msgid "Administrator email"
 msgstr "管理者宛メール"
 
-#: src/js/plugin-sidebar.js:28
+#: src/js/plugin-sidebar.js:29
 msgid "Auto reply email"
 msgstr "自動返信メール"
+
+#: src/js/plugin-sidebar.js:39
+msgid "Form settings"
+msgstr "フォーム設定"
 
 #. Author of the plugin/theme
 msgid "inc2734"

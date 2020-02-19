@@ -36,21 +36,39 @@ class Error extends Contract\Controller {
 	protected function set_action() {
 		ob_start();
 
-		Helper::the_control(
-			'button',
-			[
-				'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-				'data-action' => 'confirm',
-			]
-		);
+		if ( true === $this->setting->get( 'use_confirm_page' ) ) {
+			Helper::the_control(
+				'button',
+				[
+					'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+					'data-action' => 'confirm',
+				]
+			);
 
-		Helper::the_control(
-			'hidden',
-			[
-				'name'  => '_method',
-				'value' => 'confirm',
-			]
-		);
+			Helper::the_control(
+				'hidden',
+				[
+					'name'  => '_method',
+					'value' => 'confirm',
+				]
+			);
+		} else {
+			Helper::the_control(
+				'button',
+				[
+					'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+					'data-action' => 'complete',
+				]
+			);
+
+			Helper::the_control(
+				'hidden',
+				[
+					'name'  => '_method',
+					'value' => 'complete',
+				]
+			);
+		}
 
 		return ob_get_clean();
 	}
