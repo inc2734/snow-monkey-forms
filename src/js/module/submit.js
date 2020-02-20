@@ -13,7 +13,10 @@ const maybeComplete = ( method ) => {
 	return 'complete' === method || 'system-error' === method;
 };
 
-export default function send( form ) {
+export default function submit( event ) {
+	event.preventDefault();
+
+	const form = $( event.target );
 	const actionArea = form.find( '.smf-action' );
 
 	const replaceContent = ( content ) => {
@@ -55,39 +58,35 @@ export default function send( form ) {
 		}
 	};
 
-	form.on( 'submit', ( event ) => {
-		event.preventDefault();
+	const icon = $( '.smf-sending' );
 
-		const icon = $( '.smf-sending' );
+	const doneCallback = ( response ) => {
+		icon.attr( 'aria-hidden', 'true' );
 
-		const doneCallback = ( response ) => {
-			icon.attr( 'aria-hidden', 'true' );
+		response = JSON.parse( response );
+		const method = response.method;
 
-			response = JSON.parse( response );
-			const method = response.method;
+		actionArea.html( response.action );
+		form.find( '.smf-placeholder' ).html( '' );
 
-			actionArea.html( response.action );
-			form.find( '.smf-placeholder' ).html( '' );
+		if ( maybeHasControls( method ) ) {
+			replaceControls( response.controls );
 
-			if ( maybeHasControls( method ) ) {
-				replaceControls( response.controls );
-
-				const errorMessages = $( '.smf-error-messages' );
-				if ( 0 < errorMessages.length ) {
-					forcusToFirstErrorControl( errorMessages );
-				} else {
-					focusToFirstItem();
-				}
-			} else if ( maybeComplete( method ) ) {
-				replaceContent( response.message );
-				focusToContent();
+			const errorMessages = $( '.smf-error-messages' );
+			if ( 0 < errorMessages.length ) {
+				forcusToFirstErrorControl( errorMessages );
 			} else {
-				replaceContent( '' );
+				focusToFirstItem();
 			}
-		};
+		} else if ( maybeComplete( method ) ) {
+			replaceContent( response.message );
+			focusToContent();
+		} else {
+			replaceContent( '' );
+		}
+	};
 
-		$.post( snowmonkeyforms.view_json_url, form.serialize() ).done(
-			doneCallback
-		);
-	} );
+	$.post( snowmonkeyforms.view_json_url, form.serialize() ).done(
+		doneCallback
+	);
 }

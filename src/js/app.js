@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import send from './module/send';
+import submit from './module/submit';
 
 $( document ).on( 'click', '[data-action="back"]', ( event ) =>
 	$( event.currentTarget )
@@ -14,7 +14,10 @@ $( document ).on( 'click', '.smf-action [type="submit"]', ( event ) => {
 		.attr( 'aria-hidden', 'false' );
 } );
 
-$( '.snow-monkey-form' ).each( ( i, e ) => send( $( e ) ) );
+$( '.snow-monkey-form' ).each( ( i, e ) => {
+	const form = $( e );
+	form.on( 'submit', submit );
+} );
 
 $( document ).on( 'change keyup', '[data-invalid="1"]', ( event ) => {
 	$( event.currentTarget ).removeAttr( 'data-invalid' );
