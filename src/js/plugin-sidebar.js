@@ -15,6 +15,14 @@ registerPlugin( 'plugin-snow-monkey-form-sidebar', {
 		return (
 			<>
 				<PluginDocumentSettingPanel
+					name="snow-monkey-form/form-settings"
+					title={ __( 'Form settings', 'snow-monkey-forms' ) }
+					opened={ true }
+				>
+					<UseConfirmPage />
+				</PluginDocumentSettingPanel>
+
+				<PluginDocumentSettingPanel
 					name="snow-monkey-form/administrator-email"
 					title={ __( 'Administrator email', 'snow-monkey-forms' ) }
 					opened={ true }
@@ -27,19 +35,11 @@ registerPlugin( 'plugin-snow-monkey-form-sidebar', {
 				<PluginDocumentSettingPanel
 					name="snow-monkey-form/auto-reply-email"
 					title={ __( 'Auto reply email', 'snow-monkey-forms' ) }
-					opened={ true }
+					opened={ false }
 				>
 					<AutoReplyEmailTo />
 					<AutoReplyEmailSubject />
 					<AutoReplyEmailBody />
-				</PluginDocumentSettingPanel>
-
-				<PluginDocumentSettingPanel
-					name="snow-monkey-form/form-settings"
-					title={ __( 'Form settings', 'snow-monkey-forms' ) }
-					opened={ true }
-				>
-					<UseConfirmPage />
 				</PluginDocumentSettingPanel>
 			</>
 		);
