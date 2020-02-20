@@ -2,6 +2,10 @@
  * Form 1
  */
 .smf-form.is-style-smf-form-1 {
+  & + .smf-action {
+    margin-top: .5rem;
+  }
+
   .smf-item {
     padding: 1rem 0;
 
@@ -28,6 +32,10 @@
  * Form 2
  */
 .smf-form.is-style-smf-form-2 {
+  & + .smf-action {
+    margin-top: .5rem;
+  }
+
   .smf-item {
     padding: 1rem 0;
 
