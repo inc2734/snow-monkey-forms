@@ -13,7 +13,7 @@ add_action(
 		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/textarea/attributes.php' );
 
 		register_block_type(
-			'snow-monkey-forms/textarea',
+			'snow-monkey-forms/control-textarea',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {

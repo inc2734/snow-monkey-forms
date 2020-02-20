@@ -5,7 +5,7 @@ import attributes from './attributes';
 import edit from './edit';
 import save from './save';
 
-registerBlockType( 'snow-monkey-forms/textarea', {
+registerBlockType( 'snow-monkey-forms/control-textarea', {
 	title: __( 'Textarea', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',

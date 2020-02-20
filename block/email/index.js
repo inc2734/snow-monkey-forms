@@ -5,7 +5,7 @@ import attributes from './attributes';
 import edit from './edit';
 import save from './save';
 
-registerBlockType( 'snow-monkey-forms/email', {
+registerBlockType( 'snow-monkey-forms/control-email', {
 	title: __( 'email', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',

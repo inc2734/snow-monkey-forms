@@ -2,6 +2,7 @@
 import '../../block/email';
 import '../../block/form/complete';
 import '../../block/form/input';
+import '../../block/item';
 import '../../block/multi-checkbox';
 import '../../block/multi-radio';
 //import '../../block/radio';

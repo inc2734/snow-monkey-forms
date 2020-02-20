@@ -13,7 +13,7 @@ add_action(
 		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/email/attributes.php' );
 
 		register_block_type(
-			'snow-monkey-forms/email',
+			'snow-monkey-forms/control-email',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {

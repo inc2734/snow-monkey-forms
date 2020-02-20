@@ -48,7 +48,7 @@ const edit = ( { attributes, setAttributes } ) => {
 			</InspectorControls>
 
 			<ServerSideRender
-				block="snow-monkey-forms/checkbox"
+				block="snow-monkey-forms/control-checkbox"
 				attributes={ { ...attributes, disabled: true } }
 			/>
 		</>

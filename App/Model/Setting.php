@@ -115,7 +115,7 @@ class Setting {
 
 	private function _extract_input_content( $post_content ) {
 		$match = preg_match(
-			'|<!-- wp:snow-monkey-forms/form--input -->(.*?)<!-- /wp:snow-monkey-forms/form--input -->|ms',
+			'|<!-- wp:snow-monkey-forms/form--input .*?-->(.*?)<!-- /wp:snow-monkey-forms/form--input -->|ms',
 			$post_content,
 			$matches
 		);
@@ -135,7 +135,7 @@ class Setting {
 
 	private function _set_controls( $input_content ) {
 		preg_replace_callback(
-			'|<!-- wp:snow-monkey-forms/([^ ]+?) ({.+?}) /-->|ms',
+			'|<!-- wp:snow-monkey-forms/control-([^ ]+?) ({.+?}) /-->|ms',
 			function( $matches ) {
 				if ( ! isset( $matches[1] ) || ! isset( $matches[2] ) ) {
 					return;

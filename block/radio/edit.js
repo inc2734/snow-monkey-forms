@@ -48,7 +48,7 @@ const edit = ( { attributes, setAttributes } ) => {
 			</InspectorControls>
 
 			<ServerSideRender
-				block="snow-monkey-forms/radio"
+				block="snow-monkey-forms/control-radio"
 				attributes={ { ...attributes, disabled: true } }
 			/>
 		</>

@@ -12,13 +12,6 @@ if ( ! isset( $attributes['name'] ) ) {
 }
 ?>
 
-<div class="smf-item" tabindex="-1">
-	<div class="smf-item__label">
-		<?php echo esc_html( $attributes['label'] ); ?>
-	</div>
-	<div class="smf-item__control">
-		<div class="smf-placeholder" data-name="<?php echo esc_attr( $attributes['name'] ); ?>">
-			<?php Helper::the_control( 'textarea', $attributes ); ?>
-		</div>
-	</div>
+<div class="smf-placeholder" data-name="<?php echo esc_attr( $attributes['name'] ); ?>">
+	<?php Helper::the_control( 'textarea', $attributes ); ?>
 </div>

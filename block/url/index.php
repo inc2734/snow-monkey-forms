@@ -13,7 +13,7 @@ add_action(
 		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/url/attributes.php' );
 
 		register_block_type(
-			'snow-monkey-forms/url',
+			'snow-monkey-forms/control-url',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {

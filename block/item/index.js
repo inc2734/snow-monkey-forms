@@ -5,10 +5,11 @@ import attributes from './attributes';
 import edit from './edit';
 import save from './save';
 
-registerBlockType( 'snow-monkey-forms/control-checkbox', {
-	title: __( 'Checkbox', 'snow-monkey-forms' ),
-	icon: 'editor-ol',
+registerBlockType( 'snow-monkey-forms/item', {
+	title: __( 'Item', 'snow-monkey-forms' ),
+	icon: 'text',
 	category: 'snow-monkey-forms',
+	parent: [ 'snow-monkey-forms/form--input' ],
 	attributes,
 	edit,
 	save,

@@ -6,10 +6,6 @@
  */
 
 return [
-	'label' => [
-		'type'    => 'string',
-		'default' => '',
-	],
 	'name' => [
 		'type'    => 'string',
 		'default' => '',

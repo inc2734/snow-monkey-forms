@@ -187,8 +187,77 @@ class Bootstrap {
 				'show_in_rest' => true,
 				'supports'     => [ 'title', 'editor', 'custom-fields' ],
 				'template' => [
-					[ 'snow-monkey-forms/form--input', [], [] ],
-					[ 'snow-monkey-forms/form--complete', [], [] ],
+					[
+						'snow-monkey-forms/form--input',
+						[],
+						[
+							[
+								'snow-monkey-forms/item',
+								[
+									'label' => __( 'Name', 'snow-monkey-forms' ),
+								],
+								[
+									[
+										'snow-monkey-forms/control-text',
+										[
+											'name'        => 'fullname',
+											'validations' => json_encode(
+												[
+													'required' => true,
+												],
+												JSON_UNESCAPED_UNICODE
+											),
+										],
+									],
+								],
+							],
+							[
+								'snow-monkey-forms/item',
+								[
+									'label' => __( 'Email', 'snow-monkey-forms' ),
+								],
+								[
+									[
+										'snow-monkey-forms/control-email',
+										[
+											'name'        => 'email',
+											'validations' => json_encode(
+												[
+													'required' => true,
+												],
+												JSON_UNESCAPED_UNICODE
+											),
+										],
+									],
+								],
+							],
+							[
+								'snow-monkey-forms/item',
+								[
+									'label' => __( 'Message', 'snow-monkey-forms' ),
+								],
+								[
+									[
+										'snow-monkey-forms/control-textarea',
+										[
+											'name'        => 'message',
+											'validations' => json_encode(
+												[
+													'required' => true,
+												],
+												JSON_UNESCAPED_UNICODE
+											),
+										],
+									],
+								],
+							],
+						],
+					],
+					[
+						'snow-monkey-forms/form--complete',
+						[],
+						[],
+					],
 				],
 				'template_lock' => 'insert',
 			]

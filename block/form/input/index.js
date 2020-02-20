@@ -1,6 +1,5 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { InnerBlocks } from '@wordpress/block-editor';
-import { select } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 registerBlockType( 'snow-monkey-forms/form--input', {
@@ -9,21 +8,30 @@ registerBlockType( 'snow-monkey-forms/form--input', {
 	category: 'snow-monkey-forms',
 	parent: [ false ],
 	supports: {
-		customClassName: false,
+		customClassName: true,
+		className: false,
 		inserter: false,
 		multiple: false,
 		reusable: false,
 	},
 
-	edit() {
-		const blocks = select( 'core/blocks' ).getBlockTypes();
-		const ALLOWED_BLOCKS = blocks
-			.map( ( block ) => {
-				return block.name.match( /^snow-monkey-forms\// )
-					? block.name
-					: null;
-			} )
-			.filter( ( block ) => block );
+	styles: [
+		{
+			name: 'smf-form-default',
+			label: __( 'Default', 'block-style', 'snow-monkey-forms' ),
+		},
+		{
+			name: 'smf-form-1',
+			label: __( 'Form', 'block-style', 'snow-monkey-forms' ) + '1',
+		},
+		{
+			name: 'smf-form-2',
+			label: __( 'Form', 'block-style', 'snow-monkey-forms' ) + '2',
+		},
+	],
+
+	edit( { className } ) {
+		const newClassName = !! className ? className : '';
 
 		return (
 			<div className="components-panel snow-monkey-forms-setting-panel">
@@ -31,16 +39,24 @@ registerBlockType( 'snow-monkey-forms/form--input', {
 					{ __( 'Input', 'snow-monkey-forms' ) }
 				</div>
 				<div className="components-panel__body is-opened">
-					<InnerBlocks
-						allowedBlocks={ ALLOWED_BLOCKS }
-						templateLock={ false }
-					/>
+					<div className={ `smf-form ${ newClassName }` }>
+						<InnerBlocks
+							allowedBlocks={ [ 'snow-monkey-forms/item' ] }
+							templateLock={ false }
+						/>
+					</div>
 				</div>
 			</div>
 		);
 	},
 
-	save() {
-		return <InnerBlocks.Content />;
+	save( { className } ) {
+		const newClassName = !! className ? className : '';
+
+		return (
+			<div className={ `smf-form ${ newClassName }` }>
+				<InnerBlocks.Content />
+			</div>
+		);
 	},
 } );

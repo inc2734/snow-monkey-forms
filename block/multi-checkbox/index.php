@@ -13,7 +13,7 @@ add_action(
 		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/multi-checkbox/attributes.php' );
 
 		register_block_type(
-			'snow-monkey-forms/multi-checkbox',
+			'snow-monkey-forms/control-multi-checkbox',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {

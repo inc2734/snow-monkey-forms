@@ -13,7 +13,7 @@ add_action(
 		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/multi-radio/attributes.php' );
 
 		register_block_type(
-			'snow-monkey-forms/multi-radio',
+			'snow-monkey-forms/control-multi-radio',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {

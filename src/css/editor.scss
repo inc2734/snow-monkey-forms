@@ -19,3 +19,9 @@
     display: none;
   }
 }
+
+.is-selected [data-type="snow-monkey-forms/item"] .block-list-appender {
+  display: none !important;
+}
+
+@import 'block-styles';
