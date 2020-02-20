@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-19 15:41+0900\n"
-"PO-Revision-Date: 2020-02-19 15:42+0900\n"
+"POT-Creation-Date: 2020-02-20 14:16+0900\n"
+"PO-Revision-Date: 2020-02-20 14:16+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -63,34 +63,47 @@ msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:184 snow-monkey-forms.php:273
+#: snow-monkey-forms.php:184 snow-monkey-forms.php:342
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
+#: snow-monkey-forms.php:197
+#, fuzzy
+msgid "Name"
+msgstr "名前"
+
+#: snow-monkey-forms.php:217
+#, fuzzy
+#| msgid "email"
+msgid "Email"
+msgstr "メール"
+
+#: snow-monkey-forms.php:237
+#, fuzzy
+msgid "Message"
+msgstr "メッセージ"
+
 #: block/checkbox/edit.js:15 block/email/edit.js:15
-#: block/multi-checkbox/edit.js:15 block/multi-radio/edit.js:15
-#: block/radio/edit.js:15 block/select/edit.js:15 block/text/edit.js:15
-#: block/textarea/edit.js:15 block/url/edit.js:15
+#: block/multi-checkbox/edit.js:15 block/radio/edit.js:15
+#: block/select/edit.js:15 block/text/edit.js:15 block/textarea/edit.js:15
+#: block/url/edit.js:15
 msgid "Settings"
 msgstr "設定"
 
-#: block/checkbox/edit.js:17 block/email/edit.js:17
-#: block/multi-checkbox/edit.js:17 block/multi-radio/edit.js:17
-#: block/radio/edit.js:17 block/select/edit.js:17 block/text/edit.js:17
-#: block/textarea/edit.js:17 block/url/edit.js:17
+#: block/checkbox/edit.js:17 block/item/edit.js:16 block/radio/edit.js:17
 msgid "Label"
 msgstr "ラベル"
 
-#: block/checkbox/edit.js:25 block/email/edit.js:25
-#: block/multi-checkbox/edit.js:25 block/multi-radio/edit.js:25
-#: block/radio/edit.js:25 block/select/edit.js:25 block/text/edit.js:25
-#: block/textarea/edit.js:25 block/url/edit.js:25
+#: block/checkbox/edit.js:25 block/email/edit.js:17
+#: block/multi-checkbox/edit.js:17 block/multi-radio/edit.js:17
+#: block/radio/edit.js:25 block/select/edit.js:17 block/text/edit.js:17
+#: block/textarea/edit.js:17 block/url/edit.js:17
 msgid "name"
 msgstr "name"
 
-#: block/checkbox/edit.js:33 block/email/edit.js:33
-#: block/multi-radio/edit.js:45 block/radio/edit.js:33 block/select/edit.js:45
-#: block/text/edit.js:33 block/textarea/edit.js:33 block/url/edit.js:33
+#: block/checkbox/edit.js:33 block/email/edit.js:25
+#: block/multi-radio/edit.js:37 block/radio/edit.js:33 block/select/edit.js:37
+#: block/text/edit.js:25 block/textarea/edit.js:25 block/url/edit.js:25
 msgid "value"
 msgstr "value"
 
@@ -101,6 +114,11 @@ msgstr "checked"
 #: block/checkbox/index.js:9
 msgid "Checkbox"
 msgstr "チェックボックス"
+
+#: block/email/edit.js:33 block/text/edit.js:33 block/textarea/edit.js:33
+#: block/url/edit.js:33
+msgid "placeholder"
+msgstr ""
 
 #: block/email/index.js:9
 msgid "email"
@@ -114,29 +132,44 @@ msgstr "完了画面"
 msgid "Complete"
 msgstr "完了画面"
 
-#: block/form/input/index.js:7
+#: block/form/input/index.js:6
 msgid "Input page"
 msgstr "入力画面"
 
-#: block/form/input/index.js:31
+#: block/form/input/index.js:21
+#, fuzzy
+msgid "Default"
+msgstr "デフォルト"
+
+#: block/form/input/index.js:25 block/form/input/index.js:29
+#, fuzzy
+msgid "Form"
+msgstr "【MW WP Form】MW WP Form が必要です。"
+
+#: block/form/input/index.js:39
 msgid "Input"
 msgstr "入力画面"
 
-#: block/multi-checkbox/edit.js:33 block/multi-radio/edit.js:33
-#: block/select/edit.js:33
+#: block/item/index.js:9
+#, fuzzy
+msgid "Item"
+msgstr "項目"
+
+#: block/multi-checkbox/edit.js:25 block/multi-radio/edit.js:25
+#: block/select/edit.js:25
 msgid "options"
 msgstr "options"
 
-#: block/multi-checkbox/edit.js:36 block/multi-radio/edit.js:36
-#: block/select/edit.js:36
+#: block/multi-checkbox/edit.js:28 block/multi-radio/edit.js:28
+#: block/select/edit.js:28
 msgid "\"value\" : \"label\"\\u21B5"
 msgstr "“value” : “label”\\u21B5"
 
-#: block/multi-checkbox/edit.js:45
+#: block/multi-checkbox/edit.js:37
 msgid "values"
 msgstr "values"
 
-#: block/multi-checkbox/edit.js:47
+#: block/multi-checkbox/edit.js:39
 msgid "value\\u21B5"
 msgstr "value\\u21B5"
 
@@ -191,21 +224,30 @@ msgstr "件名"
 msgid "To"
 msgstr "To"
 
+#: plugin-sidebar/auto-reply-email-to.js:12
+#, python-brace-format
+msgid ""
+"Enter the name attribute value of the installed email form field in the "
+"following format: {name}"
+msgstr ""
+"設置した email 用フォームフィールドの name 属性値を次の形式で入力してくださ"
+"い: {name}"
+
 #: plugin-sidebar/use-confirm-page.js:8
 msgid "Use confirm page"
 msgstr "確認画面を使用する"
 
 #: src/js/plugin-sidebar.js:19
+msgid "Form settings"
+msgstr "フォーム設定"
+
+#: src/js/plugin-sidebar.js:27
 msgid "Administrator email"
 msgstr "管理者宛メール"
 
-#: src/js/plugin-sidebar.js:29
+#: src/js/plugin-sidebar.js:37
 msgid "Auto reply email"
 msgstr "自動返信メール"
-
-#: src/js/plugin-sidebar.js:39
-msgid "Form settings"
-msgstr "フォーム設定"
 
 #. Author of the plugin/theme
 msgid "inc2734"

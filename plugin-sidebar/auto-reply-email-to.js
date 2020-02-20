@@ -8,6 +8,10 @@ const Control = ( props ) => {
 			label={ __( 'To', 'snow-monkey-forms' ) }
 			value={ props.auto_reply_email_to }
 			onChange={ ( value ) => props.setMetaFieldValue( value ) }
+			help={ __(
+				'Enter the name attribute value of the installed email form field in the following format: {name}',
+				'snow-monkey-forms'
+			) }
 		/>
 	);
 };
