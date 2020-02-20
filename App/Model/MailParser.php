@@ -28,10 +28,24 @@ class MailParser {
 					return $matches[0];
 				}
 
+				if ( 'all-fields' === $matches[1] ) {
+					$value  = '';
+					$values = $this->responser->get_all();
+					foreach ( $values as $name => $data ) {
+						$data = $this->_stringfy( $data );
+						$value .= $name . ": \n" . $data . "\n\n";
+					}
+					return trim( $value );
+				}
+
 				$value = $this->responser->get( $matches[1] );
-				return is_array( $value ) ? implode( ', ', $value ) : $value;
+				return $this->_stringfy( $value );
 			},
 			$string
 		);
+	}
+
+	protected function _stringfy( $value ) {
+		return is_array( $value ) ? implode( ', ', $value ) : $value;
 	}
 }

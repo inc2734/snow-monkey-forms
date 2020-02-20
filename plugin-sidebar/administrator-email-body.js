@@ -1,14 +1,16 @@
 import { TextareaControl } from '@wordpress/components';
-import { __ } from '@wordpress/i18n';
 import { withSelect, withDispatch } from '@wordpress/data';
+import { __ } from '@wordpress/i18n';
 
 const Control = ( props ) => {
 	return (
-		<TextareaControl
-			label={ __( 'Body', 'snow-monkey-forms' ) }
-			value={ props.administrator_email_body }
-			onChange={ ( value ) => props.setMetaFieldValue( value ) }
-		/>
+		<>
+			<TextareaControl
+				label={ __( 'Body', 'snow-monkey-forms' ) }
+				value={ props.administrator_email_body }
+				onChange={ ( value ) => props.setMetaFieldValue( value ) }
+			/>
+		</>
 	);
 };
 

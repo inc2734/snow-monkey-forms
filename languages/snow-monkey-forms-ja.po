@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-20 14:18+0900\n"
-"PO-Revision-Date: 2020-02-20 14:20+0900\n"
+"POT-Creation-Date: 2020-02-20 16:06+0900\n"
+"PO-Revision-Date: 2020-02-20 16:07+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -205,7 +205,7 @@ msgstr "バリデーション"
 msgid "Required"
 msgstr "必須"
 
-#: plugin-sidebar/administrator-email-body.js:8
+#: plugin-sidebar/administrator-email-body.js:9
 #: plugin-sidebar/auto-reply-email-body.js:8
 msgid "Body"
 msgstr "Body"
@@ -229,19 +229,31 @@ msgstr ""
 "設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
 "い: {name}"
 
+#: plugin-sidebar/help-button.js:11
+msgid "Help"
+msgstr "ヘルプ"
+
+#: plugin-sidebar/help-button.js:19
+msgid "You can embed a submitted value in the following formats: "
+msgstr "送信された値は次の形式で埋め込むことができます: "
+
+#: plugin-sidebar/help-button.js:26
+msgid "You can embed all submitted values ​​in the following format: "
+msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
+
 #: plugin-sidebar/use-confirm-page.js:8
 msgid "Use confirm page"
 msgstr "確認画面を使用する"
 
-#: src/js/plugin-sidebar.js:19
+#: src/js/plugin-sidebar.js:20
 msgid "Form settings"
 msgstr "フォーム設定"
 
-#: src/js/plugin-sidebar.js:27
+#: src/js/plugin-sidebar.js:28
 msgid "Administrator email"
 msgstr "管理者宛メール"
 
-#: src/js/plugin-sidebar.js:37
+#: src/js/plugin-sidebar.js:39
 msgid "Auto reply email"
 msgstr "自動返信メール"
 

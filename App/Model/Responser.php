@@ -49,4 +49,8 @@ class Responser {
 	public function get( $name ) {
 		return isset( $this->data[ $name ] ) ? $this->data[ $name ] : null;
 	}
+
+	public function get_all() {
+		return $this->data;
+	}
 }
