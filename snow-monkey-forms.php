@@ -194,7 +194,7 @@ class Bootstrap {
 							[
 								'snow-monkey-forms/item',
 								[
-									'label' => __( 'Name', 'snow-monkey-forms' ),
+									'label' => _x( 'Name', 'form-field-label', 'snow-monkey-forms' ),
 								],
 								[
 									[
@@ -214,7 +214,7 @@ class Bootstrap {
 							[
 								'snow-monkey-forms/item',
 								[
-									'label' => __( 'Email', 'snow-monkey-forms' ),
+									'label' => _x( 'Email', 'form-field-label', 'snow-monkey-forms' ),
 								],
 								[
 									[
@@ -234,7 +234,7 @@ class Bootstrap {
 							[
 								'snow-monkey-forms/item',
 								[
-									'label' => __( 'Message', 'snow-monkey-forms' ),
+									'label' => _x( 'Message', 'form-field-label', 'snow-monkey-forms' ),
 								],
 								[
 									[

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-20 14:16+0900\n"
-"PO-Revision-Date: 2020-02-20 14:16+0900\n"
+"POT-Creation-Date: 2020-02-20 14:18+0900\n"
+"PO-Revision-Date: 2020-02-20 14:20+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -68,18 +68,17 @@ msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
 #: snow-monkey-forms.php:197
-#, fuzzy
+msgctxt "form-field-label"
 msgid "Name"
-msgstr "名前"
+msgstr "お名前"
 
 #: snow-monkey-forms.php:217
-#, fuzzy
-#| msgid "email"
+msgctxt "form-field-label"
 msgid "Email"
-msgstr "メール"
+msgstr "Eメール"
 
 #: snow-monkey-forms.php:237
-#, fuzzy
+msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
@@ -118,7 +117,7 @@ msgstr "チェックボックス"
 #: block/email/edit.js:33 block/text/edit.js:33 block/textarea/edit.js:33
 #: block/url/edit.js:33
 msgid "placeholder"
-msgstr ""
+msgstr "placeholder"
 
 #: block/email/index.js:9
 msgid "email"
@@ -137,21 +136,18 @@ msgid "Input page"
 msgstr "入力画面"
 
 #: block/form/input/index.js:21
-#, fuzzy
 msgid "Default"
 msgstr "デフォルト"
 
 #: block/form/input/index.js:25 block/form/input/index.js:29
-#, fuzzy
 msgid "Form"
-msgstr "【MW WP Form】MW WP Form が必要です。"
+msgstr "フォーム"
 
 #: block/form/input/index.js:39
 msgid "Input"
 msgstr "入力画面"
 
 #: block/item/index.js:9
-#, fuzzy
 msgid "Item"
 msgstr "項目"
 
@@ -230,7 +226,7 @@ msgid ""
 "Enter the name attribute value of the installed email form field in the "
 "following format: {name}"
 msgstr ""
-"設置した email 用フォームフィールドの name 属性値を次の形式で入力してくださ"
+"設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
 "い: {name}"
 
 #: plugin-sidebar/use-confirm-page.js:8
