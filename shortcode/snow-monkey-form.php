@@ -33,46 +33,44 @@ add_shortcode(
 		ob_start();
 		?>
 		<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action="">
-			<div class="p-entry-content">
-				<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
+			<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
 
-				<div class="smf-action">
-					<?php
-					if ( true === $setting->get( 'use_confirm_page' ) ) {
-						Helper::the_control(
-							'button',
-							[
-								'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-								'data-action' => 'confirm',
-							]
-						);
+			<div class="smf-action">
+				<?php
+				if ( true === $setting->get( 'use_confirm_page' ) ) {
+					Helper::the_control(
+						'button',
+						[
+							'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+							'data-action' => 'confirm',
+						]
+					);
 
-						Helper::the_control(
-							'hidden',
-							[
-								'name'  => '_method',
-								'value' => 'confirm',
-							]
-						);
-					} else {
-						Helper::the_control(
-							'button',
-							[
-								'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-								'data-action' => 'complete',
-							]
-						);
+					Helper::the_control(
+						'hidden',
+						[
+							'name'  => '_method',
+							'value' => 'confirm',
+						]
+					);
+				} else {
+					Helper::the_control(
+						'button',
+						[
+							'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
+							'data-action' => 'complete',
+						]
+					);
 
-						Helper::the_control(
-							'hidden',
-							[
-								'name'  => '_method',
-								'value' => 'complete',
-							]
-						);
-					}
-					?>
-				</div>
+					Helper::the_control(
+						'hidden',
+						[
+							'name'  => '_method',
+							'value' => 'complete',
+						]
+					);
+				}
+				?>
 			</div>
 
 			<?php

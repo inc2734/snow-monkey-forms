@@ -9,6 +9,7 @@ import AutoReplyEmailTo from '../../plugin-sidebar/auto-reply-email-to';
 import AutoReplyEmailSubject from '../../plugin-sidebar/auto-reply-email-subject';
 import AutoReplyEmailBody from '../../plugin-sidebar/auto-reply-email-body';
 import UseConfirmPage from '../../plugin-sidebar/use-confirm-page';
+import HelpButton from '../../plugin-sidebar/help-button';
 
 registerPlugin( 'plugin-snow-monkey-form-sidebar', {
 	render() {
@@ -30,6 +31,7 @@ registerPlugin( 'plugin-snow-monkey-form-sidebar', {
 					<AdministratorEmailTo />
 					<AdministratorEmailSubject />
 					<AdministratorEmailBody />
+					<HelpButton />
 				</PluginDocumentSettingPanel>
 
 				<PluginDocumentSettingPanel
@@ -40,6 +42,7 @@ registerPlugin( 'plugin-snow-monkey-form-sidebar', {
 					<AutoReplyEmailTo />
 					<AutoReplyEmailSubject />
 					<AutoReplyEmailBody />
+					<HelpButton />
 				</PluginDocumentSettingPanel>
 			</>
 		);

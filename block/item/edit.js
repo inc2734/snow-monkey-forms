@@ -18,7 +18,7 @@ export default function( { attributes, setAttributes } ) {
 				</span>
 			</div>
 			<div className="smf-item__col smf-item__col--controls">
-				<div className="smf-item__controls p-entry-content">
+				<div className="smf-item__controls">
 					<InnerBlocks
 						templateLock={ false }
 						renderAppender={ () => (
