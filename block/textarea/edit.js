@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
-	const { name, value } = attributes;
+	const { name, value, placeholder } = attributes;
 
 	return (
 		<>
@@ -26,6 +26,14 @@ const edit = ( { attributes, setAttributes } ) => {
 						value={ value }
 						onChange={ ( attribute ) =>
 							setAttributes( { value: attribute } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'placeholder', 'snow-monkey-forms' ) }
+						value={ placeholder }
+						onChange={ ( attribute ) =>
+							setAttributes( { placeholder: attribute } )
 						}
 					/>
 				</PanelBody>

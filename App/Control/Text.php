@@ -23,6 +23,11 @@ class Text extends Contract\Control {
 	public $value = '';
 
 	/**
+	 * @var string
+	 */
+	public $placeholder = '';
+
+	/**
 	 * @var boolean
 	 */
 	public $disabled = false;

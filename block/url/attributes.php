@@ -14,6 +14,10 @@ return [
 		'type'    => 'string',
 		'default' => '',
 	],
+	'placeholder' => [
+		'type'    => 'string',
+		'default' => '',
+	],
 	'disabled' => [
 		'type'    => 'boolean',
 		'default' => false,
