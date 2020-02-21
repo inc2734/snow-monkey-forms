@@ -1,32 +1,24 @@
 import { TextareaControl } from '@wordpress/components';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { withSelect, withDispatch } from '@wordpress/data';
 
-const Control = ( props ) => {
+export default function() {
+	const meta = useSelect( ( select ) => {
+		const { getEditedPostAttribute } = select( 'core/editor' );
+		return getEditedPostAttribute( 'meta' ).auto_reply_email_body;
+	}, [] );
+
+	const { editPost } = useDispatch( 'core/editor' );
+
 	return (
 		<TextareaControl
 			label={ __( 'Body', 'snow-monkey-forms' ) }
-			value={ props.auto_reply_email_body }
-			onChange={ ( value ) => props.setMetaFieldValue( value ) }
+			value={ meta }
+			onChange={ ( value ) =>
+				editPost( {
+					meta: { auto_reply_email_body: value },
+				} )
+			}
 		/>
 	);
-};
-
-const ControlWithData = withSelect( ( select ) => {
-	const { getEditedPostAttribute } = select( 'core/editor' );
-
-	const meta = getEditedPostAttribute( 'meta' );
-
-	return {
-		auto_reply_email_body: meta.auto_reply_email_body,
-	};
-} )( Control );
-
-export default withDispatch( ( dispatch ) => {
-	const { editPost } = dispatch( 'core/editor' );
-
-	return {
-		setMetaFieldValue: ( value ) =>
-			editPost( { meta: { auto_reply_email_body: value } } ),
-	};
-} )( ControlWithData );
+}

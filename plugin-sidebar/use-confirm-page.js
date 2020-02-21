@@ -1,32 +1,23 @@
 import { ToggleControl } from '@wordpress/components';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
-import { withSelect, withDispatch } from '@wordpress/data';
+export default function() {
+	const meta = useSelect( ( select ) => {
+		const { getEditedPostAttribute } = select( 'core/editor' );
+		return getEditedPostAttribute( 'meta' ).use_confirm_page;
+	}, [] );
 
-const Control = ( props ) => {
+	const { editPost } = useDispatch( 'core/editor' );
+
 	return (
 		<ToggleControl
 			label={ __( 'Use confirm page', 'snow-monkey-forms' ) }
-			checked={ props.use_confirm_page }
-			onChange={ ( value ) => props.setMetaFieldValue( value ) }
+			checked={ meta }
+			onChange={ ( value ) =>
+				editPost( {
+					meta: { use_confirm_page: value },
+				} )
+			}
 		/>
 	);
-};
-
-const ControlWithData = withSelect( ( select ) => {
-	const { getEditedPostAttribute } = select( 'core/editor' );
-
-	const meta = getEditedPostAttribute( 'meta' );
-
-	return {
-		use_confirm_page: meta.use_confirm_page,
-	};
-} )( Control );
-
-export default withDispatch( ( dispatch ) => {
-	const { editPost } = dispatch( 'core/editor' );
-
-	return {
-		setMetaFieldValue: ( value ) =>
-			editPost( { meta: { use_confirm_page: value } } ),
-	};
-} )( ControlWithData );
+}
