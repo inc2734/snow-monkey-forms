@@ -17,11 +17,7 @@ export default function() {
 	return (
 		<TextareaControl
 			label={ __( 'Body', 'snow-monkey-forms' ) }
-			value={
-				! currentPost.title && ! meta
-					? '{all-fields}'
-					: meta
-			}
+			value={ ! currentPost.title && ! meta ? '{all-fields}' : meta }
 			onChange={ ( value ) =>
 				editPost( {
 					meta: { administrator_email_body: value },

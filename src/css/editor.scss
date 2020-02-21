@@ -6,22 +6,12 @@
   }
 }
 
-.editor-block-list__layout {
-  @media (min-width: 600px) {
-    padding-right: 14px;
-    padding-left: 14px;
-  }
-}
-
-[data-type="snow-monkey-forms/form--input"],
-[data-type="snow-monkey-forms/form--complete"] {
-  > .editor-block-mover {
-    display: none;
-  }
+.block-editor-block-list__layout [data-type="snow-monkey-forms/item"] > .editor-block-list__block-edit::before {
+  z-index: 1;
 }
 
 .is-selected [data-type="snow-monkey-forms/item"] .block-list-appender {
   display: none !important;
 }
 
-@import 'block-styles';
+@import 'block-styles/editor';

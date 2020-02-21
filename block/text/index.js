@@ -9,6 +9,7 @@ registerBlockType( 'snow-monkey-forms/control-text', {
 	title: __( 'Text', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',
+	parent: [ 'snow-monkey-forms/item' ],
 	attributes,
 	edit,
 	save,

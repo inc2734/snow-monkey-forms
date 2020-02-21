@@ -90,28 +90,3 @@
     }
   }
 }
-
-.smf-form--simple-table,
-.smf-form--letter,
-.smf-form--business {
-  [data-type="snow-monkey-forms/item"] > .editor-block-list__block-edit > [data-block] {
-    margin-top: 0;
-    margin-bottom: 0;
-
-    .editor-inner-blocks > .editor-block-list__layout {
-      & > .wp-block {
-        &:first-child [data-block] {
-          margin-top: 0;
-        }
-
-        &:nth-last-child(2) [data-block] {
-          margin-bottom: 0;
-        }
-      }
-
-      & > .block-list-appender {
-        margin-top: 28px;
-      }
-    }
-  }
-}

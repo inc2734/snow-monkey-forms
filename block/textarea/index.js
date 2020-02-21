@@ -9,6 +9,7 @@ registerBlockType( 'snow-monkey-forms/control-textarea', {
 	title: __( 'Textarea', 'snow-monkey-forms' ),
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',
+	parent: [ 'snow-monkey-forms/item' ],
 	attributes,
 	edit,
 	save,

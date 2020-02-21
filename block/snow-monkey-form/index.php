@@ -10,14 +10,14 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 add_action(
 	'init',
 	function() {
-		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/radio/attributes.php' );
+		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/snow-monkey-form/attributes.php' );
 
 		register_block_type(
-			'snow-monkey-forms/control-radio',
+			'snow-monkey-forms/snow-monkey-form',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {
-					return Helper::dynamic_block( 'radio', $attributes, $content );
+					return Helper::dynamic_block( 'snow-monkey-form', $attributes, $content );
 				},
 			]
 		);

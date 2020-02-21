@@ -107,10 +107,6 @@ class Bootstrap {
 	}
 
 	public function _enqueue_block_editor_assets() {
-		if ( 'snow-monkey-forms' !== get_post_type() ) {
-			return;
-		}
-
 		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/blocks.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms@blocks',
@@ -126,6 +122,17 @@ class Bootstrap {
 			SNOW_MONKEY_FORMS_PATH . '/languages'
 		);
 
+		wp_enqueue_style(
+			'snow-monkey-forms@editor',
+			SNOW_MONKEY_FORMS_URL . '/dist/css/editor.css',
+			[],
+			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.css' )
+		);
+
+		if ( 'snow-monkey-forms' !== get_post_type() ) {
+			return;
+		}
+
 		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/plugin-sidebar.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms@plugin-sidebar',
@@ -139,13 +146,6 @@ class Bootstrap {
 			'snow-monkey-forms@plugin-sidebar',
 			'snow-monkey-forms',
 			SNOW_MONKEY_FORMS_PATH . '/languages'
-		);
-
-		wp_enqueue_style(
-			'snow-monkey-forms@editor',
-			SNOW_MONKEY_FORMS_URL . '/dist/css/editor.css',
-			[],
-			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.css' )
 		);
 	}
 

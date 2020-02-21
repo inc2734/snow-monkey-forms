@@ -10,3 +10,4 @@ import '../../block/select';
 import '../../block/text';
 import '../../block/textarea';
 import '../../block/url';
+import '../../block/snow-monkey-form';
