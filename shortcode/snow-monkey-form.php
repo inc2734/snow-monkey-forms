@@ -9,6 +9,11 @@ use Snow_Monkey\Plugin\Forms\App\DataStore;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 
+use Snow_Monkey\Plugin\Forms\App\Controller\Input;
+use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Model\Validator;
+use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
+
 add_shortcode(
 	'snow_monkey_form',
 	function( $attributes ) {
@@ -30,47 +35,25 @@ add_shortcode(
 			return;
 		}
 
+		$responser  = new Responser( [] );
+		$validator  = new Validator( $responser, $setting );
+		$controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
+		if ( ! $controller ) {
+			return;
+		}
+
+		ob_start();
+		$controller->send();
+		$response = ob_get_clean();
+		$response = json_decode( $response );
+
 		ob_start();
 		?>
 		<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action="">
 			<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
 
 			<div class="smf-action">
-				<?php
-				if ( true === $setting->get( 'use_confirm_page' ) ) {
-					Helper::the_control(
-						'button',
-						[
-							'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-							'data-action' => 'confirm',
-						]
-					);
-
-					Helper::the_control(
-						'hidden',
-						[
-							'name'  => '_method',
-							'value' => 'confirm',
-						]
-					);
-				} else {
-					Helper::the_control(
-						'button',
-						[
-							'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-							'data-action' => 'complete',
-						]
-					);
-
-					Helper::the_control(
-						'hidden',
-						[
-							'name'  => '_method',
-							'value' => 'complete',
-						]
-					);
-				}
-				?>
+				<?php echo $response->action; // xss ok. ?>
 			</div>
 
 			<?php

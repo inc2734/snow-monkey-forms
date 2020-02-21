@@ -21,7 +21,7 @@ class Dispatcher {
 			}
 		} catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
-			$controller = new \Snow_Monkey\Plugin\Forms\App\Controller\Back( '', $responser, $setting, $validator );
+			$controller = new \Snow_Monkey\Plugin\Forms\App\Controller\SystemError( '', $responser, $setting, $validator );
 		}
 
 		return $controller;
