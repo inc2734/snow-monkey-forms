@@ -10,10 +10,18 @@ export default function() {
 
 	const { editPost } = useDispatch( 'core/editor' );
 
+	const currentPost = useSelect( ( select ) => {
+		return select( 'core/editor' ).getCurrentPost();
+	}, [] );
+
 	return (
 		<TextControl
 			label={ __( 'Subject', 'snow-monkey-forms' ) }
-			value={ meta }
+			value={
+				! currentPost.title && ! meta
+					? __( 'Admin notification', 'snow-monkey-forms' )
+					: meta
+			}
 			onChange={ ( value ) =>
 				editPost( {
 					meta: { administrator_email_subject: value },

@@ -10,10 +10,18 @@ export default function() {
 
 	const { editPost } = useDispatch( 'core/editor' );
 
+	const currentPost = useSelect( ( select ) => {
+		return select( 'core/editor' ).getCurrentPost();
+	}, [] );
+
 	return (
 		<TextareaControl
 			label={ __( 'Body', 'snow-monkey-forms' ) }
-			value={ meta }
+			value={
+				! currentPost.title && ! meta
+					? '{all-fields}'
+					: meta
+			}
 			onChange={ ( value ) =>
 				editPost( {
 					meta: { administrator_email_body: value },
