@@ -1,7 +1,7 @@
 /**
- * Form 1
+ * Simple table
  */
-.smf-form.is-style-smf-form-1 {
+.smf-form--simple-table {
   & + .smf-action {
     margin-top: .5rem;
   }
@@ -21,6 +21,7 @@
 
         &--label {
           max-width: 10em;
+          padding-right: 2em;
           padding-bottom: 0;
         }
       }
@@ -29,9 +30,9 @@
 }
 
 /**
- * Form 2
+ * Letter
  */
-.smf-form.is-style-smf-form-2 {
+.smf-form--letter {
   & + .smf-action {
     margin-top: .5rem;
   }
@@ -50,8 +51,49 @@
   }
 }
 
-.smf-form.is-style-smf-form-1,
-.smf-form.is-style-smf-form-2 {
+/**
+ * Business
+ */
+.smf-form--business {
+  & + .smf-action {
+    margin-top: .5rem;
+  }
+
+  .smf-item {
+    border: 1px solid #ddd;
+
+    &:not(:first-child) {
+      border-top: none;
+    }
+
+    &__col {
+      padding: 1rem;
+
+      &--label {
+        background-color: #f7f7f7;
+        border-bottom: 1px solid #ddd;
+      }
+    }
+
+    @media (min-width: 768px) {
+      display: flex;
+
+      .smf-item__col {
+        flex: 1 1 auto;
+
+        &--label {
+          max-width: 10em;
+          border-right: 1px solid #ddd;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}
+
+.smf-form--simple-table,
+.smf-form--letter,
+.smf-form--business {
   [data-type="snow-monkey-forms/item"] > .editor-block-list__block-edit > [data-block] {
     margin-top: 0;
     margin-bottom: 0;

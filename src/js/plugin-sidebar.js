@@ -8,21 +8,12 @@ import AdministratorEmailBody from '../../plugin-sidebar/administrator-email-bod
 import AutoReplyEmailTo from '../../plugin-sidebar/auto-reply-email-to';
 import AutoReplyEmailSubject from '../../plugin-sidebar/auto-reply-email-subject';
 import AutoReplyEmailBody from '../../plugin-sidebar/auto-reply-email-body';
-import UseConfirmPage from '../../plugin-sidebar/use-confirm-page';
 import HelpButton from '../../plugin-sidebar/help-button';
 
 registerPlugin( 'plugin-snow-monkey-form-sidebar', {
 	render() {
 		return (
 			<>
-				<PluginDocumentSettingPanel
-					name="snow-monkey-form/form-settings"
-					title={ __( 'Form settings', 'snow-monkey-forms' ) }
-					opened={ true }
-				>
-					<UseConfirmPage />
-				</PluginDocumentSettingPanel>
-
 				<PluginDocumentSettingPanel
 					name="snow-monkey-form/administrator-email"
 					title={ __( 'Administrator email', 'snow-monkey-forms' ) }

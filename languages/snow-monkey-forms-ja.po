@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-20 16:06+0900\n"
-"PO-Revision-Date: 2020-02-20 16:07+0900\n"
+"POT-Creation-Date: 2020-02-21 11:32+0900\n"
+"PO-Revision-Date: 2020-02-21 11:32+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -25,7 +25,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
 #: App/Controller/Back.php:41 App/Controller/Error.php:43
-#: shortcode/snow-monkey-form.php:45
+#: shortcode/snow-monkey-form.php:44
 msgid "Confirm"
 msgstr "確認画面へ"
 
@@ -34,7 +34,7 @@ msgid "Back"
 msgstr "戻る"
 
 #: App/Controller/Confirm.php:49 App/Controller/Error.php:59
-#: shortcode/snow-monkey-form.php:61
+#: shortcode/snow-monkey-form.php:60
 msgid "Send"
 msgstr "送信する"
 
@@ -83,9 +83,9 @@ msgid "Message"
 msgstr "メッセージ"
 
 #: block/checkbox/edit.js:15 block/email/edit.js:15
-#: block/multi-checkbox/edit.js:15 block/radio/edit.js:15
-#: block/select/edit.js:15 block/text/edit.js:15 block/textarea/edit.js:15
-#: block/url/edit.js:15
+#: block/form/input/index.js:40 block/multi-checkbox/edit.js:15
+#: block/radio/edit.js:15 block/select/edit.js:15 block/text/edit.js:15
+#: block/textarea/edit.js:15 block/url/edit.js:15
 msgid "Settings"
 msgstr "設定"
 
@@ -131,21 +131,41 @@ msgstr "完了画面"
 msgid "Complete"
 msgstr "完了画面"
 
-#: block/form/input/index.js:6
+#: block/form/input/index.js:11
 msgid "Input page"
 msgstr "入力画面"
 
-#: block/form/input/index.js:21
+#: block/form/input/index.js:44
+msgid "Form style"
+msgstr "フォームスタイル"
+
+#: block/form/input/index.js:49
 msgid "Default"
 msgstr "デフォルト"
 
-#: block/form/input/index.js:25 block/form/input/index.js:29
-msgid "Form"
-msgstr "フォーム"
+#: block/form/input/index.js:54
+msgid "Simple table"
+msgstr "Simple table"
 
-#: block/form/input/index.js:39
+#: block/form/input/index.js:60
+msgid "Letter"
+msgstr "Letter"
+
+#: block/form/input/index.js:65
+msgid "Business"
+msgstr "Business"
+
+#: block/form/input/index.js:79
 msgid "Input"
 msgstr "入力画面"
+
+#: block/form/input/index.js:83
+msgid "Open input page settings"
+msgstr "入力画面設定を開く"
+
+#: block/form/input/use-confirm-page.js:14
+msgid "Use confirm page"
+msgstr "確認画面を使用する"
 
 #: block/item/index.js:9
 msgid "Item"
@@ -205,22 +225,22 @@ msgstr "バリデーション"
 msgid "Required"
 msgstr "必須"
 
-#: plugin-sidebar/administrator-email-body.js:9
-#: plugin-sidebar/auto-reply-email-body.js:8
+#: plugin-sidebar/administrator-email-body.js:15
+#: plugin-sidebar/auto-reply-email-body.js:15
 msgid "Body"
 msgstr "Body"
 
-#: plugin-sidebar/administrator-email-subject.js:8
-#: plugin-sidebar/auto-reply-email-subject.js:8
+#: plugin-sidebar/administrator-email-subject.js:15
+#: plugin-sidebar/auto-reply-email-subject.js:15
 msgid "Subject"
 msgstr "件名"
 
-#: plugin-sidebar/administrator-email-to.js:8
-#: plugin-sidebar/auto-reply-email-to.js:8
+#: plugin-sidebar/administrator-email-to.js:15
+#: plugin-sidebar/auto-reply-email-to.js:15
 msgid "To"
 msgstr "To"
 
-#: plugin-sidebar/auto-reply-email-to.js:12
+#: plugin-sidebar/auto-reply-email-to.js:23
 #, python-brace-format
 msgid ""
 "Enter the name attribute value of the installed email form field in the "
@@ -237,23 +257,15 @@ msgstr "ヘルプ"
 msgid "You can embed a submitted value in the following formats: "
 msgstr "送信された値は次の形式で埋め込むことができます: "
 
-#: plugin-sidebar/help-button.js:26
+#: plugin-sidebar/help-button.js:28
 msgid "You can embed all submitted values ​​in the following format: "
 msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
 
-#: plugin-sidebar/use-confirm-page.js:8
-msgid "Use confirm page"
-msgstr "確認画面を使用する"
-
-#: src/js/plugin-sidebar.js:20
-msgid "Form settings"
-msgstr "フォーム設定"
-
-#: src/js/plugin-sidebar.js:28
+#: src/js/plugin-sidebar.js:19
 msgid "Administrator email"
 msgstr "管理者宛メール"
 
-#: src/js/plugin-sidebar.js:39
+#: src/js/plugin-sidebar.js:30
 msgid "Auto reply email"
 msgstr "自動返信メール"
 
@@ -264,6 +276,12 @@ msgstr "inc2734"
 #. Author URI of the plugin/theme
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
+
+#~ msgid "Form settings"
+#~ msgstr "フォーム設定"
+
+#~ msgid "Form"
+#~ msgstr "フォーム"
 
 #~ msgid "value↵"
 #~ msgstr "value↵"
