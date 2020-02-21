@@ -40,10 +40,6 @@ class Bootstrap {
 
 		Csrf::save_token();
 
-		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/shortcode/*.php' ) as $file ) {
-			require_once( $file );
-		}
-
 		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/index.php' ) as $file ) {
 			require_once( $file );
 		}
@@ -256,7 +252,14 @@ class Bootstrap {
 					[
 						'snow-monkey-forms/form--complete',
 						[],
-						[],
+						[
+							[
+								'core/paragraph',
+								[
+									'content' => __( 'Complete !', 'snow-monkey-forms' ),
+								],
+							],
+						],
 					],
 				],
 				'template_lock' => 'insert',

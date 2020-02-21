@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-21 11:32+0900\n"
-"PO-Revision-Date: 2020-02-21 11:32+0900\n"
+"POT-Creation-Date: 2020-02-21 16:34+0900\n"
+"PO-Revision-Date: 2020-02-21 16:34+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -25,7 +25,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
 #: App/Controller/Back.php:41 App/Controller/Error.php:43
-#: shortcode/snow-monkey-form.php:44
+#: App/Controller/Input.php:26
 msgid "Confirm"
 msgstr "確認画面へ"
 
@@ -34,7 +34,7 @@ msgid "Back"
 msgstr "戻る"
 
 #: App/Controller/Confirm.php:49 App/Controller/Error.php:59
-#: shortcode/snow-monkey-form.php:60
+#: App/Controller/Input.php:42
 msgid "Send"
 msgstr "送信する"
 
@@ -63,7 +63,7 @@ msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:184 snow-monkey-forms.php:342
+#: snow-monkey-forms.php:184 snow-monkey-forms.php:349
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
@@ -82,37 +82,26 @@ msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: block/checkbox/edit.js:15 block/email/edit.js:15
-#: block/form/input/index.js:40 block/multi-checkbox/edit.js:15
-#: block/radio/edit.js:15 block/select/edit.js:15 block/text/edit.js:15
-#: block/textarea/edit.js:15 block/url/edit.js:15
+#: snow-monkey-forms.php:263
+msgid "Complete !"
+msgstr "完了しました。"
+
+#: block/email/edit.js:15 block/form/input/index.js:40
+#: block/multi-checkbox/edit.js:15 block/select/edit.js:15
+#: block/text/edit.js:15 block/textarea/edit.js:15 block/url/edit.js:15
 msgid "Settings"
 msgstr "設定"
 
-#: block/checkbox/edit.js:17 block/item/edit.js:16 block/radio/edit.js:17
-msgid "Label"
-msgstr "ラベル"
-
-#: block/checkbox/edit.js:25 block/email/edit.js:17
-#: block/multi-checkbox/edit.js:17 block/multi-radio/edit.js:17
-#: block/radio/edit.js:25 block/select/edit.js:17 block/text/edit.js:17
+#: block/email/edit.js:17 block/multi-checkbox/edit.js:17
+#: block/multi-radio/edit.js:17 block/select/edit.js:17 block/text/edit.js:17
 #: block/textarea/edit.js:17 block/url/edit.js:17
 msgid "name"
 msgstr "name"
 
-#: block/checkbox/edit.js:33 block/email/edit.js:25
-#: block/multi-radio/edit.js:37 block/radio/edit.js:33 block/select/edit.js:37
+#: block/email/edit.js:25 block/multi-radio/edit.js:37 block/select/edit.js:37
 #: block/text/edit.js:25 block/textarea/edit.js:25 block/url/edit.js:25
 msgid "value"
 msgstr "value"
-
-#: block/checkbox/edit.js:41 block/radio/edit.js:41
-msgid "checked"
-msgstr "checked"
-
-#: block/checkbox/index.js:9
-msgid "Checkbox"
-msgstr "チェックボックス"
 
 #: block/email/edit.js:33 block/text/edit.js:33 block/textarea/edit.js:33
 #: block/url/edit.js:33
@@ -167,6 +156,10 @@ msgstr "入力画面設定を開く"
 msgid "Use confirm page"
 msgstr "確認画面を使用する"
 
+#: block/item/edit.js:16
+msgid "Label"
+msgstr "ラベル"
+
 #: block/item/index.js:9
 msgid "Item"
 msgstr "項目"
@@ -197,13 +190,17 @@ msgstr "複数チェックボックス"
 msgid "Multi radio"
 msgstr "複数ラジオボタン"
 
-#: block/radio/index.js:9
-msgid "Radio"
-msgstr "ラジオボタン"
-
 #: block/select/index.js:9
 msgid "Select"
 msgstr "セレクトボックス"
+
+#: block/snow-monkey-form/edit.js:36
+msgid "Select a form"
+msgstr "フォームを選択してください"
+
+#: block/snow-monkey-form/index.js:9
+msgid "Snow Monkey Form"
+msgstr "Snow Monkey Forms"
 
 #: block/text/index.js:9
 msgid "Text"
@@ -225,22 +222,30 @@ msgstr "バリデーション"
 msgid "Required"
 msgstr "必須"
 
-#: plugin-sidebar/administrator-email-body.js:15
-#: plugin-sidebar/auto-reply-email-body.js:15
+#: plugin-sidebar/administrator-email-body.js:19
+#: plugin-sidebar/auto-reply-email-body.js:19
 msgid "Body"
 msgstr "Body"
 
-#: plugin-sidebar/administrator-email-subject.js:15
-#: plugin-sidebar/auto-reply-email-subject.js:15
+#: plugin-sidebar/administrator-email-subject.js:19
+#: plugin-sidebar/auto-reply-email-subject.js:19
 msgid "Subject"
 msgstr "件名"
 
+#: plugin-sidebar/administrator-email-subject.js:22
+msgid "Admin notification"
+msgstr "管理者通知"
+
 #: plugin-sidebar/administrator-email-to.js:15
-#: plugin-sidebar/auto-reply-email-to.js:15
+#: plugin-sidebar/auto-reply-email-to.js:19
 msgid "To"
 msgstr "To"
 
-#: plugin-sidebar/auto-reply-email-to.js:23
+#: plugin-sidebar/auto-reply-email-subject.js:22
+msgid "Automatic reply notification"
+msgstr "自動返信通知"
+
+#: plugin-sidebar/auto-reply-email-to.js:32
 #, python-brace-format
 msgid ""
 "Enter the name attribute value of the installed email form field in the "
@@ -276,6 +281,18 @@ msgstr "inc2734"
 #. Author URI of the plugin/theme
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
+
+#~ msgid "Select this"
+#~ msgstr "選択してください"
+
+#~ msgid "checked"
+#~ msgstr "checked"
+
+#~ msgid "Checkbox"
+#~ msgstr "チェックボックス"
+
+#~ msgid "Radio"
+#~ msgstr "ラジオボタン"
 
 #~ msgid "Form settings"
 #~ msgstr "フォーム設定"

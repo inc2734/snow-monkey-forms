@@ -10,10 +10,14 @@ export default function() {
 
 	const { editPost } = useDispatch( 'core/editor' );
 
+	const currentPost = useSelect( ( select ) => {
+		return select( 'core/editor' ).getCurrentPost();
+	}, [] );
+
 	return (
 		<TextControl
 			label={ __( 'To', 'snow-monkey-forms' ) }
-			value={ meta }
+			value={ ! currentPost.title && ! meta ? '{email}' : meta }
 			onChange={ ( value ) =>
 				editPost( {
 					meta: { auto_reply_email_to: value },
