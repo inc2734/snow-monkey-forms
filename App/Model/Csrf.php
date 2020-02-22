@@ -32,8 +32,10 @@ class Csrf {
 		return Helper::control(
 			'hidden',
 			[
-				'name'  => static::KEY,
-				'value' => static::token(),
+				'attributes' => [
+					'name'  => static::KEY,
+					'value' => static::token(),
+				],
 			]
 		)->input();
 	}

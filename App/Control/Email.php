@@ -13,29 +13,13 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Email extends Contract\Control {
 
 	/**
-	 * @var string
-	 */
-	public $name = '';
-
-	/**
-	 * @var string
-	 */
-	public $value = '';
-
-	/**
-	 * @var string
-	 */
-	public $placeholder = '';
-
-	/**
-	 * @var boolean
-	 */
-	public $disabled = false;
-
-	/**
 	 * @var array
+	 *   @var string name
+	 *   @var string value
+	 *   @var string placeholder
+	 *   @var boolean disabled
 	 */
-	protected $data = [];
+	protected $attributes = [];
 
 	/**
 	 * @var array
@@ -46,35 +30,36 @@ class Email extends Contract\Control {
 
 	public function input() {
 		return sprintf(
-			'<input class="c-form-control" type="email" %1$s>',
-			$this->generate_attributes( get_object_vars( $this ) )
+			'<input class="smf-text-control" type="email" %1$s>',
+			$this->generate_attributes( $this->attributes )
 		);
 	}
 
 	public function confirm() {
 		return sprintf(
 			'%1$s%2$s',
-			esc_html( $this->value ),
+			esc_html( $this->get( 'value' ) ),
 			Helper::control(
 				'hidden',
 				[
-					'name'  => $this->name,
-					'value' => $this->value,
+					'attributes' => [
+						'name'  => $this->get( 'name' ),
+						'value' => $this->get( 'value' ),
+					],
 				]
 			)->input()
 		);
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['data-invalid'] = true;
-		$attributes = get_object_vars( $this );
+		$this->set( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s
 			<div class="smf-error-messages">
 				%2$s
 			</div>',
-			Helper::control( 'email', $attributes )->input(),
+			$this->input(),
 			$error_message
 		);
 	}

@@ -13,42 +13,28 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Textarea extends Contract\Control {
 
 	/**
-	 * @var string
-	 */
-	public $name = '';
-
-	/**
-	 * @var string
-	 */
-	public $value = '';
-
-	/**
-	 * @var string
-	 */
-	public $placeholder = '';
-
-	/**
-	 * @var boolean
-	 */
-	public $disabled = false;
-
-	/**
 	 * @var array
+	 *   @var string name
+	 *   @var string value
+	 *   @var string placeholder
+	 *   @var boolean disabled
 	 */
-	protected $data = [];
+	protected $attributes = [];
 
 	/**
 	 * @var array
 	 */
 	protected $validations = [];
 
-	public function input() {
-		$attributes = get_object_vars( $this );
-		unset( $attributes['value'] );
+	/**
+	 * @var string
+	 */
+	public $value = '';
 
+	public function input() {
 		return sprintf(
-			'<textarea class="c-form-control" type="text" %1$s>%2$s</textarea>',
-			$this->generate_attributes( $attributes ),
+			'<textarea class="smf-textarea-control" type="text" %1$s>%2$s</textarea>',
+			$this->generate_attributes( $this->attributes ),
 			esc_html( $this->value )
 		);
 	}
@@ -56,28 +42,46 @@ class Textarea extends Contract\Control {
 	public function confirm() {
 		return sprintf(
 			'%1$s%2$s',
-			nl2br( esc_html( $this->value ) ),
+			nl2br( esc_html( $this->get( 'value' ) ) ),
 			Helper::control(
 				'hidden',
 				[
-					'name'  => $this->name,
-					'value' => $this->value,
+					'attributes' => [
+						'name'  => $this->get( 'name' ),
+						'value' => $this->get( 'value' ),
+					],
 				]
 			)->input()
 		);
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['data-invalid'] = true;
-		$attributes = get_object_vars( $this );
+		$this->set( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s
 			<div class="smf-error-messages">
 				%2$s
 			</div>',
-			Helper::control( 'textarea', $attributes )->input(),
+			$this->input(),
 			$error_message
 		);
+	}
+
+	public function get( $attribute ) {
+		if ( 'value' === $attribute ) {
+			return $this->value;
+		}
+
+		return parent::get( $attribute );
+	}
+
+	public function set( $attribute, $value ) {
+		if ( 'value' === $attribute ) {
+			$this->value = $value;
+			return true;
+		}
+
+		return parent::set( $attribute, $value );
 	}
 }

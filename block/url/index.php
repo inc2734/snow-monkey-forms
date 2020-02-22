@@ -10,14 +10,22 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 add_action(
 	'init',
 	function() {
-		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/url/attributes.php' );
+		$attributes = include( __DIR__ . '/attributes.php' );
 
 		register_block_type(
 			'snow-monkey-forms/control-url',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {
-					return Helper::dynamic_block( 'url', $attributes, $content );
+					if ( ! isset( $attributes['name'] ) ) {
+						return;
+					}
+
+					$properties = Helper::coordinate( 'url', $attributes );
+
+					ob_start();
+					include( __DIR__ . '/view.php' );
+					return ob_get_clean();
 				},
 			]
 		);

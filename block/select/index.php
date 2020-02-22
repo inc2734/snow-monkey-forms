@@ -17,7 +17,15 @@ add_action(
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {
-					return Helper::dynamic_block( 'select', $attributes, $content );
+					if ( ! isset( $attributes['name'] ) ) {
+						return;
+					}
+
+					$properties = Helper::coordinate( 'select', $attributes );
+
+					ob_start();
+					include( __DIR__ . '/view.php' );
+					return ob_get_clean();
 				},
 			]
 		);

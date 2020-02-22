@@ -13,62 +13,64 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class MultiCheckbox extends Contract\Control {
 
 	/**
-	 * @var string
-	 */
-	public $name = '';
-
-	/**
 	 * @var array
 	 */
-	public $values = [];
-
-	/**
-	 * @var boolean
-	 */
-	public $disabled = false;
-
-	/**
-	 * @var array
-	 */
-	protected $data = [];
-
-	/**
-	 * @var array
-	 */
-	protected $options = [];
+	protected $attributes = [];
 
 	/**
 	 * @var array
 	 */
 	protected $validations = [];
 
+	/**
+	 * @var string
+	 */
+	protected $name = '';
+
+	/**
+	 * @var array
+	 */
+	protected $values = [];
+
+	/**
+	 * @var boolean
+	 */
+	protected $disabled = false;
+
+	/**
+	 * @var array
+	 */
+	protected $options = [];
+
 	public function _init() {
 		$this->name = $this->get( 'name' ) . '[]';
 	}
 
 	public function input() {
-		$attributes = get_object_vars( $this );
-		unset( $attributes['name'] );
-		unset( $attributes['values'] );
-
-		$options = [];
+		$checkboxes = [];
 		foreach ( $this->options as $value => $label ) {
-			$option_attributes = [
-				'name'     => $this->name,
-				'value'    => $value,
-				'disabled' => $this->disabled,
-				'label'    => $label,
-				'checked'  => in_array( $value, $this->values ),
-				'data'     => $this->data,
+			$checked = in_array( $value, $this->get( 'values' ) );
+
+			$checkbox_attributes = [
+				'attributes' => array_merge(
+					$this->attributes,
+					[
+						'name'     => $this->name,
+						'value'    => $value,
+						'disabled' => $this->disabled,
+						'checked'  => $checked,
+					]
+				),
+				'label' => $label,
 			];
 
-			$options[] = Helper::control( 'checkbox', $option_attributes )->input();
+			$checkboxes[] = Helper::control( 'checkbox', $checkbox_attributes )->input();
 		}
 
 		return sprintf(
-			'<span class="c-multi-checkbox" %1$s>%2$s</span>',
-			$this->generate_attributes( $attributes ),
-			implode( '', $options )
+			'<span class="smf-multi-checkbox-control" %1$s>%2$s</span>',
+			$this->generate_attributes( $this->attributes ),
+			implode( '', $checkboxes )
 		);
 	}
 
@@ -77,36 +79,37 @@ class MultiCheckbox extends Contract\Control {
 			return;
 		}
 
-		$options = [];
+		$checkboxes = [];
 		foreach ( $this->options as $value => $label ) {
-			$checked = in_array( $value, $this->values );
-			if ( ! $checked ) {
-				continue;
-			}
+			$checked = in_array( $value, $this->get( 'values' ) );
 
-			$option_attributes = [
-				'name'    => $this->name,
-				'value'   => $value,
-				'label'   => $label,
-				'checked' => $checked,
+			$checkbox_attributes = [
+				'attributes' => array_merge(
+					$this->attributes,
+					[
+						'name'    => $this->name,
+						'value'   => $value,
+						'checked' => $checked,
+					]
+				),
+				'label' => $label,
 			];
 
-			$options[] = Helper::control( 'checkbox', $option_attributes )->confirm();
+			$checkboxes[] = Helper::control( 'checkbox', $checkbox_attributes )->confirm();
 		}
 
-		return implode( ', ', $options );
+		return implode( ', ', $checkboxes );
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['data-invalid'] = true;
-		$attributes = get_object_vars( $this );
+		$this->set( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s
 			<div class="smf-error-messages">
 				%2$s
 			</div>',
-			Helper::control( 'multi-checkbox', $attributes )->input(),
+			$this->input(),
 			$error_message
 		);
 	}
@@ -116,6 +119,19 @@ class MultiCheckbox extends Contract\Control {
 			return str_replace( '[]', '', $this->$attribute );
 		}
 
+		if ( 'disabled' === $attribute ) {
+			return $this->$attribute;
+		}
+
 		return parent::get( $attribute );
+	}
+
+	public function set( $attribute, $value ) {
+		if ( 'disabled' === $attribute ) {
+			$this->$attribute = $value;
+			return true;
+		}
+
+		return parent::set( $attribute, $value );
 	}
 }

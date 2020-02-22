@@ -38,16 +38,20 @@ class Back extends Contract\Controller {
 		Helper::the_control(
 			'button',
 			[
-				'value'       => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-				'data-action' => 'confirm',
+				'attributes' => [
+					'data-action' => 'confirm',
+				],
+				'label' => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
 			]
 		);
 
 		Helper::the_control(
 			'hidden',
 			[
-				'name'  => '_method',
-				'value' => 'confirm',
+				'attributes' => [
+					'name'  => '_method',
+					'value' => 'confirm',
+				],
 			]
 		);
 

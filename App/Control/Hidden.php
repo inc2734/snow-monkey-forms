@@ -12,32 +12,25 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 class Hidden extends Contract\Control {
 
 	/**
-	 * @var string
+	 * @var array
+	 *   @var string name
+	 *   @var string value
+	 *   @var boolean disabled
 	 */
-	public $name = '';
-
-	/**
-	 * @var string
-	 */
-	public $value = '';
-
-	/**
-	 * @var boolean
-	 */
-	public $disabled = false;
+	protected $attributes = [];
 
 	public function input() {
 		return sprintf(
 			'<input type="hidden" %1$s>',
-			$this->generate_attributes( get_object_vars( $this ) )
+			$this->generate_attributes( $this->attributes )
 		);
 	}
 
 	public function confirm() {
-		return Helper::control( 'hidden', get_object_vars( $this ) )->input();
+		return $this->input();
 	}
 
 	public function error( $error_message = '' ) {
-		return Helper::control( 'hidden', get_object_vars( $this ) )->input();
+		return $this->input();
 	}
 }

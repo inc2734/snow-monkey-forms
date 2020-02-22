@@ -13,9 +13,17 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Select extends Contract\Control {
 
 	/**
-	 * @var string
+	 * @var array
+	 *   @var string name
+	 *   @var boolean disabled
+	 *   @var boolean data-invalid
 	 */
-	public $name = '';
+	protected $attributes = [];
+
+	/**
+	 * @var array
+	 */
+	protected $validations = [];
 
 	/**
 	 * @var string
@@ -23,30 +31,11 @@ class Select extends Contract\Control {
 	public $value = '';
 
 	/**
-	 * @var boolean
-	 */
-	public $disabled = false;
-
-	/**
-	 * @var array
-	 */
-	protected $data = [];
-
-	/**
 	 * @var array
 	 */
 	protected $options = [];
 
-	/**
-	 * @var array
-	 */
-	protected $validations = [];
-
 	public function input() {
-		$attributes = get_object_vars( $this );
-		unset( $attributes['value'] );
-		unset( $attributes['data'] );
-
 		$options = [];
 		foreach ( $this->options as $value => $label ) {
 			$options[] = sprintf(
@@ -58,12 +47,10 @@ class Select extends Contract\Control {
 		}
 
 		return sprintf(
-			'<span class="c-select" aria-selected="false" %1$s>
-				<select %2$s>%3$s</select>
-				<span class="c-select__label"></span>
+			'<span class="smf-select-control">
+				<select %1$s>%2$s</select>
 			</span>',
-			$this->generate_attributes( [ 'data' => $this->data ] ),
-			$this->generate_attributes( $attributes ),
+			$this->generate_attributes( $this->attributes ),
 			implode( '', $options )
 		);
 	}
@@ -79,24 +66,42 @@ class Select extends Contract\Control {
 			Helper::control(
 				'hidden',
 				[
-					'name'  => $this->name,
-					'value' => $this->value,
+					'attributes' => [
+						'name'  => $this->get( 'name' ),
+						'value' => $this->get( 'value' ),
+					],
 				]
 			)->input()
 		);
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['data-invalid'] = true;
-		$attributes = get_object_vars( $this );
+		$this->set( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s
 			<div class="smf-error-messages">
 				%2$s
 			</div>',
-			Helper::control( 'select', $attributes )->input(),
+			$this->input(),
 			$error_message
 		);
+	}
+
+	public function get( $attribute ) {
+		if ( 'value' === $attribute ) {
+			return $this->value;
+		}
+
+		return parent::get( $attribute );
+	}
+
+	public function set( $attribute, $value ) {
+		if ( 'value' === $attribute ) {
+			$this->value = $value;
+			return true;
+		}
+
+		return parent::set( $attribute, $value );
 	}
 }

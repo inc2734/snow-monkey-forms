@@ -13,67 +13,48 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Radio extends Contract\Control {
 
 	/**
-	 * @var string
-	 */
-	public $name = '';
-
-	/**
-	 * @var boolean
-	 */
-	public $checked = false;
-
-	/**
-	 * @var boolean
-	 */
-	public $disabled = false;
-
-	/**
 	 * @var array
+	 *   @var string name
+	 *   @var string value
+	 *   @var boolean checked
+	 *   @var boolean disabled
+	 *   @var boolean data-invalid
 	 */
-	protected $data = [];
-
-	/**
-	 * @var string
-	 */
-	protected $value = '';
-
-	/**
-	 * @var string
-	 */
-	protected $label = '';
+	protected $attributes = [];
 
 	/**
 	 * @var array
 	 */
 	protected $validations = [];
 
-	public function input() {
-		$attributes = get_object_vars( $this );
-		unset( $attributes['label'] );
-		unset( $attributes['data'] );
+	/**
+	 * @var string
+	 */
+	protected $label = '';
 
-		$label = '' === $this->label || is_null( $this->label ) ? $this->value : $this->label;
+	public function input() {
+		$label = $this->get( 'label' );
+		$label = '' === $label || is_null( $label ) ? $this->get( 'value' ) : $label;
 
 		return sprintf(
-			'<label class="c-label">
-				<span class="c-radio" aria-checked="false" %1$s>
-					<input type="radio" %2$s>
-					<span class="c-radio__control"></span>
+			'<label class="smf-label">
+				<span class="smf-radio-control">
+					<input type="radio" %1$s>
 				</span>
-				%3$s
+				%2$s
 			</label>',
-			$this->generate_attributes( [ 'data' => $this->data ] ),
-			$this->generate_attributes( $attributes ),
+			$this->generate_attributes( $this->attributes ),
 			esc_html( $label )
 		);
 	}
 
 	public function confirm() {
-		if ( ! $this->checked ) {
+		if ( ! $this->get( 'checked' ) ) {
 			return;
 		}
 
-		$label = ! is_null( $this->label ) && '' !== $this->label ? $this->label : $this->value;
+		$label = $this->get( 'label' );
+		$label = '' === $label || is_null( $label ) ? $this->get( 'value' ) : $label;
 
 		return sprintf(
 			'%1$s%2$s',
@@ -81,33 +62,25 @@ class Radio extends Contract\Control {
 			Helper::control(
 				'hidden',
 				[
-					'name'  => $this->name,
-					'value' => $this->value,
+					'attributes' => [
+						'name'  => $this->get( 'name' ),
+						'value' => $this->get( 'value' ),
+					],
 				]
 			)->input()
 		);
 	}
 
 	public function error( $error_message = '' ) {
-		$this->data['data-invalid'] = true;
-		$attributes = get_object_vars( $this );
+		$this->set( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s
 			<div class="smf-error-messages">
 				%2$s
 			</div>',
-			Helper::control( 'radio', $attributes )->input(),
+			$this->input(),
 			$error_message
 		);
-	}
-
-	public function set( $attribute, $value ) {
-		if ( 'value' === $attribute ) {
-			$this->checked = $this->value === $value;
-			return true;
-		}
-
-		return parent::set( $attribute, $value );
 	}
 }

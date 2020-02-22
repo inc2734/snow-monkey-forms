@@ -9,29 +9,21 @@ namespace Snow_Monkey\Plugin\Forms\App\Contract;
 
 abstract class Control {
 
-	public function __construct( array $attributes ) {
-		$properties = array_keys( get_object_vars( $this ) );
+	protected $attributes = [];
 
-		foreach ( $attributes as $attribute => $value ) {
-			if ( 0 === strpos( $attribute, 'data-' ) && isset( $this->data ) && ! is_array( $value ) ) {
-				$this->data[ $attribute ] = $value;
-				continue;
-			}
+	public function __construct( array $properties ) {
+		$has_properties = get_object_vars( $this );
 
-			if ( 0 === strpos( $attribute, 'aria-' ) && isset( $this->aria ) && ! is_array( $value ) ) {
-				$this->aria[ $attribute ] = $value;
-				continue;
-			}
-
-			if ( 'validations' === $attribute && isset( $this->validations ) && is_array( $value ) ) {
+		foreach ( $properties as $key => $value ) {
+			if ( 'validations' === $key && isset( $this->validations ) && is_array( $value ) ) {
 				$value = array_merge( $this->validations, $value );
 			}
 
-			if ( in_array( $attribute, $properties ) ) {
-				if ( is_array( $this->$attribute ) ) {
-					$this->$attribute = ! is_array( $value ) ? $this->$attribute : $value;
+			if ( in_array( $key, array_keys( $has_properties ) ) ) {
+				if ( is_array( $this->$key ) ) {
+					$this->$key = ! is_array( $value ) ? $this->$key : $value;
 				} else {
-					$this->$attribute = is_array( $value ) ? $this->$attribute : $value;
+					$this->$key = is_array( $value ) ? $this->$key : $value;
 				}
 			}
 		}
@@ -50,20 +42,6 @@ abstract class Control {
 		$attributes = [];
 
 		foreach ( $_attributes as $key => $value ) {
-			if ( 'data' === $key ) {
-				foreach ( $value as $data_key => $data_value ) {
-					$attributes[] = $this->_generate_attribute_string( $data_key, $data_value );
-				}
-				continue;
-			}
-
-			if ( 'area' === $key ) {
-				foreach ( $value as $area_key => $area_value ) {
-					$attributes[] = $tthis->_generate_attribute_string( $area_key, $area_value );
-				}
-				continue;
-			}
-
 			if ( 'checked' === $key && ! $value ) {
 				continue;
 			}
@@ -95,15 +73,34 @@ abstract class Control {
 		);
 	}
 
+	protected function _get_no_attributes_keys() {
+		return [
+			'label',
+			'values',
+			'options',
+			'validations',
+		];
+	}
+
 	public function get( $attribute ) {
-		$properties = array_keys( get_object_vars( $this ) );
-		return in_array( $attribute, $properties ) ? $this->$attribute : null;
+		if ( in_array( $attribute, $this->_get_no_attributes_keys() ) ) {
+			return isset( $this->$attribute ) ? $this->$attribute : null;
+		}
+
+		return in_array( $attribute, array_keys( $this->attributes ) ) ? $this->attributes[ $attribute ] : null;
 	}
 
 	public function set( $attribute, $value ) {
-		$properties = array_keys( json_decode( json_encode( $this ), true ) );
-		if ( in_array( $attribute, $properties ) ) {
-			$this->$attribute = $value;
+		if ( in_array( $attribute, $this->_get_no_attributes_keys() ) ) {
+			if ( isset( $this->$attribute ) ) {
+				$this->$attribute = $value;
+				return true;
+			}
+			return false;
+		}
+
+		if ( in_array( $attribute, array_keys( $this->attributes ) ) ) {
+			$this->attributes[ $attribute ] = $value;
 			return true;
 		}
 		return false;

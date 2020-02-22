@@ -10,14 +10,22 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 add_action(
 	'init',
 	function() {
-		$attributes = include( SNOW_MONKEY_FORMS_PATH . '/block/textarea/attributes.php' );
+		$attributes = include( __DIR__ . '/attributes.php' );
 
 		register_block_type(
 			'snow-monkey-forms/control-textarea',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {
-					return Helper::dynamic_block( 'textarea', $attributes, $content );
+					if ( ! isset( $attributes['name'] ) ) {
+						return;
+					}
+
+					$properties = Helper::coordinate( 'textarea', $attributes );
+
+					ob_start();
+					include( __DIR__ . '/view.php' );
+					return ob_get_clean();
 				},
 			]
 		);

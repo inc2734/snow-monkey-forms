@@ -38,24 +38,30 @@ class Confirm extends Contract\Controller {
 		Helper::the_control(
 			'button',
 			[
-				'value'       => __( 'Back', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-				'data-action' => 'back',
+				'attributes' => [
+					'data-action' => 'back',
+				],
+				'label' => __( 'Back', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
 			]
 		);
 
 		Helper::the_control(
 			'button',
 			[
-				'value'       => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-				'data-action' => 'complete',
+				'attributes' => [
+					'data-action' => 'complete',
+				],
+				'label' => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
 			]
 		);
 
 		Helper::the_control(
 			'hidden',
 			[
-				'name'  => '_method',
-				'value' => 'complete',
+				'attributes' => [
+					'name'  => '_method',
+					'value' => 'complete',
+				],
 			]
 		);
 

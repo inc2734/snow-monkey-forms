@@ -13,47 +13,30 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Button extends Contract\Control {
 
 	/**
-	 * @var string
-	 */
-	public $name = '';
-
-	/**
-	 * @var string
-	 */
-	public $value = '';
-
-	/**
-	 * @var boolean
-	 */
-	public $disabled = false;
-
-	/**
 	 * @var array
+	 *   @var string name
+	 *   @var boolean disabled
 	 */
-	protected $data = [];
+	protected $attributes = [];
+
+	/**
+	 * @var string
+	 */
+	protected $label = '';
 
 	public function input() {
-		$attributes = get_object_vars( $this );
-		unset( $attributes['value'] );
-
 		return sprintf(
 			'<button class="c-btn" type="submit" %2$s>%1$s</button>',
-			wp_kses_post( $this->value ),
-			$this->generate_attributes( $attributes )
+			wp_kses_post( $this->get( 'label' ) ),
+			$this->generate_attributes( $this->attributes )
 		);
 	}
 
 	public function confirm() {
-		$attributes = get_object_vars( $this );
-		unset( $attributes['value'] );
-
-		return Helper::control( 'button', $attributes )->input();
+		$this->input();
 	}
 
 	public function error( $error_message = '' ) {
-		$attributes = get_object_vars( $this );
-		unset( $attributes['value'] );
-
-		return Helper::control( 'button', $attributes )->input();
+		$this->input();
 	}
 }

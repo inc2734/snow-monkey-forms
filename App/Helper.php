@@ -36,13 +36,32 @@ class Helper {
 	}
 
 	public static function the_control( $type, $attributes ) {
-		echo static::control( $type, static::block_meta_normalization( $attributes ) )->input(); // xss ok.
+		echo static::control( $type, $attributes )->input(); // xss ok.
 	}
 
-	public static function dynamic_block( $slug, $attributes, $content = null ) {
-		ob_start();
-		include( SNOW_MONKEY_FORMS_PATH . '/block/' . $slug . '/view.php' );
-		return ob_get_clean();
+	public static function coordinate( $type, array $attributes = [] ) {
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Block\\' . static::generate_class_name( $type ) . '\\Coordinator';
+
+		if ( class_exists( $class_name ) ) {
+			$coordinator = new $class_name( $type );
+			return $coordinator->coordinate( $attributes );
+		} else {
+			return $attributes;
+		}
+	}
+
+	public static function dynamic_block( $type, $attributes, $content = null ) {
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Block\\' . static::generate_class_name( $type ) . '\\View';
+
+		try {
+			if ( class_exists( $class_name ) ) {
+				return $class_name::render( $attributes );
+			}
+			throw new \Exception( sprintf( '[Snow Monkey Forms] The class %1$s is not found.', $class_name ) );
+		} catch ( \Exception $e ) {
+			error_log( $e->getMessage() );
+			return;
+		}
 	}
 
 	public static function block_meta_normalization( array $attributes ) {
@@ -56,22 +75,17 @@ class Helper {
 		if ( isset( $attributes['options'] ) ) {
 			$options = [];
 
-			preg_replace_callback(
-				'@([^\r\n|\n|\r]*)[\r\n|\n|\r]?@sm',
-				function( $matches ) use ( &$options ) {
-					if ( ! isset( $matches[1] ) ) {
-						return;
-					}
+			if ( ! empty( $attributes['options'] ) ) {
+				$_options = str_replace( [ "\r\n", "\r", "\n" ], "\n", $attributes['options'] );
+				$_options = explode( "\n", $_options );
 
-					$decoded = json_decode( sprintf( '{%1$s}', $matches[1] ), true );
-					$decoded = is_array( $decoded ) ? $decoded : [ $matches[1] => $matches[1] ];
+				foreach ( $_options as $value ) {
+					$decoded = json_decode( sprintf( '{%1$s}', $value ), true );
+					$decoded = is_array( $decoded ) ? $decoded : [ $value => $value ];
+					$decoded = is_array( $decoded ) && ! $decoded ? [ '' => '' ] : $decoded;
 					$options = array_merge( $options, $decoded );
-				},
-				$attributes['options']
-			);
-
-			$options = array_filter( $options );
-
+				}
+			}
 			$attributes['options'] = $options ? $options : [];
 		}
 
