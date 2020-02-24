@@ -21,7 +21,7 @@ add_action(
 						return;
 					}
 
-					$properties = Helper::coordinate( 'mail', $attributes );
+					$properties = Helper::coordinate( 'email', $attributes );
 
 					ob_start();
 					include( __DIR__ . '/view.php' );

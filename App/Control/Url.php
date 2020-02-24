@@ -31,7 +31,9 @@ class Url extends Contract\Control {
 
 	public function input() {
 		return sprintf(
-			'<input class="c-form-control" type="url" %1$s>',
+			'<span class="smf-text-control">
+				<input class="c-form-control__control" type="url" %1$s>
+			</div>',
 			$this->generate_attributes( $this->attributes )
 		);
 	}

@@ -30,7 +30,9 @@ class Email extends Contract\Control {
 
 	public function input() {
 		return sprintf(
-			'<input class="smf-text-control" type="email" %1$s>',
+			'<span class="smf-text-control">
+				<input class="smf-text-control__control" type="email" %1$s>
+			</span>',
 			$this->generate_attributes( $this->attributes )
 		);
 	}

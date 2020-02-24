@@ -1,32 +1,179 @@
+$_font-path: false;
+@import '../../node_modules/sass-basis/src/css/basis-core';
+
+.smf-text-control,
+.smf-textarea-control {
+  &__control {
+    @include _form-control();
+
+    &:disabled {
+      background-color: _lightest($_color-gray);
+    }
+  }
+}
+
+.smf-checkbox-control,
+.smf-radio-control {
+  display: inline-flex;
+  align-items: center;
+
+  &__control {
+    @include _margin-right(.25);
+
+    @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+      appearance: none;
+      position: relative;
+      display: inline-block;
+      @include _form-control-base-border();
+      background-color: #fff;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .035);
+      @include _square(16px);
+
+      &:checked {
+        background-color: #3a87fd;
+        border-color: #3a87fd;
+
+        &::before {
+          position: absolute;
+          content: '';
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.smf-checkbox-control {
+  @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+    &__control {
+      &:checked {
+        &::before {
+          top: calc(50% - 5px);
+          left: calc(50% - 3px);
+          transform: rotate(45deg);
+          height: 8px;
+          width: 6px;
+          border-style: solid;
+          border-color: #fff;
+          border-width: 0 2px 2px 0;
+        }
+      }
+
+      &:disabled {
+        background-color: _lightest($_color-gray);
+      }
+    }
+  }
+}
+
+.smf-radio-control {
+  @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+    &__control {
+      border-radius: 100%;
+
+      &:checked {
+        &::before {
+          top: calc(50% - 3px);
+          left: calc(50% - 3px);
+          @include _circle(6px);
+          background-color: #fff;
+        }
+      }
+
+      &:disabled {
+        background-color: _lightest($_color-gray);
+      }
+    }
+  }
+}
+
+.smf-select-control {
+  display: inline-block;
+
+  &__toggle {
+    display: none;
+  }
+
+  @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+    position: relative;
+
+    &__control {
+      position: relative;
+      z-index: 1;
+      appearance: none;
+      display:inline-block;
+      @include _form-control-base-border();
+      background-color: transparent;
+      line-height: 1;
+      max-width: 100%;
+      @include _padding(.5, 1.25, .5, .5);
+
+      &:focus {
+        & + .smf-select-control__toggle {
+          &::before {
+            border-color: #3a87fd;
+          }
+        }
+      }
+
+      &:disabled {
+        & + .smf-select-control__toggle {
+          background-color: _lightest($_color-gray);
+        }
+      }
+    }
+
+    &__toggle {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      display: block;
+      background-color: #fff;
+
+      &::before {
+        position: absolute;
+        top: calc(50% - 4px);
+        right: _space(.5);
+        content: '';
+        display: block;
+        @include _square(6px);
+        border-style: solid;
+        border-color: #000;
+        border-width: 0 1px 1px 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
+}
+
+.smf-button-control {
+  &__control {
+    @include _form-control-base-border();
+    background-color: _lighter($_color-gray);
+    background-image: linear-gradient(180deg, #fff, _lighter($_color-gray));
+    border-radius: $_border-radius;
+    @include _padding(.25, .5);
+  }
+}
+
 .smf-error-messages {
   margin-top: .5em;
   color: #cc3033;
 }
 
-.c-label {
-  display: inline-flex;
-  align-items: center;
-
-  > .c-radio,
-  > .c-checkbox {
-    margin-right: .25rem;
+.smf-multi-radio-control,
+.smf-multi-checkbox-control {
+  &__control {
+    > .smf-label + .smf-label {
+      @include _margin-left(.5);
+    }
   }
 }
 
-.c-multi-radio,
-.c-multi-checkbox {
-  > .c-label + .c-label {
-    margin-left: 1em;
-  }
-}
-
-.c-form-control[data-invalid="1"],
-.c-select[data-invalid="1"] {
-  border-color: #d98585;
-}
-
-.c-checkbox[data-invalid="1"] > .c-checkbox__control::before,
-.c-radio[data-invalid="1"] > .c-radio__control::before {
+[data-invalid="1"] {
   border-color: #d98585;
 }
 
@@ -37,11 +184,16 @@
 }
 
 .smf-action {
-  .c-btn + .c-btn {
+  .smf-button-control__control {
+    @include _padding-right(1);
+    @include _padding-left(1);
+  }
+
+  .smf-button-control + .smf-button-control {
     margin-left: .5em;
   }
 
-  .c-btn {
+  .smf-button-control {
     position: relative;
 
     .smf-sending {

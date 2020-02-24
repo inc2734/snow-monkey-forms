@@ -29,7 +29,9 @@ class Text extends Contract\Control {
 
 	public function input() {
 		return sprintf(
-			'<input class="smf-text-control" type="text" %1$s>',
+			'<span class="smf-text-control">
+				<input class="smf-text-control__control" type="text" %1$s>
+			</span>',
 			$this->generate_attributes( $this->attributes )
 		);
 	}

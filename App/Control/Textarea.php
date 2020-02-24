@@ -33,7 +33,9 @@ class Textarea extends Contract\Control {
 
 	public function input() {
 		return sprintf(
-			'<textarea class="smf-textarea-control" type="text" %1$s>%2$s</textarea>',
+			'<span class="smf-textarea-control">
+				<textarea class="smf-textarea-control__control" type="text" %1$s>%2$s</textarea>
+			</span>',
 			$this->generate_attributes( $this->attributes ),
 			esc_html( $this->value )
 		);

@@ -39,9 +39,9 @@ class Checkbox extends Contract\Control {
 		return sprintf(
 			'<label class="smf-label">
 				<span class="smf-checkbox-control">
-					<input type="checkbox" %1$s>
+					<input class="smf-checkbox-control__control" type="checkbox" %1$s>
+					<span class="smf-checkbox-control__label">%2$s</span>
 				</span>
-				%2$s
 			</label>',
 			$this->generate_attributes( $this->attributes ),
 			esc_html( $label )

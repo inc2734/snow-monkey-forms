@@ -62,7 +62,9 @@ class MultiRadio extends Contract\Control {
 		}
 
 		return sprintf(
-			'<span class="smf-multi-radio-control" %1$s>%2$s</span>',
+			'<span class="smf-multi-radio-control" %1$s>
+				<span class="smf-multi-radio-control__control">%2$s</span>
+			</span>',
 			$this->generate_attributes( $this->attributes ),
 			implode( '', $radios )
 		);

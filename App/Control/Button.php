@@ -26,7 +26,9 @@ class Button extends Contract\Control {
 
 	public function input() {
 		return sprintf(
-			'<button class="c-btn" type="submit" %2$s>%1$s</button>',
+			'<span class="smf-button-control">
+				<button class="smf-button-control__control" type="submit" %2$s>%1$s</button>
+			</span>',
 			wp_kses_post( $this->get( 'label' ) ),
 			$this->generate_attributes( $this->attributes )
 		);

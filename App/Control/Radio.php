@@ -39,9 +39,9 @@ class Radio extends Contract\Control {
 		return sprintf(
 			'<label class="smf-label">
 				<span class="smf-radio-control">
-					<input type="radio" %1$s>
+					<input class="smf-radio-control__control" type="radio" %1$s>
+					<span class="smf-radio-control__label">%2$s</span>
 				</span>
-				%2$s
 			</label>',
 			$this->generate_attributes( $this->attributes ),
 			esc_html( $label )

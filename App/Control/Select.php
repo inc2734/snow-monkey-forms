@@ -48,7 +48,8 @@ class Select extends Contract\Control {
 
 		return sprintf(
 			'<span class="smf-select-control">
-				<select %1$s>%2$s</select>
+				<select class="smf-select-control__control" %1$s>%2$s</select>
+				<span class="smf-select-control__toggle"></span>
 			</span>',
 			$this->generate_attributes( $this->attributes ),
 			implode( '', $options )
