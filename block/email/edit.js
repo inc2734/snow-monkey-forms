@@ -4,10 +4,11 @@ import { compose } from '@wordpress/compose';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
+import { stringToNumber } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
-	const { name, value, placeholder } = attributes;
+	const { name, value, placeholder, maxlength, size } = attributes;
 
 	return (
 		<>
@@ -35,6 +36,37 @@ const edit = ( { attributes, setAttributes } ) => {
 						onChange={ ( attribute ) =>
 							setAttributes( { placeholder: attribute } )
 						}
+					/>
+
+					<TextControl
+						label={ __( 'maxlength', 'snow-monkey-forms' ) }
+						value={ maxlength }
+						help={ __(
+							'If 0, not restricted.',
+							'snow-monkey-forms'
+						) }
+						onChange={ ( attribute ) => {
+							setAttributes( {
+								maxlength: stringToNumber(
+									attribute,
+									maxlength
+								),
+							} );
+						} }
+					/>
+
+					<TextControl
+						label={ __( 'size', 'snow-monkey-forms' ) }
+						value={ size }
+						help={ __(
+							'If 0, not restricted.',
+							'snow-monkey-forms'
+						) }
+						onChange={ ( attribute ) => {
+							setAttributes( {
+								size: stringToNumber( attribute, size ),
+							} );
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>

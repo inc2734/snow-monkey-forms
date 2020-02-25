@@ -20,10 +20,12 @@ class Coordinator extends Contract\Coordinator {
 
 		return [
 			'attributes' => [
-				'name'        => $attributes['name'],
-				'value'       => $attributes['value'],
-				'placeholder' => $attributes['placeholder'],
-				'disabled'    => $attributes['disabled'],
+				'name'         => $attributes['name'],
+				'value'        => $attributes['value'],
+				'placeholder'  => $attributes['placeholder'],
+				'maxlength'    => $attributes['maxlength'],
+				'size'         => $attributes['size'],
+				'disabled'     => $attributes['disabled'],
 				'data-invalid' => false,
 			],
 			'validations' => $attributes['validations'],

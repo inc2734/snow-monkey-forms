@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-21 16:34+0900\n"
-"PO-Revision-Date: 2020-02-21 16:34+0900\n"
+"POT-Creation-Date: 2020-02-25 12:02+0900\n"
+"PO-Revision-Date: 2020-02-25 12:02+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -24,17 +24,17 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: tests\n"
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
-#: App/Controller/Back.php:41 App/Controller/Error.php:43
-#: App/Controller/Input.php:26
+#: App/Controller/Back.php:44 App/Controller/Error.php:46
+#: App/Controller/Input.php:29
 msgid "Confirm"
 msgstr "確認画面へ"
 
-#: App/Controller/Confirm.php:41
+#: App/Controller/Confirm.php:44
 msgid "Back"
 msgstr "戻る"
 
-#: App/Controller/Confirm.php:49 App/Controller/Error.php:59
-#: App/Controller/Input.php:42
+#: App/Controller/Confirm.php:54 App/Controller/Error.php:66
+#: App/Controller/Input.php:49
 msgid "Send"
 msgstr "送信する"
 
@@ -63,50 +63,63 @@ msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:184 snow-monkey-forms.php:349
+#: snow-monkey-forms.php:180 snow-monkey-forms.php:345
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:197
+#: snow-monkey-forms.php:193
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:217
+#: snow-monkey-forms.php:213
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:237
+#: snow-monkey-forms.php:233
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:263
+#: snow-monkey-forms.php:259
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: block/email/edit.js:15 block/form/input/index.js:40
+#: block/email/edit.js:16 block/form/input/index.js:40
 #: block/multi-checkbox/edit.js:15 block/select/edit.js:15
-#: block/text/edit.js:15 block/textarea/edit.js:15 block/url/edit.js:15
+#: block/text/edit.js:16 block/textarea/edit.js:15 block/url/edit.js:16
 msgid "Settings"
 msgstr "設定"
 
-#: block/email/edit.js:17 block/multi-checkbox/edit.js:17
-#: block/multi-radio/edit.js:17 block/select/edit.js:17 block/text/edit.js:17
-#: block/textarea/edit.js:17 block/url/edit.js:17
+#: block/email/edit.js:18 block/multi-checkbox/edit.js:17
+#: block/multi-radio/edit.js:17 block/select/edit.js:17 block/text/edit.js:18
+#: block/textarea/edit.js:17 block/url/edit.js:18
 msgid "name"
 msgstr "name"
 
-#: block/email/edit.js:25 block/multi-radio/edit.js:37 block/select/edit.js:37
-#: block/text/edit.js:25 block/textarea/edit.js:25 block/url/edit.js:25
+#: block/email/edit.js:26 block/multi-radio/edit.js:37 block/select/edit.js:37
+#: block/text/edit.js:26 block/textarea/edit.js:25 block/url/edit.js:26
 msgid "value"
 msgstr "value"
 
-#: block/email/edit.js:33 block/text/edit.js:33 block/textarea/edit.js:33
-#: block/url/edit.js:33
+#: block/email/edit.js:34 block/text/edit.js:34 block/textarea/edit.js:33
+#: block/url/edit.js:34
 msgid "placeholder"
 msgstr "placeholder"
+
+#: block/email/edit.js:42 block/text/edit.js:42 block/url/edit.js:42
+msgid "maxlength"
+msgstr "maxlength"
+
+#: block/email/edit.js:45 block/email/edit.js:62 block/text/edit.js:45
+#: block/text/edit.js:62 block/url/edit.js:45 block/url/edit.js:62
+msgid "If 0, not restricted."
+msgstr "0 の場合、制限されません。"
+
+#: block/email/edit.js:59 block/text/edit.js:59 block/url/edit.js:59
+msgid "size"
+msgstr "size"
 
 #: block/email/index.js:9
 msgid "email"
@@ -194,7 +207,7 @@ msgstr "複数ラジオボタン"
 msgid "Select"
 msgstr "セレクトボックス"
 
-#: block/snow-monkey-form/edit.js:36
+#: block/snow-monkey-form/edit.js:36 block/snow-monkey-form/edit.js:44
 msgid "Select a form"
 msgstr "フォームを選択してください"
 
@@ -214,11 +227,11 @@ msgstr "テキストエリア"
 msgid "URL"
 msgstr "URL"
 
-#: hoc/with-validations.js:27
+#: hoc/with-validations.js:23
 msgid "Validation"
 msgstr "バリデーション"
 
-#: hoc/with-validations.js:33
+#: hoc/with-validations.js:26
 msgid "Required"
 msgstr "必須"
 
@@ -245,7 +258,7 @@ msgstr "To"
 msgid "Automatic reply notification"
 msgstr "自動返信通知"
 
-#: plugin-sidebar/auto-reply-email-to.js:32
+#: plugin-sidebar/auto-reply-email-to.js:27
 #, python-brace-format
 msgid ""
 "Enter the name attribute value of the installed email form field in the "

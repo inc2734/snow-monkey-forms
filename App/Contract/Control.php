@@ -42,15 +42,21 @@ abstract class Control {
 		$attributes = [];
 
 		foreach ( $_attributes as $key => $value ) {
-			if ( 'checked' === $key && ! $value ) {
-				continue;
-			}
-
-			if ( 'disabled' === $key ) {
+			if ( 'checked' === $key ) {
+				if ( ! $value ) {
+					continue;
+				} else {
+					$value = 'checked';
+				}
+			} elseif ( 'disabled' === $key ) {
 				if ( ! $value ) {
 					continue;
 				} else {
 					$value = 'disabled';
+				}
+			} elseif ( 'maxlength' === $key || 'size' === $key ) {
+				if ( ! $value ) {
+					continue;
 				}
 			}
 

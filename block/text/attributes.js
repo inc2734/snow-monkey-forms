@@ -11,6 +11,14 @@ export default {
 		type: 'string',
 		default: '',
 	},
+	maxlength: {
+		type: 'number',
+		default: 0,
+	},
+	size: {
+		type: 'number',
+		default: 0,
+	},
 	disabled: {
 		type: 'boolean',
 		default: false,
