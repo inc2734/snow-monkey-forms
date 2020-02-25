@@ -5,60 +5,56 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control;
+namespace Snow_Monkey\Plugin\Forms\App\Control\Text;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Checkbox extends Contract\Control {
+class View extends Contract\View {
 
 	/**
 	 * @var array
 	 *   @var string name
 	 *   @var string value
-	 *   @var string checked
 	 *   @var string placeholder
 	 *   @var boolean disabled
+	 *   @var boolean data-invalid
 	 */
 	protected $attributes = [];
+
+	/**
+	 * @var string
+	 */
+	protected $description = '';
 
 	/**
 	 * @var array
 	 */
 	protected $validations = [];
 
-	/**
-	 * @var string
-	 */
-	protected $label = '';
-
 	public function input() {
-		$label = $this->get( 'label' );
-		$label = '' === $label || is_null( $label ) ? $this->get( 'value' ) : $label;
+		$description = $this->get( 'description' );
+		if ( $description ) {
+			$description = sprintf(
+				'<div class="smf-control-description">%1$s</div>',
+				wp_kses_post( $description )
+			);
+		}
 
 		return sprintf(
-			'<label class="smf-label">
-				<span class="smf-checkbox-control">
-					<input class="smf-checkbox-control__control" type="checkbox" %1$s>
-					<span class="smf-checkbox-control__label">%2$s</span>
-				</span>
-			</label>',
+			'<div class="smf-text-control">
+				<input class="smf-text-control__control" type="text" %1$s>
+			</div>
+			%2$s',
 			$this->generate_attributes( $this->attributes ),
-			esc_html( $label )
+			$description
 		);
 	}
 
 	public function confirm() {
-		if ( ! $this->get( 'checked' ) ) {
-			return;
-		}
-
-		$label = $this->get( 'label' );
-		$label = '' === $label || is_null( $label ) ? $this->get( 'value' ) : $label;
-
 		return sprintf(
 			'%1$s%2$s',
-			esc_html( $label ),
+			esc_html( $this->get( 'value' ) ),
 			Helper::control(
 				'hidden',
 				[

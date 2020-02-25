@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Block\Text;
+namespace Snow_Monkey\Plugin\Forms\App\Control\Select;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
@@ -21,15 +21,13 @@ class Coordinator extends Contract\Coordinator {
 		return [
 			'attributes' => [
 				'name'         => $attributes['name'],
-				'value'        => $attributes['value'],
-				'placeholder'  => $attributes['placeholder'],
-				'maxlength'    => $attributes['maxlength'],
-				'size'         => $attributes['size'],
 				'disabled'     => $attributes['disabled'],
 				'data-invalid' => false,
 			],
 			'description' => $attributes['description'],
 			'validations' => $attributes['validations'],
+			'value'       => $attributes['value'],
+			'options'     => $attributes['options'],
 		];
 	}
 }

@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Block\Select;
+namespace Snow_Monkey\Plugin\Forms\App\Control\MultiRadio;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
@@ -20,13 +20,13 @@ class Coordinator extends Contract\Coordinator {
 
 		return [
 			'attributes' => [
-				'name'         => $attributes['name'],
-				'disabled'     => $attributes['disabled'],
 				'data-invalid' => false,
 			],
 			'description' => $attributes['description'],
 			'validations' => $attributes['validations'],
+			'name'        => $attributes['name'],
 			'value'       => $attributes['value'],
+			'disabled'    => $attributes['disabled'],
 			'options'     => $attributes['options'],
 		];
 	}

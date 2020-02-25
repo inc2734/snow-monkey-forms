@@ -7,7 +7,7 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Contract;
 
-abstract class Control {
+abstract class View {
 
 	protected $attributes = [];
 

@@ -5,12 +5,12 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control;
+namespace Snow_Monkey\Plugin\Forms\App\Control\MultiRadio;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class MultiRadio extends Contract\Control {
+class View extends Contract\View {
 
 	/**
 	 * @var array
@@ -49,21 +49,9 @@ class MultiRadio extends Contract\Control {
 
 	public function input() {
 		$radios = [];
-		foreach ( $this->options as $value => $label ) {
-			$radio_attributes = [
-				'attributes' => array_merge(
-					$this->attributes,
-					[
-						'name'     => $this->get( 'name' ),
-						'value'    => $value,
-						'disabled' => $this->get( 'disabled' ),
-						'checked'  => $value === $this->get( 'value' ),
-					]
-				),
-				'label' => $label,
-			];
-
-			$radios[] = Helper::control( 'radio', $radio_attributes )->input();
+		$radios_properties = $this->_generate_radios_properties();
+		foreach ( $radios_properties as $radio_properties ) {
+			$radios[] = Helper::control( 'radio', $radio_properties )->input();
 		}
 
 		$description = $this->get( 'description' );
@@ -86,7 +74,11 @@ class MultiRadio extends Contract\Control {
 	}
 
 	public function confirm() {
-		$value   = $this->get( 'value' );
+		$value = $this->get( 'value' );
+		if ( ! $value ) {
+			return;
+		}
+
 		$checked = isset( $this->options[ $value ] );
 		$label   = isset( $this->options[ $value ] ) ? $this->options[ $value ] : $value;
 
@@ -131,5 +123,26 @@ class MultiRadio extends Contract\Control {
 		}
 
 		return parent::set( $attribute, $value );
+	}
+
+	private function _generate_radios_properties() {
+		$radios_properties = [];
+
+		foreach ( $this->options as $value => $label ) {
+			$radios_properties[] = [
+				'attributes' => array_merge(
+					$this->attributes,
+					[
+						'name'     => $this->get( 'name' ),
+						'value'    => $value,
+						'disabled' => $this->get( 'disabled' ),
+						'checked'  => $value === $this->get( 'value' ),
+					]
+				),
+				'label' => $label,
+			];
+		}
+
+		return $radios_properties;
 	}
 }

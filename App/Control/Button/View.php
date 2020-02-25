@@ -5,32 +5,40 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control;
+namespace Snow_Monkey\Plugin\Forms\App\Control\Button;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Hidden extends Contract\Control {
+class View extends Contract\View {
 
 	/**
 	 * @var array
 	 *   @var string name
-	 *   @var string value
 	 *   @var boolean disabled
 	 */
 	protected $attributes = [];
 
+	/**
+	 * @var string
+	 */
+	protected $label = '';
+
 	public function input() {
 		return sprintf(
-			'<input type="hidden" %1$s>',
+			'<span class="smf-button-control">
+				<button class="smf-button-control__control" type="submit" %2$s>%1$s</button>
+			</span>',
+			wp_kses_post( $this->get( 'label' ) ),
 			$this->generate_attributes( $this->attributes )
 		);
 	}
 
 	public function confirm() {
-		return $this->input();
+		$this->input();
 	}
 
 	public function error( $error_message = '' ) {
-		return $this->input();
+		$this->input();
 	}
 }

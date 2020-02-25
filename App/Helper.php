@@ -22,7 +22,7 @@ class Helper {
 	}
 
 	public static function control( $type, array $attributes = [] ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type );
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type ) . '\\View';
 
 		try {
 			if ( class_exists( $class_name ) ) {
@@ -40,7 +40,7 @@ class Helper {
 	}
 
 	public static function coordinate( $type, array $attributes = [] ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Block\\' . static::generate_class_name( $type ) . '\\Coordinator';
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type ) . '\\Coordinator';
 
 		if ( class_exists( $class_name ) ) {
 			$coordinator = new $class_name( $type );

@@ -5,26 +5,22 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control;
+namespace Snow_Monkey\Plugin\Forms\App\Control\Checkbox;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Textarea extends Contract\Control {
+class View extends Contract\View {
 
 	/**
 	 * @var array
 	 *   @var string name
 	 *   @var string value
+	 *   @var string checked
 	 *   @var string placeholder
 	 *   @var boolean disabled
 	 */
 	protected $attributes = [];
-
-	/**
-	 * @var string
-	 */
-	protected $description = '';
 
 	/**
 	 * @var array
@@ -34,32 +30,35 @@ class Textarea extends Contract\Control {
 	/**
 	 * @var string
 	 */
-	public $value = '';
+	protected $label = '';
 
 	public function input() {
-		$description = $this->get( 'description' );
-		if ( $description ) {
-			$description = sprintf(
-				'<div class="smf-control-description">%1$s</div>',
-				wp_kses_post( $description )
-			);
-		}
+		$label = $this->get( 'label' );
+		$label = '' === $label || is_null( $label ) ? $this->get( 'value' ) : $label;
 
 		return sprintf(
-			'<div class="smf-textarea-control">
-				<textarea class="smf-textarea-control__control" type="text" %1$s>%2$s</textarea>
-			</div>
-			%3$s',
+			'<label class="smf-label">
+				<span class="smf-checkbox-control">
+					<input class="smf-checkbox-control__control" type="checkbox" %1$s>
+					<span class="smf-checkbox-control__label">%2$s</span>
+				</span>
+			</label>',
 			$this->generate_attributes( $this->attributes ),
-			esc_html( $this->value ),
-			$description
+			esc_html( $label )
 		);
 	}
 
 	public function confirm() {
+		if ( ! $this->get( 'checked' ) ) {
+			return;
+		}
+
+		$label = $this->get( 'label' );
+		$label = '' === $label || is_null( $label ) ? $this->get( 'value' ) : $label;
+
 		return sprintf(
 			'%1$s%2$s',
-			nl2br( esc_html( $this->get( 'value' ) ) ),
+			esc_html( $label ),
 			Helper::control(
 				'hidden',
 				[
@@ -83,22 +82,5 @@ class Textarea extends Contract\Control {
 			$this->input(),
 			$error_message
 		);
-	}
-
-	public function get( $attribute ) {
-		if ( 'value' === $attribute ) {
-			return $this->value;
-		}
-
-		return parent::get( $attribute );
-	}
-
-	public function set( $attribute, $value ) {
-		if ( 'value' === $attribute ) {
-			$this->value = $value;
-			return true;
-		}
-
-		return parent::set( $attribute, $value );
 	}
 }

@@ -5,12 +5,12 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control;
+namespace Snow_Monkey\Plugin\Forms\App\Control\Email;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Email extends Contract\Control {
+class View extends Contract\View {
 
 	/**
 	 * @var array

@@ -5,12 +5,12 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control;
+namespace Snow_Monkey\Plugin\Forms\App\Control\MultiCheckbox;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class MultiCheckbox extends Contract\Control {
+class View extends Contract\View {
 
 	/**
 	 * @var array
@@ -58,23 +58,9 @@ class MultiCheckbox extends Contract\Control {
 
 	public function input() {
 		$checkboxes = [];
-		foreach ( $this->options as $value => $label ) {
-			$checked = in_array( $value, $this->get( 'values' ) );
-
-			$checkbox_attributes = [
-				'attributes' => array_merge(
-					$this->attributes,
-					[
-						'name'     => $this->name,
-						'value'    => $value,
-						'disabled' => $this->disabled,
-						'checked'  => $checked,
-					]
-				),
-				'label' => $label,
-			];
-
-			$checkboxes[] = Helper::control( 'checkbox', $checkbox_attributes )->input();
+		$checkboxes_properties = $this->_generate_checkboxes_properties();
+		foreach ( $checkboxes_properties as $checkbox_properties ) {
+			$checkboxes[] = Helper::control( 'checkbox', $checkbox_properties )->input();
 		}
 
 		$description = $this->get( 'description' );
@@ -102,25 +88,12 @@ class MultiCheckbox extends Contract\Control {
 		}
 
 		$checkboxes = [];
-		foreach ( $this->options as $value => $label ) {
-			$checked = in_array( $value, $this->get( 'values' ) );
-			if ( ! $checked ) {
+		$checkboxes_properties = $this->_generate_checkboxes_properties();
+		foreach ( $checkboxes_properties as $checkbox_properties ) {
+			if ( ! $checkbox_properties['attributes']['checked'] ) {
 				continue;
 			}
-
-			$checkbox_attributes = [
-				'attributes' => array_merge(
-					$this->attributes,
-					[
-						'name'    => $this->name,
-						'value'   => $value,
-						'checked' => $checked,
-					]
-				),
-				'label' => $label,
-			];
-
-			$checkboxes[] = Helper::control( 'checkbox', $checkbox_attributes )->confirm();
+			$checkboxes[] = Helper::control( 'checkbox', $checkbox_properties )->confirm();
 		}
 
 		$delimiter = $this->get( 'delimiter' );
@@ -159,5 +132,28 @@ class MultiCheckbox extends Contract\Control {
 		}
 
 		return parent::set( $attribute, $value );
+	}
+
+	private function _generate_checkboxes_properties() {
+		$checkboxes_properties = [];
+
+		foreach ( $this->options as $value => $label ) {
+			$checked = in_array( $value, $this->get( 'values' ) );
+
+			$checkboxes_properties[] = [
+				'attributes' => array_merge(
+					$this->attributes,
+					[
+						'name'     => $this->name,
+						'value'    => $value,
+						'disabled' => $this->disabled,
+						'checked'  => $checked,
+					]
+				),
+				'label' => $label,
+			];
+		}
+
+		return $checkboxes_properties;
 	}
 }
