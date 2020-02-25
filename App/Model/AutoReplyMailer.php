@@ -30,7 +30,7 @@ class AutoReplyMailer {
 	}
 
 	public function should_send() {
-		$mail_parser = new MailParser( $this->responser );
+		$mail_parser = new MailParser( $this->responser, $this->setting );
 		$to = $mail_parser->parse( $this->setting->get( 'auto_reply_email_to' ) );
 		return ! is_null( $to ) && '' !== $to;
 	}
@@ -47,7 +47,7 @@ class AutoReplyMailer {
 	}
 
 	protected function _send() {
-		$mail_parser = new MailParser( $this->responser );
+		$mail_parser = new MailParser( $this->responser, $this->setting );
 
 		$mailer = new Mailer(
 			[

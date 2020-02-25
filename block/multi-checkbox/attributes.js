@@ -15,6 +15,10 @@ export default {
 		type: 'string',
 		default: '',
 	},
+	delimiter: {
+		type: 'string',
+		default: ', ',
+	},
 	validations: {
 		type: 'string',
 		default: '{}',

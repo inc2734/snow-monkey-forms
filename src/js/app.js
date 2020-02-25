@@ -3,8 +3,8 @@ import submit from './module/submit';
 
 $( document ).on( 'click', '[data-action="back"]', ( event ) =>
 	$( event.currentTarget )
-		.parent()
-		.find( 'input[type="hidden"]' )
+		.closest( '.smf-action' )
+		.find( '[type="hidden"][name="_method"]' )
 		.attr( 'value', 'back' )
 );
 

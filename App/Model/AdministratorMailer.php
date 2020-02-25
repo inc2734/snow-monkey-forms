@@ -41,7 +41,7 @@ class AdministratorMailer {
 	}
 
 	protected function _send() {
-		$mail_parser = new MailParser( $this->responser );
+		$mail_parser = new MailParser( $this->responser, $this->setting );
 
 		$mailer = new Mailer(
 			[

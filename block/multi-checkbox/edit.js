@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
-	const { name, options, values } = attributes;
+	const { name, options, values, delimiter } = attributes;
 
 	return (
 		<>
@@ -39,6 +39,14 @@ const edit = ( { attributes, setAttributes } ) => {
 						help={ __( 'value\u21B5', 'snow-monkey-forms' ) }
 						onChange={ ( attribute ) =>
 							setAttributes( { values: attribute } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'Delimiter', 'snow-monkey-forms' ) }
+						value={ delimiter }
+						onChange={ ( attribute ) =>
+							setAttributes( { delimiter: attribute } )
 						}
 					/>
 				</PanelBody>

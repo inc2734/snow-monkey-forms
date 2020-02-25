@@ -1,3 +1,6 @@
+@import 'core/core';
+@import '../../node_modules/sass-basis/src/css/basis-core';
+
 .snow-monkey-forms-setting-panel {
   .components-panel__header {
     color: #555d66;
@@ -12,6 +15,14 @@
 
 .is-selected [data-type="snow-monkey-forms/item"] .block-list-appender {
   display: none !important;
+}
+
+.editor-styles-wrapper .editor-writing-flow {
+  @import 'app';
+
+  .smf-select-control__control {
+    background-image: none;
+  }
 }
 
 @import 'block-styles/editor';

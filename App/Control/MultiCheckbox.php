@@ -38,6 +38,11 @@ class MultiCheckbox extends Contract\Control {
 	protected $disabled = false;
 
 	/**
+	 * @var boolean
+	 */
+	protected $delimiter = ', ';
+
+	/**
 	 * @var array
 	 */
 	protected $options = [];
@@ -84,6 +89,9 @@ class MultiCheckbox extends Contract\Control {
 		$checkboxes = [];
 		foreach ( $this->options as $value => $label ) {
 			$checked = in_array( $value, $this->get( 'values' ) );
+			if ( ! $checked ) {
+				continue;
+			}
 
 			$checkbox_attributes = [
 				'attributes' => array_merge(
@@ -100,7 +108,8 @@ class MultiCheckbox extends Contract\Control {
 			$checkboxes[] = Helper::control( 'checkbox', $checkbox_attributes )->confirm();
 		}
 
-		return implode( ', ', $checkboxes );
+		$delimiter = $this->get( 'delimiter' );
+		return implode( $delimiter, $checkboxes );
 	}
 
 	public function error( $error_message = '' ) {

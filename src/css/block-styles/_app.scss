@@ -3,14 +3,15 @@
  */
 .smf-form--simple-table {
   & + .smf-action {
-    margin-top: .5rem;
+    @include _margin(1, 0);
+    text-align: center;
   }
 
   .smf-item {
     padding: 1rem 0;
 
     &__col--label {
-      padding-bottom: .5rem;
+      @include _padding-bottom(.5);
     }
 
     @media (min-width: 768px) {
@@ -20,9 +21,10 @@
         flex: 1 1 auto;
 
         &--label {
-          max-width: 10em;
-          padding-right: 2em;
-          padding-bottom: 0;
+          flex: 0 0 auto;
+          @include _padding-right(1);
+          @include _padding-bottom(0);
+          width: 14em;
         }
       }
     }
@@ -34,18 +36,19 @@
  */
 .smf-form--letter {
   & + .smf-action {
-    margin-top: .5rem;
+    @include _margin(1, 0);
+    text-align: center;
   }
 
   .smf-item {
     padding: 1rem 0;
 
     &__col--label {
-      padding-bottom: .5rem;
+      @include _padding-bottom(.5);
     }
   }
 
-  .c-form-control {
+  .smf-text-control__control {
     width: 100%;
     max-width: 100%;
   }
@@ -56,7 +59,8 @@
  */
 .smf-form--business {
   & + .smf-action {
-    margin-top: .5rem;
+    @include _margin(1, 0);
+    text-align: center;
   }
 
   .smf-item {
@@ -67,7 +71,7 @@
     }
 
     &__col {
-      padding: 1rem;
+      @include _padding(1);
 
       &--label {
         background-color: #f7f7f7;
@@ -82,9 +86,10 @@
         flex: 1 1 auto;
 
         &--label {
-          max-width: 10em;
+          flex: 0 0 auto;
           border-right: 1px solid #ddd;
           border-bottom: none;
+          width: 14em;
         }
       }
     }

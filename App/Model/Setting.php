@@ -113,6 +113,13 @@ class Setting {
 		$this->system_error_messages[] = $message;
 	}
 
+	public function get_control( $name ) {
+		if ( isset( $this->controls[ $name ] ) ) {
+			return $name;
+		}
+		return false;
+	}
+
 	private function _extract_input_content( $post_content ) {
 		$match = preg_match(
 			'|<!-- wp:snow-monkey-forms/form--input .*?-->(.*?)<!-- /wp:snow-monkey-forms/form--input -->|ms',
@@ -143,11 +150,12 @@ class Setting {
 
 				$type       = $matches[1];
 				$attributes = json_decode( $matches[2], true );
+				$name       = ! empty( $attributes['name'] ) ? $attributes['name'] : null;
 				$properties = Helper::coordinate( $type, $attributes );
 				$control    = Helper::control( $type, $properties );
 
-				if ( $control ) {
-					$this->controls[] = $control;
+				if ( $control && $name ) {
+					$this->controls[ $name ] = $control;
 				}
 			},
 			$input_content

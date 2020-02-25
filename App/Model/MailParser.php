@@ -16,8 +16,14 @@ class MailParser {
 	 */
 	protected $responser;
 
-	public function __construct( Responser $responser ) {
+	/**
+	 * @var Setting
+	 */
+	protected $setting;
+
+	public function __construct( Responser $responser, Setting $setting ) {
 		$this->responser = $responser;
+		$this->setting   = $setting;
 	}
 
 	public function parse( $string ) {
@@ -29,13 +35,13 @@ class MailParser {
 				}
 
 				if ( 'all-fields' === $matches[1] ) {
-					$value  = '';
+					$return_value  = '';
 					$values = $this->responser->get_all();
-					foreach ( $values as $name => $data ) {
-						$data = $this->_stringfy( $data );
-						$value .= $name . ": \n" . $data . "\n\n";
+					foreach ( $values as $name => $value ) {
+						$value = $this->_stringfy( $value );
+						$return_value .= $name . ": \n" . $value . "\n\n";
 					}
-					return trim( $value );
+					return trim( $return_value );
 				}
 
 				$value = $this->responser->get( $matches[1] );
@@ -46,6 +52,7 @@ class MailParser {
 	}
 
 	protected function _stringfy( $value ) {
-		return is_array( $value ) ? implode( ', ', $value ) : $value;
+		$delimiter = $this->setting->get_control( 'delimiter' );
+		return is_array( $value ) ? implode( $delimiter, $value ) : $value;
 	}
 }

@@ -1,4 +1,4 @@
-$_font-path: false;
+@import 'core/core';
 @import '../../node_modules/sass-basis/src/css/basis-core';
 
 .smf-text-control,
@@ -46,21 +46,31 @@ $_font-path: false;
 .smf-checkbox-control {
   @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
     &__control {
+      &::before {
+        top: calc(50% - 5px);
+        left: calc(50% - 3px);
+        transform: rotate(45deg);
+        margin: 0 !important;
+        height: 8px;
+        width: 6px;
+        border-style: solid;
+        border-color: #fff;
+        border-width: 0 2px 2px 0;
+        visibility: hidden;
+      }
+
       &:checked {
         &::before {
-          top: calc(50% - 5px);
-          left: calc(50% - 3px);
-          transform: rotate(45deg);
-          height: 8px;
-          width: 6px;
-          border-style: solid;
-          border-color: #fff;
-          border-width: 0 2px 2px 0;
+          visibility: visible;
         }
       }
 
       &:disabled {
         background-color: _lightest($_color-gray);
+
+        &::before {
+          border-color: _dark($_color-gray);
+        }
       }
     }
   }
@@ -71,17 +81,27 @@ $_font-path: false;
     &__control {
       border-radius: 100%;
 
+      &::before {
+        top: calc(50% - 3px);
+        left: calc(50% - 3px);
+        margin: 0 !important;
+        @include _circle(6px);
+        background-color: #fff;
+        visibility: hidden;
+      }
+
       &:checked {
         &::before {
-          top: calc(50% - 3px);
-          left: calc(50% - 3px);
-          @include _circle(6px);
-          background-color: #fff;
+          visibility: visible;
         }
       }
 
       &:disabled {
         background-color: _lightest($_color-gray);
+
+        &::before {
+          background-color: _dark($_color-gray);
+        }
       }
     }
   }
@@ -161,7 +181,7 @@ $_font-path: false;
 }
 
 .smf-error-messages {
-  margin-top: .5em;
+  @include _margin-top(.25);
   color: #cc3033;
 }
 
@@ -186,15 +206,15 @@ $_font-path: false;
 
 .smf-action {
   .smf-button-control__control {
-    @include _padding-right(1);
-    @include _padding-left(1);
+    @include _padding-right(1.5);
+    @include _padding-left(1.5);
   }
 
   .smf-button-control + .smf-button-control {
-    margin-left: .5em;
+    @include _margin-left(.5);
   }
 
-  .smf-button-control {
+  .smf-button-control__control {
     position: relative;
 
     .smf-sending {
