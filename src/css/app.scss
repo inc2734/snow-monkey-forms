@@ -151,6 +151,7 @@ $_font-path: false;
 
 .smf-button-control {
   &__control {
+    cursor: pointer;
     @include _form-control-base-border();
     background-color: _lighter($_color-gray);
     background-image: linear-gradient(180deg, #fff, _lighter($_color-gray));
