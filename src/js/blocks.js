@@ -1,13 +1,12 @@
-//import '../../block/checkbox';
 import '../../block/email';
 import '../../block/form/complete';
 import '../../block/form/input';
 import '../../block/item';
 import '../../block/multi-checkbox';
 import '../../block/multi-radio';
-//import '../../block/radio';
 import '../../block/select';
 import '../../block/text';
 import '../../block/textarea';
 import '../../block/url';
+import '../../block/tel';
 import '../../block/snow-monkey-form';

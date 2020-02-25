@@ -10,7 +10,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Control;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Url extends Contract\Control {
+class Tel extends Contract\Control {
 
 	/**
 	 * @var array
@@ -25,14 +25,12 @@ class Url extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [
-		'url' => true,
-	];
+	protected $validations = [];
 
 	public function input() {
 		return sprintf(
 			'<span class="smf-text-control">
-				<input class="c-form-control__control" type="url" %1$s>
+				<input class="c-form-control__control" type="tel" %1$s>
 			</span>',
 			$this->generate_attributes( $this->attributes )
 		);
