@@ -23,6 +23,11 @@ class Url extends Contract\Control {
 	protected $attributes = [];
 
 	/**
+	 * @var string
+	 */
+	protected $description = '';
+
+	/**
 	 * @var array
 	 */
 	protected $validations = [
@@ -30,11 +35,21 @@ class Url extends Contract\Control {
 	];
 
 	public function input() {
+		$description = $this->get( 'description' );
+		if ( $description ) {
+			$description = sprintf(
+				'<div class="smf-control-description">%1$s</div>',
+				wp_kses_post( $description )
+			);
+		}
+
 		return sprintf(
-			'<span class="smf-text-control">
+			'<div class="smf-text-control">
 				<input class="smf-text-control__control" type="url" %1$s>
-			</span>',
-			$this->generate_attributes( $this->attributes )
+			</div>
+			%2$s',
+			$this->generate_attributes( $this->attributes ),
+			$description
 		);
 	}
 

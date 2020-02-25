@@ -86,6 +86,7 @@ abstract class Control {
 			'options',
 			'validations',
 			'delimiter',
+			'description',
 		];
 	}
 

@@ -26,6 +26,10 @@ return [
 		'type'    => 'string',
 		'default' => ', ',
 	],
+	'description' => [
+		'type'    => 'string',
+		'default' => '',
+	],
 	'validations' => [
 		'type'    => 'string',
 		'default' => '{}',

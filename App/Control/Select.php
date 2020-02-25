@@ -21,6 +21,11 @@ class Select extends Contract\Control {
 	protected $attributes = [];
 
 	/**
+	 * @var string
+	 */
+	protected $description = '';
+
+	/**
 	 * @var array
 	 */
 	protected $validations = [];
@@ -36,6 +41,14 @@ class Select extends Contract\Control {
 	protected $options = [];
 
 	public function input() {
+		$description = $this->get( 'description' );
+		if ( $description ) {
+			$description = sprintf(
+				'<div class="smf-control-description">%1$s</div>',
+				wp_kses_post( $description )
+			);
+		}
+
 		$options = [];
 		foreach ( $this->options as $value => $label ) {
 			$options[] = sprintf(
@@ -47,12 +60,14 @@ class Select extends Contract\Control {
 		}
 
 		return sprintf(
-			'<span class="smf-select-control">
+			'<div class="smf-select-control">
 				<select class="smf-select-control__control" %1$s>%2$s</select>
 				<span class="smf-select-control__toggle"></span>
-			</span>',
+			</div>
+			%3$s',
 			$this->generate_attributes( $this->attributes ),
-			implode( '', $options )
+			implode( '', $options ),
+			$description
 		);
 	}
 

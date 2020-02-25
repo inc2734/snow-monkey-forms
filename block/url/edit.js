@@ -8,12 +8,19 @@ import { stringToNumber } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
-	const { name, value, placeholder, maxlength, size } = attributes;
+	const {
+		name,
+		value,
+		placeholder,
+		maxlength,
+		size,
+		description,
+	} = attributes;
 
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings', 'snow-monkey-blocks' ) }>
+				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
 					<TextControl
 						label={ __( 'name', 'snow-monkey-forms' ) }
 						value={ name }
@@ -67,6 +74,18 @@ const edit = ( { attributes, setAttributes } ) => {
 								size: stringToNumber( attribute, size ),
 							} );
 						} }
+					/>
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Block settings', 'snow-monkey-forms' ) }
+				>
+					<TextControl
+						label={ __( 'Description', 'snow-monkey-forms' ) }
+						value={ description }
+						onChange={ ( attribute ) =>
+							setAttributes( { description: attribute } )
+						}
 					/>
 				</PanelBody>
 			</InspectorControls>

@@ -13,7 +13,7 @@ export default function( { attributes, setAttributes } ) {
 						onChange={ ( value ) =>
 							setAttributes( { label: value } )
 						}
-						placeholder={ __( 'Label', 'snow-monkey-blocks' ) }
+						placeholder={ __( 'Label', 'snow-monkey-forms' ) }
 					/>
 				</span>
 			</div>

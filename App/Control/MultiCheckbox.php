@@ -18,6 +18,11 @@ class MultiCheckbox extends Contract\Control {
 	protected $attributes = [];
 
 	/**
+	 * @var string
+	 */
+	protected $description = '';
+
+	/**
 	 * @var array
 	 */
 	protected $validations = [];
@@ -72,12 +77,22 @@ class MultiCheckbox extends Contract\Control {
 			$checkboxes[] = Helper::control( 'checkbox', $checkbox_attributes )->input();
 		}
 
+		$description = $this->get( 'description' );
+		if ( $description ) {
+			$description = sprintf(
+				'<div class="smf-control-description">%1$s</div>',
+				wp_kses_post( $description )
+			);
+		}
+
 		return sprintf(
-			'<span class="smf-multi-checkbox-control" %1$s>
-				<span class="smf-multi-checkbox-control__control">%2$s</span>
-			</span>',
+			'<div class="smf-multi-checkbox-control" %1$s>
+				<div class="smf-multi-checkbox-control__control">%2$s</div>
+			</div>
+			%3$s',
 			$this->generate_attributes( $this->attributes ),
-			implode( '', $checkboxes )
+			implode( '', $checkboxes ),
+			$description
 		);
 	}
 

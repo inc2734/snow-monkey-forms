@@ -22,6 +22,7 @@ class Coordinator extends Contract\Coordinator {
 			'attributes' => [
 				'data-invalid' => false,
 			],
+			'description' => $attributes['description'],
 			'validations' => $attributes['validations'],
 			'name'        => $attributes['name'],
 			'values'      => $attributes['values'],

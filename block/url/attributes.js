@@ -23,6 +23,10 @@ export default {
 		type: 'boolean',
 		default: false,
 	},
+	description: {
+		type: 'string',
+		default: '',
+	},
 	validations: {
 		type: 'string',
 		default: '{}',

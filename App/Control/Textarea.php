@@ -22,6 +22,11 @@ class Textarea extends Contract\Control {
 	protected $attributes = [];
 
 	/**
+	 * @var string
+	 */
+	protected $description = '';
+
+	/**
 	 * @var array
 	 */
 	protected $validations = [];
@@ -32,12 +37,22 @@ class Textarea extends Contract\Control {
 	public $value = '';
 
 	public function input() {
+		$description = $this->get( 'description' );
+		if ( $description ) {
+			$description = sprintf(
+				'<div class="smf-control-description">%1$s</div>',
+				wp_kses_post( $description )
+			);
+		}
+
 		return sprintf(
-			'<span class="smf-textarea-control">
+			'<div class="smf-textarea-control">
 				<textarea class="smf-textarea-control__control" type="text" %1$s>%2$s</textarea>
-			</span>',
+			</div>
+			%3$s',
 			$this->generate_attributes( $this->attributes ),
-			esc_html( $this->value )
+			esc_html( $this->value ),
+			$description
 		);
 	}
 
