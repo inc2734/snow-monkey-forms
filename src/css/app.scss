@@ -19,7 +19,7 @@
 }
 
 .smf-checkbox-control,
-.smf-radio-control {
+.smf-radio-button-control {
   display: inline-flex;
   align-items: center;
 
@@ -82,7 +82,7 @@
   }
 }
 
-.smf-radio-control {
+.smf-radio-button-control {
   @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
     &__control {
       border-radius: 100%;
@@ -197,8 +197,8 @@
   color: #cc3033;
 }
 
-.smf-multi-radio-control,
-.smf-multi-checkbox-control {
+.smf-radio-buttons-control,
+.smf-checkboxes-control {
   &__control {
     > .smf-label + .smf-label {
       @include _margin-left(.5);

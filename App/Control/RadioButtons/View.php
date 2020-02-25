@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\MultiRadio;
+namespace Snow_Monkey\Plugin\Forms\App\Control\RadioButtons;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
@@ -48,10 +48,10 @@ class View extends Contract\View {
 	protected $options = [];
 
 	public function input() {
-		$radios = [];
-		$radios_properties = $this->_generate_radios_properties();
-		foreach ( $radios_properties as $radio_properties ) {
-			$radios[] = Helper::control( 'radio', $radio_properties )->input();
+		$radio_buttons = [];
+		$radio_buttons_properties = $this->_generate_radio_buttons_properties();
+		foreach ( $radio_buttons_properties as $radio_properties ) {
+			$radio_buttons[] = Helper::control( 'radio-button', $radio_properties )->input();
 		}
 
 		$description = $this->get( 'description' );
@@ -63,12 +63,12 @@ class View extends Contract\View {
 		}
 
 		return sprintf(
-			'<div class="smf-multi-radio-control" %1$s>
-				<div class="smf-multi-radio-control__control">%2$s</div>
+			'<div class="smf-radio-buttons-control" %1$s>
+				<div class="smf-radio-buttons-control__control">%2$s</div>
 			</div>
 			%3$s',
 			$this->generate_attributes( $this->attributes ),
-			implode( '', $radios ),
+			implode( '', $radio_buttons ),
 			$description
 		);
 	}
@@ -83,7 +83,7 @@ class View extends Contract\View {
 		$label   = isset( $this->options[ $value ] ) ? $this->options[ $value ] : $value;
 
 		return Helper::control(
-			'radio',
+			'radio-button',
 			[
 				'attributes' => [
 					'name'    => $this->get( 'name' ),
@@ -125,11 +125,11 @@ class View extends Contract\View {
 		return parent::set( $attribute, $value );
 	}
 
-	private function _generate_radios_properties() {
-		$radios_properties = [];
+	private function _generate_radio_buttons_properties() {
+		$radio_buttons_properties = [];
 
 		foreach ( $this->options as $value => $label ) {
-			$radios_properties[] = [
+			$radio_buttons_properties[] = [
 				'attributes' => array_merge(
 					$this->attributes,
 					[
@@ -143,6 +143,6 @@ class View extends Contract\View {
 			];
 		}
 
-		return $radios_properties;
+		return $radio_buttons_properties;
 	}
 }

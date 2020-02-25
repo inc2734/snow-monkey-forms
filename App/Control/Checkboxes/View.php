@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\MultiCheckbox;
+namespace Snow_Monkey\Plugin\Forms\App\Control\Checkboxes;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
@@ -72,8 +72,8 @@ class View extends Contract\View {
 		}
 
 		return sprintf(
-			'<div class="smf-multi-checkbox-control" %1$s>
-				<div class="smf-multi-checkbox-control__control">%2$s</div>
+			'<div class="smf-checkboxes-control" %1$s>
+				<div class="smf-checkboxes-control__control">%2$s</div>
 			</div>
 			%3$s',
 			$this->generate_attributes( $this->attributes ),

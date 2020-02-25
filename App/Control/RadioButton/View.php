@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Radio;
+namespace Snow_Monkey\Plugin\Forms\App\Control\RadioButton;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
@@ -38,9 +38,9 @@ class View extends Contract\View {
 
 		return sprintf(
 			'<label class="smf-label">
-				<span class="smf-radio-control">
-					<input class="smf-radio-control__control" type="radio" %1$s>
-					<span class="smf-radio-control__label">%2$s</span>
+				<span class="smf-radio-button-control">
+					<input class="smf-radio-button-control__control" type="radio" %1$s>
+					<span class="smf-radio-button-control__label">%2$s</span>
 				</span>
 			</label>',
 			$this->generate_attributes( $this->attributes ),

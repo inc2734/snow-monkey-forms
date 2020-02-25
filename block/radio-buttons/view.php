@@ -9,5 +9,5 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 ?>
 
 <div class="smf-placeholder" data-name="<?php echo esc_attr( $attributes['name'] ); ?>">
-	<?php Helper::the_control( 'multi-checkbox', $properties ); ?>
+	<?php Helper::the_control( 'radio-buttons', $properties ); ?>
 </div>

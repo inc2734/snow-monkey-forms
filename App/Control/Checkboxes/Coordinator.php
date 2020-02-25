@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\MultiCheckbox;
+namespace Snow_Monkey\Plugin\Forms\App\Control\Checkboxes;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;

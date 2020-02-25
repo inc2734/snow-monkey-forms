@@ -13,7 +13,7 @@ add_action(
 		$attributes = include( __DIR__ . '/attributes.php' );
 
 		register_block_type(
-			'snow-monkey-forms/control-multi-checkbox',
+			'snow-monkey-forms/control-radio-buttons',
 			[
 				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {
@@ -21,7 +21,7 @@ add_action(
 						return;
 					}
 
-					$properties = Helper::coordinate( 'multi-checkbox', $attributes );
+					$properties = Helper::coordinate( 'radio-buttons', $attributes );
 
 					ob_start();
 					include( __DIR__ . '/view.php' );

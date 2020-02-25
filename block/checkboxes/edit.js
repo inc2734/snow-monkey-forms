@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
-	const { name, value, options, description } = attributes;
+	const { name, options, values, delimiter, description } = attributes;
 
 	return (
 		<>
@@ -33,11 +33,20 @@ const edit = ( { attributes, setAttributes } ) => {
 						}
 					/>
 
-					<TextControl
-						label={ __( 'value', 'snow-monkey-forms' ) }
-						value={ value }
+					<TextareaControl
+						label={ __( 'values', 'snow-monkey-forms' ) }
+						value={ values }
+						help={ __( 'value\u21B5', 'snow-monkey-forms' ) }
 						onChange={ ( attribute ) =>
-							setAttributes( { value: attribute } )
+							setAttributes( { values: attribute } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'Delimiter', 'snow-monkey-forms' ) }
+						value={ delimiter }
+						onChange={ ( attribute ) =>
+							setAttributes( { delimiter: attribute } )
 						}
 					/>
 				</PanelBody>
@@ -56,7 +65,7 @@ const edit = ( { attributes, setAttributes } ) => {
 			</InspectorControls>
 
 			<ServerSideRender
-				block="snow-monkey-forms/control-multi-radio"
+				block="snow-monkey-forms/control-checkboxes"
 				attributes={ { ...attributes, disabled: true } }
 			/>
 		</>
