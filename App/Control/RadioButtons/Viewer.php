@@ -36,11 +36,6 @@ class Viewer extends Contract\Viewer {
 	protected $name = '';
 
 	/**
-	 * @var string
-	 */
-	protected $value = '';
-
-	/**
 	 * @var boolean
 	 */
 	protected $disabled = false;
@@ -50,16 +45,51 @@ class Viewer extends Contract\Viewer {
 	 */
 	protected $options = [];
 
+	/**
+	 * @var string
+	 */
+	protected $value = '';
+
+	/**
+	 * @var array
+	 */
+	protected $children = [];
+
 	public function save( $value ) {
 		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
 	}
 
-	public function input() {
-		$radio_buttons = [];
-		$radio_buttons_properties = $this->_generate_radio_buttons_properties();
-		foreach ( $radio_buttons_properties as $radio_properties ) {
-			$radio_buttons[] = Helper::control( 'radio-button', $radio_properties )->input();
+	protected function _init() {
+		$children = [];
+		foreach ( $this->get_property( 'options' ) as $value => $label ) {
+			$children[] = Helper::control(
+				'radio-button',
+				[
+					'attributes' => [
+						'name'         => $this->get_property( 'name' ),
+						'value'        => $value,
+						'disabled'     => $this->get_property( 'disabled' ),
+						'checked'      => $this->get_property( 'value' ) === $value,
+						'data-invalid' => $this->get_attribute( 'data-invalid' ),
+					],
+					'label' => $label,
+				]
+			);
 		}
+		$this->set_property( 'children', $children );
+	}
+
+	public function input() {
+		$this->set_property(
+			'children',
+			$this->_get_updated_chlidren(
+				function( $control ) {
+					$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+					$control->set_attribute( 'checked', $checked );
+					return $control;
+				}
+			)
+		);
 
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
@@ -75,35 +105,38 @@ class Viewer extends Contract\Viewer {
 			</div>
 			%3$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			implode( '', $radio_buttons ),
+			implode( '', $this->_children( 'input' ) ),
 			$description
 		);
 	}
 
 	public function confirm() {
-		$value = $this->get_property( 'value' );
-		if ( ! $value ) {
-			return;
-		}
+		$this->set_property(
+			'children',
+			$this->_get_updated_chlidren(
+				function( $control ) {
+					$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+					$control->set_attribute( 'checked', $checked );
+					return $control;
+				}
+			)
+		);
 
-		$checked = isset( $this->options[ $value ] );
-		$label   = isset( $this->options[ $value ] ) ? $this->options[ $value ] : $value;
-
-		return Helper::control(
-			'radio-button',
-			[
-				'attributes' => [
-					'name'    => $this->get_property( 'name' ),
-					'value'   => $value,
-					'checked' => $checked,
-				],
-				'label' => $label,
-			]
-		)->confirm();
+		return implode( '', $this->_children( 'confirm' ) );
 	}
 
 	public function error( $error_message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
+
+		$this->set_property(
+			'children',
+			$this->_get_updated_chlidren(
+				function( $control ) {
+					$control->set_attribute( 'data-invalid', $this->get_attribute( 'data-invalid' ) );
+					return $control;
+				}
+			)
+		);
 
 		return sprintf(
 			'%1$s
@@ -113,26 +146,5 @@ class Viewer extends Contract\Viewer {
 			$this->input(),
 			$error_message
 		);
-	}
-
-	private function _generate_radio_buttons_properties() {
-		$radio_buttons_properties = [];
-
-		foreach ( $this->get_property( 'options' ) as $value => $label ) {
-			$radio_buttons_properties[] = [
-				'attributes' => array_merge(
-					$this->get_property( 'attributes' ),
-					[
-						'name'     => $this->get_property( 'name' ),
-						'value'    => $value,
-						'disabled' => $this->get_property( 'disabled' ),
-						'checked'  => $value === $this->get_property( 'value' ),
-					]
-				),
-				'label' => $label,
-			];
-		}
-
-		return $radio_buttons_properties;
 	}
 }

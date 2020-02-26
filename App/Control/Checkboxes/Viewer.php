@@ -55,8 +55,31 @@ class Viewer extends Contract\Viewer {
 	 */
 	protected $options = [];
 
+	/**
+	 * @var array
+	 */
+	protected $children = [];
+
 	protected function _init() {
 		$this->set_property( 'name', $this->get_property( 'name' ) . '[]' );
+
+		$children = [];
+		foreach ( $this->get_property( 'options' ) as $value => $label ) {
+			$children[] = Helper::control(
+				'checkbox',
+				[
+					'attributes' => [
+						'name'         => $this->get_property( 'name' ),
+						'value'        => $value,
+						'disabled'     => $this->get_property( 'disabled' ),
+						'checked'      => $this->get_property( 'value' ) === $value,
+						'data-invalid' => $this->get_attribute( 'data-invalid' ),
+					],
+					'label' => $label,
+				]
+			);
+		}
+		$this->set_property( 'children', $children );
 	}
 
 	public function save( $value ) {
@@ -64,11 +87,16 @@ class Viewer extends Contract\Viewer {
 	}
 
 	public function input() {
-		$checkboxes = [];
-		$checkboxes_properties = $this->_generate_checkboxes_properties();
-		foreach ( $checkboxes_properties as $checkbox_properties ) {
-			$checkboxes[] = Helper::control( 'checkbox', $checkbox_properties )->input();
-		}
+		$this->set_property(
+			'children',
+			$this->_get_updated_chlidren(
+				function( $control ) {
+					$checked = in_array( $control->get_attribute( 'value' ), $this->get_property( 'values' ) );
+					$control->set_attribute( 'checked', $checked );
+					return $control;
+				}
+			)
+		);
 
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
@@ -84,31 +112,39 @@ class Viewer extends Contract\Viewer {
 			</div>
 			%3$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			implode( '', $checkboxes ),
+			implode( '', $this->_children( 'input' ) ),
 			$description
 		);
 	}
 
 	public function confirm() {
-		if ( ! $this->get_property( 'values' ) ) {
-			return;
-		}
-
-		$checkboxes = [];
-		$checkboxes_properties = $this->_generate_checkboxes_properties();
-		foreach ( $checkboxes_properties as $checkbox_properties ) {
-			if ( ! $checkbox_properties['attributes']['checked'] ) {
-				continue;
-			}
-			$checkboxes[] = Helper::control( 'checkbox', $checkbox_properties )->confirm();
-		}
+		$this->set_property(
+			'children',
+			$this->_get_updated_chlidren(
+				function( $control ) {
+					$checked = in_array( $control->get_attribute( 'value' ), $this->get_property( 'values' ) );
+					$control->set_attribute( 'checked', $checked );
+					return $control;
+				}
+			)
+		);
 
 		$delimiter = $this->get_property( 'delimiter' );
-		return implode( $delimiter, $checkboxes );
+		return implode( $delimiter, $this->_children( 'confirm' ) );
 	}
 
 	public function error( $error_message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
+
+		$this->set_property(
+			'children',
+			$this->_get_updated_chlidren(
+				function( $control ) {
+					$control->set_attribute( 'data-invalid', $this->get_attribute( 'data-invalid' ) );
+					return $control;
+				}
+			)
+		);
 
 		return sprintf(
 			'%1$s
@@ -118,28 +154,5 @@ class Viewer extends Contract\Viewer {
 			$this->input(),
 			$error_message
 		);
-	}
-
-	private function _generate_checkboxes_properties() {
-		$checkboxes_properties = [];
-
-		foreach ( $this->get_property( 'options' ) as $value => $label ) {
-			$checked = in_array( $value, $this->get_property( 'values' ) );
-
-			$checkboxes_properties[] = [
-				'attributes' => array_merge(
-					$this->get_property( 'attributes' ),
-					[
-						'name'     => $this->get_property( 'name' ),
-						'value'    => $value,
-						'disabled' => $this->get_property( 'disabled' ),
-						'checked'  => $checked,
-					]
-				),
-				'label' => $label,
-			];
-		}
-
-		return $checkboxes_properties;
 	}
 }

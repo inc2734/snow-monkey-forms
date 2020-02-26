@@ -46,26 +46,50 @@ class Viewer extends Contract\Viewer {
 	 */
 	protected $options = [];
 
+	/**
+	 * @var array
+	 */
+	protected $children = [];
+
+	protected function _init() {
+		$children = [];
+		foreach ( $this->get_property( 'options' ) as $value => $label ) {
+			$children[] = Helper::control(
+				'option',
+				[
+					'attributes' => [
+						'value'    => $value,
+						'selected' => $this->get_property( 'value' ) === $value,
+					],
+					'label' => $label,
+					'name'  => $this->get_attribute( 'name' ),
+				]
+			);
+		}
+		$this->set_property( 'children', $children );
+	}
+
 	public function save( $value ) {
 		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
 	}
 
 	public function input() {
+		$this->set_property(
+			'children',
+			$this->_get_updated_chlidren(
+				function( $control ) {
+					$selected = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+					$control->set_attribute( 'selected', $selected );
+					return $control;
+				}
+			)
+		);
+
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
 				'<div class="smf-control-description">%1$s</div>',
 				wp_kses_post( $description )
-			);
-		}
-
-		$options = [];
-		foreach ( $this->get_property( 'options' ) as $value => $label ) {
-			$options[] = sprintf(
-				'<option value="%1$s" %3$s>%2$s</option>',
-				esc_attr( $value ),
-				esc_html( $label ),
-				selected( $value, $this->get_property( 'value' ), false )
 			);
 		}
 
@@ -76,30 +100,24 @@ class Viewer extends Contract\Viewer {
 			</div>
 			%3$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			implode( '', $options ),
+			implode( '', $this->_children( 'input' ) ),
 			$description
 		);
 	}
 
 	public function confirm() {
-		$value = $this->get_property( 'value' );
-		if ( ! $value ) {
-			return;
-		}
-
-		return sprintf(
-			'%1$s%2$s',
-			esc_html( $this->options[ $value ] ),
-			Helper::control(
-				'hidden',
-				[
-					'attributes' => [
-						'name'  => $this->get_attribute( 'name' ),
-						'value' => $this->get_property( 'value' ),
-					],
-				]
-			)->input()
+		$this->set_property(
+			'children',
+			$this->_get_updated_chlidren(
+				function( $control ) {
+					$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+					$control->set_attribute( 'selected', $checked );
+					return $control;
+				}
+			)
 		);
+
+		return implode( '', $this->_children( 'confirm' ) );
 	}
 
 	public function error( $error_message = '' ) {
