@@ -9,7 +9,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Control\Hidden;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 
-class View extends Contract\View {
+class Viewer extends Contract\Viewer {
 
 	/**
 	 * @var array
@@ -17,12 +17,20 @@ class View extends Contract\View {
 	 *   @var string value
 	 *   @var boolean disabled
 	 */
-	protected $attributes = [];
+	protected $attributes = [
+		'name'     => '',
+		'value'    => '',
+		'disabled' => false,
+	];
+
+	public function save( $value ) {
+		$this->set_attribute( 'value', ! is_array( $value ) ? $value : '' );
+	}
 
 	public function input() {
 		return sprintf(
 			'<input type="hidden" %1$s>',
-			$this->generate_attributes( $this->attributes )
+			$this->_generate_attributes( $this->get_property( 'attributes' ) )
 		);
 	}
 

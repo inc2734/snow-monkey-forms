@@ -10,7 +10,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Control\Select;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class View extends Contract\View {
+class Viewer extends Contract\Viewer {
 
 	/**
 	 * @var array
@@ -18,7 +18,11 @@ class View extends Contract\View {
 	 *   @var boolean disabled
 	 *   @var boolean data-invalid
 	 */
-	protected $attributes = [];
+	protected $attributes = [
+		'name'         => '',
+		'disabled'     => false,
+		'data-invalid' => false,
+	];
 
 	/**
 	 * @var string
@@ -40,8 +44,12 @@ class View extends Contract\View {
 	 */
 	protected $options = [];
 
+	public function save( $value ) {
+		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
+	}
+
 	public function input() {
-		$description = $this->get( 'description' );
+		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
 				'<div class="smf-control-description">%1$s</div>',
@@ -50,12 +58,12 @@ class View extends Contract\View {
 		}
 
 		$options = [];
-		foreach ( $this->options as $value => $label ) {
+		foreach ( $this->get_property( 'options' ) as $value => $label ) {
 			$options[] = sprintf(
 				'<option value="%1$s" %3$s>%2$s</option>',
 				esc_attr( $value ),
 				esc_html( $label ),
-				selected( $value, $this->get( 'value' ), false )
+				selected( $value, $this->get_property( 'value' ), false )
 			);
 		}
 
@@ -65,14 +73,14 @@ class View extends Contract\View {
 				<span class="smf-select-control__toggle"></span>
 			</div>
 			%3$s',
-			$this->generate_attributes( $this->attributes ),
+			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
 			implode( '', $options ),
 			$description
 		);
 	}
 
 	public function confirm() {
-		$value = $this->get( 'value' );
+		$value = $this->get_property( 'value' );
 		if ( ! $value ) {
 			return;
 		}
@@ -84,8 +92,8 @@ class View extends Contract\View {
 				'hidden',
 				[
 					'attributes' => [
-						'name'  => $this->get( 'name' ),
-						'value' => $this->get( 'value' ),
+						'name'  => $this->get_attribute( 'name' ),
+						'value' => $this->get_property( 'value' ),
 					],
 				]
 			)->input()
@@ -93,7 +101,7 @@ class View extends Contract\View {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->set( 'data-invalid', true );
+		$this->set_attribute( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s
@@ -103,22 +111,5 @@ class View extends Contract\View {
 			$this->input(),
 			$error_message
 		);
-	}
-
-	public function get( $attribute ) {
-		if ( 'value' === $attribute ) {
-			return $this->value;
-		}
-
-		return parent::get( $attribute );
-	}
-
-	public function set( $attribute, $value ) {
-		if ( 'value' === $attribute ) {
-			$this->value = $value;
-			return true;
-		}
-
-		return parent::set( $attribute, $value );
 	}
 }

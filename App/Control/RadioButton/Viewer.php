@@ -10,7 +10,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Control\RadioButton;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class View extends Contract\View {
+class Viewer extends Contract\Viewer {
 
 	/**
 	 * @var array
@@ -20,7 +20,13 @@ class View extends Contract\View {
 	 *   @var boolean disabled
 	 *   @var boolean data-invalid
 	 */
-	protected $attributes = [];
+	protected $attributes = [
+		'name'         => '',
+		'value'        => '',
+		'checked'      => false,
+		'disabled'     => false,
+		'data-invalid' => false,
+	];
 
 	/**
 	 * @var array
@@ -32,9 +38,13 @@ class View extends Contract\View {
 	 */
 	protected $label = '';
 
+	public function save( $value ) {
+		$this->set_attribute( 'checked', $this->get_attribute( 'value' ) === $value );
+	}
+
 	public function input() {
-		$label = $this->get( 'label' );
-		$label = '' === $label || is_null( $label ) ? $this->get( 'value' ) : $label;
+		$label = $this->get_property( 'label' );
+		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
 
 		return sprintf(
 			'<label class="smf-label">
@@ -43,18 +53,18 @@ class View extends Contract\View {
 					<span class="smf-radio-button-control__label">%2$s</span>
 				</span>
 			</label>',
-			$this->generate_attributes( $this->attributes ),
+			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
 			esc_html( $label )
 		);
 	}
 
 	public function confirm() {
-		if ( ! $this->get( 'checked' ) ) {
+		if ( ! $this->get_attribute( 'checked' ) ) {
 			return;
 		}
 
-		$label = $this->get( 'label' );
-		$label = '' === $label || is_null( $label ) ? $this->get( 'value' ) : $label;
+		$label = $this->get_property( 'label' );
+		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
 
 		return sprintf(
 			'%1$s%2$s',
@@ -63,8 +73,8 @@ class View extends Contract\View {
 				'hidden',
 				[
 					'attributes' => [
-						'name'  => $this->get( 'name' ),
-						'value' => $this->get( 'value' ),
+						'name'  => $this->get_attribute( 'name' ),
+						'value' => $this->get_attribute( 'value' ),
 					],
 				]
 			)->input()
@@ -72,7 +82,7 @@ class View extends Contract\View {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->set( 'data-invalid', true );
+		$this->set_attribute( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s

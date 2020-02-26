@@ -22,7 +22,7 @@ class Helper {
 	}
 
 	public static function control( $type, array $attributes = [] ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type ) . '\\View';
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type ) . '\\Viewer';
 
 		try {
 			if ( class_exists( $class_name ) ) {
@@ -37,31 +37,6 @@ class Helper {
 
 	public static function the_control( $type, $attributes ) {
 		echo static::control( $type, $attributes )->input(); // xss ok.
-	}
-
-	public static function coordinate( $type, array $attributes = [] ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type ) . '\\Coordinator';
-
-		if ( class_exists( $class_name ) ) {
-			$coordinator = new $class_name( $type );
-			return $coordinator->coordinate( $attributes );
-		} else {
-			return $attributes;
-		}
-	}
-
-	public static function dynamic_block( $type, $attributes, $content = null ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Block\\' . static::generate_class_name( $type ) . '\\View';
-
-		try {
-			if ( class_exists( $class_name ) ) {
-				return $class_name::render( $attributes );
-			}
-			throw new \Exception( sprintf( '[Snow Monkey Forms] The class %1$s is not found.', $class_name ) );
-		} catch ( \Exception $e ) {
-			error_log( $e->getMessage() );
-			return;
-		}
 	}
 
 	public static function block_meta_normalization( array $attributes ) {

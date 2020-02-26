@@ -151,8 +151,7 @@ class Setting {
 				$type       = $matches[1];
 				$attributes = json_decode( $matches[2], true );
 				$name       = ! empty( $attributes['name'] ) ? $attributes['name'] : null;
-				$properties = Helper::coordinate( $type, $attributes );
-				$control    = Helper::control( $type, $properties );
+				$control    = Helper::control( $type, Helper::block_meta_normalization( $attributes ) );
 
 				if ( $control && $name ) {
 					$this->controls[ $name ] = $control;

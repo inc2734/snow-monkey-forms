@@ -5,22 +5,24 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Url;
+namespace Snow_Monkey\Plugin\Forms\App\Control\Textarea;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class View extends Contract\View {
+class Viewer extends Contract\Viewer {
 
 	/**
 	 * @var array
 	 *   @var string name
-	 *   @var string value
-	 *   @var string placeholder
 	 *   @var boolean disabled
 	 *   @var boolean data-invalid
 	 */
-	protected $attributes = [];
+	protected $attributes = [
+		'name'         => '',
+		'disabled'     => false,
+		'data-invalid' => false,
+	];
 
 	/**
 	 * @var string
@@ -30,12 +32,19 @@ class View extends Contract\View {
 	/**
 	 * @var array
 	 */
-	protected $validations = [
-		'url' => true,
-	];
+	protected $validations = [];
+
+	/**
+	 * @var string
+	 */
+	public $value = '';
+
+	public function save( $value ) {
+		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
+	}
 
 	public function input() {
-		$description = $this->get( 'description' );
+		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
 				'<div class="smf-control-description">%1$s</div>',
@@ -44,11 +53,12 @@ class View extends Contract\View {
 		}
 
 		return sprintf(
-			'<div class="smf-text-control">
-				<input class="smf-text-control__control" type="url" %1$s>
+			'<div class="smf-textarea-control">
+				<textarea class="smf-textarea-control__control" type="text" %1$s>%2$s</textarea>
 			</div>
-			%2$s',
-			$this->generate_attributes( $this->attributes ),
+			%3$s',
+			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			esc_html( $this->get_property( 'value' ) ),
 			$description
 		);
 	}
@@ -56,13 +66,13 @@ class View extends Contract\View {
 	public function confirm() {
 		return sprintf(
 			'%1$s%2$s',
-			esc_html( $this->get( 'value' ) ),
+			nl2br( esc_html( $this->get_property( 'value' ) ) ),
 			Helper::control(
 				'hidden',
 				[
 					'attributes' => [
-						'name'  => $this->get( 'name' ),
-						'value' => $this->get( 'value' ),
+						'name'  => $this->get_attribute( 'name' ),
+						'value' => $this->get_property( 'value' ),
 					],
 				]
 			)->input()
@@ -70,7 +80,7 @@ class View extends Contract\View {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->set( 'data-invalid', true );
+		$this->set_attribute( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s

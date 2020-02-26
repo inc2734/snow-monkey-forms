@@ -10,12 +10,15 @@ namespace Snow_Monkey\Plugin\Forms\App\Control\Checkboxes;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class View extends Contract\View {
+class Viewer extends Contract\Viewer {
 
 	/**
 	 * @var array
+	 *   @var boolean data-invalid
 	 */
-	protected $attributes = [];
+	protected $attributes = [
+		'data-invalid' => false,
+	];
 
 	/**
 	 * @var string
@@ -52,8 +55,12 @@ class View extends Contract\View {
 	 */
 	protected $options = [];
 
-	public function _init() {
-		$this->name = $this->get( 'name' ) . '[]';
+	protected function _init() {
+		$this->set_property( 'name', $this->get_property( 'name' ) . '[]' );
+	}
+
+	public function save( $value ) {
+		$this->set_property( 'values', ! is_array( $value ) ? [] : $value );
 	}
 
 	public function input() {
@@ -63,7 +70,7 @@ class View extends Contract\View {
 			$checkboxes[] = Helper::control( 'checkbox', $checkbox_properties )->input();
 		}
 
-		$description = $this->get( 'description' );
+		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
 				'<div class="smf-control-description">%1$s</div>',
@@ -76,14 +83,14 @@ class View extends Contract\View {
 				<div class="smf-checkboxes-control__control">%2$s</div>
 			</div>
 			%3$s',
-			$this->generate_attributes( $this->attributes ),
+			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
 			implode( '', $checkboxes ),
 			$description
 		);
 	}
 
 	public function confirm() {
-		if ( ! $this->values ) {
+		if ( ! $this->get_property( 'values' ) ) {
 			return;
 		}
 
@@ -96,12 +103,12 @@ class View extends Contract\View {
 			$checkboxes[] = Helper::control( 'checkbox', $checkbox_properties )->confirm();
 		}
 
-		$delimiter = $this->get( 'delimiter' );
+		$delimiter = $this->get_property( 'delimiter' );
 		return implode( $delimiter, $checkboxes );
 	}
 
 	public function error( $error_message = '' ) {
-		$this->set( 'data-invalid', true );
+		$this->set_attribute( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s
@@ -113,40 +120,19 @@ class View extends Contract\View {
 		);
 	}
 
-	public function get( $attribute ) {
-		if ( 'name' === $attribute ) {
-			return str_replace( '[]', '', $this->$attribute );
-		}
-
-		if ( 'disabled' === $attribute ) {
-			return $this->$attribute;
-		}
-
-		return parent::get( $attribute );
-	}
-
-	public function set( $attribute, $value ) {
-		if ( 'disabled' === $attribute ) {
-			$this->$attribute = $value;
-			return true;
-		}
-
-		return parent::set( $attribute, $value );
-	}
-
 	private function _generate_checkboxes_properties() {
 		$checkboxes_properties = [];
 
-		foreach ( $this->options as $value => $label ) {
-			$checked = in_array( $value, $this->get( 'values' ) );
+		foreach ( $this->get_property( 'options' ) as $value => $label ) {
+			$checked = in_array( $value, $this->get_property( 'values' ) );
 
 			$checkboxes_properties[] = [
 				'attributes' => array_merge(
-					$this->attributes,
+					$this->get_property( 'attributes' ),
 					[
-						'name'     => $this->name,
+						'name'     => $this->get_property( 'name' ),
 						'value'    => $value,
-						'disabled' => $this->disabled,
+						'disabled' => $this->get_property( 'disabled' ),
 						'checked'  => $checked,
 					]
 				),

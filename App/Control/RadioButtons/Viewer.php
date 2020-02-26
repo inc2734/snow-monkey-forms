@@ -10,12 +10,15 @@ namespace Snow_Monkey\Plugin\Forms\App\Control\RadioButtons;
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class View extends Contract\View {
+class Viewer extends Contract\Viewer {
 
 	/**
 	 * @var array
+	 *   @var boolean data-invalid
 	 */
-	protected $attributes = [];
+	protected $attributes = [
+		'data-invalid' => false,
+	];
 
 	/**
 	 * @var string
@@ -47,6 +50,10 @@ class View extends Contract\View {
 	 */
 	protected $options = [];
 
+	public function save( $value ) {
+		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
+	}
+
 	public function input() {
 		$radio_buttons = [];
 		$radio_buttons_properties = $this->_generate_radio_buttons_properties();
@@ -54,7 +61,7 @@ class View extends Contract\View {
 			$radio_buttons[] = Helper::control( 'radio-button', $radio_properties )->input();
 		}
 
-		$description = $this->get( 'description' );
+		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
 				'<div class="smf-control-description">%1$s</div>',
@@ -67,14 +74,14 @@ class View extends Contract\View {
 				<div class="smf-radio-buttons-control__control">%2$s</div>
 			</div>
 			%3$s',
-			$this->generate_attributes( $this->attributes ),
+			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
 			implode( '', $radio_buttons ),
 			$description
 		);
 	}
 
 	public function confirm() {
-		$value = $this->get( 'value' );
+		$value = $this->get_property( 'value' );
 		if ( ! $value ) {
 			return;
 		}
@@ -86,7 +93,7 @@ class View extends Contract\View {
 			'radio-button',
 			[
 				'attributes' => [
-					'name'    => $this->get( 'name' ),
+					'name'    => $this->get_property( 'name' ),
 					'value'   => $value,
 					'checked' => $checked,
 				],
@@ -96,7 +103,7 @@ class View extends Contract\View {
 	}
 
 	public function error( $error_message = '' ) {
-		$this->set( 'data-invalid', true );
+		$this->set_attribute( 'data-invalid', true );
 
 		return sprintf(
 			'%1$s
@@ -108,35 +115,18 @@ class View extends Contract\View {
 		);
 	}
 
-	public function get( $attribute ) {
-		if ( 'name' === $attribute || 'value' === $attribute || 'disabled' === $attribute ) {
-			return $this->$attribute;
-		}
-
-		return parent::get( $attribute );
-	}
-
-	public function set( $attribute, $value ) {
-		if ( 'value' === $attribute || 'disabled' === $attribute ) {
-			$this->$attribute = $value;
-			return true;
-		}
-
-		return parent::set( $attribute, $value );
-	}
-
 	private function _generate_radio_buttons_properties() {
 		$radio_buttons_properties = [];
 
-		foreach ( $this->options as $value => $label ) {
+		foreach ( $this->get_property( 'options' ) as $value => $label ) {
 			$radio_buttons_properties[] = [
 				'attributes' => array_merge(
-					$this->attributes,
+					$this->get_property( 'attributes' ),
 					[
-						'name'     => $this->get( 'name' ),
+						'name'     => $this->get_property( 'name' ),
 						'value'    => $value,
-						'disabled' => $this->get( 'disabled' ),
-						'checked'  => $value === $this->get( 'value' ),
+						'disabled' => $this->get_property( 'disabled' ),
+						'checked'  => $value === $this->get_property( 'value' ),
 					]
 				),
 				'label' => $label,

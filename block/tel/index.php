@@ -21,8 +21,6 @@ add_action(
 						return;
 					}
 
-					$properties = Helper::coordinate( 'tel', $attributes );
-
 					ob_start();
 					include( __DIR__ . '/view.php' );
 					return ob_get_clean();

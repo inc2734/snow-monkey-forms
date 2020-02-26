@@ -78,11 +78,10 @@ class Validator {
 	protected function _set_validation_map( Setting $setting ) {
 		$validation_map = [];
 
-		foreach ( $setting->get( 'controls' ) as $control ) {
-			$name        = $control->get( 'name' );
-			$validations = $control->get( 'validations' );
+		foreach ( $setting->get( 'controls' ) as $name => $control ) {
+			$validations = $control->get_property( 'validations' );
 
-			if ( is_null( $name ) || ! $validations ) {
+			if ( ! $validations ) {
 				continue;
 			}
 

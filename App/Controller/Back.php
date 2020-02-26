@@ -16,16 +16,9 @@ class Back extends Contract\Controller {
 		$controls = [];
 		$setting_controls = $this->setting->get( 'controls' );
 
-		foreach ( $setting_controls as $control ) {
-			$name = $control->get( 'name' );
-			if ( is_null( $name ) || '' === $name ) {
-				continue;
-			}
-
+		foreach ( $setting_controls as $name => $control ) {
 			$value = $this->responser->get( $name );
-			$control->set( 'value', is_null( $value ) || is_array( $value ) ? '' : $value );
-			$control->set( 'values', is_null( $value ) || ! is_array( $value ) ? [] : $value );
-
+			$control->save( $value );
 			$controls[ $name ] = $control->input();
 		}
 
