@@ -7,7 +7,7 @@ import { __ } from '@wordpress/i18n';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
-	const { name, value, options, description } = attributes;
+	const { name, value, options, id, controlClass, description } = attributes;
 
 	return (
 		<>
@@ -38,6 +38,26 @@ const edit = ( { attributes, setAttributes } ) => {
 						value={ value }
 						onChange={ ( attribute ) =>
 							setAttributes( { value: attribute } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'id', 'snow-monkey-forms' ) }
+						value={ id }
+						onChange={ ( attribute ) =>
+							setAttributes( { id: attribute } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'class', 'snow-monkey-forms' ) }
+						value={ controlClass }
+						help={ __(
+							'Separate multiple classes with spaces.',
+							'snow-monkey-forms'
+						) }
+						onChange={ ( attribute ) =>
+							setAttributes( { controlClass: attribute } )
 						}
 					/>
 				</PanelBody>

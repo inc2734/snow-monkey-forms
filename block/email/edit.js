@@ -14,6 +14,8 @@ const edit = ( { attributes, setAttributes } ) => {
 		placeholder,
 		maxlength,
 		size,
+		id,
+		controlClass,
 		description,
 	} = attributes;
 
@@ -74,6 +76,26 @@ const edit = ( { attributes, setAttributes } ) => {
 								size: stringToNumber( attribute, size ),
 							} );
 						} }
+					/>
+
+					<TextControl
+						label={ __( 'id', 'snow-monkey-forms' ) }
+						value={ id }
+						onChange={ ( attribute ) =>
+							setAttributes( { id: attribute } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'class', 'snow-monkey-forms' ) }
+						value={ controlClass }
+						help={ __(
+							'Separate multiple classes with spaces.',
+							'snow-monkey-forms'
+						) }
+						onChange={ ( attribute ) =>
+							setAttributes( { controlClass: attribute } )
+						}
 					/>
 				</PanelBody>
 

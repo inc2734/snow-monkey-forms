@@ -10,6 +10,9 @@ registerBlockType( 'snow-monkey-forms/control-email', {
 	icon: 'editor-ol',
 	category: 'snow-monkey-forms',
 	parent: [ 'snow-monkey-forms/item' ],
+	supports: {
+		customClassName: false,
+	},
 	attributes,
 	edit,
 	save,

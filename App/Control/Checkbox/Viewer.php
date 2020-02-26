@@ -25,6 +25,8 @@ class Viewer extends Contract\Viewer {
 		'value'        => '',
 		'checked'      => false,
 		'disabled'     => false,
+		'id'           => '',
+		'class'        => 'smf-checkbox-control__control',
 		'data-invalid' => false,
 	];
 
@@ -49,7 +51,7 @@ class Viewer extends Contract\Viewer {
 		return sprintf(
 			'<label class="smf-label">
 				<span class="smf-checkbox-control">
-					<input class="smf-checkbox-control__control" type="checkbox" %1$s>
+					<input type="checkbox" %1$s>
 					<span class="smf-checkbox-control__label">%2$s</span>
 				</span>
 			</label>',

@@ -25,6 +25,8 @@ class Viewer extends Contract\Viewer {
 		'value'        => '',
 		'checked'      => false,
 		'disabled'     => false,
+		'id'           => '',
+		'class'        => 'smf-radio-button-control__control',
 		'data-invalid' => false,
 	];
 
@@ -49,7 +51,7 @@ class Viewer extends Contract\Viewer {
 		return sprintf(
 			'<label class="smf-label">
 				<span class="smf-radio-button-control">
-					<input class="smf-radio-button-control__control" type="radio" %1$s>
+					<input type="radio" %1$s>
 					<span class="smf-radio-button-control__label">%2$s</span>
 				</span>
 			</label>',

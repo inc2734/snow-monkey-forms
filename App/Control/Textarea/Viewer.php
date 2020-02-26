@@ -21,6 +21,8 @@ class Viewer extends Contract\Viewer {
 	protected $attributes = [
 		'name'         => '',
 		'disabled'     => false,
+		'id'           => '',
+		'class'        => 'smf-textarea-control__control',
 		'data-invalid' => false,
 	];
 
@@ -54,7 +56,7 @@ class Viewer extends Contract\Viewer {
 
 		return sprintf(
 			'<div class="smf-textarea-control">
-				<textarea class="smf-textarea-control__control" type="text" %1$s>%2$s</textarea>
+				<textarea %1$s>%2$s</textarea>
 			</div>
 			%3$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),

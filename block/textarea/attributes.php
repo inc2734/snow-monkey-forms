@@ -22,6 +22,14 @@ return [
 		'type'    => 'boolean',
 		'default' => false,
 	],
+	'id' => [
+		'type'    => 'string',
+		'default' => '',
+	],
+	'controlClass' => [
+		'type'    => 'string',
+		'default' => '',
+	],
 	'description' => [
 		'type'    => 'string',
 		'default' => '',

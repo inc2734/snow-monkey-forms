@@ -71,6 +71,11 @@ class Helper {
 			$attributes['values'] = $values;
 		}
 
+		if ( isset( $attributes['controlClass'] ) ) {
+			$attributes['class'] = $attributes['controlClass'];
+			unset( $attributes['controlClass'] );
+		}
+
 		return $attributes;
 	}
 }

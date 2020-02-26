@@ -20,6 +20,8 @@ class Viewer extends Contract\Viewer {
 	protected $attributes = [
 		'name'     => '',
 		'disabled' => false,
+		'id'       => '',
+		'class'    => 'smf-button-control__control',
 	];
 
 	/**
@@ -33,10 +35,10 @@ class Viewer extends Contract\Viewer {
 	public function input() {
 		return sprintf(
 			'<span class="smf-button-control">
-				<button class="smf-button-control__control" type="submit" %2$s>%1$s</button>
+				<button type="submit" %1$s>%2$s</button>
 			</span>',
-			wp_kses_post( $this->get_property( 'label' ) ),
-			$this->_generate_attributes( $this->get_property( 'attributes' ) )
+			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			wp_kses_post( $this->get_property( 'label' ) )
 		);
 	}
 

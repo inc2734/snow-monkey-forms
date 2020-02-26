@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-25 12:02+0900\n"
-"PO-Revision-Date: 2020-02-25 12:02+0900\n"
+"POT-Creation-Date: 2020-02-26 14:03+0900\n"
+"PO-Revision-Date: 2020-02-26 14:04+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -16,24 +16,24 @@ msgstr ""
 "X-Poedit-WPHeader: snow-monkey-forms.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
 "X-Poedit-SearchPathExcluded-2: tests\n"
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
-#: App/Controller/Back.php:44 App/Controller/Error.php:46
+#: App/Controller/Back.php:37 App/Controller/Error.php:39
 #: App/Controller/Input.php:29
 msgid "Confirm"
 msgstr "確認画面へ"
 
-#: App/Controller/Confirm.php:44
+#: App/Controller/Confirm.php:37
 msgid "Back"
 msgstr "戻る"
 
-#: App/Controller/Confirm.php:54 App/Controller/Error.php:66
+#: App/Controller/Confirm.php:47 App/Controller/Error.php:59
 #: App/Controller/Input.php:49
 msgid "Send"
 msgstr "送信する"
@@ -86,40 +86,97 @@ msgstr "メッセージ"
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: block/email/edit.js:16 block/form/input/index.js:40
-#: block/multi-checkbox/edit.js:15 block/select/edit.js:15
-#: block/text/edit.js:16 block/textarea/edit.js:15 block/url/edit.js:16
-msgid "Settings"
-msgstr "設定"
+#: block/checkboxes/edit.js:15 block/email/edit.js:25
+#: block/radio-buttons/edit.js:15 block/select/edit.js:15 block/tel/edit.js:25
+#: block/text/edit.js:25 block/textarea/edit.js:22 block/url/edit.js:25
+msgid "Attributes"
+msgstr "属性"
 
-#: block/email/edit.js:18 block/multi-checkbox/edit.js:17
-#: block/multi-radio/edit.js:17 block/select/edit.js:17 block/text/edit.js:18
-#: block/textarea/edit.js:17 block/url/edit.js:18
+#: block/checkboxes/edit.js:17 block/email/edit.js:27
+#: block/radio-buttons/edit.js:17 block/select/edit.js:17 block/tel/edit.js:27
+#: block/text/edit.js:27 block/textarea/edit.js:24 block/url/edit.js:27
 msgid "name"
 msgstr "name"
 
-#: block/email/edit.js:26 block/multi-radio/edit.js:37 block/select/edit.js:37
-#: block/text/edit.js:26 block/textarea/edit.js:25 block/url/edit.js:26
+#: block/checkboxes/edit.js:25 block/radio-buttons/edit.js:25
+#: block/select/edit.js:25
+msgid "options"
+msgstr "options"
+
+#: block/checkboxes/edit.js:28 block/radio-buttons/edit.js:28
+#: block/select/edit.js:28
+msgid "\"value\" : \"label\"\\u21B5"
+msgstr "“value” : “label”\\u21B5"
+
+#: block/checkboxes/edit.js:37
+msgid "values"
+msgstr "values"
+
+#: block/checkboxes/edit.js:39
+msgid "value\\u21B5"
+msgstr "value\\u21B5"
+
+#: block/checkboxes/edit.js:46
+msgid "Delimiter"
+msgstr ""
+
+#: block/checkboxes/edit.js:55 block/email/edit.js:103
+#: block/radio-buttons/edit.js:46 block/select/edit.js:66 block/tel/edit.js:103
+#: block/text/edit.js:103 block/textarea/edit.js:69 block/url/edit.js:103
+msgid "Block settings"
+msgstr "ブロック設定"
+
+#: block/checkboxes/edit.js:58 block/email/edit.js:106
+#: block/radio-buttons/edit.js:49 block/select/edit.js:69 block/tel/edit.js:106
+#: block/text/edit.js:106 block/textarea/edit.js:72 block/url/edit.js:106
+msgid "Description"
+msgstr "説明"
+
+#: block/checkboxes/index.js:9
+msgid "Checkboxes"
+msgstr "チェックボックス"
+
+#: block/email/edit.js:35 block/radio-buttons/edit.js:37
+#: block/select/edit.js:37 block/tel/edit.js:35 block/text/edit.js:35
+#: block/textarea/edit.js:32 block/url/edit.js:35
 msgid "value"
 msgstr "value"
 
-#: block/email/edit.js:34 block/text/edit.js:34 block/textarea/edit.js:33
-#: block/url/edit.js:34
+#: block/email/edit.js:43 block/tel/edit.js:43 block/text/edit.js:43
+#: block/textarea/edit.js:40 block/url/edit.js:43
 msgid "placeholder"
 msgstr "placeholder"
 
-#: block/email/edit.js:42 block/text/edit.js:42 block/url/edit.js:42
+#: block/email/edit.js:51 block/tel/edit.js:51 block/text/edit.js:51
+#: block/url/edit.js:51
 msgid "maxlength"
 msgstr "maxlength"
 
-#: block/email/edit.js:45 block/email/edit.js:62 block/text/edit.js:45
-#: block/text/edit.js:62 block/url/edit.js:45 block/url/edit.js:62
+#: block/email/edit.js:54 block/email/edit.js:71 block/tel/edit.js:54
+#: block/tel/edit.js:71 block/text/edit.js:54 block/text/edit.js:71
+#: block/url/edit.js:54 block/url/edit.js:71
 msgid "If 0, not restricted."
 msgstr "0 の場合、制限されません。"
 
-#: block/email/edit.js:59 block/text/edit.js:59 block/url/edit.js:59
+#: block/email/edit.js:68 block/tel/edit.js:68 block/text/edit.js:68
+#: block/url/edit.js:68
 msgid "size"
 msgstr "size"
+
+#: block/email/edit.js:82 block/select/edit.js:45 block/tel/edit.js:82
+#: block/text/edit.js:82 block/textarea/edit.js:48 block/url/edit.js:82
+msgid "id"
+msgstr "id"
+
+#: block/email/edit.js:90 block/select/edit.js:53 block/tel/edit.js:90
+#: block/text/edit.js:90 block/textarea/edit.js:56 block/url/edit.js:90
+msgid "class"
+msgstr "class"
+
+#: block/email/edit.js:93 block/select/edit.js:56 block/tel/edit.js:93
+#: block/text/edit.js:93 block/textarea/edit.js:59 block/url/edit.js:93
+msgid "Separate multiple classes with spaces."
+msgstr "複数クラスを半角スペースで区切ります。"
 
 #: block/email/index.js:9
 msgid "email"
@@ -136,6 +193,10 @@ msgstr "完了画面"
 #: block/form/input/index.js:11
 msgid "Input page"
 msgstr "入力画面"
+
+#: block/form/input/index.js:40
+msgid "Settings"
+msgstr "設定"
 
 #: block/form/input/index.js:44
 msgid "Form style"
@@ -177,31 +238,9 @@ msgstr "ラベル"
 msgid "Item"
 msgstr "項目"
 
-#: block/multi-checkbox/edit.js:25 block/multi-radio/edit.js:25
-#: block/select/edit.js:25
-msgid "options"
-msgstr "options"
-
-#: block/multi-checkbox/edit.js:28 block/multi-radio/edit.js:28
-#: block/select/edit.js:28
-msgid "\"value\" : \"label\"\\u21B5"
-msgstr "“value” : “label”\\u21B5"
-
-#: block/multi-checkbox/edit.js:37
-msgid "values"
-msgstr "values"
-
-#: block/multi-checkbox/edit.js:39
-msgid "value\\u21B5"
-msgstr "value\\u21B5"
-
-#: block/multi-checkbox/index.js:9
-msgid "Multi checkbox"
-msgstr "複数チェックボックス"
-
-#: block/multi-radio/index.js:9
-msgid "Multi radio"
-msgstr "複数ラジオボタン"
+#: block/radio-buttons/index.js:9
+msgid "Radio buttons"
+msgstr "ラジオボタン"
 
 #: block/select/index.js:9
 msgid "Select"
@@ -214,6 +253,10 @@ msgstr "フォームを選択してください"
 #: block/snow-monkey-form/index.js:9
 msgid "Snow Monkey Form"
 msgstr "Snow Monkey Forms"
+
+#: block/tel/index.js:9
+msgid "Tel"
+msgstr "Tel"
 
 #: block/text/index.js:9
 msgid "Text"
@@ -295,20 +338,20 @@ msgstr "inc2734"
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
 
+#~ msgid "Multi checkbox"
+#~ msgstr "複数チェックボックス"
+
+#~ msgid "Multi radio"
+#~ msgstr "複数ラジオボタン"
+
 #~ msgid "Select this"
 #~ msgstr "選択してください"
 
 #~ msgid "checked"
 #~ msgstr "checked"
 
-#~ msgid "Checkbox"
-#~ msgstr "チェックボックス"
-
 #~ msgid "Radio"
 #~ msgstr "ラジオボタン"
-
-#~ msgid "Form settings"
-#~ msgstr "フォーム設定"
 
 #~ msgid "Form"
 #~ msgstr "フォーム"

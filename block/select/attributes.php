@@ -18,6 +18,14 @@ return [
 		'type'    => 'boolean',
 		'default' => false,
 	],
+	'id' => [
+		'type'    => 'string',
+		'default' => '',
+	],
+	'controlClass' => [
+		'type'    => 'string',
+		'default' => '',
+	],
 	'options' => [
 		'type'    => 'string',
 		'default' => '',

@@ -27,8 +27,8 @@ abstract class Viewer {
 				$is_string_both = ! is_array( $property ) && ! is_array( $value );
 
 				if ( $is_array_both || $is_string_both ) {
-					// If "validations", merge. Otherwise, overwrite.
-					if ( 'validations' === $key ) {
+					// If "validations" and "attributes", merge. Otherwise, overwrite.
+					if ( 'validations' === $key || 'attributes' === $key ) {
 						$this->set_property( $key, array_merge( $property, $value ) );
 					} else {
 						$this->set_property( $key, $value );
@@ -39,7 +39,12 @@ abstract class Viewer {
 				$is_string_both = ! is_array( $attribute ) && ! is_array( $value );
 
 				if ( $is_array_both || $is_string_both ) {
-					$this->set_attribute( $key, $value );
+					// If "class", merge. Otherwise, overwrite.
+					if ( 'class' === $key ) {
+						$this->set_attribute( $key, trim( $attribute . ' ' . $value ) );
+					} else {
+						$this->set_attribute( $key, $value );
+					}
 				}
 			}
 		}
@@ -73,7 +78,12 @@ abstract class Viewer {
 				}
 			}
 
-			$attributes[] = $this->_generate_attribute_string( $key, $value );
+			$attribute_string = $this->_generate_attribute_string( $key, $value );
+			if ( ! $attribute_string ) {
+				continue;
+			}
+
+			$attributes[] = $attribute_string;
 		}
 
 		$attributes = implode( ' ', $attributes );
@@ -81,6 +91,11 @@ abstract class Viewer {
 	}
 
 	protected function _generate_attribute_string( $key, $value ) {
+		$value = trim( $value );
+		if ( '' === $value ) {
+			return;
+		}
+
 		return sprintf(
 			'%s="%s"',
 			esc_attr( $key ),

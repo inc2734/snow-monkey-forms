@@ -24,6 +24,10 @@ class Viewer extends Contract\Viewer {
 		'value'        => '',
 		'placeholder'  => '',
 		'disabled'     => false,
+		'id'           => '',
+		'class'        => 'smf-text-control__control',
+		'maxlength'    => 0,
+		'size'         => 0,
 		'data-invalid' => false,
 	];
 
@@ -54,7 +58,7 @@ class Viewer extends Contract\Viewer {
 
 		return sprintf(
 			'<div class="smf-text-control">
-				<input class="smf-text-control__control" type="email" %1$s>
+				<input type="email" %1$s>
 			</div>
 			%2$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),

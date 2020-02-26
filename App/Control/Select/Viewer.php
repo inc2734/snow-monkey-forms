@@ -21,6 +21,8 @@ class Viewer extends Contract\Viewer {
 	protected $attributes = [
 		'name'         => '',
 		'disabled'     => false,
+		'id'           => '',
+		'class'        => 'smf-select-control__control',
 		'data-invalid' => false,
 	];
 
@@ -69,7 +71,7 @@ class Viewer extends Contract\Viewer {
 
 		return sprintf(
 			'<div class="smf-select-control">
-				<select class="smf-select-control__control" %1$s>%2$s</select>
+				<select %1$s>%2$s</select>
 				<span class="smf-select-control__toggle"></span>
 			</div>
 			%3$s',
