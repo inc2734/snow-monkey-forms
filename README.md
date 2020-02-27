@@ -1,6 +1,6 @@
 # Snow Monkey Forms
 
-This is a mail form plugin specifically for Premium WordPress Theme Snow Monkey.
+The Snow Monkey Forms is a mail form plugin for the block editor.
 
 ## Build
 
@@ -8,10 +8,4 @@ This is a mail form plugin specifically for Premium WordPress Theme Snow Monkey.
 $ composer install
 $ npm install
 $ npm run build
-```
-
-## How to use
-
-```
-[snow_monkey_form id="<Form ID>"]
 ```

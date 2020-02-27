@@ -5,7 +5,55 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 5.1
 Tested up to: 5.1
 Requires PHP: 5.6
+Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-This is a mail form plugin specifically for Premium WordPress Theme Snow Monkey.
+The Snow Monkey Forms is a mail form plugin for the block editor.
+
+== Description ==
+
+The Snow Monkey Forms is a mail form plugin for the block editor.
+
+GitHub: https://github.com/inc2734/snow-monkey-forms/
+
+== Form fields ==
+
+* Text
+* email
+* Tel
+* URL
+* Textarea
+* Select
+* Radio buttons
+* Checkboxes
+
+== Installation ==
+
+This plugin can be installed directly from your site.
+
+1. Log in and navigate to Plugins → Add New.
+1. Type “Snow Monkey Forms into the Search and hit Enter.
+1. Locate the Snow Monkey Editor plugin in the list of search results and click Install Now.
+1. Once installed, click the Activate link.
+1. Snow Monkey Forms → Add New.
+1. Add "Item" block into the input page field.
+1. Add any form fields into a "Item" block.
+1. Save the form settings.
+1. Add "Snow Monkey Form" block into a post and page.
+
+== Frequently Asked Questions ==
+
+= Can the Snow Monkey Forms be used with any theme? =
+
+Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
+
+== Changelog ==
+
+= 0.1.0 =
+
+* Initial release.
+
+== Upgrade Notice ==
+
+Nothing in particular.
