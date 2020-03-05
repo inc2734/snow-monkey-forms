@@ -1,14 +1,14 @@
 import { TextareaControl } from '@wordpress/components';
-import { useSelect, useDispatch } from '@wordpress/data';
+import { useEntityProp } from '@wordpress/core-data';
+import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 export default function() {
-	const meta = useSelect( ( select ) => {
-		const { getEditedPostAttribute } = select( 'core/editor' );
-		return getEditedPostAttribute( 'meta' ).administrator_email_body;
-	}, [] );
-
-	const { editPost } = useDispatch( 'core/editor' );
+	const [ meta, setMeta ] = useEntityProp(
+		'postType',
+		'snow-monkey-forms',
+		'meta'
+	);
 
 	const currentPost = useSelect( ( select ) => {
 		return select( 'core/editor' ).getCurrentPost();
@@ -17,11 +17,13 @@ export default function() {
 	return (
 		<TextareaControl
 			label={ __( 'Body', 'snow-monkey-forms' ) }
-			value={ ! currentPost.title && ! meta ? '{all-fields}' : meta }
+			value={
+				! currentPost.title && ! meta.administrator_email_body
+					? '{all-fields}'
+					: meta.administrator_email_body
+			}
 			onChange={ ( value ) =>
-				editPost( {
-					meta: { administrator_email_body: value },
-				} )
+				setMeta( { administrator_email_body: value } )
 			}
 		/>
 	);

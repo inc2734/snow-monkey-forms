@@ -1,14 +1,14 @@
 import { TextControl } from '@wordpress/components';
-import { useSelect, useDispatch } from '@wordpress/data';
+import { useEntityProp } from '@wordpress/core-data';
+import { useSelect } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
 export default function() {
-	const meta = useSelect( ( select ) => {
-		const { getEditedPostAttribute } = select( 'core/editor' );
-		return getEditedPostAttribute( 'meta' ).auto_reply_email_subject;
-	}, [] );
-
-	const { editPost } = useDispatch( 'core/editor' );
+	const [ meta, setMeta ] = useEntityProp(
+		'postType',
+		'snow-monkey-forms',
+		'meta'
+	);
 
 	const currentPost = useSelect( ( select ) => {
 		return select( 'core/editor' ).getCurrentPost();
@@ -18,14 +18,12 @@ export default function() {
 		<TextControl
 			label={ __( 'Subject', 'snow-monkey-forms' ) }
 			value={
-				! currentPost.title && ! meta
+				! currentPost.title && ! meta.auto_reply_email_subject
 					? __( 'Automatic reply notification', 'snow-monkey-forms' )
-					: meta
+					: meta.auto_reply_email_subject
 			}
 			onChange={ ( value ) =>
-				editPost( {
-					meta: { auto_reply_email_subject: value },
-				} )
+				setMeta( { auto_reply_email_subject: value } )
 			}
 		/>
 	);
