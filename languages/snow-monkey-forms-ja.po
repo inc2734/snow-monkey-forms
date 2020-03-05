@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-02-26 14:03+0900\n"
-"PO-Revision-Date: 2020-02-26 14:04+0900\n"
+"POT-Creation-Date: 2020-03-05 15:38+0900\n"
+"PO-Revision-Date: 2020-03-05 15:39+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-WPHeader: snow-monkey-forms.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
@@ -63,72 +63,52 @@ msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:180 snow-monkey-forms.php:345
+#: snow-monkey-forms.php:181 snow-monkey-forms.php:346
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:193
+#: snow-monkey-forms.php:194
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:213
+#: snow-monkey-forms.php:214
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:233
+#: snow-monkey-forms.php:234
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:259
+#: snow-monkey-forms.php:260
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: block/checkboxes/edit.js:15 block/email/edit.js:25
-#: block/radio-buttons/edit.js:15 block/select/edit.js:15 block/tel/edit.js:25
-#: block/text/edit.js:25 block/textarea/edit.js:22 block/url/edit.js:25
+#: block/checkboxes/edit.js:16 block/email/edit.js:34
+#: block/radio-buttons/edit.js:16 block/select/edit.js:22 block/tel/edit.js:34
+#: block/text/edit.js:34 block/textarea/edit.js:29 block/url/edit.js:34
 msgid "Attributes"
 msgstr "属性"
 
-#: block/checkboxes/edit.js:17 block/email/edit.js:27
-#: block/radio-buttons/edit.js:17 block/select/edit.js:17 block/tel/edit.js:27
-#: block/text/edit.js:27 block/textarea/edit.js:24 block/url/edit.js:27
-msgid "name"
-msgstr "name"
-
-#: block/checkboxes/edit.js:25 block/radio-buttons/edit.js:25
-#: block/select/edit.js:25
-msgid "options"
-msgstr "options"
-
-#: block/checkboxes/edit.js:28 block/radio-buttons/edit.js:28
-#: block/select/edit.js:28
-msgid "\"value\" : \"label\"\\u21B5"
-msgstr "“value” : “label”\\u21B5"
-
-#: block/checkboxes/edit.js:37
-msgid "values"
-msgstr "values"
-
 #: block/checkboxes/edit.js:39
-msgid "value\\u21B5"
-msgstr "value\\u21B5"
-
-#: block/checkboxes/edit.js:46
 msgid "Delimiter"
-msgstr ""
+msgstr "区切り文字"
 
-#: block/checkboxes/edit.js:55 block/email/edit.js:103
-#: block/radio-buttons/edit.js:46 block/select/edit.js:66 block/tel/edit.js:103
-#: block/text/edit.js:103 block/textarea/edit.js:69 block/url/edit.js:103
+#: block/checkboxes/edit.js:41
+msgid "Optional. Character that separates each item."
+msgstr "任意。各項目を区切る文字。"
+
+#: block/checkboxes/edit.js:52 block/email/edit.js:93
+#: block/radio-buttons/edit.js:40 block/select/edit.js:60 block/tel/edit.js:93
+#: block/text/edit.js:93 block/textarea/edit.js:68 block/url/edit.js:93
 msgid "Block settings"
 msgstr "ブロック設定"
 
-#: block/checkboxes/edit.js:58 block/email/edit.js:106
-#: block/radio-buttons/edit.js:49 block/select/edit.js:69 block/tel/edit.js:106
-#: block/text/edit.js:106 block/textarea/edit.js:72 block/url/edit.js:106
+#: block/checkboxes/edit.js:55 block/email/edit.js:96
+#: block/radio-buttons/edit.js:43 block/select/edit.js:63 block/tel/edit.js:96
+#: block/text/edit.js:96 block/textarea/edit.js:71 block/url/edit.js:96
 msgid "Description"
 msgstr "説明"
 
@@ -136,47 +116,67 @@ msgstr "説明"
 msgid "Checkboxes"
 msgstr "チェックボックス"
 
-#: block/email/edit.js:35 block/radio-buttons/edit.js:37
-#: block/select/edit.js:37 block/tel/edit.js:35 block/text/edit.js:35
-#: block/textarea/edit.js:32 block/url/edit.js:35
+#: block/components.js:7
+msgid "name"
+msgstr "name"
+
+#: block/components.js:9
+msgid "Required. Input a unique machine-readable name."
+msgstr "必須。一意の機械読み取り可能な名前を入力してください。"
+
+#: block/components.js:23 block/components.js:34
 msgid "value"
 msgstr "value"
 
-#: block/email/edit.js:43 block/tel/edit.js:43 block/text/edit.js:43
-#: block/textarea/edit.js:40 block/url/edit.js:43
+#: block/components.js:24
+msgid "Optional. Initial value."
+msgstr "任意。初期値。"
+
+#: block/components.js:37
+msgid "Optional. Initial value. Enter in the following format: value%1$s"
+msgstr "任意。初期値。次の形式で入力: value%1$s"
+
+#: block/components.js:51
 msgid "placeholder"
 msgstr "placeholder"
 
-#: block/email/edit.js:51 block/tel/edit.js:51 block/text/edit.js:51
-#: block/url/edit.js:51
+#: block/components.js:61
 msgid "maxlength"
 msgstr "maxlength"
 
-#: block/email/edit.js:54 block/email/edit.js:71 block/tel/edit.js:54
-#: block/tel/edit.js:71 block/text/edit.js:54 block/text/edit.js:71
-#: block/url/edit.js:54 block/url/edit.js:71
-msgid "If 0, not restricted."
-msgstr "0 の場合、制限されません。"
+#: block/components.js:63
+msgid "Optional. Maximum number of characters. If 0, not restricted."
+msgstr "任意。最大文字数。0の場合、制限されません。"
 
-#: block/email/edit.js:68 block/tel/edit.js:68 block/text/edit.js:68
-#: block/url/edit.js:68
+#: block/components.js:75
 msgid "size"
 msgstr "size"
 
-#: block/email/edit.js:82 block/select/edit.js:45 block/tel/edit.js:82
-#: block/text/edit.js:82 block/textarea/edit.js:48 block/url/edit.js:82
+#: block/components.js:77
+msgid "Optional. The width of this item. If 0, not restricted."
+msgstr "任意。この項目の幅。0の場合、制限されません。"
+
+#: block/components.js:89
 msgid "id"
 msgstr "id"
 
-#: block/email/edit.js:90 block/select/edit.js:53 block/tel/edit.js:90
-#: block/text/edit.js:90 block/textarea/edit.js:56 block/url/edit.js:90
+#: block/components.js:99
 msgid "class"
 msgstr "class"
 
-#: block/email/edit.js:93 block/select/edit.js:56 block/tel/edit.js:93
-#: block/text/edit.js:93 block/textarea/edit.js:59 block/url/edit.js:93
+#: block/components.js:101
 msgid "Separate multiple classes with spaces."
 msgstr "複数クラスを半角スペースで区切ります。"
+
+#: block/components.js:113
+msgid "options"
+msgstr "options"
+
+#: block/components.js:117
+msgid ""
+"Required. Enter in the following format: \"value\" : \"label\"%1$s or value"
+"%1$s"
+msgstr "必須。次の形式で入力: “value” : “label”%1$s あるいは value%1$s"
 
 #: block/email/index.js:9
 msgid "email"
@@ -230,7 +230,7 @@ msgstr "入力画面設定を開く"
 msgid "Use confirm page"
 msgstr "確認画面を使用する"
 
-#: block/item/edit.js:16
+#: block/item/edit.js:35
 msgid "Label"
 msgstr "ラベル"
 
@@ -330,6 +330,11 @@ msgstr "管理者宛メール"
 msgid "Auto reply email"
 msgstr "自動返信メール"
 
+#. Description of the plugin/theme
+msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
+msgstr ""
+"Snow Monkey orms はブロックエディターのためのメールフォームプラグインです。"
+
 #. Author of the plugin/theme
 msgid "inc2734"
 msgstr "inc2734"
@@ -337,6 +342,18 @@ msgstr "inc2734"
 #. Author URI of the plugin/theme
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
+
+#~ msgid "values"
+#~ msgstr "values"
+
+#~ msgid "\"value\" : \"label\"\\u21B5"
+#~ msgstr "“value” : “label”\\u21B5"
+
+#~ msgid "value\\u21B5"
+#~ msgstr "value\\u21B5"
+
+#~ msgid "If 0, not restricted."
+#~ msgstr "0 の場合、制限されません。"
 
 #~ msgid "Multi checkbox"
 #~ msgstr "複数チェックボックス"

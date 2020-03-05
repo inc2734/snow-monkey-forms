@@ -1,9 +1,10 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
+import { NameControl, OptionsControl, ValueControl } from '../components';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
@@ -13,28 +14,21 @@ const edit = ( { attributes, setAttributes } ) => {
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
-					<TextControl
-						label={ __( 'name', 'snow-monkey-forms' ) }
+					<NameControl
 						value={ name }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}
 					/>
 
-					<TextareaControl
-						label={ __( 'options', 'snow-monkey-forms' ) }
+					<OptionsControl
 						value={ options }
-						help={ __(
-							'"value" : "label"\u21B5',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) =>
 							setAttributes( { options: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'value', 'snow-monkey-forms' ) }
+					<ValueControl
 						value={ value }
 						onChange={ ( attribute ) =>
 							setAttributes( { value: attribute } )

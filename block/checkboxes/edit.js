@@ -1,9 +1,10 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
+import { NameControl, OptionsControl, ValuesControl } from '../components';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
@@ -13,30 +14,22 @@ const edit = ( { attributes, setAttributes } ) => {
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
-					<TextControl
-						label={ __( 'name', 'snow-monkey-forms' ) }
+					<NameControl
 						value={ name }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}
 					/>
 
-					<TextareaControl
-						label={ __( 'options', 'snow-monkey-forms' ) }
+					<OptionsControl
 						value={ options }
-						help={ __(
-							'"value" : "label"\u21B5',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) =>
 							setAttributes( { options: attribute } )
 						}
 					/>
 
-					<TextareaControl
-						label={ __( 'values', 'snow-monkey-forms' ) }
+					<ValuesControl
 						value={ values }
-						help={ __( 'value\u21B5', 'snow-monkey-forms' ) }
 						onChange={ ( attribute ) =>
 							setAttributes( { values: attribute } )
 						}
@@ -44,6 +37,10 @@ const edit = ( { attributes, setAttributes } ) => {
 
 					<TextControl
 						label={ __( 'Delimiter', 'snow-monkey-forms' ) }
+						help={ __(
+							'Optional. Character that separates each item.',
+							'snow-monkey-forms'
+						) }
 						value={ delimiter }
 						onChange={ ( attribute ) =>
 							setAttributes( { delimiter: attribute } )
