@@ -107,11 +107,11 @@ export const ClassControl = ( { value, onChange } ) => {
 	);
 };
 
-export const OptionsControl = ( { options, onChange } ) => {
+export const OptionsControl = ( { value, onChange } ) => {
 	return (
 		<TextareaControl
 			label={ __( 'options', 'snow-monkey-forms' ) }
-			value={ options }
+			value={ value }
 			help={ sprintf(
 				__(
 					'Required. Enter in the following format: "value" : "label"%1$s or value%1$s',
