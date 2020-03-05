@@ -1,8 +1,27 @@
+import { compact } from 'lodash';
+
 import { InnerBlocks, RichText } from '@wordpress/block-editor';
+import { getBlockTypes } from '@wordpress/blocks';
+import { useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 export default function( { attributes, setAttributes } ) {
 	const { label } = attributes;
+
+	const blocks = getBlockTypes();
+	const ALLOWED_BLOCKS = useMemo( () => {
+		return compact(
+			blocks.map( ( blockType ) => {
+				const blacklist = [
+					'snow-monkey-forms/snow-monkey-form',
+					'snow-monkey-forms/item',
+				];
+				return ! blacklist.includes( blockType.name )
+					? blockType.name
+					: null;
+			} )
+		);
+	}, [ blocks ] );
 
 	return (
 		<div className="smf-item" tabIndex="-1">
@@ -20,6 +39,7 @@ export default function( { attributes, setAttributes } ) {
 			<div className="smf-item__col smf-item__col--controls">
 				<div className="smf-item__controls">
 					<InnerBlocks
+						allowedBlocks={ ALLOWED_BLOCKS }
 						templateLock={ false }
 						renderAppender={ () => (
 							<InnerBlocks.ButtonBlockAppender />
