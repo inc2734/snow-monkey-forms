@@ -1,7 +1,6 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
-import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -101,11 +100,26 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-
-			<ServerSideRender
-				block="snow-monkey-forms/control-text"
-				attributes={ { ...attributes, disabled: true } }
-			/>
+			<div className="smf-placeholder" data-name={ name }>
+				<div className="smf-text-control">
+					<input
+						type="text"
+						name={ name }
+						value={ value }
+						placeholder={ placeholder }
+						maxLength={ maxlength || undefined }
+						size={ size || undefined }
+						disabled="disabled"
+						id={ id || undefined }
+						className={ `smf-text-control__control ${ controlClass }` }
+					/>
+				</div>
+				{ description && (
+					<div className="smf-control-description">
+						{ description }
+					</div>
+				) }
+			</div>
 		</>
 	);
 };

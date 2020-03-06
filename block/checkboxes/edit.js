@@ -1,15 +1,17 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
-import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
 import { NameControl, OptionsControl, ValuesControl } from '../components';
-import { uniqId } from '../helper';
+import { uniqId, optionsToJsonArray, valuesToJsonArray } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
 	const { name, options, values, delimiter, description } = attributes;
+
+	const arrayedOptions = optionsToJsonArray( options );
+	const arrayedValues = valuesToJsonArray( values );
 
 	return (
 		<>
@@ -61,11 +63,46 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
+			<div className="smf-placeholder" data-name={ name }>
+				<div className="smf-checkboxes-control">
+					<div className="smf-checkboxes-control__control">
+						{ arrayedOptions.map( ( option ) => {
+							const optionValue = Object.keys( option )[ 0 ];
+							const optionLabel = Object.values( option )[ 0 ];
 
-			<ServerSideRender
-				block="snow-monkey-forms/control-checkboxes"
-				attributes={ { ...attributes, disabled: true } }
-			/>
+							return (
+								<label
+									className="smf-label"
+									key={ optionValue }
+									htmlFor={ `${ name }-${ optionValue }` }
+								>
+									<span className="smf-checkbox-control">
+										<input
+											type="checkbox"
+											name={ `${ name }[]` }
+											value={ optionValue }
+											checked={ arrayedValues.includes(
+												optionValue
+											) }
+											disabled="disabled"
+											className="smf-checkbox-control__control"
+											id={ `${ name }-${ optionValue }` }
+										/>
+										<span className="smf-checkbox-control__label">
+											{ optionLabel }
+										</span>
+									</span>
+								</label>
+							);
+						} ) }
+					</div>
+				</div>
+				{ description && (
+					<div className="smf-control-description">
+						{ description }
+					</div>
+				) }
+			</div>
 		</>
 	);
 };

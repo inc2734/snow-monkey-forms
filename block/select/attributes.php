@@ -28,9 +28,7 @@ return [
 	],
 	'options' => [
 		'type'    => 'string',
-		'default' => 'value1
-"value2" : "label2"
-"value3" : "label3"',
+		'default' => "value1\n\"value2\" : \"label2\"\n\"value3\" : \"label3\"",
 	],
 	'description' => [
 		'type'    => 'string',

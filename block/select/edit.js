@@ -1,7 +1,6 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
-import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -11,11 +10,13 @@ import {
 	IdControl,
 	ClassControl,
 } from '../components';
-import { uniqId } from '../helper';
+import { uniqId, optionsToJsonArray } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
 	const { name, value, options, id, controlClass, description } = attributes;
+
+	const arrayedOptions = optionsToJsonArray( options );
 
 	return (
 		<>
@@ -69,11 +70,35 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-
-			<ServerSideRender
-				block="snow-monkey-forms/control-select"
-				attributes={ { ...attributes, disabled: true } }
-			/>
+			<div className="smf-placeholder" data-name={ name }>
+				<div className="smf-select-control">
+					<select
+						name={ name }
+						value={ value }
+						disabled="disabled"
+						id={ id || undefined }
+						className={ `smf-select-control__control ${ controlClass }` }
+					>
+						{ arrayedOptions.map( ( option ) => {
+							const optionValue = Object.keys( option )[ 0 ];
+							const optionLabel = Object.values( option )[ 0 ];
+							return (
+								<option
+									value={ optionValue }
+									key={ optionValue }
+								>
+									{ optionLabel }
+								</option>
+							);
+						} ) }
+					</select>
+				</div>
+				{ description && (
+					<div className="smf-control-description">
+						{ description }
+					</div>
+				) }
+			</div>
 		</>
 	);
 };
