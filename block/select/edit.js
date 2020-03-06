@@ -92,6 +92,7 @@ const edit = ( { attributes, setAttributes } ) => {
 							);
 						} ) }
 					</select>
+					<span className="smf-select-control__toggle"></span>
 				</div>
 				{ description && (
 					<div className="smf-control-description">
