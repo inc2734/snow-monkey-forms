@@ -1,40 +1,36 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
-import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
+import { NameControl, OptionsControl, ValueControl } from '../components';
+import { uniqId, optionsToJsonArray } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
 	const { name, value, options, description } = attributes;
 
+	const arrayedOptions = optionsToJsonArray( options );
+
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
-					<TextControl
-						label={ __( 'name', 'snow-monkey-forms' ) }
-						value={ name }
+					<NameControl
+						value={ name || `radio-buttons-${ uniqId() }` }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}
 					/>
 
-					<TextareaControl
-						label={ __( 'options', 'snow-monkey-forms' ) }
+					<OptionsControl
 						value={ options }
-						help={ __(
-							'"value" : "label"\u21B5',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) =>
 							setAttributes( { options: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'value', 'snow-monkey-forms' ) }
+					<ValueControl
 						value={ value }
 						onChange={ ( attribute ) =>
 							setAttributes( { value: attribute } )
@@ -54,11 +50,44 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
+			<div className="smf-placeholder" data-name={ name }>
+				<div className="smf-radio-buttons-control">
+					<div className="smf-radio-buttons-control__control">
+						{ arrayedOptions.map( ( option ) => {
+							const optionValue = Object.keys( option )[ 0 ];
+							const optionLabel = Object.values( option )[ 0 ];
 
-			<ServerSideRender
-				block="snow-monkey-forms/control-radio-buttons"
-				attributes={ { ...attributes, disabled: true } }
-			/>
+							return (
+								<label
+									className="smf-label"
+									key={ optionValue }
+									htmlFor={ `${ name }-${ optionValue }` }
+								>
+									<span className="smf-radio-button-control">
+										<input
+											type="radio"
+											name={ name }
+											value={ optionValue }
+											checked={ optionValue === value }
+											disabled="disabled"
+											className="smf-radio-button-control__control"
+											id={ `${ name }-${ optionValue }` }
+										/>
+										<span className="smf-radio-button-control__label">
+											{ optionLabel }
+										</span>
+									</span>
+								</label>
+							);
+						} ) }
+					</div>
+				</div>
+				{ description && (
+					<div className="smf-control-description">
+						{ description }
+					</div>
+				) }
+			</div>
 		</>
 	);
 };

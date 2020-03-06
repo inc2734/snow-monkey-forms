@@ -1,9 +1,16 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
-import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
+import {
+	NameControl,
+	ValueControl,
+	PlaceholderControl,
+	IdControl,
+	ClassControl,
+} from '../components';
+import { uniqId } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
@@ -20,45 +27,37 @@ const edit = ( { attributes, setAttributes } ) => {
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
-					<TextControl
-						label={ __( 'name', 'snow-monkey-forms' ) }
-						value={ name }
+					<NameControl
+						value={ name || `textarea-${ uniqId() }` }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}
 					/>
 
-					<TextareaControl
-						label={ __( 'value', 'snow-monkey-forms' ) }
+					<ValueControl
+						multiple={ true }
 						value={ value }
 						onChange={ ( attribute ) =>
 							setAttributes( { value: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'placeholder', 'snow-monkey-forms' ) }
+					<PlaceholderControl
 						value={ placeholder }
 						onChange={ ( attribute ) =>
 							setAttributes( { placeholder: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'id', 'snow-monkey-forms' ) }
+					<IdControl
 						value={ id }
 						onChange={ ( attribute ) =>
 							setAttributes( { id: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'class', 'snow-monkey-forms' ) }
+					<ClassControl
 						value={ controlClass }
-						help={ __(
-							'Separate multiple classes with spaces.',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) =>
 							setAttributes( { controlClass: attribute } )
 						}
@@ -77,11 +76,23 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-
-			<ServerSideRender
-				block="snow-monkey-forms/control-textarea"
-				attributes={ { ...attributes, disabled: true } }
-			/>
+			<div className="smf-placeholder" data-name={ name }>
+				<div className="smf-textarea-control">
+					<textarea
+						name={ name }
+						value={ value }
+						placeholder={ placeholder }
+						disabled="disabled"
+						id={ id || undefined }
+						className={ `smf-textarea-control__control ${ controlClass }` }
+					/>
+				</div>
+				{ description && (
+					<div className="smf-control-description">
+						{ description }
+					</div>
+				) }
+			</div>
 		</>
 	);
 };

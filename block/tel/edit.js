@@ -1,10 +1,18 @@
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
-import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
-import { stringToNumber } from '../helper';
+import {
+	NameControl,
+	ValueControl,
+	PlaceholderControl,
+	MaxLengthControl,
+	SizeControl,
+	IdControl,
+	ClassControl,
+} from '../components';
+import { stringToNumber, uniqId } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
@@ -23,37 +31,29 @@ const edit = ( { attributes, setAttributes } ) => {
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
-					<TextControl
-						label={ __( 'name', 'snow-monkey-forms' ) }
-						value={ name }
+					<NameControl
+						value={ name || `tel-${ uniqId() }` }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'value', 'snow-monkey-forms' ) }
+					<ValueControl
 						value={ value }
 						onChange={ ( attribute ) =>
 							setAttributes( { value: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'placeholder', 'snow-monkey-forms' ) }
+					<PlaceholderControl
 						value={ placeholder }
 						onChange={ ( attribute ) =>
 							setAttributes( { placeholder: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'maxlength', 'snow-monkey-forms' ) }
+					<MaxLengthControl
 						value={ maxlength }
-						help={ __(
-							'If 0, not restricted.',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) => {
 							setAttributes( {
 								maxlength: stringToNumber(
@@ -64,13 +64,8 @@ const edit = ( { attributes, setAttributes } ) => {
 						} }
 					/>
 
-					<TextControl
-						label={ __( 'size', 'snow-monkey-forms' ) }
+					<SizeControl
 						value={ size }
-						help={ __(
-							'If 0, not restricted.',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) => {
 							setAttributes( {
 								size: stringToNumber( attribute, size ),
@@ -78,21 +73,15 @@ const edit = ( { attributes, setAttributes } ) => {
 						} }
 					/>
 
-					<TextControl
-						label={ __( 'id', 'snow-monkey-forms' ) }
+					<IdControl
 						value={ id }
 						onChange={ ( attribute ) =>
 							setAttributes( { id: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'class', 'snow-monkey-forms' ) }
+					<ClassControl
 						value={ controlClass }
-						help={ __(
-							'Separate multiple classes with spaces.',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) =>
 							setAttributes( { controlClass: attribute } )
 						}
@@ -111,11 +100,26 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-
-			<ServerSideRender
-				block="snow-monkey-forms/control-tel"
-				attributes={ { ...attributes, disabled: true } }
-			/>
+			<div className="smf-placeholder" data-name={ name }>
+				<div className="smf-text-control">
+					<input
+						type="tel"
+						name={ name }
+						value={ value }
+						placeholder={ placeholder }
+						maxLength={ maxlength || undefined }
+						size={ size || undefined }
+						disabled="disabled"
+						id={ id || undefined }
+						className={ `smf-text-control__control ${ controlClass }` }
+					/>
+				</div>
+				{ description && (
+					<div className="smf-control-description">
+						{ description }
+					</div>
+				) }
+			</div>
 		</>
 	);
 };

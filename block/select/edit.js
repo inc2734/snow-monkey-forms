@@ -1,61 +1,57 @@
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, TextareaControl } from '@wordpress/components';
+import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
-import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
+import {
+	NameControl,
+	OptionsControl,
+	ValueControl,
+	IdControl,
+	ClassControl,
+} from '../components';
+import { uniqId, optionsToJsonArray } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
 	const { name, value, options, id, controlClass, description } = attributes;
 
+	const arrayedOptions = optionsToJsonArray( options );
+
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
-					<TextControl
-						label={ __( 'name', 'snow-monkey-forms' ) }
-						value={ name }
+					<NameControl
+						value={ name || `select-${ uniqId() }` }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}
 					/>
 
-					<TextareaControl
-						label={ __( 'options', 'snow-monkey-forms' ) }
+					<OptionsControl
 						value={ options }
-						help={ __(
-							'"value" : "label"\u21B5',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) =>
 							setAttributes( { options: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'value', 'snow-monkey-forms' ) }
+					<ValueControl
 						value={ value }
 						onChange={ ( attribute ) =>
 							setAttributes( { value: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'id', 'snow-monkey-forms' ) }
+					<IdControl
 						value={ id }
 						onChange={ ( attribute ) =>
 							setAttributes( { id: attribute } )
 						}
 					/>
 
-					<TextControl
-						label={ __( 'class', 'snow-monkey-forms' ) }
+					<ClassControl
 						value={ controlClass }
-						help={ __(
-							'Separate multiple classes with spaces.',
-							'snow-monkey-forms'
-						) }
 						onChange={ ( attribute ) =>
 							setAttributes( { controlClass: attribute } )
 						}
@@ -74,11 +70,35 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-
-			<ServerSideRender
-				block="snow-monkey-forms/control-select"
-				attributes={ { ...attributes, disabled: true } }
-			/>
+			<div className="smf-placeholder" data-name={ name }>
+				<div className="smf-select-control">
+					<select
+						name={ name }
+						value={ value }
+						disabled="disabled"
+						id={ id || undefined }
+						className={ `smf-select-control__control ${ controlClass }` }
+					>
+						{ arrayedOptions.map( ( option ) => {
+							const optionValue = Object.keys( option )[ 0 ];
+							const optionLabel = Object.values( option )[ 0 ];
+							return (
+								<option
+									value={ optionValue }
+									key={ optionValue }
+								>
+									{ optionLabel }
+								</option>
+							);
+						} ) }
+					</select>
+				</div>
+				{ description && (
+					<div className="smf-control-description">
+						{ description }
+					</div>
+				) }
+			</div>
 		</>
 	);
 };

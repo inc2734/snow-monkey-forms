@@ -20,7 +20,7 @@ return [
 	],
 	'options' => [
 		'type'    => 'string',
-		'default' => '',
+		'default' => "value1\n\"value2\" : \"label2\"\n\"value3\" : \"label3\"",
 	],
 	'description' => [
 		'type'    => 'string',
