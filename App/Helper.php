@@ -58,7 +58,7 @@ class Helper {
 					$decoded = json_decode( sprintf( '{%1$s}', $value ), true );
 					$decoded = is_array( $decoded ) ? $decoded : [ $value => $value ];
 					$decoded = is_array( $decoded ) && ! $decoded ? [ '' => '' ] : $decoded;
-					$options = array_merge( $options, $decoded );
+					$options[] = $decoded;
 				}
 			}
 			$attributes['options'] = $options ? $options : [];

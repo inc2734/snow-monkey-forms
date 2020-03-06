@@ -61,7 +61,10 @@ class Viewer extends Contract\Viewer {
 
 	protected function _init() {
 		$children = [];
-		foreach ( $this->get_property( 'options' ) as $value => $label ) {
+		foreach ( $this->get_property( 'options' ) as $option ) {
+			$value = array_keys( $option )[0];
+			$label = array_values( $option )[0];
+
 			$children[] = Helper::control(
 				'radio-button',
 				[

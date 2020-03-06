@@ -10,6 +10,16 @@ import withValidations from '../../hoc/with-validations';
 const edit = ( { attributes, setAttributes } ) => {
 	const { name, options, values, delimiter, description } = attributes;
 
+	if ( '' === name ) {
+		setAttributes( { name: `checkboxes-${ uniqId() }` } );
+	}
+
+	if ( '' === options ) {
+		setAttributes( {
+			options: 'value1\n"value2" : "label2"\n"value3" : "label3"',
+		} );
+	}
+
 	const arrayedOptions = optionsToJsonArray( options );
 	const arrayedValues = valuesToJsonArray( values );
 
@@ -18,7 +28,7 @@ const edit = ( { attributes, setAttributes } ) => {
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
 					<NameControl
-						value={ name || `checkboxes-${ uniqId() }` }
+						value={ name }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}

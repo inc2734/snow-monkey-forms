@@ -23,12 +23,16 @@ const edit = ( { attributes, setAttributes } ) => {
 		description,
 	} = attributes;
 
+	if ( '' === name ) {
+		setAttributes( { name: `textarea-${ uniqId() }` } );
+	}
+
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
 					<NameControl
-						value={ name || `textarea-${ uniqId() }` }
+						value={ name }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}

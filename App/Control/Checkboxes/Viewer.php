@@ -64,7 +64,10 @@ class Viewer extends Contract\Viewer {
 		$this->set_property( 'name', $this->get_property( 'name' ) . '[]' );
 
 		$children = [];
-		foreach ( $this->get_property( 'options' ) as $value => $label ) {
+		foreach ( $this->get_property( 'options' ) as $option ) {
+			$value = array_keys( $option )[0];
+			$label = array_values( $option )[0];
+
 			$children[] = Helper::control(
 				'checkbox',
 				[

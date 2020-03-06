@@ -27,12 +27,16 @@ const edit = ( { attributes, setAttributes } ) => {
 		description,
 	} = attributes;
 
+	if ( '' === name ) {
+		setAttributes( { name: `url-${ uniqId() }` } );
+	}
+
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
 					<NameControl
-						value={ name || `url-${ uniqId() }` }
+						value={ name }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}

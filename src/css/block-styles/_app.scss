@@ -18,13 +18,19 @@
       display: flex;
 
       .smf-item__col {
+        $label-col-width: 14em;
         flex: 1 1 auto;
 
         &--label {
-          flex: 0 0 auto;
+          flex: 0 0 $label-col-width;
           @include _padding-right(1);
           @include _padding-bottom(0);
-          width: 14em;
+          max-width: $label-col-width;
+        }
+
+        &--controls {
+          flex: 1 1 calc(100% - #{$label-col-width});
+          max-width: calc(100% - #{$label-col-width});
         }
       }
     }
@@ -83,13 +89,19 @@
       display: flex;
 
       .smf-item__col {
+        $label-col-width: 14em;
         flex: 1 1 auto;
 
         &--label {
-          flex: 0 0 auto;
+          flex: 0 0 $label-col-width;
           border-right: 1px solid #ddd;
           border-bottom: none;
-          width: 14em;
+          max-width: $label-col-width;
+        }
+
+        &--controls {
+          flex: 1 1 calc(100% - #{$label-col-width});
+          max-width: calc(100% - #{$label-col-width});
         }
       }
     }

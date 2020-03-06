@@ -1,3 +1,5 @@
+import { uniq } from 'lodash';
+
 export function stringToNumber( value, defaultValue ) {
 	if ( '' === value ) {
 		return 0;
@@ -11,25 +13,22 @@ export function stringToNumber( value, defaultValue ) {
 export function uniqId() {
 	const datetime = new Date().getTime();
 	const random = Math.floor( Math.random() * ( 9999 - 1000 ) + 1000 );
-	const uniq = datetime + random;
-	return uniq.toString( 32 );
+	const baseUniqId = datetime + random;
+	return baseUniqId.toString( 32 );
 }
 
 export function optionsToJsonArray( text ) {
-	return text
-		.replace( /\r?\n/g, '\n' )
-		.split( '\n' )
-		.map( ( option ) => {
-			try {
-				return JSON.parse( `{ ${ option } }` );
-			} catch ( error ) {
-				const parsedOption = {};
-				parsedOption[ option ] = option;
-				return parsedOption;
-			}
-		} );
+	const optionsArray = text.replace( /\r?\n/g, '\n' ).split( '\n' );
+
+	return optionsArray.map( ( option ) => {
+		try {
+			return JSON.parse( `{ ${ option } }` );
+		} catch ( error ) {
+			return { [ option ]: option };
+		}
+	} );
 }
 
 export function valuesToJsonArray( text ) {
-	return text.replace( /\r?\n/g, '\n' ).split( '\n' );
+	return uniq( text.replace( /\r?\n/g, '\n' ).split( '\n' ) );
 }
