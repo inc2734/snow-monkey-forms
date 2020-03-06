@@ -7,3 +7,10 @@ export function stringToNumber( value, defaultValue ) {
 	}
 	return defaultValue;
 }
+
+export function uniqId() {
+	const datetime = new Date().getTime();
+	const random = Math.floor( Math.random() * ( 9999 - 1000 ) + 1000 );
+	const uniq = datetime + random;
+	return uniq.toString( 32 );
+}

@@ -11,6 +11,7 @@ import {
 	IdControl,
 	ClassControl,
 } from '../components';
+import { uniqId } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
@@ -28,7 +29,7 @@ const edit = ( { attributes, setAttributes } ) => {
 			<InspectorControls>
 				<PanelBody title={ __( 'Attributes', 'snow-monkey-forms' ) }>
 					<NameControl
-						value={ name }
+						value={ name || `textarea-${ uniqId() }` }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
 						}

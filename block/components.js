@@ -2,6 +2,11 @@ import { TextControl, TextareaControl } from '@wordpress/components';
 import { __, sprintf } from '@wordpress/i18n';
 
 export const NameControl = ( { value, onChange } ) => {
+	const style = {};
+	if ( '' === value ) {
+		style.borderColor = '#d94f4f';
+	}
+
 	return (
 		<TextControl
 			label={ __( 'name', 'snow-monkey-forms' ) }
@@ -11,6 +16,8 @@ export const NameControl = ( { value, onChange } ) => {
 			) }
 			value={ value }
 			onChange={ onChange }
+			required
+			style={ style }
 		/>
 	);
 };
@@ -108,6 +115,11 @@ export const ClassControl = ( { value, onChange } ) => {
 };
 
 export const OptionsControl = ( { value, onChange } ) => {
+	const style = {};
+	if ( '' === value ) {
+		style.borderColor = '#d94f4f';
+	}
+
 	return (
 		<TextareaControl
 			label={ __( 'options', 'snow-monkey-forms' ) }
@@ -120,6 +132,8 @@ export const OptionsControl = ( { value, onChange } ) => {
 				'\u21B5'
 			) }
 			onChange={ onChange }
+			required
+			style={ style }
 		/>
 	);
 };
