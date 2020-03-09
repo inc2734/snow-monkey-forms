@@ -19,9 +19,12 @@ class Directory {
 		$upload_dir = wp_get_upload_dir();
 		$save_dir   = path_join( $upload_dir['basedir'], 'smf-uploads' );
 
-		static::_create_htaccess( $save_dir );
+		$is_created = wp_mkdir_p( $save_dir ) ? $save_dir : false;
+		if ( $is_created ) {
+			static::_create_htaccess( $save_dir );
+		}
 
-		return wp_mkdir_p( $save_dir ) ? $save_dir : false;
+		return $is_created;
 	}
 
 	/**
