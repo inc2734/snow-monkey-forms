@@ -28,10 +28,10 @@ class Directory {
 	 * @return false|string
 	 */
 	public static function get_url() {
-		$save_dir = static::get();
+		$upload_dir = wp_get_upload_dir();
 
-		return $save_dir
-			? filepath_to_fileurl( $save_dir )
+		return static::get()
+			? path_join( $upload_dir['baseurl'], 'smf-uploads' )
 			: false;
 	}
 
