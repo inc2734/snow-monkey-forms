@@ -90,9 +90,17 @@ class File {
 				throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
 			}
 
-			$rand_max = mt_getrandmax();
-			$rand     = zeroise( mt_rand( 0, $rand_max ), strlen( $rand_max ) );
-			$save_dir = path_join( $save_dir, $rand );
+			do {
+				$rand_max = mt_getrandmax();
+				$rand     = zeroise( mt_rand( 0, $rand_max ), strlen( $rand_max ) );
+				$uniqid   = md5( uniqid( $rand, true ) );
+				$save_dir = path_join( $save_dir, $uniqid . $rand );
+
+				if ( ! file_exists( $save_dir ) ) {
+					break;
+				}
+			} while ( 0 );
+
 			if ( ! wp_mkdir_p( $save_dir ) ) {
 				throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
 			}
