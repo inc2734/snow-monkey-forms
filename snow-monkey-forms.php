@@ -12,13 +12,12 @@
  * @package snow-monkey-forms
  * @author inc2734
  * @license GPL-2.0+
- *
- * @todo ファイルアップロード用 temp ディレクトリの cleanup
  */
 
 namespace Snow_Monkey\Plugin\Forms;
 
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
+use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 
 define( 'SNOW_MONKEY_FORMS_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SNOW_MONKEY_FORMS_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
@@ -54,6 +53,8 @@ class Bootstrap {
 		add_action( 'init', [ $this, '_register_post_type' ] );
 		add_action( 'init', [ $this, '_register_meta' ] );
 		add_filter( 'block_categories', [ $this, '_block_categories' ] );
+
+		add_action( 'template_redirect', [ $this, '_do_empty_save_dir' ] );
 	}
 
 	/**
@@ -349,6 +350,10 @@ class Bootstrap {
 		];
 
 		return $categories;
+	}
+
+	public function _do_empty_save_dir() {
+		Directory::do_empty();
 	}
 }
 

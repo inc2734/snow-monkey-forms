@@ -7,7 +7,7 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
-use Snow_Monkey\Plugin\Forms\App\Helper;
+use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 
 class File {
 
@@ -58,8 +58,6 @@ class File {
 	}
 
 	/**
-	 * @todo このままだと、別人が同じファイル名でアップデートしたら上書きされてしまう。
-	 *
 	 * @return false|string
 	 */
 	protected function _get_filename() {
@@ -68,12 +66,7 @@ class File {
 			return false;
 		}
 
-		$basename  = basename( $name );
-		$filename  = pathinfo( $basename, PATHINFO_FILENAME );
-		$extension = pathinfo( $basename, PATHINFO_EXTENSION );
-		$extension = preg_replace( '/[^0-9a-zA-Z]/', '', $extension );
-		$filename_noext = urlencode( $filename );
-		return sprintf( '%1$s.%2$s', $filename_noext, $extension );
+		return sanitize_file_name( basename( $name ) );
 	}
 
 	public function save() {
@@ -92,8 +85,15 @@ class File {
 				throw new \RuntimeException( '[Snow Monkey Forms] An error occurred during file upload.' );
 			}
 
-			$save_dir = Helper::get_save_dir();
+			$save_dir = Directory::get();
 			if ( ! $save_dir ) {
+				throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
+			}
+
+			$rand_max = mt_getrandmax();
+			$rand     = zeroise( mt_rand( 0, $rand_max ), strlen( $rand_max ) );
+			$save_dir = path_join( $save_dir, $rand );
+			if ( ! wp_mkdir_p( $save_dir ) ) {
 				throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
 			}
 
@@ -103,7 +103,7 @@ class File {
 				throw new \RuntimeException( '[Snow Monkey Forms] There was an error saving the uploaded file.' );
 			}
 
-			return path_join( Helper::get_save_dir_url(), $filename );
+			return Directory::filepath_to_fileurl( $new_filepath );
 		} catch ( \RuntimeException $e ) {
 			error_log( $e->getMessage() );
 			return false;

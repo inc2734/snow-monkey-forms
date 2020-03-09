@@ -7,7 +7,8 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
-use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Model\Directory;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class MailParser {
 
@@ -50,6 +51,18 @@ class MailParser {
 			},
 			$string
 		);
+	}
+
+	public function get_attachments() {
+		$attachments = [];
+		foreach ( (array) Meta::get( '_saved_files' ) as $name ) {
+			$saved_file = $this->responser->get( $name );
+			if ( ! $saved_file ) {
+				continue;
+			}
+			$attachments[] = Directory::fileurl_to_filepath( $saved_file );
+		}
+		return $attachments;
 	}
 
 	protected function _stringfy( $name, $value ) {

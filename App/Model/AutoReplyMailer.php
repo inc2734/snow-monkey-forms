@@ -7,11 +7,10 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
-use Snow_Monkey\Plugin\Forms\App\Helper;
+use Snow_Monkey\Plugin\Forms\App\Model\Mailer;
+use Snow_Monkey\Plugin\Forms\App\Model\MailParser;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Setting;
-use Snow_Monkey\Plugin\Forms\App\Model\MailParser;
-use Snow_Monkey\Plugin\Forms\App\Model\Mailer;
 
 class AutoReplyMailer {
 
@@ -50,21 +49,12 @@ class AutoReplyMailer {
 	protected function _send() {
 		$mail_parser = new MailParser( $this->responser, $this->setting );
 
-		$attachments = [];
-		foreach ( (array) Meta::get( '_saved_files' ) as $name ) {
-			$saved_file = $this->responser->get( $name );
-			if ( ! $saved_file ) {
-				continue;
-			}
-			$attachments[] = Helper::saved_fileurl_to_filepath( $saved_file );
-		}
-
 		$mailer = new Mailer(
 			[
 				'to'          => $mail_parser->parse( $this->setting->get( 'auto_reply_email_to' ) ),
 				'subject'     => $mail_parser->parse( $this->setting->get( 'auto_reply_email_subject' ) ),
 				'body'        => $mail_parser->parse( $this->setting->get( 'auto_reply_email_body' ) ),
-				'attachments' => $attachments,
+				'attachments' => $mail_parser->get_attachments(),
 			]
 		);
 
