@@ -67,7 +67,7 @@ class MailParser {
 	}
 
 	protected function _is_file( $name ) {
-		$files = Meta::get( '_saved_files' );
-		return isset( $files[ $name ] );
+		$saved_files = Meta::get( '_saved_files' );
+		return in_array( $name, $saved_files );
 	}
 }

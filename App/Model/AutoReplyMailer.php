@@ -51,7 +51,11 @@ class AutoReplyMailer {
 		$mail_parser = new MailParser( $this->responser, $this->setting );
 
 		$attachments = [];
-		foreach ( (array) Meta::get( '_saved_files' ) as $saved_file ) {
+		foreach ( (array) Meta::get( '_saved_files' ) as $name ) {
+			$saved_file = $this->responser->get( $name );
+			if ( ! $saved_file ) {
+				continue;
+			}
 			$attachments[] = Helper::saved_fileurl_to_filepath( $saved_file );
 		}
 

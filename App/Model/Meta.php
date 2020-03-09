@@ -13,14 +13,29 @@ class Meta {
 
 	const KEY = '_snow-monkey-forms-meta';
 
+	/**
+	 * @var Meta
+	 */
+	private static $singleton;
+
+	/**
+	 * @var array
+	 */
 	protected static $data = [];
+
+	private function __construct( $data ) {
+		static::$data = $data;
+	}
+
+	public static function init( $data ) {
+		if ( is_null( static::$singleton ) ) {
+			static::$singleton = new Meta( $data );
+		}
+		return static::$singleton;
+	}
 
 	public static function get_key() {
 		return static::KEY;
-	}
-
-	public static function save( array $data ) {
-		static::$data = $data;
 	}
 
 	public static function the_meta_multiple( $name, array $values ) {
@@ -59,6 +74,10 @@ class Meta {
 				'label' => $label . '<span class="smf-sending" aria-hidden="true"></span>',
 			]
 		);
+	}
+
+	public static function set( $name, $value ) {
+		static::$data[ $name ] = $value;
 	}
 
 	public static function get( $name ) {

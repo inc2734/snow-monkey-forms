@@ -22,7 +22,7 @@ class FileUploader {
 		$this->files = $_FILES;
 	}
 
-	public function is_uploading() {
+	public function exist_file_controls() {
 		return ! ! array_keys( $this->files );
 	}
 
