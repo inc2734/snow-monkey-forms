@@ -19,6 +19,8 @@ class Directory {
 		$upload_dir = wp_get_upload_dir();
 		$save_dir   = path_join( $upload_dir['basedir'], 'smf-uploads' );
 
+		static::_create_htaccess( $save_dir );
+
 		return wp_mkdir_p( $save_dir ) ? $save_dir : false;
 	}
 
@@ -26,10 +28,10 @@ class Directory {
 	 * @return false|string
 	 */
 	public static function get_url() {
-		$upload_dir  = wp_get_upload_dir();
+		$save_dir = static::get();
 
-		return static::get()
-			? path_join( $upload_dir['baseurl'], 'smf-uploads' )
+		return $save_dir
+			? filepath_to_fileurl( $save_dir )
 			: false;
 	}
 
@@ -124,5 +126,32 @@ class Directory {
 		$mtime = filemtime( $file );
 		$survival_time = apply_filters( 'snow_monkey_forms_saved_file_survival_time', 60 * 5 );
 		return ! $mtime || time() > $mtime + $survival_time;
+	}
+
+	protected static function _create_htaccess( $save_dir ) {
+		$htaccess = path_join( $save_dir, '.htaccess' );
+		if ( file_exists( $htaccess ) ) {
+			return true;
+		}
+
+		try {
+			$handle = fopen( $htaccess, 'w' );
+			if ( ! $handle ) {
+				throw new \Exception( '[Snow Monkey Forms] .htaccess can\'t create.' );
+			}
+
+			if ( false === fwrite( $handle, "Deny from all\n" ) ) {
+				throw new \Exception( '[Snow Monkey Forms] .htaccess can\'t write.' );
+			}
+
+			if ( ! fclose( $handle ) ) {
+				throw new \Exception( '[Snow Monkey Forms] .htaccess can\'t close.' );
+			}
+		} catch ( \Exception $e ) {
+			error_log( $e->getMessage() );
+			return false;
+		}
+
+		return true;
 	}
 }
