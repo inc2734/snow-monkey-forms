@@ -38,21 +38,36 @@ class MailParser {
 					$return_value  = '';
 					$values = $this->responser->get_all();
 					foreach ( $values as $name => $value ) {
-						$value = $this->_stringfy( $value );
+						$value = $this->_stringfy( $name, $value );
 						$return_value .= $name . ": \n" . $value . "\n\n";
 					}
 					return trim( $return_value );
 				}
 
 				$value = $this->responser->get( $matches[1] );
-				return $this->_stringfy( $value );
+				$value = $this->_stringfy( $matches[1], $value );
+				return $value;
 			},
 			$string
 		);
 	}
 
-	protected function _stringfy( $value ) {
-		$delimiter = $this->setting->get_control( 'delimiter' );
-		return is_array( $value ) ? implode( $delimiter, $value ) : $value;
+	protected function _stringfy( $name, $value ) {
+		if ( is_array( $value ) ) {
+			$control   = $this->setting->get_control( $name );
+			$delimiter = $control->get_property( 'delimiter' );
+			return implode( $delimiter, $value );
+		}
+
+		if ( $this->_is_file( $name ) ) {
+			return basename( $value );
+		}
+
+		return $value;
+	}
+
+	protected function _is_file( $name ) {
+		$files = Meta::get( '_saved_files' );
+		return isset( $files[ $name ] );
 	}
 }

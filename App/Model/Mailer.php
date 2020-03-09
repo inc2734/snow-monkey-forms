@@ -12,17 +12,23 @@ class Mailer {
 	/**
 	 * @var string
 	 */
-	protected $to;
+	protected $to = '';
 
 	/**
 	 * @var string
 	 */
-	protected $subject;
+	protected $subject = '';
 
 	/**
 	 * @var string
 	 */
-	protected $body;
+	protected $body = '';
+
+	/**
+	 * @var array
+	 *   @var string filepath
+	 */
+	protected $attachments = [];
 
 	public function __construct( $args ) {
 		$properties = array_keys( get_object_vars( $this ) );
@@ -31,7 +37,11 @@ class Mailer {
 				continue;
 			}
 
-			$this->$key = $value;
+			if ( is_array( $this->$key ) && is_array( $value ) ) {
+				$this->$key = $value;
+			} elseif ( ! is_array( $this->$key ) && ! is_array( $value ) ) {
+				$this->$key = $value;
+			}
 		}
 	}
 
@@ -40,6 +50,6 @@ class Mailer {
 			return false;
 		}
 
-		return wp_mail( $this->to, $this->subject, $this->body );
+		return wp_mail( $this->to, $this->subject, $this->body, '', $this->attachments );
 	}
 }

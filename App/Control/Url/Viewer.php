@@ -18,6 +18,10 @@ class Viewer extends Contract\Viewer {
 	 *   @var string value
 	 *   @var string placeholder
 	 *   @var boolean disabled
+	 *   @var int maxlength
+	 *   @var int size
+	 *   @var string id
+	 *   @var string class
 	 *   @var boolean data-invalid
 	 */
 	protected $attributes = [
@@ -25,10 +29,10 @@ class Viewer extends Contract\Viewer {
 		'value'        => '',
 		'placeholder'  => '',
 		'disabled'     => false,
-		'id'           => '',
-		'class'        => 'smf-text-control__control',
 		'maxlength'    => 0,
 		'size'         => 0,
+		'id'           => '',
+		'class'        => 'smf-text-control__control',
 		'data-invalid' => false,
 	];
 

@@ -9,4 +9,5 @@ import '../../block/text';
 import '../../block/textarea';
 import '../../block/url';
 import '../../block/tel';
+import '../../block/file';
 import '../../block/snow-monkey-form';

@@ -9,8 +9,14 @@ namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Confirm extends Contract\Controller {
+
+	/**
+	 * @var string
+	 */
+	protected $method = 'confirm';
 
 	protected function set_controls() {
 		$controls = [];
@@ -28,35 +34,12 @@ class Confirm extends Contract\Controller {
 	protected function set_action() {
 		ob_start();
 
-		Helper::the_control(
-			'button',
-			[
-				'attributes' => [
-					'data-action' => 'back',
-				],
-				'label' => __( 'Back', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-			]
-		);
+		Meta::the_meta_button( 'back', __( 'Back', 'snow-monkey-forms' ) );
+		Meta::the_meta_button( 'complete', __( 'Send', 'snow-monkey-forms' ) );
+		Meta::the_meta( '_method', 'complete' );
 
-		Helper::the_control(
-			'button',
-			[
-				'attributes' => [
-					'data-action' => 'complete',
-				],
-				'label' => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-			]
-		);
-
-		Helper::the_control(
-			'hidden',
-			[
-				'attributes' => [
-					'name'  => '_method',
-					'value' => 'complete',
-				],
-			]
-		);
+		$saved_files = Meta::get( '_saved_files' );
+		Meta::the_meta_multiple( '_saved_files', ! $saved_files ? [] : $saved_files );
 
 		return ob_get_clean();
 	}

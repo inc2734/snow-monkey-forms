@@ -10,7 +10,7 @@ const maybeHasControls = ( method ) => {
 };
 
 const maybeComplete = ( method ) => {
-	return 'complete' === method || 'system-error' === method;
+	return 'complete' === method || 'systemerror' === method;
 };
 
 export default function submit( event ) {
@@ -86,7 +86,11 @@ export default function submit( event ) {
 		}
 	};
 
-	$.post( snowmonkeyforms.view_json_url, form.serialize() ).done(
-		doneCallback
-	);
+	$.ajax( {
+		type: 'POST',
+		url: snowmonkeyforms.view_json_url,
+		data: new FormData( form.get( 0 ) ),
+		processData: false,
+		contentType: false,
+	} ).done( doneCallback );
 }

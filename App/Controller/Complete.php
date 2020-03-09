@@ -11,6 +11,11 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 
 class Complete extends Contract\Controller {
 
+	/**
+	 * @var string
+	 */
+	protected $method = 'complete';
+
 	protected function set_controls() {
 		return $this->controls;
 	}

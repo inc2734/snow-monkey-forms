@@ -7,6 +7,7 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Helper;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Setting;
 use Snow_Monkey\Plugin\Forms\App\Model\MailParser;
@@ -43,11 +44,17 @@ class AdministratorMailer {
 	protected function _send() {
 		$mail_parser = new MailParser( $this->responser, $this->setting );
 
+		$attachments = [];
+		foreach ( (array) Meta::get( '_saved_files' ) as $saved_file ) {
+			$attachments[] = Helper::saved_fileurl_to_filepath( $saved_file );
+		}
+
 		$mailer = new Mailer(
 			[
-				'to'      => $this->setting->get( 'administrator_email_to' ),
-				'subject' => $mail_parser->parse( $this->setting->get( 'administrator_email_subject' ) ),
-				'body'    => $mail_parser->parse( $this->setting->get( 'administrator_email_body' ) ),
+				'to'          => $this->setting->get( 'administrator_email_to' ),
+				'subject'     => $mail_parser->parse( $this->setting->get( 'administrator_email_subject' ) ),
+				'body'        => $mail_parser->parse( $this->setting->get( 'administrator_email_body' ) ),
+				'attachments' => $attachments,
 			]
 		);
 

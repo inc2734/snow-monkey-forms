@@ -9,8 +9,14 @@ namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Back extends Contract\Controller {
+
+	/**
+	 * @var string
+	 */
+	protected $method = 'back';
 
 	protected function set_controls() {
 		$controls = [];
@@ -28,25 +34,11 @@ class Back extends Contract\Controller {
 	protected function set_action() {
 		ob_start();
 
-		Helper::the_control(
-			'button',
-			[
-				'attributes' => [
-					'data-action' => 'confirm',
-				],
-				'label' => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-			]
-		);
+		Meta::the_meta_button( 'confirm', __( 'Confirm', 'snow-monkey-forms' ) );
+		Meta::the_meta( '_method', 'confirm' );
 
-		Helper::the_control(
-			'hidden',
-			[
-				'attributes' => [
-					'name'  => '_method',
-					'value' => 'confirm',
-				],
-			]
-		);
+		$saved_files = Meta::get( '_saved_files' );
+		Meta::the_meta_multiple( '_saved_files', ! $saved_files ? [] : $saved_files );
 
 		return ob_get_clean();
 	}

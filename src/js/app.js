@@ -1,10 +1,22 @@
 import $ from 'jquery';
 import submit from './module/submit';
 
+$( document ).on( 'change', '.smf-file-control__control', ( event ) => {
+	const control = $( event.currentTarget );
+	const filename = control.parent().find( '.smf-file-control__filename' );
+	const files = control.prop( 'files' );
+	if ( 0 < files.length && 0 < filename.length ) {
+		const file = files[ 0 ];
+		if ( 'undefined' !== typeof file.name ) {
+			filename.text( file.name );
+		}
+	}
+} );
+
 $( document ).on( 'click', '[data-action="back"]', ( event ) =>
 	$( event.currentTarget )
 		.closest( '.smf-action' )
-		.find( '[type="hidden"][name="_method"]' )
+		.find( '[type="hidden"][name="_snow-monkey-forms-meta[_method]"]' )
 		.attr( 'value', 'back' )
 );
 

@@ -16,6 +16,8 @@ class Viewer extends Contract\Viewer {
 	 * @var array
 	 *   @var string name
 	 *   @var boolean disabled
+	 *   @var string id
+	 *   @var string class
 	 */
 	protected $attributes = [
 		'name'     => '',

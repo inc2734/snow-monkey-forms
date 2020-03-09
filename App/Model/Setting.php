@@ -114,10 +114,7 @@ class Setting {
 	}
 
 	public function get_control( $name ) {
-		if ( isset( $this->controls[ $name ] ) ) {
-			return $name;
-		}
-		return false;
+		return isset( $this->controls[ $name ] ) ? $this->controls[ $name ] : false;
 	}
 
 	private function _extract_input_content( $post_content ) {

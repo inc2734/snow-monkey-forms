@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Textarea;
+namespace Snow_Monkey\Plugin\Forms\App\Control\File;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
@@ -24,9 +24,14 @@ class Viewer extends Contract\Viewer {
 		'name'         => '',
 		'disabled'     => false,
 		'id'           => '',
-		'class'        => 'smf-textarea-control__control',
+		'class'        => 'smf-file-control__control',
 		'data-invalid' => false,
 	];
+
+	/**
+	 * @var string
+	 */
+	protected $value = '';
 
 	/**
 	 * @var string
@@ -38,16 +43,20 @@ class Viewer extends Contract\Viewer {
 	 */
 	protected $validations = [];
 
-	/**
-	 * @var string
-	 */
-	public $value = '';
-
 	public function save( $value ) {
-		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
+		$this->set_property( 'value', $value );
 	}
 
 	public function input() {
+		$value = $this->get_property( 'value' );
+		if ( $value ) {
+			$value = sprintf(
+				'<div class="smf-file-control__value">%1$s: %2$s</div>',
+				__( 'Uploaded file', 'snow-monkey-forms' ),
+				$this->confirm()
+			);
+		}
+
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
@@ -57,12 +66,19 @@ class Viewer extends Contract\Viewer {
 		}
 
 		return sprintf(
-			'<div class="smf-textarea-control">
-				<textarea %1$s>%2$s</textarea>
+			'<div class="smf-file-control">
+				<label>
+					<input type="file" %1$s>
+					<span class="smf-file-control__label">%2$s</span>
+					<span class="smf-file-control__filename">%3$s</span>
+				</label>
+				%4$s
 			</div>
-			%3$s',
+			%5$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			esc_html( $this->get_property( 'value' ) ),
+			__( 'Choose file', 'snow-monkey-forms' ),
+			__( 'No file chosen', 'snow-monkey-forms' ),
+			$value,
 			$description
 		);
 	}
@@ -70,7 +86,7 @@ class Viewer extends Contract\Viewer {
 	public function confirm() {
 		return sprintf(
 			'%1$s%2$s',
-			nl2br( esc_html( $this->get_property( 'value' ) ) ),
+			esc_html( basename( $this->get_property( 'value' ) ) ),
 			Helper::control(
 				'hidden',
 				[

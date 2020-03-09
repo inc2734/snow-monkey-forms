@@ -9,8 +9,14 @@ namespace Snow_Monkey\Plugin\Forms\App\Controller;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Input extends Contract\Controller {
+
+	/**
+	 * @var string
+	 */
+	protected $method = 'input';
 
 	protected function set_controls() {
 		return $this->controls;
@@ -20,45 +26,11 @@ class Input extends Contract\Controller {
 		ob_start();
 
 		if ( true === $this->setting->get( 'use_confirm_page' ) ) {
-			Helper::the_control(
-				'button',
-				[
-					'attributes' => [
-						'data-action' => 'confirm',
-					],
-					'label' => __( 'Confirm', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-				]
-			);
-
-			Helper::the_control(
-				'hidden',
-				[
-					'attributes' => [
-						'name'  => '_method',
-						'value' => 'confirm',
-					],
-				]
-			);
+			Meta::the_meta_button( 'confirm', __( 'Confirm', 'snow-monkey-forms' ) );
+			Meta::the_meta( '_method', 'confirm' );
 		} else {
-			Helper::the_control(
-				'button',
-				[
-					'attributes' => [
-						'data-action' => 'complete',
-					],
-					'label' => __( 'Send', 'snow-monkey-forms' ) . '<span class="smf-sending" aria-hidden="true"></span>',
-				]
-			);
-
-			Helper::the_control(
-				'hidden',
-				[
-					'attributes' => [
-						'name'  => '_method',
-						'value' => 'complete',
-					],
-				]
-			);
+			Meta::the_meta_button( 'complete', __( 'Send', 'snow-monkey-forms' ) );
+			Meta::the_meta( '_method', 'complete' );
 		}
 
 		return ob_get_clean();

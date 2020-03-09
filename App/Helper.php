@@ -78,4 +78,29 @@ class Helper {
 
 		return $attributes;
 	}
+
+	/**
+	 * @return false|string
+	 */
+	public static function get_save_dir() {
+		$upload_dir = wp_get_upload_dir();
+		$save_dir   = path_join( $upload_dir['basedir'], 'smf-uploads' );
+
+		return wp_mkdir_p( $save_dir ) ? $save_dir : false;
+	}
+
+	/**
+	 * @return false|string
+	 */
+	public static function get_save_dir_url() {
+		$upload_dir  = wp_get_upload_dir();
+
+		return static::get_save_dir()
+			? path_join( $upload_dir['baseurl'], 'smf-uploads' )
+			: false;
+	}
+
+	public static function saved_fileurl_to_filepath( $fileurl ) {
+		return str_replace( static::get_save_dir_url(), static::get_save_dir(), $fileurl );
+	}
 }

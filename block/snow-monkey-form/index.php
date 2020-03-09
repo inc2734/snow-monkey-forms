@@ -36,9 +36,6 @@ add_action(
 					$responser  = new Responser( [] );
 					$validator  = new Validator( $responser, $setting );
 					$controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
-					if ( ! $controller ) {
-						return;
-					}
 
 					ob_start();
 					$controller->send();

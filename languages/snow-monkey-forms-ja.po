@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-03-05 15:38+0900\n"
-"PO-Revision-Date: 2020-03-05 15:39+0900\n"
+"POT-Creation-Date: 2020-03-09 09:33+0900\n"
+"PO-Revision-Date: 2020-03-09 09:34+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -24,6 +24,18 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: tests\n"
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
+#: App/Control/File/Viewer.php:55
+msgid "Uploaded file"
+msgstr "アップロード済みのファイル"
+
+#: App/Control/File/Viewer.php:79 block/file/edit.js:65
+msgid "Choose file"
+msgstr "ファイルを選択"
+
+#: App/Control/File/Viewer.php:80 block/file/edit.js:66
+msgid "No file chosen"
+msgstr "選択されていません"
+
 #: App/Controller/Back.php:37 App/Controller/Error.php:39
 #: App/Controller/Input.php:29
 msgid "Confirm"
@@ -33,8 +45,8 @@ msgstr "確認画面へ"
 msgid "Back"
 msgstr "戻る"
 
-#: App/Controller/Confirm.php:47 App/Controller/Error.php:59
-#: App/Controller/Input.php:49
+#: App/Controller/Confirm.php:38 App/Controller/Error.php:42
+#: App/Controller/Input.php:32
 msgid "Send"
 msgstr "送信する"
 
@@ -50,65 +62,65 @@ msgstr "入力してください。"
 msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
 
-#: endpoint/view.php:29
+#: endpoint/view.php:58
 msgid "Invalid access."
 msgstr "無効なアクセスです。"
 
-#: endpoint/view.php:37
+#: endpoint/view.php:66
 msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
-#: endpoint/view.php:45
+#: endpoint/view.php:74
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:181 snow-monkey-forms.php:346
+#: snow-monkey-forms.php:183 snow-monkey-forms.php:348
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:194
+#: snow-monkey-forms.php:196
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:214
+#: snow-monkey-forms.php:216
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:234
+#: snow-monkey-forms.php:236
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:260
+#: snow-monkey-forms.php:262
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: block/checkboxes/edit.js:16 block/email/edit.js:34
-#: block/radio-buttons/edit.js:16 block/select/edit.js:22 block/tel/edit.js:34
-#: block/text/edit.js:34 block/textarea/edit.js:29 block/url/edit.js:34
+#: block/checkboxes/edit.js:29 block/email/edit.js:37 block/file/edit.js:20
+#: block/radio-buttons/edit.js:28 block/select/edit.js:34 block/tel/edit.js:37
+#: block/text/edit.js:37 block/textarea/edit.js:33 block/url/edit.js:37
 msgid "Attributes"
 msgstr "属性"
 
-#: block/checkboxes/edit.js:39
+#: block/checkboxes/edit.js:52
 msgid "Delimiter"
 msgstr "区切り文字"
 
-#: block/checkboxes/edit.js:41
+#: block/checkboxes/edit.js:54
 msgid "Optional. Character that separates each item."
 msgstr "任意。各項目を区切る文字。"
 
-#: block/checkboxes/edit.js:52 block/email/edit.js:93
-#: block/radio-buttons/edit.js:40 block/select/edit.js:60 block/tel/edit.js:93
-#: block/text/edit.js:93 block/textarea/edit.js:68 block/url/edit.js:93
+#: block/checkboxes/edit.js:65 block/email/edit.js:96 block/file/edit.js:44
+#: block/radio-buttons/edit.js:52 block/select/edit.js:72 block/tel/edit.js:96
+#: block/text/edit.js:96 block/textarea/edit.js:72 block/url/edit.js:96
 msgid "Block settings"
 msgstr "ブロック設定"
 
-#: block/checkboxes/edit.js:55 block/email/edit.js:96
-#: block/radio-buttons/edit.js:43 block/select/edit.js:63 block/tel/edit.js:96
-#: block/text/edit.js:96 block/textarea/edit.js:71 block/url/edit.js:96
+#: block/checkboxes/edit.js:68 block/email/edit.js:99 block/file/edit.js:47
+#: block/radio-buttons/edit.js:55 block/select/edit.js:75 block/tel/edit.js:99
+#: block/text/edit.js:99 block/textarea/edit.js:75 block/url/edit.js:99
 msgid "Description"
 msgstr "説明"
 
@@ -116,63 +128,63 @@ msgstr "説明"
 msgid "Checkboxes"
 msgstr "チェックボックス"
 
-#: block/components.js:7
+#: block/components.js:12
 msgid "name"
 msgstr "name"
 
-#: block/components.js:9
+#: block/components.js:14
 msgid "Required. Input a unique machine-readable name."
 msgstr "必須。一意の機械読み取り可能な名前を入力してください。"
 
-#: block/components.js:23 block/components.js:34
+#: block/components.js:30 block/components.js:41
 msgid "value"
 msgstr "value"
 
-#: block/components.js:24
+#: block/components.js:31
 msgid "Optional. Initial value."
 msgstr "任意。初期値。"
 
-#: block/components.js:37
+#: block/components.js:44
 msgid "Optional. Initial value. Enter in the following format: value%1$s"
 msgstr "任意。初期値。次の形式で入力: value%1$s"
 
-#: block/components.js:51
+#: block/components.js:58
 msgid "placeholder"
 msgstr "placeholder"
 
-#: block/components.js:61
+#: block/components.js:68
 msgid "maxlength"
 msgstr "maxlength"
 
-#: block/components.js:63
+#: block/components.js:70
 msgid "Optional. Maximum number of characters. If 0, not restricted."
 msgstr "任意。最大文字数。0の場合、制限されません。"
 
-#: block/components.js:75
+#: block/components.js:82
 msgid "size"
 msgstr "size"
 
-#: block/components.js:77
+#: block/components.js:84
 msgid "Optional. The width of this item. If 0, not restricted."
 msgstr "任意。この項目の幅。0の場合、制限されません。"
 
-#: block/components.js:89
+#: block/components.js:96
 msgid "id"
 msgstr "id"
 
-#: block/components.js:99
+#: block/components.js:106
 msgid "class"
 msgstr "class"
 
-#: block/components.js:101
+#: block/components.js:108
 msgid "Separate multiple classes with spaces."
 msgstr "複数クラスを半角スペースで区切ります。"
 
-#: block/components.js:113
+#: block/components.js:125
 msgid "options"
 msgstr "options"
 
-#: block/components.js:117
+#: block/components.js:129
 msgid ""
 "Required. Enter in the following format: \"value\" : \"label\"%1$s or value"
 "%1$s"
@@ -181,6 +193,10 @@ msgstr "必須。次の形式で入力: “value” : “label”%1$s あるい�
 #: block/email/index.js:9
 msgid "email"
 msgstr "email"
+
+#: block/file/index.js:9
+msgid "File"
+msgstr "ファイル"
 
 #: block/form/complete/index.js:7
 msgid "Complete page"
@@ -292,7 +308,7 @@ msgstr "件名"
 msgid "Admin notification"
 msgstr "管理者通知"
 
-#: plugin-sidebar/administrator-email-to.js:15
+#: plugin-sidebar/administrator-email-to.js:14
 #: plugin-sidebar/auto-reply-email-to.js:19
 msgid "To"
 msgstr "To"

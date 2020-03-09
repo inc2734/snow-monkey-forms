@@ -15,9 +15,8 @@ class Csrf {
 
 	private static $token;
 
-	public static function validate() {
+	public static function validate( $posted_token ) {
 		$cookie_token = static::saved_token();
-		$posted_token = filter_input( INPUT_POST, static::KEY );
 		return ! is_null( $cookie_token ) && ! is_null( $posted_token ) && hash_equals( $cookie_token, $posted_token );
 	}
 
@@ -26,22 +25,6 @@ class Csrf {
 		if ( ! static::saved_token() && ! headers_sent() ) {
 			setcookie( static::KEY, static::token(), 0, '/' );
 		}
-	}
-
-	public static function control() {
-		return Helper::control(
-			'hidden',
-			[
-				'attributes' => [
-					'name'  => static::KEY,
-					'value' => static::token(),
-				],
-			]
-		)->input();
-	}
-
-	public static function the_control() {
-		echo static::control(); // xss ok.
 	}
 
 	public static function token() {

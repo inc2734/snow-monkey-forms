@@ -18,6 +18,8 @@ class Viewer extends Contract\Viewer {
 	 *   @var string value
 	 *   @var boolean checked
 	 *   @var boolean disabled
+	 *   @var string id
+	 *   @var string class
 	 *   @var boolean data-invalid
 	 */
 	protected $attributes = [

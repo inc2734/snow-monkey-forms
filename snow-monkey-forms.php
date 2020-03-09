@@ -12,6 +12,8 @@
  * @package snow-monkey-forms
  * @author inc2734
  * @license GPL-2.0+
+ *
+ * @todo ファイルアップロード用 temp ディレクトリの cleanup
  */
 
 namespace Snow_Monkey\Plugin\Forms;
