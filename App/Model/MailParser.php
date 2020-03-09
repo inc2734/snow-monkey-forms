@@ -36,9 +36,9 @@ class MailParser {
 
 				if ( 'all-fields' === $matches[1] ) {
 					$return_value  = '';
-					$values = $this->responser->get_all();
-					foreach ( $values as $name => $value ) {
-						$value = $this->_stringfy( $name, $value );
+					$controls = $this->setting->get_controls();
+					foreach ( $controls as $name => $control ) {
+						$value = $this->_stringfy( $name, $this->responser->get( $name ) );
 						$return_value .= $name . ": \n" . $value . "\n\n";
 					}
 					return trim( $return_value );
