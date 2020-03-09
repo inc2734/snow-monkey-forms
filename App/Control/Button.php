@@ -5,12 +5,12 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Button;
+namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Viewer extends Contract\Viewer {
+class Button extends Contract\Control {
 
 	/**
 	 * @var array

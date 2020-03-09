@@ -7,7 +7,7 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Contract;
 
-abstract class Viewer {
+abstract class Control {
 
 	protected $validations = [];
 

@@ -5,36 +5,33 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Tel;
+namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Viewer extends Contract\Viewer {
+class File extends Contract\Control {
 
 	/**
 	 * @var array
 	 *   @var string name
-	 *   @var string value
-	 *   @var string placeholder
 	 *   @var boolean disabled
-	 *   @var int maxlength
-	 *   @var int size
 	 *   @var string id
 	 *   @var string class
 	 *   @var boolean data-invalid
 	 */
 	protected $attributes = [
 		'name'         => '',
-		'value'        => '',
-		'placeholder'  => '',
 		'disabled'     => false,
-		'maxlength'    => 0,
-		'size'         => 0,
 		'id'           => '',
-		'class'        => 'smf-text-control__control',
+		'class'        => 'smf-file-control__control',
 		'data-invalid' => false,
 	];
+
+	/**
+	 * @var string
+	 */
+	protected $value = '';
 
 	/**
 	 * @var string
@@ -47,10 +44,19 @@ class Viewer extends Contract\Viewer {
 	protected $validations = [];
 
 	public function save( $value ) {
-		$this->set_attribute( 'value', ! is_array( $value ) ? $value : '' );
+		$this->set_property( 'value', $value );
 	}
 
 	public function input() {
+		$value = $this->get_property( 'value' );
+		if ( $value ) {
+			$value = sprintf(
+				'<div class="smf-file-control__value">%1$s: %2$s</div>',
+				__( 'Uploaded file', 'snow-monkey-forms' ),
+				$this->confirm()
+			);
+		}
+
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
@@ -60,11 +66,19 @@ class Viewer extends Contract\Viewer {
 		}
 
 		return sprintf(
-			'<div class="smf-text-control">
-				<input type="tel" %1$s>
+			'<div class="smf-file-control">
+				<label>
+					<input type="file" %1$s>
+					<span class="smf-file-control__label">%2$s</span>
+					<span class="smf-file-control__filename">%3$s</span>
+				</label>
+				%4$s
 			</div>
-			%2$s',
+			%5$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			__( 'Choose file', 'snow-monkey-forms' ),
+			__( 'No file chosen', 'snow-monkey-forms' ),
+			$value,
 			$description
 		);
 	}
@@ -72,13 +86,13 @@ class Viewer extends Contract\Viewer {
 	public function confirm() {
 		return sprintf(
 			'%1$s%2$s',
-			esc_html( $this->get_attribute( 'value' ) ),
+			esc_html( basename( $this->get_property( 'value' ) ) ),
 			Helper::control(
 				'hidden',
 				[
 					'attributes' => [
 						'name'  => $this->get_attribute( 'name' ),
-						'value' => $this->get_attribute( 'value' ),
+						'value' => $this->get_property( 'value' ),
 					],
 				]
 			)->input()

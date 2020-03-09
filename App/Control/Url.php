@@ -5,26 +5,34 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Textarea;
+namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Viewer extends Contract\Viewer {
+class Url extends Contract\Control {
 
 	/**
 	 * @var array
 	 *   @var string name
+	 *   @var string value
+	 *   @var string placeholder
 	 *   @var boolean disabled
+	 *   @var int maxlength
+	 *   @var int size
 	 *   @var string id
 	 *   @var string class
 	 *   @var boolean data-invalid
 	 */
 	protected $attributes = [
 		'name'         => '',
+		'value'        => '',
+		'placeholder'  => '',
 		'disabled'     => false,
+		'maxlength'    => 0,
+		'size'         => 0,
 		'id'           => '',
-		'class'        => 'smf-textarea-control__control',
+		'class'        => 'smf-text-control__control',
 		'data-invalid' => false,
 	];
 
@@ -36,15 +44,12 @@ class Viewer extends Contract\Viewer {
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
-
-	/**
-	 * @var string
-	 */
-	public $value = '';
+	protected $validations = [
+		'url' => true,
+	];
 
 	public function save( $value ) {
-		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
+		$this->set_attribute( 'value', ! is_array( $value ) ? $value : '' );
 	}
 
 	public function input() {
@@ -57,12 +62,11 @@ class Viewer extends Contract\Viewer {
 		}
 
 		return sprintf(
-			'<div class="smf-textarea-control">
-				<textarea %1$s>%2$s</textarea>
+			'<div class="smf-text-control">
+				<input type="url" %1$s>
 			</div>
-			%3$s',
+			%2$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			esc_html( $this->get_property( 'value' ) ),
 			$description
 		);
 	}
@@ -70,13 +74,13 @@ class Viewer extends Contract\Viewer {
 	public function confirm() {
 		return sprintf(
 			'%1$s%2$s',
-			nl2br( esc_html( $this->get_property( 'value' ) ) ),
+			esc_html( $this->get_attribute( 'value' ) ),
 			Helper::control(
 				'hidden',
 				[
 					'attributes' => [
 						'name'  => $this->get_attribute( 'name' ),
-						'value' => $this->get_property( 'value' ),
+						'value' => $this->get_attribute( 'value' ),
 					],
 				]
 			)->input()

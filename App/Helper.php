@@ -22,7 +22,7 @@ class Helper {
 	}
 
 	public static function control( $type, array $attributes = [] ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type ) . '\\Viewer';
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type );
 
 		try {
 			if ( class_exists( $class_name ) ) {

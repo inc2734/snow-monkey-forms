@@ -5,11 +5,11 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Hidden;
+namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 
-class Viewer extends Contract\Viewer {
+class Hidden extends Contract\Control {
 
 	/**
 	 * @var array

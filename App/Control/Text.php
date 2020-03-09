@@ -5,19 +5,21 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Checkbox;
+namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Viewer extends Contract\Viewer {
+class Text extends Contract\Control {
 
 	/**
 	 * @var array
 	 *   @var string name
 	 *   @var string value
-	 *   @var string checked
+	 *   @var string placeholder
 	 *   @var boolean disabled
+	 *   @var int maxlength
+	 *   @var int size
 	 *   @var string id
 	 *   @var string class
 	 *   @var boolean data-invalid
@@ -25,54 +27,52 @@ class Viewer extends Contract\Viewer {
 	protected $attributes = [
 		'name'         => '',
 		'value'        => '',
-		'checked'      => false,
+		'placeholder'  => '',
 		'disabled'     => false,
+		'maxlength'    => 0,
+		'size'         => 0,
 		'id'           => '',
-		'class'        => 'smf-checkbox-control__control',
+		'class'        => 'smf-text-control__control',
 		'data-invalid' => false,
 	];
+
+	/**
+	 * @var string
+	 */
+	protected $description = '';
 
 	/**
 	 * @var array
 	 */
 	protected $validations = [];
 
-	/**
-	 * @var string
-	 */
-	protected $label = '';
-
 	public function save( $value ) {
-		$this->set_attribute( 'checked', $this->get_attribute( 'value' ) === $value );
+		$this->set_attribute( 'value', ! is_array( $value ) ? $value : '' );
 	}
 
 	public function input() {
-		$label = $this->get_property( 'label' );
-		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
+		$description = $this->get_property( 'description' );
+		if ( $description ) {
+			$description = sprintf(
+				'<div class="smf-control-description">%1$s</div>',
+				wp_kses_post( $description )
+			);
+		}
 
 		return sprintf(
-			'<label class="smf-label">
-				<span class="smf-checkbox-control">
-					<input type="checkbox" %1$s>
-					<span class="smf-checkbox-control__label">%2$s</span>
-				</span>
-			</label>',
+			'<div class="smf-text-control">
+				<input type="text" %1$s>
+			</div>
+			%2$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			esc_html( $label )
+			$description
 		);
 	}
 
 	public function confirm() {
-		if ( ! $this->get_attribute( 'checked' ) ) {
-			return;
-		}
-
-		$label = $this->get_property( 'label' );
-		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
-
 		return sprintf(
 			'%1$s%2$s',
-			esc_html( $label ),
+			esc_html( $this->get_attribute( 'value' ) ),
 			Helper::control(
 				'hidden',
 				[

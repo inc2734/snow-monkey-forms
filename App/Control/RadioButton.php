@@ -5,21 +5,19 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Url;
+namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Viewer extends Contract\Viewer {
+class RadioButton extends Contract\Control {
 
 	/**
 	 * @var array
 	 *   @var string name
 	 *   @var string value
-	 *   @var string placeholder
+	 *   @var boolean checked
 	 *   @var boolean disabled
-	 *   @var int maxlength
-	 *   @var int size
 	 *   @var string id
 	 *   @var string class
 	 *   @var boolean data-invalid
@@ -27,54 +25,54 @@ class Viewer extends Contract\Viewer {
 	protected $attributes = [
 		'name'         => '',
 		'value'        => '',
-		'placeholder'  => '',
+		'checked'      => false,
 		'disabled'     => false,
-		'maxlength'    => 0,
-		'size'         => 0,
 		'id'           => '',
-		'class'        => 'smf-text-control__control',
+		'class'        => 'smf-radio-button-control__control',
 		'data-invalid' => false,
 	];
 
 	/**
-	 * @var string
-	 */
-	protected $description = '';
-
-	/**
 	 * @var array
 	 */
-	protected $validations = [
-		'url' => true,
-	];
+	protected $validations = [];
+
+	/**
+	 * @var string
+	 */
+	protected $label = '';
 
 	public function save( $value ) {
-		$this->set_attribute( 'value', ! is_array( $value ) ? $value : '' );
+		$this->set_attribute( 'checked', $this->get_attribute( 'value' ) === $value );
 	}
 
 	public function input() {
-		$description = $this->get_property( 'description' );
-		if ( $description ) {
-			$description = sprintf(
-				'<div class="smf-control-description">%1$s</div>',
-				wp_kses_post( $description )
-			);
-		}
+		$label = $this->get_property( 'label' );
+		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
 
 		return sprintf(
-			'<div class="smf-text-control">
-				<input type="url" %1$s>
-			</div>
-			%2$s',
+			'<label class="smf-label">
+				<span class="smf-radio-button-control">
+					<input type="radio" %1$s>
+					<span class="smf-radio-button-control__label">%2$s</span>
+				</span>
+			</label>',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			$description
+			esc_html( $label )
 		);
 	}
 
 	public function confirm() {
+		if ( ! $this->get_attribute( 'checked' ) ) {
+			return;
+		}
+
+		$label = $this->get_property( 'label' );
+		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
+
 		return sprintf(
 			'%1$s%2$s',
-			esc_html( $this->get_attribute( 'value' ) ),
+			esc_html( $label ),
 			Helper::control(
 				'hidden',
 				[

@@ -5,12 +5,12 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Email;
+namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Viewer extends Contract\Viewer {
+class Tel extends Contract\Control {
 
 	/**
 	 * @var array
@@ -22,6 +22,7 @@ class Viewer extends Contract\Viewer {
 	 *   @var int size
 	 *   @var string id
 	 *   @var string class
+	 *   @var boolean data-invalid
 	 */
 	protected $attributes = [
 		'name'         => '',
@@ -43,9 +44,7 @@ class Viewer extends Contract\Viewer {
 	/**
 	 * @var array
 	 */
-	protected $validations = [
-		'email' => true,
-	];
+	protected $validations = [];
 
 	public function save( $value ) {
 		$this->set_attribute( 'value', ! is_array( $value ) ? $value : '' );
@@ -62,7 +61,7 @@ class Viewer extends Contract\Viewer {
 
 		return sprintf(
 			'<div class="smf-text-control">
-				<input type="email" %1$s>
+				<input type="tel" %1$s>
 			</div>
 			%2$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),

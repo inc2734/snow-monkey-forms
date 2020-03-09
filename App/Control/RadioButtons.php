@@ -5,12 +5,12 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\Forms\App\Control\Checkboxes;
+namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-class Viewer extends Contract\Viewer {
+class RadioButtons extends Contract\Control {
 
 	/**
 	 * @var array
@@ -36,19 +36,9 @@ class Viewer extends Contract\Viewer {
 	protected $name = '';
 
 	/**
-	 * @var array
-	 */
-	protected $values = [];
-
-	/**
 	 * @var boolean
 	 */
 	protected $disabled = false;
-
-	/**
-	 * @var boolean
-	 */
-	protected $delimiter = ', ';
 
 	/**
 	 * @var array
@@ -56,20 +46,27 @@ class Viewer extends Contract\Viewer {
 	protected $options = [];
 
 	/**
+	 * @var string
+	 */
+	protected $value = '';
+
+	/**
 	 * @var array
 	 */
 	protected $children = [];
 
-	protected function _init() {
-		$this->set_property( 'name', $this->get_property( 'name' ) . '[]' );
+	public function save( $value ) {
+		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
+	}
 
+	protected function _init() {
 		$children = [];
 		foreach ( $this->get_property( 'options' ) as $option ) {
 			$value = array_keys( $option )[0];
 			$label = array_values( $option )[0];
 
 			$children[] = Helper::control(
-				'checkbox',
+				'radio-button',
 				[
 					'attributes' => [
 						'name'         => $this->get_property( 'name' ),
@@ -85,16 +82,12 @@ class Viewer extends Contract\Viewer {
 		$this->set_property( 'children', $children );
 	}
 
-	public function save( $value ) {
-		$this->set_property( 'values', ! is_array( $value ) ? [] : $value );
-	}
-
 	public function input() {
 		$this->set_property(
 			'children',
 			$this->_get_updated_chlidren(
 				function( $control ) {
-					$checked = in_array( $control->get_attribute( 'value' ), $this->get_property( 'values' ) );
+					$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
 					$control->set_attribute( 'checked', $checked );
 					return $control;
 				}
@@ -110,8 +103,8 @@ class Viewer extends Contract\Viewer {
 		}
 
 		return sprintf(
-			'<div class="smf-checkboxes-control" %1$s>
-				<div class="smf-checkboxes-control__control">%2$s</div>
+			'<div class="smf-radio-buttons-control" %1$s>
+				<div class="smf-radio-buttons-control__control">%2$s</div>
 			</div>
 			%3$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
@@ -125,15 +118,14 @@ class Viewer extends Contract\Viewer {
 			'children',
 			$this->_get_updated_chlidren(
 				function( $control ) {
-					$checked = in_array( $control->get_attribute( 'value' ), $this->get_property( 'values' ) );
+					$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
 					$control->set_attribute( 'checked', $checked );
 					return $control;
 				}
 			)
 		);
 
-		$delimiter = $this->get_property( 'delimiter' );
-		return implode( $delimiter, $this->_children( 'confirm' ) );
+		return implode( '', $this->_children( 'confirm' ) );
 	}
 
 	public function error( $error_message = '' ) {
