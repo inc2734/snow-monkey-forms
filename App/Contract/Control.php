@@ -127,29 +127,27 @@ abstract class Control {
 		return false;
 	}
 
-	protected function _get_updated_chlidren( $callback ) {
-		$children = $this->get_property( 'children' );
-		if ( is_null( $children ) ) {
-			return false;
-		}
-
-		$new_children = [];
-		foreach ( $this->get_property( 'children' ) as $index => $control ) {
-			$new_children[ $index ] = $callback( $control );
-		}
-		return $new_children;
+	protected function _get_children() {
+		return array_filter( $this->get_property( 'children' ) );
 	}
 
-	protected function _children( $type ) {
-		return array_filter(
-			array_map(
-				function( $control ) use ( $type ) {
-					if ( method_exists( $control, $type ) ) {
-						return $control->$type();
-					}
-					return [];
-				},
-				$this->get_property( 'children' )
+	protected function _set_children( $children ) {
+		$this->set_property( 'children', $children );
+	}
+
+	protected function _children( $type, $delimiter = '' ) {
+		return implode(
+			$delimiter,
+			array_filter(
+				array_map(
+					function( $control ) use ( $type ) {
+						if ( method_exists( $control, $type ) ) {
+							return $control->$type();
+						}
+						return false;
+					},
+					$this->_get_children()
+				)
 			)
 		);
 	}

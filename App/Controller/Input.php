@@ -13,11 +13,6 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Input extends Contract\Controller {
 
-	/**
-	 * @var string
-	 */
-	protected $method = 'input';
-
 	protected function set_controls() {
 		return $this->controls;
 	}

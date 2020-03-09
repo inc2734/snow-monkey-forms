@@ -13,11 +13,6 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Back extends Contract\Controller {
 
-	/**
-	 * @var string
-	 */
-	protected $method = 'back';
-
 	protected function set_controls() {
 		$controls = [];
 		$setting_controls = $this->setting->get( 'controls' );

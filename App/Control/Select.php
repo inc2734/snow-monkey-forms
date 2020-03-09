@@ -71,7 +71,7 @@ class Select extends Contract\Control {
 				]
 			);
 		}
-		$this->set_property( 'children', $children );
+		$this->_set_children( $children );
 	}
 
 	public function save( $value ) {
@@ -79,16 +79,13 @@ class Select extends Contract\Control {
 	}
 
 	public function input() {
-		$this->set_property(
-			'children',
-			$this->_get_updated_chlidren(
-				function( $control ) {
-					$selected = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
-					$control->set_attribute( 'selected', $selected );
-					return $control;
-				}
-			)
-		);
+		$children = $this->_get_children();
+		foreach ( $children as $key => $control ) {
+			$selected = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+			$control->set_attribute( 'selected', $selected );
+			$children[ $key ] = $control;
+		}
+		$this->_set_children( $children );
 
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
@@ -105,24 +102,21 @@ class Select extends Contract\Control {
 			</div>
 			%3$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			implode( '', $this->_children( 'input' ) ),
+			$this->_children( 'input' ),
 			$description
 		);
 	}
 
 	public function confirm() {
-		$this->set_property(
-			'children',
-			$this->_get_updated_chlidren(
-				function( $control ) {
-					$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
-					$control->set_attribute( 'selected', $checked );
-					return $control;
-				}
-			)
-		);
+		$children = $this->_get_children();
+		foreach ( $children as $key => $control ) {
+			$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+			$control->set_attribute( 'selected', $checked );
+			$children[ $key ] = $control;
+		}
+		$this->_set_children( $children );
 
-		return implode( '', $this->_children( 'confirm' ) );
+		return $this->_children( 'confirm' );
 	}
 
 	public function error( $error_message = '' ) {

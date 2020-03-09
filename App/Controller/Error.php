@@ -13,11 +13,6 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Error extends Contract\Controller {
 
-	/**
-	 * @var string
-	 */
-	protected $method = 'error';
-
 	protected function set_controls() {
 		$controls = [];
 		$setting_controls = $this->setting->get( 'controls' );

@@ -79,20 +79,17 @@ class RadioButtons extends Contract\Control {
 				]
 			);
 		}
-		$this->set_property( 'children', $children );
+		$this->_set_children( $children );
 	}
 
 	public function input() {
-		$this->set_property(
-			'children',
-			$this->_get_updated_chlidren(
-				function( $control ) {
-					$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
-					$control->set_attribute( 'checked', $checked );
-					return $control;
-				}
-			)
-		);
+		$children = $this->_get_children();
+		foreach ( $children as $key => $control ) {
+			$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+			$control->set_attribute( 'checked', $checked );
+			$children[ $key ] = $control;
+		}
+		$this->_set_children( $children );
 
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
@@ -108,38 +105,32 @@ class RadioButtons extends Contract\Control {
 			</div>
 			%3$s',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
-			implode( '', $this->_children( 'input' ) ),
+			$this->_children( 'input' ),
 			$description
 		);
 	}
 
 	public function confirm() {
-		$this->set_property(
-			'children',
-			$this->_get_updated_chlidren(
-				function( $control ) {
-					$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
-					$control->set_attribute( 'checked', $checked );
-					return $control;
-				}
-			)
-		);
+		$children = $this->_get_children();
+		foreach ( $children as $key => $control ) {
+			$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+			$control->set_attribute( 'checked', $checked );
+			$children[ $key ] = $control;
+		}
+		$this->_set_children( $children );
 
-		return implode( '', $this->_children( 'confirm' ) );
+		return $this->_children( 'confirm' );
 	}
 
 	public function error( $error_message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 
-		$this->set_property(
-			'children',
-			$this->_get_updated_chlidren(
-				function( $control ) {
-					$control->set_attribute( 'data-invalid', $this->get_attribute( 'data-invalid' ) );
-					return $control;
-				}
-			)
-		);
+		$children = $this->_get_children();
+		foreach ( $children as $key => $control ) {
+			$control->set_attribute( 'data-invalid', $this->get_attribute( 'data-invalid' ) );
+			$children[ $key ] = $control;
+		}
+		$this->_set_children( $children );
 
 		return sprintf(
 			'%1$s

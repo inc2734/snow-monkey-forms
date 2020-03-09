@@ -11,11 +11,6 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 
 class SystemError extends Contract\Controller {
 
-	/**
-	 * @var string
-	 */
-	protected $method = 'systemerror';
-
 	protected function set_controls() {
 		return $this->controls;
 	}
