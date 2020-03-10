@@ -70,51 +70,46 @@ class File {
 	}
 
 	public function save() {
-		try {
-			$filename = $this->_get_filename();
-			$error    = $this->get_error();
+		$filename = $this->_get_filename();
+		$error    = $this->get_error();
 
-			if ( false === $error || false === $filename ) {
-				throw new \RuntimeException( '[Snow Monkey Forms] An error occurred during file upload.' );
-			}
-
-			if ( UPLOAD_ERR_OK !== $error && UPLOAD_ERR_NO_FILE !== $error ) {
-				if ( UPLOAD_ERR_INI_SIZE === $error || UPLOAD_ERR_FORM_SIZE === $error ) {
-					throw new \RuntimeException( '[Snow Monkey Forms] File size of the uploaded file is too large.' );
-				}
-				throw new \RuntimeException( '[Snow Monkey Forms] An error occurred during file upload.' );
-			}
-
-			$save_dir = Directory::get();
-			if ( ! $save_dir ) {
-				throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
-			}
-
-			do {
-				$rand_max = mt_getrandmax();
-				$rand     = zeroise( mt_rand( 0, $rand_max ), strlen( $rand_max ) );
-				$uniqid   = md5( uniqid( $rand, true ) );
-				$save_dir = path_join( $save_dir, $uniqid . $rand );
-
-				if ( ! file_exists( $save_dir ) ) {
-					break;
-				}
-			} while ( 0 );
-
-			if ( ! wp_mkdir_p( $save_dir ) ) {
-				throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
-			}
-
-			$new_filepath = path_join( $save_dir, $filename );
-
-			if ( ! $this->_move_to( $new_filepath ) ) {
-				throw new \RuntimeException( '[Snow Monkey Forms] There was an error saving the uploaded file.' );
-			}
-
-			return Directory::filepath_to_fileurl( $new_filepath );
-		} catch ( \RuntimeException $e ) {
-			error_log( $e->getMessage() );
-			return false;
+		if ( false === $error || false === $filename ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] An error occurred during file upload.' );
 		}
+
+		if ( UPLOAD_ERR_OK !== $error && UPLOAD_ERR_NO_FILE !== $error ) {
+			if ( UPLOAD_ERR_INI_SIZE === $error || UPLOAD_ERR_FORM_SIZE === $error ) {
+				throw new \RuntimeException( '[Snow Monkey Forms] File size of the uploaded file is too large.' );
+			}
+			throw new \RuntimeException( '[Snow Monkey Forms] An error occurred during file upload.' );
+		}
+
+		$save_dir = Directory::get();
+		if ( ! $save_dir ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
+		}
+
+		do {
+			$rand_max = mt_getrandmax();
+			$rand     = zeroise( mt_rand( 0, $rand_max ), strlen( $rand_max ) );
+			$uniqid   = md5( uniqid( $rand, true ) );
+			$save_dir = path_join( $save_dir, $uniqid . $rand );
+
+			if ( ! file_exists( $save_dir ) ) {
+				break;
+			}
+		} while ( 0 );
+
+		if ( ! wp_mkdir_p( $save_dir ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
+		}
+
+		$new_filepath = path_join( $save_dir, $filename );
+
+		if ( ! $this->_move_to( $new_filepath ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] There was an error saving the uploaded file.' );
+		}
+
+		return Directory::filepath_to_fileurl( $new_filepath );
 	}
 }

@@ -94,15 +94,10 @@ class Validator {
 	protected function _get_validation_class( $validation_name ) {
 		$class_name = '\Snow_Monkey\Plugin\Forms\App\Validation\\' . Helper::generate_class_name( $validation_name );
 
-		try {
-			if ( class_exists( $class_name ) ) {
-				return $class_name;
-			}
-			throw new \Exception( sprintf( '[Snow Monkey Forms] The class %1$s is not found.', $class_name ) );
-		} catch ( \Exception $e ) {
-			error_log( $e->getMessage() );
+		if ( ! class_exists( $class_name ) ) {
+			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
 		}
 
-		return false;
+		return $class_name;
 	}
 }

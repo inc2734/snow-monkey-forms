@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { __ } from '@wordpress/i18n';
 
 const maybeHasControls = ( method ) => {
 	return (
@@ -86,11 +87,28 @@ export default function submit( event ) {
 		}
 	};
 
+	const failCallback = () => {
+		const errorMessage = $(
+			'<div class="smf-system-error-content" tabindex="-1" />'
+		);
+		errorMessage.text(
+			__( 'An unexpected problem has occurred.', 'snow-monkey-forms' ) +
+				__(
+					'Please try again later or contact your administrator by other means.',
+					'snow-monkey-forms'
+				)
+		);
+		replaceContent( errorMessage );
+		focusToContent();
+	};
+
 	$.ajax( {
 		type: 'POST',
 		url: snowmonkeyforms.view_json_url,
 		data: new FormData( form.get( 0 ) ),
 		processData: false,
 		contentType: false,
-	} ).done( doneCallback );
+	} )
+		.done( doneCallback )
+		.fail( failCallback );
 }

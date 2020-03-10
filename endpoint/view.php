@@ -66,26 +66,34 @@ if ( ! $validator->validate() ) {
 // CSRF token check.
 if ( ! Csrf::validate( Meta::get( '_token' ) ) ) {
 	Meta::set( '_method', 'systemerror' );
-	$setting->set_system_error_message( __( 'Invalid access.', 'snow-monkey-forms' ) );
+	$error_message = __( 'Invalid access.', 'snow-monkey-forms' );
+	$setting->set_system_error_message( $error_message );
 }
 
 // Complete process.
 if ( 'complete' === Meta::get( '_method' ) ) {
 	// Administrator email sending.
 	$administrator_mailer = new AdministratorMailer( $responser, $setting );
-	$is_administrator_mail_sended = $administrator_mailer->send();
-	if ( ! $is_administrator_mail_sended ) {
+	try {
+		$administrator_mailer->send();
+	} catch ( \Exception $e ) {
+		error_log( $e->getMessage() );
 		Meta::set( '_method', 'systemerror' );
-		$setting->set_system_error_message( __( 'Failed to send administrator email.', 'snow-monkey-forms' ) );
+		$error_message  = __( 'Failed to send administrator email.', 'snow-monkey-forms' );
+		$error_message .= __( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' );
+		$setting->set_system_error_message( $error_message );
 	}
 
 	// Auto reply email sending.
 	$auto_reply_mailer = new AutoReplyMailer( $responser, $setting );
 	if ( $auto_reply_mailer->should_send() ) {
-		$is_auto_reply_mail_sended = $auto_reply_mailer->send();
-		if ( ! $is_auto_reply_mail_sended ) {
+		try {
+			$auto_reply_mailer->send();
+		} catch ( \Exception $e ) {
+			error_log( $e->getMessage() );
 			Meta::set( '_method', 'systemerror' );
-			$setting->set_system_error_message( __( 'Failed to send auto reply email.', 'snow-monkey-forms' ) );
+			$error_message = __( 'Failed to send auto reply email.', 'snow-monkey-forms' );
+			$setting->set_system_error_message( $error_message );
 		}
 	}
 
@@ -101,9 +109,22 @@ if ( 'complete' === Meta::get( '_method' ) ) {
 			continue;
 		}
 
-		Directory::remove( $file );
+		try {
+			Directory::remove( $file );
+		} catch ( \Exception $e ) {
+			error_log( $e->getMessage() );
+		}
 	}
 }
 
-$controller = Dispatcher::dispatch( Meta::get( '_method' ), $responser, $setting, $validator );
+try {
+	$controller = Dispatcher::dispatch( Meta::get( '_method' ), $responser, $setting, $validator );
+} catch ( \Exception $e ) {
+	error_log( $e->getMessage() );
+	$error_message  = __( 'An unexpected problem has occurred.', 'snow-monkey-forms' );
+	$error_message .= __( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' );
+	$setting->set_system_error_message( $error_message );
+	$controller = Dispatcher::dispatch( 'systemerror', $responser, $setting, $validator );
+}
+
 $controller->send();

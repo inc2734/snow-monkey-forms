@@ -98,6 +98,12 @@ class Bootstrap {
 			'before'
 		);
 
+		wp_set_script_translations(
+			'snow-monkey-forms',
+			'snow-monkey-forms',
+			SNOW_MONKEY_FORMS_PATH . '/languages'
+		);
+
 		wp_enqueue_style(
 			'snow-monkey-forms',
 			SNOW_MONKEY_FORMS_URL . '/dist/css/app.css',
@@ -353,7 +359,11 @@ class Bootstrap {
 	}
 
 	public function _do_empty_save_dir() {
-		Directory::do_empty();
+		try {
+			Directory::do_empty();
+		} catch ( \Exception $e ) {
+			error_log( $e->getMessage() );
+		}
 	}
 }
 

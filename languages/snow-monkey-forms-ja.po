@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-03-09 09:33+0900\n"
-"PO-Revision-Date: 2020-03-09 09:34+0900\n"
+"POT-Creation-Date: 2020-03-10 09:45+0900\n"
+"PO-Revision-Date: 2020-03-10 09:45+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -24,29 +24,29 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: tests\n"
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
-#: App/Control/File/Viewer.php:55
+#: App/Control/File.php:55
 msgid "Uploaded file"
 msgstr "アップロード済みのファイル"
 
-#: App/Control/File/Viewer.php:79 block/file/edit.js:65
+#: App/Control/File.php:79 block/file/edit.js:66
 msgid "Choose file"
 msgstr "ファイルを選択"
 
-#: App/Control/File/Viewer.php:80 block/file/edit.js:66
+#: App/Control/File.php:80 block/file/edit.js:69
 msgid "No file chosen"
 msgstr "選択されていません"
 
-#: App/Controller/Back.php:37 App/Controller/Error.php:39
-#: App/Controller/Input.php:29
+#: App/Controller/Back.php:32 App/Controller/Error.php:34
+#: App/Controller/Input.php:24
 msgid "Confirm"
 msgstr "確認画面へ"
 
-#: App/Controller/Confirm.php:37
+#: App/Controller/Confirm.php:32
 msgid "Back"
 msgstr "戻る"
 
-#: App/Controller/Confirm.php:38 App/Controller/Error.php:42
-#: App/Controller/Input.php:32
+#: App/Controller/Confirm.php:33 App/Controller/Error.php:37
+#: App/Controller/Input.php:27
 msgid "Send"
 msgstr "送信する"
 
@@ -62,39 +62,47 @@ msgstr "入力してください。"
 msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
 
-#: endpoint/view.php:58
+#: endpoint/view.php:69
 msgid "Invalid access."
 msgstr "無効なアクセスです。"
 
-#: endpoint/view.php:66
+#: endpoint/view.php:82
 msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
-#: endpoint/view.php:74
+#: endpoint/view.php:83 endpoint/view.php:125 src/js/module/submit.js:92
+msgid "Please try again later or contact your administrator by other means."
+msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
+
+#: endpoint/view.php:95
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
+#: endpoint/view.php:124 src/js/module/submit.js:91
+msgid "An unexpected problem has occurred."
+msgstr "予期しない問題が発生しました。"
+
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:183 snow-monkey-forms.php:348
+#: snow-monkey-forms.php:184 snow-monkey-forms.php:349
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:196
+#: snow-monkey-forms.php:197
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:216
+#: snow-monkey-forms.php:217
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:236
+#: snow-monkey-forms.php:237
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:262
+#: snow-monkey-forms.php:263
 msgid "Complete !"
 msgstr "完了しました。"
 

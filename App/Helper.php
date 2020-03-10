@@ -10,6 +10,13 @@ namespace Snow_Monkey\Plugin\Forms\App;
 use Snow_Monkey\Plugin\Forms\App\Control;
 
 class Helper {
+
+	/**
+	 * Return class name
+	 *
+	 * @param   string  $string
+	 * @return  string
+	 */
 	public static function generate_class_name( $string ) {
 		$class_name_array = array_map(
 			function( $string ) {
@@ -21,24 +28,40 @@ class Helper {
 		return implode( '', $class_name_array );
 	}
 
-	public static function control( $type, array $attributes = [] ) {
+	/**
+	 * Return Control
+	 *
+	 * @param string $type
+	 * @param array $properties
+	 * @return Control
+	 */
+	public static function control( $type, array $properties = [] ) {
 		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type );
 
-		try {
-			if ( class_exists( $class_name ) ) {
-				return new $class_name( $attributes );
-			}
-			throw new \Exception( sprintf( '[Snow Monkey Forms] The class %1$s is not found.', $class_name ) );
-		} catch ( \Exception $e ) {
-			error_log( $e->getMessage() );
-			return;
+		if ( ! class_exists( $class_name ) ) {
+			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
 		}
+
+		return new $class_name( $properties );
 	}
 
-	public static function the_control( $type, $attributes ) {
-		echo static::control( $type, $attributes )->input(); // xss ok.
+	/**
+	 * Display input HTML of Control
+	 *
+	 * @param   string  $type
+	 * @param   array   $properties
+	 * @return  void
+	 */
+	public static function the_control( $type, $properties ) {
+		echo static::control( $type, $properties )->input(); // xss ok.
 	}
 
+	/**
+	 * Convert attributes of js block to properties of php Control
+	 *
+	 * @param   array  $attributes
+	 * @return  array
+	 */
 	public static function block_meta_normalization( array $attributes ) {
 		if ( isset( $attributes['validations'] ) ) {
 			$validations = json_decode( $attributes['validations'], true );

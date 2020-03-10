@@ -10,20 +10,14 @@ namespace Snow_Monkey\Plugin\Forms\App\Model;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Dispatcher {
+
 	public static function dispatch( $method, Responser $responser, Setting $setting, Validator $validator ) {
 		$class_name = '\Snow_Monkey\Plugin\Forms\App\Controller\\' . Helper::generate_class_name( $method );
 
-		try {
-			if ( class_exists( $class_name ) ) {
-				$controller = new $class_name( $responser, $setting, $validator );
-			} else {
-				throw new \Exception( sprintf( '[Snow Monkey Forms] The class %1$s is not found.', $class_name ) );
-			}
-		} catch ( \Exception $e ) {
-			error_log( $e->getMessage() );
-			$controller = new \Snow_Monkey\Plugin\Forms\App\Controller\SystemError( $responser, $setting, $validator );
+		if ( ! class_exists( $class_name ) ) {
+			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
 		}
 
-		return $controller;
+		return new $class_name( $responser, $setting, $validator );
 	}
 }

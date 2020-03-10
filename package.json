@@ -33,8 +33,9 @@
     "zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/bin' --exclude='/tests' --exclude='package*.json' . snow-monkey-forms && cd snow-monkey-forms && composer install --no-dev",
     "zip:archive": "zip -9 -qmr snow-monkey-forms.zip snow-monkey-forms",
     "zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive",
-    "po2json:snow-monkey-forms@plugin-sidebar": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms@plugin-sidebar.json -f jed",
+    "po2json:snow-monkey-forms": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms.json -f jed",
     "po2json:snow-monkey-forms@blocks": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms@blocks.json -f jed",
+    "po2json:snow-monkey-forms@plugin-sidebar": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms@plugin-sidebar.json -f jed",
     "po2json": "npm-run-all -p po2json:*"
   }
 }

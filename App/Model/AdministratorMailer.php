@@ -30,17 +30,6 @@ class AdministratorMailer {
 	}
 
 	public function send() {
-		try {
-			$is_sended = $this->_send();
-		} catch ( \Exception $e ) {
-			error_log( $e->getMessage() );
-			$is_sended = false;
-		}
-
-		return $is_sended;
-	}
-
-	protected function _send() {
 		$mail_parser = new MailParser( $this->responser, $this->setting );
 
 		$mailer = new Mailer(
@@ -53,9 +42,8 @@ class AdministratorMailer {
 		);
 
 		$is_sended = $mailer->send();
-
 		if ( ! $is_sended ) {
-			throw new \Exception( '[Snow Monkey Forms] Failed to send administrator email.' );
+			throw new \RuntimeException( '[Snow Monkey Forms] Failed to send administrator email.' );
 		}
 
 		return $is_sended;
