@@ -19,6 +19,8 @@ namespace Snow_Monkey\Plugin\Forms;
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 define( 'SNOW_MONKEY_FORMS_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SNOW_MONKEY_FORMS_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 

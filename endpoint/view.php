@@ -16,6 +16,12 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Validator;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$referer = filter_input( INPUT_SERVER, 'HTTP_REFERER' );
+$siteurl = get_bloginfo( 'url' );
+if ( 0 !== strpos( $referer, $siteurl ) ) exit;
+
 $data = filter_input_array( INPUT_POST );
 
 // Set form meta data and remove from post data.
