@@ -227,17 +227,6 @@
   }
 }
 
-.smf-control-description {
-  @include _margin-top(.125);
-  color: _dark($_color-gray);
-  @include _font-size-line-height($_base-font-size-px - 2px);
-}
-
-.smf-error-messages {
-  @include _margin-top(.25);
-  color: #cc3033;
-}
-
 .smf-radio-buttons-control,
 .smf-checkboxes-control {
   &__control {
@@ -257,52 +246,5 @@
   outline: none;
 }
 
-.smf-action {
-  .smf-button-control__control {
-    @include _padding-right(1.5);
-    @include _padding-left(1.5);
-  }
-
-  .smf-button-control + .smf-button-control {
-    @include _margin-left(.5);
-  }
-
-  .smf-button-control__control {
-    position: relative;
-
-    .smf-sending {
-      position: absolute;
-      right: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-}
-
-@keyframes smf-sending {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.smf-sending {
-  &[aria-hidden="true"] {
-    visibility: hidden;
-  }
-
-  &::before {
-    content: '';
-    display: block;
-    height: 10px;
-    width: 10px;
-    border: 1px solid rgba(#000, .5);
-    border-top-color: transparent;
-    border-radius: 100%;
-    animation: smf-sending 2s ease-out 0s infinite;
-  }
-}
-
 @import 'block-styles/app';
+@import 'component/component';

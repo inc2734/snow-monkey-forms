@@ -1,0 +1,21 @@
+.smf-action {
+  .smf-button-control__control {
+    @include _padding-right(1.5);
+    @include _padding-left(1.5);
+  }
+
+  .smf-button-control + .smf-button-control {
+    @include _margin-left(.5);
+  }
+
+  .smf-button-control__control {
+    position: relative;
+
+    .smf-sending {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}

@@ -100,6 +100,9 @@ class Setting {
 
 		$use_confirm_page = get_post_meta( $form_id, 'use_confirm_page', true );
 		$this->use_confirm_page = ! $use_confirm_page ? false : true;
+
+		$use_progress_tracker = get_post_meta( $form_id, 'use_progress_tracker', true );
+		$this->use_progress_tracker = ! $use_progress_tracker ? false : true;
 	}
 
 	public function get( $key ) {

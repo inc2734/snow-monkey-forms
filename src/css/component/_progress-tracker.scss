@@ -1,0 +1,79 @@
+.smf-progress-tracker {
+  @include _margin-bottom(1);
+  @include _list-unstyled();
+  display: flex;
+  flex-wrap: nowrap;
+
+  &__item {
+    position: relative;
+    flex: 1 1 auto;
+    width: 33.33333%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &::before,
+    &::after {
+      position: absolute;
+      top: 12px;
+      content: '';
+      display: block;
+      height: 1px;
+      background-color: _light($_color-gray);
+    }
+
+    &::before {
+      right: 50%;
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+      left: 50%;
+    }
+
+    &--input {
+      &::before {
+        display: none;
+      }
+    }
+
+    &--complete {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__item__number {
+    position: relative;
+    z-index: 1;
+    @include _circle(24px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: _light($_color-gray);
+    color: #fff;
+  }
+
+  &__item__text {
+    margin-top: .5em;
+    color: _light($_color-gray);
+  }
+}
+
+[data-screen="input"] .smf-progress-tracker__item--input,
+[data-screen="error"] .smf-progress-tracker__item--input,
+[data-screen="back"] .smf-progress-tracker__item--input,
+[data-screen="confirm"] .smf-progress-tracker__item--confirm,
+[data-screen="complete"] .smf-progress-tracker__item--complete {
+  .smf-progress-tracker__item__number {
+    background-color: $_color-text;
+    font-weight: bold;
+  }
+
+  .smf-progress-tracker__item__text {
+    color: $_color-text;
+    font-weight: bold;
+  }
+}

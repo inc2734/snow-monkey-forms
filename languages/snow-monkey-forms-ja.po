@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-03-10 09:45+0900\n"
-"PO-Revision-Date: 2020-03-10 09:45+0900\n"
+"POT-Creation-Date: 2020-03-11 15:33+0900\n"
+"PO-Revision-Date: 2020-03-11 15:33+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -62,47 +62,77 @@ msgstr "入力してください。"
 msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
 
-#: endpoint/view.php:69
+#: block/snow-monkey-form/view.php:18
+msgctxt "progress-tracker"
+msgid "1"
+msgstr "1"
+
+#: block/snow-monkey-form/view.php:21
+msgctxt "progress-tracker"
+msgid "Input"
+msgstr "入力"
+
+#: block/snow-monkey-form/view.php:26
+msgctxt "progress-tracker"
+msgid "2"
+msgstr "2"
+
+#: block/snow-monkey-form/view.php:29
+msgctxt "progress-tracker"
+msgid "Confirm"
+msgstr "確認"
+
+#: block/snow-monkey-form/view.php:34
+msgctxt "progress-tracker"
+msgid "3"
+msgstr "3"
+
+#: block/snow-monkey-form/view.php:37
+msgctxt "progress-tracker"
+msgid "Complete"
+msgstr "完了"
+
+#: endpoint/view.php:79
 msgid "Invalid access."
 msgstr "無効なアクセスです。"
 
-#: endpoint/view.php:82
+#: endpoint/view.php:92
 msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
-#: endpoint/view.php:83 endpoint/view.php:125 src/js/module/submit.js:92
+#: endpoint/view.php:93 endpoint/view.php:135 src/js/module/submit.js:101
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
-#: endpoint/view.php:95
+#: endpoint/view.php:105
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: endpoint/view.php:124 src/js/module/submit.js:91
+#: endpoint/view.php:134 src/js/module/submit.js:99
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:184 snow-monkey-forms.php:349
+#: snow-monkey-forms.php:194 snow-monkey-forms.php:369
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:197
+#: snow-monkey-forms.php:207
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:217
+#: snow-monkey-forms.php:227
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:237
+#: snow-monkey-forms.php:247
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:263
+#: snow-monkey-forms.php:273
 msgid "Complete !"
 msgstr "完了しました。"
 
@@ -214,45 +244,49 @@ msgstr "完了画面"
 msgid "Complete"
 msgstr "完了画面"
 
-#: block/form/input/index.js:11
+#: block/form/input/index.js:12
 msgid "Input page"
 msgstr "入力画面"
 
-#: block/form/input/index.js:40
+#: block/form/input/index.js:41
 msgid "Settings"
 msgstr "設定"
 
-#: block/form/input/index.js:44
+#: block/form/input/index.js:46
 msgid "Form style"
 msgstr "フォームスタイル"
 
-#: block/form/input/index.js:49
+#: block/form/input/index.js:51
 msgid "Default"
 msgstr "デフォルト"
 
-#: block/form/input/index.js:54
+#: block/form/input/index.js:56
 msgid "Simple table"
 msgstr "Simple table"
 
-#: block/form/input/index.js:60
+#: block/form/input/index.js:62
 msgid "Letter"
 msgstr "Letter"
 
-#: block/form/input/index.js:65
+#: block/form/input/index.js:67
 msgid "Business"
 msgstr "Business"
 
-#: block/form/input/index.js:79
+#: block/form/input/index.js:81
 msgid "Input"
 msgstr "入力画面"
 
-#: block/form/input/index.js:83
+#: block/form/input/index.js:85
 msgid "Open input page settings"
 msgstr "入力画面設定を開く"
 
 #: block/form/input/use-confirm-page.js:14
 msgid "Use confirm page"
 msgstr "確認画面を使用する"
+
+#: block/form/input/use-progress-tracker.js:14
+msgid "Use progress tracker"
+msgstr "プログレストラッカーを使用する"
 
 #: block/item/edit.js:35
 msgid "Label"

@@ -67,6 +67,8 @@ export default function submit( event ) {
 		response = JSON.parse( response );
 		const method = response.method;
 
+		form.attr( 'data-screen', method );
+
 		actionArea.html( response.action );
 		form.find( '.smf-placeholder' ).html( '' );
 
@@ -88,6 +90,8 @@ export default function submit( event ) {
 	};
 
 	const failCallback = () => {
+		form.attr( 'data-screen', 'systemerror' );
+
 		const errorMessage = $(
 			'<div class="smf-system-error-content" tabindex="-1" />'
 		);

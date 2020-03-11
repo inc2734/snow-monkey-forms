@@ -351,6 +351,16 @@ class Bootstrap {
 				'type'         => 'boolean',
 			]
 		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'use_progress_tracker',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'boolean',
+			]
+		);
 	}
 
 	public function _block_categories( $categories ) {

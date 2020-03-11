@@ -6,6 +6,7 @@ import { PanelBody, SelectControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import UseConfirmPage from './use-confirm-page';
+import UseProgressTracker from './use-progress-tracker';
 
 registerBlockType( 'snow-monkey-forms/form--input', {
 	title: __( 'Input page', 'snow-monkey-forms' ),
@@ -39,6 +40,7 @@ registerBlockType( 'snow-monkey-forms/form--input', {
 				<InspectorControls>
 					<PanelBody title={ __( 'Settings', 'snow-monkey-forms' ) }>
 						<UseConfirmPage />
+						<UseProgressTracker />
 
 						<SelectControl
 							label={ __( 'Form style', 'snow-monkey-forms' ) }
