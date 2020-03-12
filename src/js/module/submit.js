@@ -18,10 +18,11 @@ export default function submit( event ) {
 	event.preventDefault();
 
 	const form = $( event.target );
+	const contents = form.find( '.smf-form' );
 	const actionArea = form.find( '.smf-action' );
 
 	const replaceContent = ( content ) => {
-		form.html( content );
+		contents.html( content );
 	};
 
 	const replaceControls = ( controls ) => {
