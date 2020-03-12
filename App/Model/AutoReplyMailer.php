@@ -44,6 +44,8 @@ class AutoReplyMailer {
 				'subject'     => $mail_parser->parse( $this->setting->get( 'auto_reply_email_subject' ) ),
 				'body'        => $mail_parser->parse( $this->setting->get( 'auto_reply_email_body' ) ),
 				'attachments' => $mail_parser->get_attachments(),
+				'from'        => $this->setting->get( 'auto_reply_email_from' ),
+				'sender'      => $this->setting->get( 'auto_reply_email_sender' ),
 			]
 		);
 

@@ -7,6 +7,8 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Validation;
+
 class Mailer {
 
 	/**
@@ -23,6 +25,16 @@ class Mailer {
 	 * @var string
 	 */
 	protected $body = '';
+
+	/**
+	 * @var string
+	 */
+	protected $from = '';
+
+	/**
+	 * @var string
+	 */
+	protected $sender = '';
 
 	/**
 	 * @var array
@@ -45,11 +57,36 @@ class Mailer {
 		}
 	}
 
+	public function _wp_mail_from( $from_email ) {
+		if ( empty( $this->from ) ) {
+			return $from_email;
+		}
+
+		$is_valid = Validation\Email::validate( $this->from );
+		if ( ! $is_valid ) {
+			return $from_email;
+		}
+
+		return $this->from;
+	}
+
+	public function _wp_mail_from_name( $from_name ) {
+		return empty( $this->sender ) ? $from_name : $this->sender;
+	}
+
 	public function send() {
 		if ( ! $this->to ) {
 			return false;
 		}
 
-		return wp_mail( $this->to, $this->subject, $this->body, '', $this->attachments );
+		add_filter( 'wp_mail_from', [ $this, '_wp_mail_from' ] );
+		add_filter( 'wp_mail_from_name', [ $this, '_wp_mail_from_name' ] );
+
+		$is_sended = wp_mail( $this->to, $this->subject, $this->body, [], $this->attachments );
+
+		remove_filter( 'wp_mail_from', [ $this, '_wp_mail_from' ] );
+		remove_filter( 'wp_mail_from_name', [ $this, '_wp_mail_from_name' ] );
+
+		return $is_sended;
 	}
 }

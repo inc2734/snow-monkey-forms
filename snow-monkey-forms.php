@@ -324,6 +324,26 @@ class Bootstrap {
 
 		register_post_meta(
 			'snow-monkey-forms',
+			'auto_reply_email_from',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'auto_reply_email_sender',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
 			'auto_reply_email_subject',
 			[
 				'show_in_rest' => true,

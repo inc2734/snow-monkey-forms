@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-03-11 15:33+0900\n"
-"PO-Revision-Date: 2020-03-11 15:33+0900\n"
+"POT-Creation-Date: 2020-03-12 15:23+0900\n"
+"PO-Revision-Date: 2020-03-12 15:24+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -113,7 +113,7 @@ msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:194 snow-monkey-forms.php:369
+#: snow-monkey-forms.php:194 snow-monkey-forms.php:389
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
@@ -336,38 +336,6 @@ msgstr "バリデーション"
 msgid "Required"
 msgstr "必須"
 
-#: plugin-sidebar/administrator-email-body.js:19
-#: plugin-sidebar/auto-reply-email-body.js:19
-msgid "Body"
-msgstr "Body"
-
-#: plugin-sidebar/administrator-email-subject.js:19
-#: plugin-sidebar/auto-reply-email-subject.js:19
-msgid "Subject"
-msgstr "件名"
-
-#: plugin-sidebar/administrator-email-subject.js:22
-msgid "Admin notification"
-msgstr "管理者通知"
-
-#: plugin-sidebar/administrator-email-to.js:14
-#: plugin-sidebar/auto-reply-email-to.js:19
-msgid "To"
-msgstr "To"
-
-#: plugin-sidebar/auto-reply-email-subject.js:22
-msgid "Automatic reply notification"
-msgstr "自動返信通知"
-
-#: plugin-sidebar/auto-reply-email-to.js:27
-#, python-brace-format
-msgid ""
-"Enter the name attribute value of the installed email form field in the "
-"following format: {name}"
-msgstr ""
-"設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
-"い: {name}"
-
 #: plugin-sidebar/help-button.js:11
 msgid "Help"
 msgstr "ヘルプ"
@@ -380,13 +348,54 @@ msgstr "送信された値は次の形式で埋め込むことができます: "
 msgid "You can embed all submitted values ​​in the following format: "
 msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
 
-#: src/js/plugin-sidebar.js:19
+#: src/js/plugin-sidebar.js:25
 msgid "Administrator email"
 msgstr "管理者宛メール"
 
-#: src/js/plugin-sidebar.js:30
+#: src/js/plugin-sidebar.js:29 src/js/plugin-sidebar.js:70
+msgid "To (Email address)"
+msgstr "To（メールアドレス）"
+
+#: src/js/plugin-sidebar.js:37 src/js/plugin-sidebar.js:86
+msgid "Subject"
+msgstr "件名"
+
+#: src/js/plugin-sidebar.js:41
+msgid "Admin notification"
+msgstr "管理者通知"
+
+#: src/js/plugin-sidebar.js:50 src/js/plugin-sidebar.js:101
+msgid "Body"
+msgstr "Body"
+
+#: src/js/plugin-sidebar.js:66
 msgid "Auto reply email"
 msgstr "自動返信メール"
+
+#: src/js/plugin-sidebar.js:72
+#, python-brace-format
+msgid ""
+"Enter the name attribute value of the installed email form field in the "
+"following format: {name}"
+msgstr ""
+"設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
+"い: {name}"
+
+#: src/js/plugin-sidebar.js:90
+msgid "Automatic reply notification"
+msgstr "自動返信通知"
+
+#: src/js/plugin-sidebar.js:113
+msgid "From (Email address)"
+msgstr "From（メールアドレス）"
+
+#: src/js/plugin-sidebar.js:114 src/js/plugin-sidebar.js:123
+msgid "Optional"
+msgstr "任意"
+
+#: src/js/plugin-sidebar.js:122
+msgid "Sender"
+msgstr "送信者"
 
 #. Description of the plugin/theme
 msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
@@ -400,6 +409,9 @@ msgstr "inc2734"
 #. Author URI of the plugin/theme
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
+
+#~ msgid "To"
+#~ msgstr "To"
 
 #~ msgid "values"
 #~ msgstr "values"

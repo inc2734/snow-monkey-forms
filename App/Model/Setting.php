@@ -62,6 +62,16 @@ class Setting {
 	protected $auto_reply_email_body;
 
 	/**
+	 * @var string
+	 */
+	protected $auto_reply_email_from;
+
+	/**
+	 * @var string
+	 */
+	protected $auto_reply_email_sender;
+
+	/**
 	 * @var boolean
 	 */
 	protected $use_confirm_page = true;
@@ -97,6 +107,8 @@ class Setting {
 		$this->auto_reply_email_to      = get_post_meta( $form_id, 'auto_reply_email_to', true );
 		$this->auto_reply_email_subject = get_post_meta( $form_id, 'auto_reply_email_subject', true );
 		$this->auto_reply_email_body    = get_post_meta( $form_id, 'auto_reply_email_body', true );
+		$this->auto_reply_email_from    = get_post_meta( $form_id, 'auto_reply_email_from', true );
+		$this->auto_reply_email_sender  = get_post_meta( $form_id, 'auto_reply_email_sender', true );
 
 		$use_confirm_page = get_post_meta( $form_id, 'use_confirm_page', true );
 		$this->use_confirm_page = ! $use_confirm_page ? false : true;
