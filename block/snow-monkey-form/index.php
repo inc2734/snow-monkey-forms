@@ -36,11 +36,7 @@ add_action(
 					$responser  = new Responser( [] );
 					$validator  = new Validator( $responser, $setting );
 					$controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
-
-					ob_start();
-					$controller->send();
-					$response = ob_get_clean();
-					$response = json_decode( $response );
+					$response   = json_decode( $controller->send() );
 
 					ob_start();
 					include( __DIR__ . '/view.php' );

@@ -50,6 +50,6 @@ abstract class Controller {
 		$class_name = get_class( $this );
 		$class_name_paths = explode( '\\', $class_name );
 		$method = strtolower( array_pop( $class_name_paths ) );
-		$this->responser->send( $method, $this->controls, $this->action, $this->message );
+		return $this->responser->send( $method, $this->controls, $this->action, $this->message );
 	}
 }

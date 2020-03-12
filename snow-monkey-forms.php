@@ -18,6 +18,7 @@ namespace Snow_Monkey\Plugin\Forms;
 
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
+use Snow_Monkey\Plugin\Forms\App\Rest;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -166,9 +167,16 @@ class Bootstrap {
 			[
 				'methods'  => 'POST',
 				'callback' => function() {
-					ob_start();
-					include( SNOW_MONKEY_FORMS_PATH . '/endpoint/view.php' );
-					return ob_get_clean();
+					$referer = filter_input( INPUT_SERVER, 'HTTP_REFERER' );
+					$siteurl = get_bloginfo( 'url' );
+					if ( 0 !== strpos( $referer, $siteurl ) ) {
+						exit;
+					}
+
+					$data = filter_input_array( INPUT_POST );
+
+					$route = new Rest\Route\View();
+					return $route->send( $data );
 				},
 			]
 		);

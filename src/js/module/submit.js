@@ -34,6 +34,10 @@ export default function submit( event ) {
 		} );
 	};
 
+	const replaceAction = ( contentType ) => {
+		actionArea.html( contentType );
+	};
+
 	const focusToFirstItem = () => {
 		const firstItem = $( '.smf-item' ).eq( 0 );
 		if ( 0 < firstItem.length ) {
@@ -70,7 +74,7 @@ export default function submit( event ) {
 
 		form.attr( 'data-screen', method );
 
-		actionArea.html( response.action );
+		replaceAction( response.action );
 		form.find( '.smf-placeholder' ).html( '' );
 
 		if ( maybeHasControls( method ) ) {
@@ -85,8 +89,10 @@ export default function submit( event ) {
 		} else if ( maybeComplete( method ) ) {
 			replaceContent( response.message );
 			focusToContent();
+			replaceAction( response.action );
 		} else {
 			replaceContent( '' );
+			replaceAction( '' );
 		}
 	};
 

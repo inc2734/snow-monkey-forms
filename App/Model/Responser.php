@@ -34,7 +34,7 @@ class Responser {
 	}
 
 	public function send( $method, array $controls = [], $action = '', $message = '' ) {
-		echo json_encode(
+		return json_encode(
 			[
 				'method'   => $method,
 				'data'     => $this->data,
