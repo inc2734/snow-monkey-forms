@@ -26,7 +26,7 @@ class AutoReplyMailer {
 
 	public function __construct( Responser $responser, Setting $setting ) {
 		$this->responser = $responser;
-		$this->setting = $setting;
+		$this->setting   = $setting;
 	}
 
 	public function should_send() {
@@ -43,7 +43,7 @@ class AutoReplyMailer {
 				'to'          => $mail_parser->parse( $this->setting->get( 'auto_reply_email_to' ) ),
 				'subject'     => $mail_parser->parse( $this->setting->get( 'auto_reply_email_subject' ) ),
 				'body'        => $mail_parser->parse( $this->setting->get( 'auto_reply_email_body' ) ),
-				'attachments' => $mail_parser->get_attachments(),
+				'attachments' => $mail_parser->get_attachments( $this->setting->get( 'auto_reply_email_body' ) ),
 				'from'        => $this->setting->get( 'auto_reply_email_from' ),
 				'sender'      => $this->setting->get( 'auto_reply_email_sender' ),
 			]

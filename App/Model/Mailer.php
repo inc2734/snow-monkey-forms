@@ -82,7 +82,13 @@ class Mailer {
 		add_filter( 'wp_mail_from', [ $this, '_wp_mail_from' ] );
 		add_filter( 'wp_mail_from_name', [ $this, '_wp_mail_from_name' ] );
 
-		$is_sended = wp_mail( $this->to, $this->subject, $this->body, [], $this->attachments );
+		$is_sended = wp_mail(
+			$this->to,
+			$this->subject,
+			$this->body,
+			[],
+			$this->attachments
+		);
 
 		remove_filter( 'wp_mail_from', [ $this, '_wp_mail_from' ] );
 		remove_filter( 'wp_mail_from_name', [ $this, '_wp_mail_from_name' ] );

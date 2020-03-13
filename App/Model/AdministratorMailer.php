@@ -26,7 +26,7 @@ class AdministratorMailer {
 
 	public function __construct( Responser $responser, Setting $setting ) {
 		$this->responser = $responser;
-		$this->setting = $setting;
+		$this->setting   = $setting;
 	}
 
 	public function send() {
@@ -37,7 +37,7 @@ class AdministratorMailer {
 				'to'          => $this->setting->get( 'administrator_email_to' ),
 				'subject'     => $mail_parser->parse( $this->setting->get( 'administrator_email_subject' ) ),
 				'body'        => $mail_parser->parse( $this->setting->get( 'administrator_email_body' ) ),
-				'attachments' => $mail_parser->get_attachments(),
+				'attachments' => $mail_parser->get_attachments( $this->setting->get( 'administrator_email_body' ) ),
 			]
 		);
 

@@ -53,16 +53,18 @@ class MailParser {
 		);
 	}
 
-	public function get_attachments() {
+	public function get_attachments( $body ) {
 		$attachments = [];
+
 		foreach ( (array) Meta::get( '_saved_files' ) as $name ) {
 			$saved_file = $this->responser->get( $name );
 			if ( ! $saved_file ) {
 				continue;
 			}
-			$attachments[] = Directory::fileurl_to_filepath( $saved_file );
+			$attachments[ $name ] = Directory::fileurl_to_filepath( $saved_file );
 		}
-		return $attachments;
+
+		return $this->_sanitize_attachments( $attachments, $body );
 	}
 
 	protected function _stringfy( $name, $value ) {
@@ -82,5 +84,19 @@ class MailParser {
 	protected function _is_file( $name ) {
 		$saved_files = Meta::get( '_saved_files' );
 		return in_array( $name, $saved_files );
+	}
+
+	protected function _sanitize_attachments( array $attachments, $body ) {
+		if ( false !== strpos( $body, '{all-fields}' ) ) {
+			return $attachments;
+		}
+
+		$new_attachments = [];
+		foreach ( $attachments as $name => $file ) {
+			if ( false !== strpos( $body, '{' . $name . '}' ) ) {
+				$new_attachments[ $name ] = $file;
+			}
+		}
+		return $new_attachments;
 	}
 }
