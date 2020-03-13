@@ -16,6 +16,10 @@ class Csrf {
 	private static $token;
 
 	public static function validate( $posted_token ) {
+		if ( empty( $posted_token ) ) {
+			return false;
+		}
+
 		$cookie_token = static::saved_token();
 		return ! is_null( $cookie_token ) && ! is_null( $posted_token ) && hash_equals( $cookie_token, $posted_token );
 	}

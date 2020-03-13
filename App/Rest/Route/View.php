@@ -23,7 +23,7 @@ class View {
 	public function __construct() {
 	}
 
-	public function send( $data ) {
+	public function send( array $data ) {
 		// Set form meta data and remove from post data.
 		if ( isset( $data[ Meta::get_key() ] ) ) {
 			Meta::init( $data[ Meta::get_key() ] );
