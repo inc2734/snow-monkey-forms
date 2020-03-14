@@ -31,10 +31,8 @@ class Confirm extends Contract\Controller {
 
 		Meta::the_meta_button( 'back', __( 'Back', 'snow-monkey-forms' ) );
 		Meta::the_meta_button( 'complete', __( 'Send', 'snow-monkey-forms' ) );
-		Meta::the_meta( '_method', 'complete' );
-
-		$saved_files = Meta::get( '_saved_files' );
-		Meta::the_meta_multiple( '_saved_files', ! $saved_files ? [] : $saved_files );
+		Meta::the_method( 'complete' );
+		Meta::the_saved_files();
 
 		return ob_get_clean();
 	}

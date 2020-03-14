@@ -46,6 +46,6 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 		<?php echo $response->action; // xss ok. ?>
 	</div>
 
-	<?php Meta::the_meta( '_formid', $form_id ); ?>
-	<?php Meta::the_meta( '_token', Csrf::token() ); ?>
+	<?php Meta::the_formid( $form_id ); ?>
+	<?php Meta::the_token(); ?>
 </form>

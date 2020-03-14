@@ -56,7 +56,7 @@ class MailParser {
 	public function get_attachments( $body ) {
 		$attachments = [];
 
-		foreach ( (array) Meta::get( '_saved_files' ) as $name ) {
+		foreach ( Meta::get_saved_files() as $name ) {
 			$saved_file = $this->responser->get( $name );
 			if ( ! $saved_file ) {
 				continue;
@@ -82,7 +82,7 @@ class MailParser {
 	}
 
 	protected function _is_file( $name ) {
-		$saved_files = Meta::get( '_saved_files' );
+		$saved_files = Meta::get_saved_files();
 		return in_array( $name, $saved_files );
 	}
 

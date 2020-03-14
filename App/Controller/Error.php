@@ -32,14 +32,13 @@ class Error extends Contract\Controller {
 
 		if ( true === $this->setting->get( 'use_confirm_page' ) ) {
 			Meta::the_meta_button( 'confirm', __( 'Confirm', 'snow-monkey-forms' ) );
-			Meta::the_meta( '_method', 'confirm' );
+			Meta::the_method( 'confirm' );
 		} else {
 			Meta::the_meta_button( 'complete', __( 'Send', 'snow-monkey-forms' ) );
-			Meta::the_meta( '_method', 'complete' );
+			Meta::the_method( 'complete' );
 		}
 
-		$saved_files = Meta::get( '_saved_files' );
-		Meta::the_meta_multiple( '_saved_files', ! $saved_files ? [] : $saved_files );
+		Meta::the_saved_files();
 
 		return ob_get_clean();
 	}

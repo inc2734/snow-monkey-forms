@@ -110,6 +110,7 @@ export default function submit( event ) {
 				)
 		);
 		replaceContent( errorMessage );
+		replaceAction( '' );
 		focusToContent();
 	};
 

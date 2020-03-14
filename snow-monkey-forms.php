@@ -176,8 +176,8 @@ class Bootstrap {
 					$data = filter_input_array( INPUT_POST );
 					$data = $data ? $data : [];
 
-					$route = new Rest\Route\View();
-					return $route->send( $data );
+					$route = new Rest\Route\View( $data );
+					return $route->send();
 				},
 			]
 		);

@@ -20,10 +20,25 @@ use Snow_Monkey\Plugin\Forms\App\Model\Validator;
 
 class View {
 
-	public function __construct() {
-	}
+	/**
+	 * @var Setting
+	 */
+	protected $setting;
 
-	public function send( array $data ) {
+	/**
+	 * @var Responser
+	 */
+	protected $responser;
+
+	/**
+	 * @var Validator
+	 */
+	protected $validator;
+
+	/**
+	 * @param array $data posted data
+	 */
+	public function __construct( array $data ) {
 		// Set form meta data and remove from post data.
 		if ( isset( $data[ Meta::get_key() ] ) ) {
 			Meta::init( $data[ Meta::get_key() ] );
@@ -31,13 +46,16 @@ class View {
 		}
 
 		// Files upload
-		$saved_files = $this->_save_uploaded_files();
-		if ( is_array( $saved_files ) ) {
-			$data = array_merge( $data, $saved_files );
+		$uploader = new FileUploader();
+		if ( $uploader->exist_file_controls() ) {
+			$saved_files = $uploader->save_uploaded_files();
+			if ( is_array( $saved_files ) ) {
+				$data = array_merge( $data, $saved_files );
+			}
 		}
 
 		// If a file was removed, post data remove too.
-		foreach ( (array) Meta::get( '_saved_files' ) as $name ) {
+		foreach ( Meta::get_saved_files() as $name ) {
 			if ( isset( $data[ $name ] ) ) {
 				$saved_file = $data[ $name ];
 				$file = Directory::fileurl_to_filepath( $saved_file );
@@ -47,90 +65,102 @@ class View {
 			}
 		}
 
-		$setting   = DataStore::get( Meta::get( '_formid' ) );
-		$responser = new Responser( $data );
-		$validator = new Validator( $responser, $setting );
+		$this->setting   = DataStore::get( Meta::get_formid() );
+		$this->responser = new Responser( $data );
+		$this->validator = new Validator( $this->responser, $this->setting );
+	}
 
-		// Validate check.
-		if ( ! $validator->validate() ) {
-			Meta::set( '_method', 'error' );
-			return $this->_send( $responser, $setting, $validator );
+	/**
+	 * Return json for a form rendering
+	 *
+	 * @return json
+	 */
+	public function send() {
+		// CSRF token check.
+		if ( ! Csrf::validate( Meta::get_token() ) ) {
+			return $this->_send_systemerror( __( 'Invalid access.', 'snow-monkey-forms' ) );
 		}
 
-		// CSRF token check.
-		if ( ! Csrf::validate( Meta::get( '_token' ) ) ) {
-			Meta::set( '_method', 'systemerror' );
-			$error_message = __( 'Invalid access.', 'snow-monkey-forms' );
-			$setting->set_system_error_message( $error_message );
-			return $this->_send( $responser, $setting, $validator );
+		// Validate check.
+		if ( ! $this->validator->validate() ) {
+			Meta::set_method( 'error' );
+			return $this->_send();
 		}
 
 		// Complete process.
-		if ( 'complete' === Meta::get( '_method' ) ) {
+		if ( 'complete' === Meta::get_method() ) {
 			// Administrator email sending.
-			$administrator_mailer = new AdministratorMailer( $responser, $setting );
+			$administrator_mailer = new AdministratorMailer( $this->responser, $this->setting );
 			try {
 				$administrator_mailer->send();
 			} catch ( \Exception $e ) {
 				error_log( $e->getMessage() );
-				Meta::set( '_method', 'systemerror' );
-				$error_message  = __( 'Failed to send administrator email.', 'snow-monkey-forms' );
-				$error_message .= __( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' );
-				$setting->set_system_error_message( $error_message );
-				return $this->_send( $responser, $setting, $validator );
+				return $this->_send_systemerror(
+					__( 'Failed to send administrator email.', 'snow-monkey-forms' ) .
+					__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
+				);
 			}
 
 			// Auto reply email sending.
-			$auto_reply_mailer = new AutoReplyMailer( $responser, $setting );
+			$auto_reply_mailer = new AutoReplyMailer( $this->responser, $this->setting );
 			if ( $auto_reply_mailer->should_send() ) {
 				try {
 					$auto_reply_mailer->send();
 				} catch ( \Exception $e ) {
 					error_log( $e->getMessage() );
-					Meta::set( '_method', 'systemerror' );
-					$error_message = __( 'Failed to send auto reply email.', 'snow-monkey-forms' );
-					$setting->set_system_error_message( $error_message );
-					return $this->_send( $responser, $setting, $validator );
+					return $this->_send_systemerror( __( 'Failed to send auto reply email.', 'snow-monkey-forms' ) );
 				}
 			}
 		}
 
-		return $this->_send( $responser, $setting, $validator );
+		return $this->_send();
 	}
 
-	protected function _send( $responser, $setting, $validator ) {
-		$method = Meta::get( '_method' );
+	/**
+	 * Return json for a form rendering with systemerror
+	 *
+	 * @param string $error_message
+	 * @return json
+	 */
+	protected function _send_systemerror( $error_message = '' ) {
+		Meta::set_method( 'systemerror' );
+		$this->setting->set_system_error_message( $error_message );
+		return $this->_send();
+	}
 
+	/**
+	 * Return json for a form rendering
+	 *
+	 * @return json
+	 */
+	protected function _send() {
+		$method = Meta::get_method();
 		if ( 'complete' === $method || 'systemerror' === $method ) {
-			$this->_remove_saved_files( $responser );
+			$this->_remove_saved_files();
 		}
 
 		try {
-			$controller = Dispatcher::dispatch( $method, $responser, $setting, $validator );
+			$controller = Dispatcher::dispatch( $method, $this->responser, $this->setting, $this->validator );
 		} catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
-			$error_message  = __( 'An unexpected problem has occurred.', 'snow-monkey-forms' );
-			$error_message .= __( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' );
-			$setting->set_system_error_message( $error_message );
-			$controller = Dispatcher::dispatch( 'systemerror', $responser, $setting, $validator );
+			$this->setting->set_system_error_message(
+				__( 'An unexpected problem has occurred.', 'snow-monkey-forms' ) .
+				__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
+			);
+			$controller = Dispatcher::dispatch( 'systemerror', $this->responser, $this->setting, $this->validator );
 		}
 
 		return $controller->send();
 	}
 
-	protected function _save_uploaded_files() {
-		$uploader = new FileUploader();
-
-		if ( ! $uploader->exist_file_controls() ) {
-			return false;
-		}
-
-		return $uploader->save_uploaded_files();
-	}
-
-	protected function _remove_saved_files( Responser $responser ) {
-		foreach ( (array) Meta::get( '_saved_files' ) as $name ) {
-			$saved_file = $responser->get( $name );
+	/**
+	 * Remove saved files
+	 *
+	 * @return void
+	 */
+	protected function _remove_saved_files() {
+		foreach ( Meta::get_saved_files() as $name ) {
+			$saved_file = $this->responser->get( $name );
 			if ( ! $saved_file ) {
 				continue;
 			}

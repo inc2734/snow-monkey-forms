@@ -22,10 +22,10 @@ class Input extends Contract\Controller {
 
 		if ( true === $this->setting->get( 'use_confirm_page' ) ) {
 			Meta::the_meta_button( 'confirm', __( 'Confirm', 'snow-monkey-forms' ) );
-			Meta::the_meta( '_method', 'confirm' );
+			Meta::the_method( 'confirm' );
 		} else {
 			Meta::the_meta_button( 'complete', __( 'Send', 'snow-monkey-forms' ) );
-			Meta::the_meta( '_method', 'complete' );
+			Meta::the_method( 'complete' );
 		}
 
 		return ob_get_clean();

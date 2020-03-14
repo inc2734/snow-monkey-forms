@@ -7,24 +7,36 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Meta {
 
-	const KEY = '_snow-monkey-forms-meta';
+	const KEY = 'snow-monkey-forms-meta';
 
 	/**
 	 * @var Meta
 	 */
 	private static $singleton;
 
-	/**
-	 * @var array
-	 */
-	protected static $data = [];
+	protected static $saved_files = [];
+	protected static $formid;
+	protected static $token;
+	protected static $method;
 
 	private function __construct( $data ) {
-		static::$data = $data;
+		$properties = array_keys( get_class_vars( get_class( $this ) ) );
+		foreach ( $data as $key => $value ) {
+			if ( ! in_array( $key, $properties ) ) {
+				continue;
+			}
+
+			if ( is_array( static::$$key ) && is_array( $value ) ) {
+				static::$$key = $value;
+			} elseif ( ! is_array( static::$$key ) && ! is_array( $value ) ) {
+				static::$$key = $value;
+			}
+		}
 	}
 
 	public static function init( $data ) {
@@ -38,7 +50,7 @@ class Meta {
 		return static::KEY;
 	}
 
-	public static function the_meta_multiple( $name, array $values ) {
+	protected static function _the_meta_multiple( $name, array $values ) {
 		foreach ( $values as $key => $value ) {
 			Helper::the_control(
 				'hidden',
@@ -52,7 +64,7 @@ class Meta {
 		}
 	}
 
-	public static function the_meta( $name, $value ) {
+	protected static function _the_meta( $name, $value ) {
 		Helper::the_control(
 			'hidden',
 			[
@@ -76,15 +88,43 @@ class Meta {
 		);
 	}
 
-	public static function set( $name, $value ) {
-		static::$data[ $name ] = $value;
+	public static function get_saved_files() {
+		return static::$saved_files;
 	}
 
-	public static function get( $name ) {
-		return isset( static::$data[ $name ] ) ? static::$data[ $name ] : false;
+	public static function set_saved_files( $saved_files ) {
+		static::$saved_files = is_array( $saved_files ) ? $saved_files : [];
 	}
 
-	public static function get_all() {
-		return static::$data;
+	public static function the_saved_files() {
+		static::_the_meta_multiple( 'saved_files', static::get_saved_files() );
+	}
+
+	public static function get_formid() {
+		return static::$formid;
+	}
+
+	public static function the_formid( $form_id ) {
+		static::_the_meta( 'formid', $form_id );
+	}
+
+	public static function get_token() {
+		return static::$token;
+	}
+
+	public static function the_token() {
+		static::_the_meta( 'token', Csrf::token() );
+	}
+
+	public static function get_method() {
+		return static::$method;
+	}
+
+	public static function set_method( $value ) {
+		static::$method = $value;
+	}
+
+	public static function the_method( $value ) {
+		static::_the_meta( 'method', $value );
 	}
 }

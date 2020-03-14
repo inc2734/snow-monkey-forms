@@ -16,7 +16,7 @@ $( document ).on( 'change', '.smf-file-control__control', ( event ) => {
 $( document ).on( 'click', '[data-action="back"]', ( event ) =>
 	$( event.currentTarget )
 		.closest( '.smf-action' )
-		.find( '[type="hidden"][name="_snow-monkey-forms-meta[_method]"]' )
+		.find( '[type="hidden"][name="snow-monkey-forms-meta[method]"]' )
 		.attr( 'value', 'back' )
 );
 

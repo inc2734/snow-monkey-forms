@@ -21,7 +21,7 @@ class File {
 	 */
 	protected $file;
 
-	public function __construct( $file ) {
+	public function __construct( array $file ) {
 		$this->file = $file;
 	}
 
@@ -35,8 +35,8 @@ class File {
 	/**
 	 * @return false|string
 	 */
-	protected function _get_name() {
-		return isset( $this->file['name'] ) ? $this->file['name'] : false;
+	public function get_filename() {
+		return isset( $this->file['name'] ) ? $this->_sanitized_file_name( $this->file['name'] ) : false;
 	}
 
 	/**
@@ -60,17 +60,16 @@ class File {
 	/**
 	 * @return false|string
 	 */
-	protected function _get_filename() {
-		$name = $this->_get_name();
-		if ( false === $name ) {
+	protected function _sanitized_file_name( $filename ) {
+		if ( false === $filename ) {
 			return false;
 		}
 
-		return sanitize_file_name( basename( $name ) );
+		return sanitize_file_name( basename( $filename ) );
 	}
 
-	public function save() {
-		$filename = $this->_get_filename();
+	public function save( $filename ) {
+		$filename = $this->_sanitized_file_name( $filename );
 		$error    = $this->get_error();
 
 		if ( false === $error || false === $filename ) {
