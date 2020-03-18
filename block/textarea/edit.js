@@ -16,6 +16,7 @@ import withValidations from '../../hoc/with-validations';
 const edit = ( { attributes, setAttributes } ) => {
 	const {
 		name,
+		rows,
 		value,
 		placeholder,
 		id,
@@ -35,6 +36,18 @@ const edit = ( { attributes, setAttributes } ) => {
 						value={ name }
 						onChange={ ( attribute ) =>
 							setAttributes( { name: attribute } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'rows', 'snow-monkey-forms' ) }
+						help={ __( 'Number of lines', 'snow-monkey-forms' ) }
+						type="number"
+						value={ rows }
+						onChange={ ( attribute ) =>
+							setAttributes( {
+								rows: 0 < attribute ? attribute : 1,
+							} )
 						}
 					/>
 
@@ -85,6 +98,7 @@ const edit = ( { attributes, setAttributes } ) => {
 					<textarea
 						name={ name }
 						value={ value }
+						rows={ rows }
 						placeholder={ placeholder }
 						disabled="disabled"
 						id={ id || undefined }

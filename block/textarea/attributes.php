@@ -10,6 +10,10 @@ return [
 		'type'    => 'string',
 		'default' => '',
 	],
+	'rows' => [
+		'type'    => 'number',
+		'default' => 5,
+	],
 	'value' => [
 		'type'    => 'string',
 		'default' => '',

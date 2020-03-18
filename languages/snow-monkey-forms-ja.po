@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-03-12 15:23+0900\n"
-"PO-Revision-Date: 2020-03-12 15:24+0900\n"
+"POT-Creation-Date: 2020-03-14 14:02+0900\n"
+"PO-Revision-Date: 2020-03-14 14:02+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -50,6 +50,27 @@ msgstr "戻る"
 msgid "Send"
 msgstr "送信する"
 
+#: App/Rest/Route/View.php:81
+msgid "Invalid access."
+msgstr "無効なアクセスです。"
+
+#: App/Rest/Route/View.php:99
+msgid "Failed to send administrator email."
+msgstr "管理者メールの送信に失敗しました。"
+
+#: App/Rest/Route/View.php:100 App/Rest/Route/View.php:148
+#: src/js/module/submit.js:108
+msgid "Please try again later or contact your administrator by other means."
+msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
+
+#: App/Rest/Route/View.php:111
+msgid "Failed to send auto reply email."
+msgstr "自動返信メールの送信に失敗しました。"
+
+#: App/Rest/Route/View.php:147 src/js/module/submit.js:106
+msgid "An unexpected problem has occurred."
+msgstr "予期しない問題が発生しました。"
+
 #: App/Validation/Email.php:24
 msgid "Please enter a valid email address."
 msgstr "有効なメールアドレスを入力してください。"
@@ -92,53 +113,33 @@ msgctxt "progress-tracker"
 msgid "Complete"
 msgstr "完了"
 
-#: endpoint/view.php:79
-msgid "Invalid access."
-msgstr "無効なアクセスです。"
-
-#: endpoint/view.php:92
-msgid "Failed to send administrator email."
-msgstr "管理者メールの送信に失敗しました。"
-
-#: endpoint/view.php:93 endpoint/view.php:135 src/js/module/submit.js:101
-msgid "Please try again later or contact your administrator by other means."
-msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
-
-#: endpoint/view.php:105
-msgid "Failed to send auto reply email."
-msgstr "自動返信メールの送信に失敗しました。"
-
-#: endpoint/view.php:134 src/js/module/submit.js:99
-msgid "An unexpected problem has occurred."
-msgstr "予期しない問題が発生しました。"
-
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:194 snow-monkey-forms.php:389
+#: snow-monkey-forms.php:203 snow-monkey-forms.php:398
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:207
+#: snow-monkey-forms.php:216
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:227
+#: snow-monkey-forms.php:236
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:247
+#: snow-monkey-forms.php:256
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:273
+#: snow-monkey-forms.php:282
 msgid "Complete !"
 msgstr "完了しました。"
 
 #: block/checkboxes/edit.js:29 block/email/edit.js:37 block/file/edit.js:20
 #: block/radio-buttons/edit.js:28 block/select/edit.js:34 block/tel/edit.js:37
-#: block/text/edit.js:37 block/textarea/edit.js:33 block/url/edit.js:37
+#: block/text/edit.js:37 block/textarea/edit.js:34 block/url/edit.js:37
 msgid "Attributes"
 msgstr "属性"
 
@@ -152,13 +153,13 @@ msgstr "任意。各項目を区切る文字。"
 
 #: block/checkboxes/edit.js:65 block/email/edit.js:96 block/file/edit.js:44
 #: block/radio-buttons/edit.js:52 block/select/edit.js:72 block/tel/edit.js:96
-#: block/text/edit.js:96 block/textarea/edit.js:72 block/url/edit.js:96
+#: block/text/edit.js:96 block/textarea/edit.js:84 block/url/edit.js:96
 msgid "Block settings"
 msgstr "ブロック設定"
 
 #: block/checkboxes/edit.js:68 block/email/edit.js:99 block/file/edit.js:47
 #: block/radio-buttons/edit.js:55 block/select/edit.js:75 block/tel/edit.js:99
-#: block/text/edit.js:99 block/textarea/edit.js:75 block/url/edit.js:99
+#: block/text/edit.js:99 block/textarea/edit.js:87 block/url/edit.js:99
 msgid "Description"
 msgstr "説明"
 
@@ -319,6 +320,14 @@ msgstr "Tel"
 #: block/text/index.js:9
 msgid "Text"
 msgstr "テキスト"
+
+#: block/textarea/edit.js:43
+msgid "rows"
+msgstr "rows"
+
+#: block/textarea/edit.js:44
+msgid "Number of lines"
+msgstr "行数"
 
 #: block/textarea/index.js:9
 msgid "Textarea"
