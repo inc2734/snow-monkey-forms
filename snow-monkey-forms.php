@@ -40,11 +40,6 @@ class Bootstrap {
 		add_filter( 'load_textdomain_mofile', [ $this, '_load_textdomain_mofile' ], 10, 2 );
 		load_plugin_textdomain( 'snow-monkey-forms', false, basename( __DIR__ ) . '/languages' );
 
-		$theme = wp_get_theme();
-		if ( 'snow-monkey' !== $theme->template && 'snow-monkey/resources' !== $theme->template ) {
-			return;
-		}
-
 		Csrf::save_token();
 
 		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/index.php' ) as $file ) {
@@ -54,7 +49,6 @@ class Bootstrap {
 		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_assets' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
 		add_action( 'rest_api_init', [ $this, '_endpoint' ] );
-		add_action( 'init', [ $this, '_activate_autoupdate' ] );
 		add_action( 'init', [ $this, '_register_post_type' ] );
 		add_action( 'init', [ $this, '_register_meta' ] );
 		add_filter( 'block_categories', [ $this, '_block_categories' ] );
@@ -112,7 +106,7 @@ class Bootstrap {
 		wp_enqueue_style(
 			'snow-monkey-forms',
 			SNOW_MONKEY_FORMS_URL . '/dist/css/app.css',
-			[ \Framework\Helper::get_main_style_handle() ],
+			[],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/app.css' )
 		);
 	}
@@ -180,19 +174,6 @@ class Bootstrap {
 					return $route->send();
 				},
 			]
-		);
-	}
-
-	/**
-	 * Activate auto update using GitHub
-	 *
-	 * @return void
-	 */
-	public function _activate_autoupdate() {
-		new \Inc2734\WP_GitHub_Plugin_Updater\Bootstrap(
-			plugin_basename( __FILE__ ),
-			'inc2734',
-			'snow-monkey-forms'
 		);
 	}
 
