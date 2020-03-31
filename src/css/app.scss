@@ -8,89 +8,100 @@
   background-color: _lighter($_color-gray);
   background-image: linear-gradient(180deg, #fff, _lighter($_color-gray));
   border-radius: $_border-radius;
+  color: $_color-text;
   @include _padding(.25, .5);
+  text-decoration: none;
 }
 
-.smf-text-control,
-.smf-textarea-control {
-  &__control {
-    @include _form-control();
-  }
-}
-
-.smf-textarea-control {
-  &__control {
-    display: block;
-  }
-}
-
-.smf-checkbox-control,
-.smf-radio-button-control {
-  &__control {
-    @include _margin-right(.25);
-
-    > .smf-label + .smf-label {
-      @include _margin-left(.5);
+.smf-form .smf-item {
+  .smf-text-control,
+  .smf-textarea-control {
+    &__control {
+      @include _form-control();
     }
   }
-}
 
-.smf-checkbox-control {
-  @include _checkbox();
-}
-
-.smf-radio-button-control {
-  @include _radio();
-}
-
-.smf-select-control {
-  @include _select();
-}
-
-.smf-file-control {
-  &__label,
-  &__filename {
-    display: none;
+  .smf-textarea-control {
+    &__control {
+      display: block;
+    }
   }
 
-  @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
-    > label {
-      display: inline-flex;
-      flex-wrap: nowrap;
-      align-items: center;
+  .smf-checkbox-control,
+  .smf-radio-button-control {
+    &__control {
+      @include _margin-right(.25);
 
-      > * {
-        flex: 0 0 auto;
+      &::before {
+        width: auto;
+        height: auto;
+      }
+
+      > .smf-label + .smf-label {
+        @include _margin-left(.5);
       }
     }
+  }
 
-    &__control {
+  .smf-checkbox-control {
+    @include _checkbox();
+  }
+
+  .smf-radio-button-control {
+    @include _radio();
+  }
+
+  .smf-select-control {
+    @include _select();
+  }
+
+  .smf-file-control {
+    &__label,
+    &__filename {
       display: none;
     }
 
-    &__label {
+    @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+      > label {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        > * {
+          flex: 0 0 auto;
+        }
+      }
+
+      &__control {
+        display: none;
+      }
+
+      &__label {
+        @include smf-button();
+      }
+
+      &__filename {
+        margin-left: 1em;
+        display: inline-block;
+      }
+
+      &__value {
+        margin-top: .25em;
+      }
+    }
+  }
+
+  [data-invalid="1"] {
+    border-color: #d98585;
+  }
+}
+
+.smf-action {
+  .smf-button-control {
+    &__control {
       @include smf-button();
     }
-
-    &__filename {
-      margin-left: 1em;
-      display: inline-block;
-    }
-
-    &__value {
-      margin-top: .25em;
-    }
   }
-}
-
-.smf-button-control {
-  &__control {
-    @include smf-button();
-  }
-}
-
-[data-invalid="1"] {
-  border-color: #d98585;
 }
 
 .smf-item[tabindex="-1"],
