@@ -393,3 +393,33 @@ class Bootstrap {
 
 require_once( SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php' );
 new Bootstrap();
+
+/**
+ * Uninstall
+ */
+register_activation_hook(
+	__FILE__,
+	function() {
+		register_uninstall_hook(
+			__FILE__,
+			function() {
+				$posts = get_posts(
+					[
+						'post_type'      => 'snow-monkey-forms',
+						'posts_per_page' => -1,
+					]
+				);
+
+				foreach ( $posts as $post ) {
+					wp_delete_post( $post->ID, true );
+				}
+
+				try {
+					Directory::do_empty( true );
+				} catch ( \Exception $e ) {
+					error_log( $e->getMessage() );
+				}
+			}
+		);
+	}
+);

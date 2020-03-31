@@ -55,18 +55,19 @@ class Directory {
 	}
 
 	/**
+	 * @param boolean $force
 	 * @return boolean
 	 */
-	public static function do_empty() {
+	public static function do_empty( $force = false ) {
 		$dir = static::get();
 		if ( false === $dir ) {
 			return false;
 		}
 
-		return static::_remove_children( $dir );
+		return static::_remove_children( $dir, $force );
 	}
 
-	protected static function _remove_children( $dir ) {
+	protected static function _remove_children( $dir, $force = false ) {
 		$fileinfo = new SplFileInfo( $dir );
 		if ( ! $fileinfo->isDir() ) {
 			return false;
@@ -81,11 +82,11 @@ class Directory {
 				if ( $fileinfo->isDot() ) {
 					continue;
 				} elseif ( $fileinfo->isDir() ) {
-					if ( static::_remove_children( $path ) && static::_is_removable( $path ) ) {
+					if ( static::_remove_children( $path, $force ) && ( $force || static::_is_removable( $path ) ) ) {
 						static::remove( $path );
 					}
 				} elseif ( $fileinfo->isFile() ) {
-					if ( static::_is_removable( $path ) ) {
+					if ( $force || static::_is_removable( $path ) ) {
 						static::remove( $path );
 					}
 				}
