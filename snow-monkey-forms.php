@@ -397,29 +397,25 @@ new Bootstrap();
 /**
  * Uninstall
  */
-register_activation_hook(
-	__FILE__,
-	function() {
-		register_uninstall_hook(
-			__FILE__,
-			function() {
-				$posts = get_posts(
-					[
-						'post_type'      => 'snow-monkey-forms',
-						'posts_per_page' => -1,
-					]
-				);
+function snow_monkey_forms_uninstall() {
+	$posts = get_posts(
+		[
+			'post_type'      => 'snow-monkey-forms',
+			'posts_per_page' => -1,
+		]
+	);
 
-				foreach ( $posts as $post ) {
-					wp_delete_post( $post->ID, true );
-				}
-
-				try {
-					Directory::do_empty( true );
-				} catch ( \Exception $e ) {
-					error_log( $e->getMessage() );
-				}
-			}
-		);
+	foreach ( $posts as $post ) {
+		wp_delete_post( $post->ID, true );
 	}
-);
+
+	try {
+		Directory::do_empty( true );
+	} catch ( \Exception $e ) {
+		error_log( $e->getMessage() );
+	}
+}
+function snow_monkey_forms_activate() {
+	register_uninstall_hook( __FILE__, '\Snow_Monkey\Plugin\Forms\snow_monkey_forms_uninstall' );
+}
+register_activation_hook( __FILE__, '\Snow_Monkey\Plugin\Forms\snow_monkey_forms_activate' );
