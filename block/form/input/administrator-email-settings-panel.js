@@ -1,5 +1,4 @@
 import { useEntityProp } from '@wordpress/core-data';
-import { useSelect } from '@wordpress/data';
 import { PanelBody, TextControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -11,10 +10,6 @@ export default function() {
 		'snow-monkey-forms',
 		'meta'
 	);
-
-	const currentPost = useSelect( ( select ) => {
-		return select( 'core/editor' ).getCurrentPost();
-	}, [] );
 
 	const inputErrorStyles = {
 		borderColor: '#d94f4f',
@@ -35,11 +30,7 @@ export default function() {
 
 			<TextControl
 				label={ __( 'Subject', 'snow-monkey-forms' ) }
-				value={
-					! currentPost.title && ! meta.administrator_email_subject
-						? __( 'Admin notification', 'snow-monkey-forms' )
-						: meta.administrator_email_subject
-				}
+				value={ meta.administrator_email_subject }
 				onChange={ ( value ) =>
 					setMeta( {
 						administrator_email_subject: value,
@@ -54,11 +45,7 @@ export default function() {
 
 			<TextareaControl
 				label={ __( 'Body', 'snow-monkey-forms' ) }
-				value={
-					! currentPost.title && ! meta.administrator_email_body
-						? '{all-fields}'
-						: meta.administrator_email_body
-				}
+				value={ meta.administrator_email_body }
 				onChange={ ( value ) =>
 					setMeta( { administrator_email_body: value } )
 				}

@@ -1,5 +1,4 @@
 import { useEntityProp } from '@wordpress/core-data';
-import { useSelect } from '@wordpress/data';
 import { PanelBody, TextControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -11,10 +10,6 @@ export default function() {
 		'snow-monkey-forms',
 		'meta'
 	);
-
-	const currentPost = useSelect( ( select ) => {
-		return select( 'core/editor' ).getCurrentPost();
-	}, [] );
 
 	const inputErrorStyles = {
 		borderColor: '#d94f4f',
@@ -28,11 +23,7 @@ export default function() {
 					'Enter the name attribute value of the installed email form field in the following format: {name}',
 					'snow-monkey-forms'
 				) }
-				value={
-					! currentPost.title && ! meta.auto_reply_email_to
-						? '{email}'
-						: meta.auto_reply_email_to
-				}
+				value={ meta.auto_reply_email_to }
 				onChange={ ( value ) =>
 					setMeta( { auto_reply_email_to: value } )
 				}
@@ -47,14 +38,7 @@ export default function() {
 
 			<TextControl
 				label={ __( 'Subject', 'snow-monkey-forms' ) }
-				value={
-					! currentPost.title && ! meta.auto_reply_email_subject
-						? __(
-								'Automatic reply notification',
-								'snow-monkey-forms'
-						  )
-						: meta.auto_reply_email_subject
-				}
+				value={ meta.auto_reply_email_subject }
 				onChange={ ( value ) =>
 					setMeta( { auto_reply_email_subject: value } )
 				}
@@ -68,11 +52,7 @@ export default function() {
 
 			<TextareaControl
 				label={ __( 'Body', 'snow-monkey-forms' ) }
-				value={
-					! currentPost.title && ! meta.auto_reply_email_body
-						? '{all-fields}'
-						: meta.auto_reply_email_body
-				}
+				value={ meta.auto_reply_email_body }
 				onChange={ ( value ) =>
 					setMeta( { auto_reply_email_body: value } )
 				}
