@@ -5,7 +5,7 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 5.4
 Tested up to: 5.4
 Requires PHP: 5.6
-Stable tag: 0.3.1
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,16 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 0.4.0 =
+* Add item description setting.
+* Add from/sender settings to administrator email settings.
+* Add action hook `snow_monkey_forms/auto_reply_mailer/after_send`.
+* Add action hook `snow_monkey_forms/administrator_mailer/after_send`.
+* Rename filter hook `snow_monkey_forms_saved_file_survival_time` to `snow_monkey_forms/saved_files/survival_time`.
+* Move email settings document panel to input page settings.
+* Fixed a bug where the input page settings panel did not open when the inspector was closed.
+* Fixed a bug that child blocks are displayed in the inserter of the complete page settings.
 
 = 0.3.1 =
 * Fix activate process error
