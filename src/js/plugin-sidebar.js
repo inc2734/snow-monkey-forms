@@ -18,6 +18,10 @@ const Component = () => {
 		return select( 'core/editor' ).getCurrentPost();
 	}, [] );
 
+	const inputErrorStyles = {
+		borderColor: '#d94f4f',
+	};
+
 	return (
 		<>
 			<PluginDocumentSettingPanel
@@ -30,6 +34,11 @@ const Component = () => {
 					value={ meta.administrator_email_to }
 					onChange={ ( value ) =>
 						setMeta( { administrator_email_to: value } )
+					}
+					style={
+						! meta.administrator_email_to
+							? inputErrorStyles
+							: undefined
 					}
 				/>
 
@@ -44,6 +53,11 @@ const Component = () => {
 					onChange={ ( value ) =>
 						setMeta( { administrator_email_subject: value } )
 					}
+					style={
+						! meta.administrator_email_subject
+							? inputErrorStyles
+							: undefined
+					}
 				/>
 
 				<TextareaControl
@@ -55,6 +69,11 @@ const Component = () => {
 					}
 					onChange={ ( value ) =>
 						setMeta( { administrator_email_body: value } )
+					}
+					style={
+						! meta.administrator_email_body
+							? inputErrorStyles
+							: undefined
 					}
 				/>
 
@@ -80,6 +99,13 @@ const Component = () => {
 					onChange={ ( value ) =>
 						setMeta( { auto_reply_email_to: value } )
 					}
+					style={
+						! meta.auto_reply_email_to &&
+						( !! meta.auto_reply_email_subject ||
+							!! meta.auto_reply_email_body )
+							? inputErrorStyles
+							: undefined
+					}
 				/>
 
 				<TextControl
@@ -95,6 +121,12 @@ const Component = () => {
 					onChange={ ( value ) =>
 						setMeta( { auto_reply_email_subject: value } )
 					}
+					style={
+						!! meta.auto_reply_email_to &&
+						! meta.auto_reply_email_subject
+							? inputErrorStyles
+							: undefined
+					}
 				/>
 
 				<TextareaControl
@@ -106,6 +138,12 @@ const Component = () => {
 					}
 					onChange={ ( value ) =>
 						setMeta( { auto_reply_email_body: value } )
+					}
+					style={
+						!! meta.auto_reply_email_to &&
+						! meta.auto_reply_email_body
+							? inputErrorStyles
+							: undefined
 					}
 				/>
 
