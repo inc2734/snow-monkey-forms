@@ -8,20 +8,20 @@ import { __ } from '@wordpress/i18n';
 export default function( { attributes, setAttributes, isSelected } ) {
 	const { label, description } = attributes;
 
-	const blocks = getBlockTypes();
 	const ALLOWED_BLOCKS = useMemo( () => {
+		const blocks = getBlockTypes();
 		return compact(
-			blocks.map( ( blockType ) => {
+			blocks.map( ( block ) => {
 				const blacklist = [
 					'snow-monkey-forms/snow-monkey-form',
 					'snow-monkey-forms/item',
 				];
-				return ! blacklist.includes( blockType.name )
-					? blockType.name
+				return ! blacklist.includes( block.name ) && ! block.parent
+					? block.name
 					: null;
 			} )
 		);
-	}, [ blocks ] );
+	}, [] );
 
 	return (
 		<div className="smf-item" tabIndex="-1">

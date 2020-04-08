@@ -1,7 +1,8 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { InnerBlocks } from '@wordpress/block-editor';
-import { select } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
+
+import edit from './edit';
+import save from './save';
 
 registerBlockType( 'snow-monkey-forms/form--complete', {
 	title: __( 'Complete page', 'snow-monkey-forms' ),
@@ -15,32 +16,6 @@ registerBlockType( 'snow-monkey-forms/form--complete', {
 		reusable: false,
 	},
 
-	edit() {
-		const blocks = select( 'core/blocks' ).getBlockTypes();
-		const ALLOWED_BLOCKS = blocks
-			.map( ( block ) => {
-				return ! block.name.match( /^snow-monkey-forms\// )
-					? block.name
-					: null;
-			} )
-			.filter( ( block ) => block );
-
-		return (
-			<div className="components-panel snow-monkey-forms-setting-panel">
-				<div className="components-panel__header edit-post-sidebar-header">
-					{ __( 'Complete', 'snow-monkey-forms' ) }
-				</div>
-				<div className="components-panel__body is-opened">
-					<InnerBlocks
-						allowedBlocks={ ALLOWED_BLOCKS }
-						templateLock={ false }
-					/>
-				</div>
-			</div>
-		);
-	},
-
-	save() {
-		return <InnerBlocks.Content />;
-	},
+	edit,
+	save,
 } );
