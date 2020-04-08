@@ -46,6 +46,8 @@ class AdministratorMailer {
 			throw new \RuntimeException( '[Snow Monkey Forms] Failed to send administrator email.' );
 		}
 
+		do_action( 'snow_monkey_forms/administrator_mailer/after_send', $is_sended, $this->responser, $this->setting, $mail_parser );
+
 		return $is_sended;
 	}
 }

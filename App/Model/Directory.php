@@ -121,7 +121,7 @@ class Directory {
 		}
 
 		$mtime = filemtime( $file );
-		$survival_time = apply_filters( 'snow_monkey_forms_saved_file_survival_time', 60 * 5 );
+		$survival_time = apply_filters( 'snow_monkey_forms/saved_files/survival_time', 60 * 5 );
 		return ! $mtime || time() > $mtime + $survival_time;
 	}
 
