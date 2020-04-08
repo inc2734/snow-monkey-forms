@@ -284,6 +284,26 @@ class Bootstrap {
 
 		register_post_meta(
 			'snow-monkey-forms',
+			'administrator_email_from',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'administrator_email_sender',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
 			'administrator_email_subject',
 			[
 				'show_in_rest' => true,

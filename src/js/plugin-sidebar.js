@@ -77,6 +77,24 @@ const Component = () => {
 					}
 				/>
 
+				<TextControl
+					label={ __( 'From (Email address)', 'snow-monkey-forms' ) }
+					help={ __( 'Optional', 'snow-monkey-forms' ) }
+					value={ meta.administrator_email_from }
+					onChange={ ( value ) =>
+						setMeta( { administrator_email_from: value } )
+					}
+				/>
+
+				<TextControl
+					label={ __( 'Sender', 'snow-monkey-forms' ) }
+					help={ __( 'Optional', 'snow-monkey-forms' ) }
+					value={ meta.administrator_email_sender }
+					onChange={ ( value ) =>
+						setMeta( { administrator_email_sender: value } )
+					}
+				/>
+
 				<HelpButton />
 			</PluginDocumentSettingPanel>
 

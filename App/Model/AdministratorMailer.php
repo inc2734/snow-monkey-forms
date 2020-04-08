@@ -38,6 +38,8 @@ class AdministratorMailer {
 				'subject'     => $mail_parser->parse( $this->setting->get( 'administrator_email_subject' ) ),
 				'body'        => $mail_parser->parse( $this->setting->get( 'administrator_email_body' ) ),
 				'attachments' => $mail_parser->get_attachments( $this->setting->get( 'administrator_email_body' ) ),
+				'from'        => $mail_parser->parse( $this->setting->get( 'administrator_email_from' ) ),
+				'sender'      => $mail_parser->parse( $this->setting->get( 'administrator_email_sender' ) ),
 			]
 		);
 
