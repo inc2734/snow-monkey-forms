@@ -2,6 +2,7 @@ import classnames from 'classnames';
 
 import { registerBlockType } from '@wordpress/blocks';
 import { InspectorControls, InnerBlocks } from '@wordpress/block-editor';
+import { dispatch } from '@wordpress/data';
 import { PanelBody, SelectControl, Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -80,7 +81,14 @@ registerBlockType( 'snow-monkey-forms/form--input', {
 					<div className="components-panel__header edit-post-sidebar-header">
 						{ __( 'Input', 'snow-monkey-forms' ) }
 
-						<Button isDefault>
+						<Button
+							isDefault
+							onClick={ () =>
+								dispatch( 'core/edit-post' ).openGeneralSidebar(
+									'edit-post/block'
+								)
+							}
+						>
 							{ __(
 								'Open input page settings',
 								'snow-monkey-forms'
