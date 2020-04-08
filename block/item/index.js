@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n';
 import attributes from './attributes';
 import edit from './edit';
 import save from './save';
+import deprecated from './deprecated';
 
 registerBlockType( 'snow-monkey-forms/item', {
 	title: __( 'Item', 'snow-monkey-forms' ),
@@ -13,4 +14,5 @@ registerBlockType( 'snow-monkey-forms/item', {
 	attributes,
 	edit,
 	save,
+	deprecated,
 } );

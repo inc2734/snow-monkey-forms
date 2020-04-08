@@ -13,6 +13,14 @@
   text-decoration: none;
 }
 
+.smf-item {
+  &__description {
+    @include _margin-top(.125);
+    color: _dark($_color-gray);
+    @include _font-size-line-height($_base-font-size-px - 2px);
+  }
+}
+
 .smf-form .smf-item {
   .smf-text-control,
   .smf-textarea-control {
