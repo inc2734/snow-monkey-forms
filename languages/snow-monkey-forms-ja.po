@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-03-14 14:02+0900\n"
-"PO-Revision-Date: 2020-03-14 14:02+0900\n"
+"POT-Creation-Date: 2020-04-08 14:52+0900\n"
+"PO-Revision-Date: 2020-04-08 14:53+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -16,8 +16,8 @@ msgstr ""
 "X-Poedit-WPHeader: snow-monkey-forms.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
@@ -114,26 +114,26 @@ msgid "Complete"
 msgstr "完了"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:203 snow-monkey-forms.php:398
+#: snow-monkey-forms.php:169 snow-monkey-forms.php:384
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:216
+#: snow-monkey-forms.php:182
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:236
+#: snow-monkey-forms.php:202
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:256
+#: snow-monkey-forms.php:222
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:282
+#: snow-monkey-forms.php:248
 msgid "Complete !"
 msgstr "完了しました。"
 
@@ -153,13 +153,14 @@ msgstr "任意。各項目を区切る文字。"
 
 #: block/checkboxes/edit.js:65 block/email/edit.js:96 block/file/edit.js:44
 #: block/radio-buttons/edit.js:52 block/select/edit.js:72 block/tel/edit.js:96
-#: block/text/edit.js:96 block/textarea/edit.js:84 block/url/edit.js:96
+#: block/text/edit.js:96 block/textarea/edit.js:85 block/url/edit.js:96
 msgid "Block settings"
 msgstr "ブロック設定"
 
 #: block/checkboxes/edit.js:68 block/email/edit.js:99 block/file/edit.js:47
-#: block/radio-buttons/edit.js:55 block/select/edit.js:75 block/tel/edit.js:99
-#: block/text/edit.js:99 block/textarea/edit.js:87 block/url/edit.js:99
+#: block/item/edit.js:46 block/radio-buttons/edit.js:55 block/select/edit.js:75
+#: block/tel/edit.js:99 block/text/edit.js:99 block/textarea/edit.js:88
+#: block/url/edit.js:99
 msgid "Description"
 msgstr "説明"
 
@@ -237,49 +238,106 @@ msgstr "email"
 msgid "File"
 msgstr "ファイル"
 
-#: block/form/complete/index.js:7
-msgid "Complete page"
-msgstr "完了画面"
-
-#: block/form/complete/index.js:31
+#: block/form/complete/edit.js:22
 msgid "Complete"
 msgstr "完了画面"
 
-#: block/form/input/index.js:12
-msgid "Input page"
-msgstr "入力画面"
+#: block/form/complete/index.js:8
+msgid "Complete page"
+msgstr "完了画面"
 
-#: block/form/input/index.js:41
-msgid "Settings"
-msgstr "設定"
+#: block/form/input/edit.js:43
+msgid "Form settings"
+msgstr "フォーム設定"
 
-#: block/form/input/index.js:46
+#: block/form/input/edit.js:48
 msgid "Form style"
 msgstr "フォームスタイル"
 
-#: block/form/input/index.js:51
+#: block/form/input/edit.js:53
 msgid "Default"
 msgstr "デフォルト"
 
-#: block/form/input/index.js:56
+#: block/form/input/edit.js:58
 msgid "Simple table"
 msgstr "Simple table"
 
-#: block/form/input/index.js:62
+#: block/form/input/edit.js:64
 msgid "Letter"
 msgstr "Letter"
 
-#: block/form/input/index.js:67
+#: block/form/input/edit.js:68
 msgid "Business"
 msgstr "Business"
 
-#: block/form/input/index.js:81
+#: block/form/input/edit.js:78 src/js/plugin-sidebar.js:29
+msgid "Administrator email"
+msgstr "管理者宛メール"
+
+#: block/form/input/edit.js:82 block/form/input/edit.js:166
+#: src/js/plugin-sidebar.js:33 src/js/plugin-sidebar.js:107
+msgid "To (Email address)"
+msgstr "To（メールアドレス）"
+
+#: block/form/input/edit.js:97 block/form/input/edit.js:191
+#: src/js/plugin-sidebar.js:46 src/js/plugin-sidebar.js:130
+msgid "Subject"
+msgstr "件名"
+
+#: block/form/input/edit.js:102 src/js/plugin-sidebar.js:50
+msgid "Admin notification"
+msgstr "管理者通知"
+
+#: block/form/input/edit.js:120 block/form/input/edit.js:213
+#: src/js/plugin-sidebar.js:64 src/js/plugin-sidebar.js:151
+msgid "Body"
+msgstr "Body"
+
+#: block/form/input/edit.js:139 block/form/input/edit.js:232
+#: src/js/plugin-sidebar.js:81 src/js/plugin-sidebar.js:169
+msgid "From (Email address)"
+msgstr "From（メールアドレス）"
+
+#: block/form/input/edit.js:142 block/form/input/edit.js:151
+#: block/form/input/edit.js:235 block/form/input/edit.js:244
+#: src/js/plugin-sidebar.js:82 src/js/plugin-sidebar.js:91
+#: src/js/plugin-sidebar.js:170 src/js/plugin-sidebar.js:179
+msgid "Optional"
+msgstr "任意"
+
+#: block/form/input/edit.js:150 block/form/input/edit.js:243
+#: src/js/plugin-sidebar.js:90 src/js/plugin-sidebar.js:178
+msgid "Sender"
+msgstr "送信者"
+
+#: block/form/input/edit.js:162 src/js/plugin-sidebar.js:103
+msgid "Auto reply email"
+msgstr "自動返信メール"
+
+#: block/form/input/edit.js:170 src/js/plugin-sidebar.js:109
+#, python-brace-format
+msgid ""
+"Enter the name attribute value of the installed email form field in the "
+"following format: {name}"
+msgstr ""
+"設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
+"い: {name}"
+
+#: block/form/input/edit.js:196 src/js/plugin-sidebar.js:134
+msgid "Automatic reply notification"
+msgstr "自動返信通知"
+
+#: block/form/input/edit.js:257
 msgid "Input"
 msgstr "入力画面"
 
-#: block/form/input/index.js:85
-msgid "Open input page settings"
-msgstr "入力画面設定を開く"
+#: block/form/input/edit.js:268
+msgid "Open the form settings"
+msgstr "フォーム設定を開く"
+
+#: block/form/input/index.js:9
+msgid "Form"
+msgstr "フォーム"
 
 #: block/form/input/use-confirm-page.js:14
 msgid "Use confirm page"
@@ -293,7 +351,7 @@ msgstr "プログレストラッカーを使用する"
 msgid "Label"
 msgstr "ラベル"
 
-#: block/item/index.js:9
+#: block/item/index.js:10
 msgid "Item"
 msgstr "項目"
 
@@ -357,55 +415,6 @@ msgstr "送信された値は次の形式で埋め込むことができます: "
 msgid "You can embed all submitted values ​​in the following format: "
 msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
 
-#: src/js/plugin-sidebar.js:25
-msgid "Administrator email"
-msgstr "管理者宛メール"
-
-#: src/js/plugin-sidebar.js:29 src/js/plugin-sidebar.js:70
-msgid "To (Email address)"
-msgstr "To（メールアドレス）"
-
-#: src/js/plugin-sidebar.js:37 src/js/plugin-sidebar.js:86
-msgid "Subject"
-msgstr "件名"
-
-#: src/js/plugin-sidebar.js:41
-msgid "Admin notification"
-msgstr "管理者通知"
-
-#: src/js/plugin-sidebar.js:50 src/js/plugin-sidebar.js:101
-msgid "Body"
-msgstr "Body"
-
-#: src/js/plugin-sidebar.js:66
-msgid "Auto reply email"
-msgstr "自動返信メール"
-
-#: src/js/plugin-sidebar.js:72
-#, python-brace-format
-msgid ""
-"Enter the name attribute value of the installed email form field in the "
-"following format: {name}"
-msgstr ""
-"設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
-"い: {name}"
-
-#: src/js/plugin-sidebar.js:90
-msgid "Automatic reply notification"
-msgstr "自動返信通知"
-
-#: src/js/plugin-sidebar.js:113
-msgid "From (Email address)"
-msgstr "From（メールアドレス）"
-
-#: src/js/plugin-sidebar.js:114 src/js/plugin-sidebar.js:123
-msgid "Optional"
-msgstr "任意"
-
-#: src/js/plugin-sidebar.js:122
-msgid "Sender"
-msgstr "送信者"
-
 #. Description of the plugin/theme
 msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
 msgstr ""
@@ -418,6 +427,12 @@ msgstr "inc2734"
 #. Author URI of the plugin/theme
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
+
+#~ msgid "Input page"
+#~ msgstr "入力画面"
+
+#~ msgid "Settings"
+#~ msgstr "設定"
 
 #~ msgid "To"
 #~ msgstr "To"
@@ -448,9 +463,6 @@ msgstr "https://2inc.org"
 
 #~ msgid "Radio"
 #~ msgstr "ラジオボタン"
-
-#~ msgid "Form"
-#~ msgstr "フォーム"
 
 #~ msgid "value↵"
 #~ msgstr "value↵"
