@@ -2,7 +2,7 @@ import { useEntityProp } from '@wordpress/core-data';
 import { PanelBody, TextControl, TextareaControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-import HelpButton from '../../../plugin-sidebar/help-button';
+import HelpButton from './help-button';
 
 export default function() {
 	const [ meta, setMeta ] = useEntityProp(
