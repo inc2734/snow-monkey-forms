@@ -35,6 +35,15 @@
     }
   }
 
+  .smf-checkboxes-control,
+  .smf-radio-buttons-control {
+    &__control {
+      > .smf-label + .smf-label {
+        @include _margin-left(.5);
+      }
+    }
+  }
+
   .smf-checkbox-control,
   .smf-radio-button-control {
     &__control {
@@ -43,10 +52,6 @@
       &::before {
         width: auto;
         height: auto;
-      }
-
-      > .smf-label + .smf-label {
-        @include _margin-left(.5);
       }
     }
   }

@@ -1,0 +1,44 @@
+.smf-form--simple-table {
+  & + .smf-action {
+    @include _margin(1, 0);
+    text-align: center;
+  }
+
+  .smf-item {
+    padding: 1rem 0;
+
+    &--divider {
+      .smf-item__col {
+        max-width: none;
+        flex: 1 1 auto;
+      }
+    }
+
+    &__col {
+      &--label {
+        @include _padding-bottom(.5);
+      }
+    }
+
+    @include _media-min(md) {
+      display: flex;
+
+      &__col {
+        $label-col-width: 14em;
+        flex: 1 1 auto;
+
+        &--label {
+          flex: 0 0 $label-col-width;
+          @include _padding-right(1);
+          @include _padding-bottom(0);
+          max-width: $label-col-width;
+        }
+
+        &--controls {
+          flex: 1 1 calc(100% - #{$label-col-width});
+          max-width: calc(100% - #{$label-col-width});
+        }
+      }
+    }
+  }
+}

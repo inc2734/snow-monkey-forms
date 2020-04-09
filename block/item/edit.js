@@ -1,12 +1,23 @@
+import classnames from 'classnames';
 import { compact } from 'lodash';
 
-import { InnerBlocks, RichText } from '@wordpress/block-editor';
+import { PanelBody, ToggleControl } from '@wordpress/components';
+import {
+	InspectorControls,
+	InnerBlocks,
+	RichText,
+} from '@wordpress/block-editor';
 import { getBlockTypes } from '@wordpress/blocks';
 import { useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-export default function( { attributes, setAttributes, isSelected } ) {
-	const { label, description } = attributes;
+export default function( {
+	attributes,
+	setAttributes,
+	isSelected,
+	className,
+} ) {
+	const { label, description, isDisplayLabelColumn } = attributes;
 
 	const ALLOWED_BLOCKS = useMemo( () => {
 		const blocks = getBlockTypes();
@@ -23,44 +34,72 @@ export default function( { attributes, setAttributes, isSelected } ) {
 		);
 	}, [] );
 
+	const classes = classnames( 'smf-item', className, {
+		'smf-item--divider': ! isDisplayLabelColumn,
+	} );
+
 	return (
-		<div className="smf-item" tabIndex="-1">
-			<div className="smf-item__col smf-item__col--label">
-				<div className="smf-item__label">
-					<RichText
-						value={ label }
-						onChange={ ( value ) =>
-							setAttributes( { label: value } )
+		<>
+			<InspectorControls>
+				<PanelBody title={ __( 'Settings', 'snow-monkey-forms' ) }>
+					<ToggleControl
+						label={ __(
+							'Display label column',
+							'snow-monkey-forms'
+						) }
+						checked={ isDisplayLabelColumn }
+						onChange={ ( attribute ) =>
+							setAttributes( { isDisplayLabelColumn: attribute } )
 						}
-						placeholder={ __( 'Label', 'snow-monkey-forms' ) }
 					/>
-				</div>
-				{ ( ! RichText.isEmpty( description ) || isSelected ) && (
-					<div className="smf-item__description">
-						<RichText
-							value={ description }
-							onChange={ ( value ) =>
-								setAttributes( { description: value } )
-							}
-							placeholder={ __(
-								'Description',
-								'snow-monkey-forms'
+				</PanelBody>
+			</InspectorControls>
+
+			<div className={ classes } tabIndex="-1">
+				{ isDisplayLabelColumn && (
+					<div className="smf-item__col smf-item__col--label">
+						<div className="smf-item__label">
+							<RichText
+								value={ label }
+								onChange={ ( value ) =>
+									setAttributes( { label: value } )
+								}
+								placeholder={ __(
+									'Label',
+									'snow-monkey-forms'
+								) }
+							/>
+						</div>
+						{ ( ! RichText.isEmpty( description ) ||
+							isSelected ) && (
+							<div className="smf-item__description">
+								<RichText
+									value={ description }
+									onChange={ ( value ) =>
+										setAttributes( { description: value } )
+									}
+									placeholder={ __(
+										'Description',
+										'snow-monkey-forms'
+									) }
+								/>
+							</div>
+						) }
+					</div>
+				) }
+
+				<div className="smf-item__col smf-item__col--controls">
+					<div className="smf-item__controls">
+						<InnerBlocks
+							allowedBlocks={ ALLOWED_BLOCKS }
+							templateLock={ false }
+							renderAppender={ () => (
+								<InnerBlocks.ButtonBlockAppender />
 							) }
 						/>
 					</div>
-				) }
-			</div>
-			<div className="smf-item__col smf-item__col--controls">
-				<div className="smf-item__controls">
-					<InnerBlocks
-						allowedBlocks={ ALLOWED_BLOCKS }
-						templateLock={ false }
-						renderAppender={ () => (
-							<InnerBlocks.ButtonBlockAppender />
-						) }
-					/>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }

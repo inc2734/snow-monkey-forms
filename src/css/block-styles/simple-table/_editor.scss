@@ -1,0 +1,26 @@
+.editor-styles-wrapper {
+  @import 'app';
+
+  .smf-form--simple-table {
+    [data-type="snow-monkey-forms/item"] {
+      &:not(.is-selected):not(.has-child-selected) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+      .smf-item__controls > .block-editor-inner-blocks > .block-editor-block-list__layout > .wp-block {
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:nth-last-child(2) {
+          margin-bottom: 0;
+        }
+      }
+
+      & > .block-list-appender {
+        margin-top: 28px;
+      }
+    }
+  }
+}

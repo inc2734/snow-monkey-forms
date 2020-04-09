@@ -1,0 +1,19 @@
+.smf-form--letter {
+  & + .smf-action {
+    @include _margin(1, 0);
+    text-align: center;
+  }
+
+  .smf-item {
+    padding: 1rem 0;
+
+    &__col--label {
+      @include _padding-bottom(.5);
+    }
+  }
+
+  .smf-text-control__control {
+    width: 100%;
+    max-width: 100%;
+  }
+}

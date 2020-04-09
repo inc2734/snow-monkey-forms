@@ -10,5 +10,9 @@
     "source": "html",
     "selector": ".smf-item__description",
     "default": ""
+  },
+  "isDisplayLabelColumn": {
+    "type": "boolean",
+    "default": true
   }
 }

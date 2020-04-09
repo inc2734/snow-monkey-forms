@@ -1,0 +1,10 @@
+.editor-styles-wrapper {
+  @import 'app';
+
+  .smf-form--letter {
+    [data-type="snow-monkey-forms/item"] .smf-item {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+}
