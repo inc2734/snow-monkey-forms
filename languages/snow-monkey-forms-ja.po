@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-04-08 14:52+0900\n"
-"PO-Revision-Date: 2020-04-08 14:53+0900\n"
+"POT-Creation-Date: 2020-04-09 15:07+0900\n"
+"PO-Revision-Date: 2020-04-09 15:07+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -152,19 +152,20 @@ msgid "Optional. Character that separates each item."
 msgstr "任意。各項目を区切る文字。"
 
 #: block/checkboxes/edit.js:65 block/email/edit.js:96 block/file/edit.js:44
-#: block/radio-buttons/edit.js:52 block/select/edit.js:72 block/tel/edit.js:96
-#: block/text/edit.js:96 block/textarea/edit.js:85 block/url/edit.js:96
+#: block/item/edit.js:44 block/radio-buttons/edit.js:52 block/select/edit.js:72
+#: block/tel/edit.js:96 block/text/edit.js:96 block/textarea/edit.js:85
+#: block/url/edit.js:96
 msgid "Block settings"
 msgstr "ブロック設定"
 
 #: block/checkboxes/edit.js:68 block/email/edit.js:99 block/file/edit.js:47
-#: block/item/edit.js:46 block/radio-buttons/edit.js:55 block/select/edit.js:75
+#: block/item/edit.js:82 block/radio-buttons/edit.js:55 block/select/edit.js:75
 #: block/tel/edit.js:99 block/text/edit.js:99 block/textarea/edit.js:88
 #: block/url/edit.js:99
 msgid "Description"
 msgstr "説明"
 
-#: block/checkboxes/index.js:9
+#: block/checkboxes/index.js:10
 msgid "Checkboxes"
 msgstr "チェックボックス"
 
@@ -230,11 +231,11 @@ msgid ""
 "%1$s"
 msgstr "必須。次の形式で入力: “value” : “label”%1$s あるいは value%1$s"
 
-#: block/email/index.js:9
+#: block/email/index.js:10
 msgid "email"
 msgstr "email"
 
-#: block/file/index.js:9
+#: block/file/index.js:10
 msgid "File"
 msgstr "ファイル"
 
@@ -246,75 +247,47 @@ msgstr "完了画面"
 msgid "Complete page"
 msgstr "完了画面"
 
-#: block/form/input/edit.js:43
-msgid "Form settings"
-msgstr "フォーム設定"
-
-#: block/form/input/edit.js:48
-msgid "Form style"
-msgstr "フォームスタイル"
-
-#: block/form/input/edit.js:53
-msgid "Default"
-msgstr "デフォルト"
-
-#: block/form/input/edit.js:58
-msgid "Simple table"
-msgstr "Simple table"
-
-#: block/form/input/edit.js:64
-msgid "Letter"
-msgstr "Letter"
-
-#: block/form/input/edit.js:68
-msgid "Business"
-msgstr "Business"
-
-#: block/form/input/edit.js:78 src/js/plugin-sidebar.js:29
+#: block/form/input/administrator-email-settings-panel.js:19
 msgid "Administrator email"
 msgstr "管理者宛メール"
 
-#: block/form/input/edit.js:82 block/form/input/edit.js:166
-#: src/js/plugin-sidebar.js:33 src/js/plugin-sidebar.js:107
+#: block/form/input/administrator-email-settings-panel.js:21
+#: block/form/input/auto-reply-email-settings-panel.js:21
 msgid "To (Email address)"
 msgstr "To（メールアドレス）"
 
-#: block/form/input/edit.js:97 block/form/input/edit.js:191
-#: src/js/plugin-sidebar.js:46 src/js/plugin-sidebar.js:130
+#: block/form/input/administrator-email-settings-panel.js:32
+#: block/form/input/auto-reply-email-settings-panel.js:40
 msgid "Subject"
 msgstr "件名"
 
-#: block/form/input/edit.js:102 src/js/plugin-sidebar.js:50
-msgid "Admin notification"
-msgstr "管理者通知"
-
-#: block/form/input/edit.js:120 block/form/input/edit.js:213
-#: src/js/plugin-sidebar.js:64 src/js/plugin-sidebar.js:151
+#: block/form/input/administrator-email-settings-panel.js:47
+#: block/form/input/auto-reply-email-settings-panel.js:54
 msgid "Body"
 msgstr "Body"
 
-#: block/form/input/edit.js:139 block/form/input/edit.js:232
-#: src/js/plugin-sidebar.js:81 src/js/plugin-sidebar.js:169
+#: block/form/input/administrator-email-settings-panel.js:60
+#: block/form/input/auto-reply-email-settings-panel.js:67
 msgid "From (Email address)"
 msgstr "From（メールアドレス）"
 
-#: block/form/input/edit.js:142 block/form/input/edit.js:151
-#: block/form/input/edit.js:235 block/form/input/edit.js:244
-#: src/js/plugin-sidebar.js:82 src/js/plugin-sidebar.js:91
-#: src/js/plugin-sidebar.js:170 src/js/plugin-sidebar.js:179
+#: block/form/input/administrator-email-settings-panel.js:61
+#: block/form/input/administrator-email-settings-panel.js:70
+#: block/form/input/auto-reply-email-settings-panel.js:68
+#: block/form/input/auto-reply-email-settings-panel.js:77
 msgid "Optional"
 msgstr "任意"
 
-#: block/form/input/edit.js:150 block/form/input/edit.js:243
-#: src/js/plugin-sidebar.js:90 src/js/plugin-sidebar.js:178
+#: block/form/input/administrator-email-settings-panel.js:69
+#: block/form/input/auto-reply-email-settings-panel.js:76
 msgid "Sender"
 msgstr "送信者"
 
-#: block/form/input/edit.js:162 src/js/plugin-sidebar.js:103
+#: block/form/input/auto-reply-email-settings-panel.js:19
 msgid "Auto reply email"
 msgstr "自動返信メール"
 
-#: block/form/input/edit.js:170 src/js/plugin-sidebar.js:109
+#: block/form/input/auto-reply-email-settings-panel.js:23
 #, python-brace-format
 msgid ""
 "Enter the name attribute value of the installed email form field in the "
@@ -323,31 +296,75 @@ msgstr ""
 "設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
 "い: {name}"
 
-#: block/form/input/edit.js:196 src/js/plugin-sidebar.js:134
+#: block/form/input/edit.js:33
+msgid "Admin notification"
+msgstr "管理者通知"
+
+#: block/form/input/edit.js:42
 msgid "Automatic reply notification"
 msgstr "自動返信通知"
 
-#: block/form/input/edit.js:257
+#: block/form/input/edit.js:71
 msgid "Input"
 msgstr "入力画面"
 
-#: block/form/input/edit.js:268
+#: block/form/input/edit.js:81
 msgid "Open the form settings"
 msgstr "フォーム設定を開く"
+
+#: block/form/input/form-settings-panel.js:15
+msgid "Form settings"
+msgstr "フォーム設定"
+
+#: block/form/input/form-settings-panel.js:17
+msgid "Use confirm page"
+msgstr "確認画面を使用する"
+
+#: block/form/input/form-settings-panel.js:23
+msgid "Use progress tracker"
+msgstr "プログレストラッカーを使用する"
+
+#: block/form/input/form-settings-panel.js:31
+msgid "Form style"
+msgstr "フォームスタイル"
+
+#: block/form/input/form-settings-panel.js:36
+msgid "Default"
+msgstr "デフォルト"
+
+#: block/form/input/form-settings-panel.js:40
+msgid "Simple table"
+msgstr "Simple table"
+
+#: block/form/input/form-settings-panel.js:44
+msgid "Letter"
+msgstr "Letter"
+
+#: block/form/input/form-settings-panel.js:48
+msgid "Business"
+msgstr "Business"
+
+#: block/form/input/help-button.js:11
+msgid "Help"
+msgstr "ヘルプ"
+
+#: block/form/input/help-button.js:19
+msgid "You can embed a submitted value in the following formats: "
+msgstr "送信された値は次の形式で埋め込むことができます: "
+
+#: block/form/input/help-button.js:28
+msgid "You can embed all submitted values ​​in the following format: "
+msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
 
 #: block/form/input/index.js:9
 msgid "Form"
 msgstr "フォーム"
 
-#: block/form/input/use-confirm-page.js:14
-msgid "Use confirm page"
-msgstr "確認画面を使用する"
+#: block/item/edit.js:47
+msgid "Display label column"
+msgstr "ラベルカラムを表示する"
 
-#: block/form/input/use-progress-tracker.js:14
-msgid "Use progress tracker"
-msgstr "プログレストラッカーを使用する"
-
-#: block/item/edit.js:35
+#: block/item/edit.js:68
 msgid "Label"
 msgstr "ラベル"
 
@@ -355,11 +372,11 @@ msgstr "ラベル"
 msgid "Item"
 msgstr "項目"
 
-#: block/radio-buttons/index.js:9
+#: block/radio-buttons/index.js:10
 msgid "Radio buttons"
 msgstr "ラジオボタン"
 
-#: block/select/index.js:9
+#: block/select/index.js:10
 msgid "Select"
 msgstr "セレクトボックス"
 
@@ -371,11 +388,11 @@ msgstr "フォームを選択してください"
 msgid "Snow Monkey Form"
 msgstr "Snow Monkey Forms"
 
-#: block/tel/index.js:9
+#: block/tel/index.js:10
 msgid "Tel"
 msgstr "Tel"
 
-#: block/text/index.js:9
+#: block/text/index.js:10
 msgid "Text"
 msgstr "テキスト"
 
@@ -387,11 +404,11 @@ msgstr "rows"
 msgid "Number of lines"
 msgstr "行数"
 
-#: block/textarea/index.js:9
+#: block/textarea/index.js:10
 msgid "Textarea"
 msgstr "テキストエリア"
 
-#: block/url/index.js:9
+#: block/url/index.js:10
 msgid "URL"
 msgstr "URL"
 
@@ -402,18 +419,6 @@ msgstr "バリデーション"
 #: hoc/with-validations.js:26
 msgid "Required"
 msgstr "必須"
-
-#: plugin-sidebar/help-button.js:11
-msgid "Help"
-msgstr "ヘルプ"
-
-#: plugin-sidebar/help-button.js:19
-msgid "You can embed a submitted value in the following formats: "
-msgstr "送信された値は次の形式で埋め込むことができます: "
-
-#: plugin-sidebar/help-button.js:28
-msgid "You can embed all submitted values ​​in the following format: "
-msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
 
 #. Description of the plugin/theme
 msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
@@ -428,11 +433,11 @@ msgstr "inc2734"
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
 
-#~ msgid "Input page"
-#~ msgstr "入力画面"
-
 #~ msgid "Settings"
 #~ msgstr "設定"
+
+#~ msgid "Input page"
+#~ msgstr "入力画面"
 
 #~ msgid "To"
 #~ msgstr "To"
