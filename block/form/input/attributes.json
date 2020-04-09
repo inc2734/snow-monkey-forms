@@ -1,0 +1,6 @@
+{
+  "formStyle": {
+    "type": "string",
+    "default": ""
+  }
+}

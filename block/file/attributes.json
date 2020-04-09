@@ -1,0 +1,22 @@
+{
+  "name": {
+    "type": "string",
+    "default": ""
+  },
+  "id": {
+    "type": "string",
+    "default": ""
+  },
+  "controlClass": {
+    "type": "string",
+    "default": ""
+  },
+  "description": {
+    "type": "string",
+    "default": ""
+  },
+  "validations": {
+    "type": "string",
+    "default": "{}"
+  }
+}

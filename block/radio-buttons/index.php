@@ -10,7 +10,8 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 add_action(
 	'init',
 	function() {
-		$attributes = include( __DIR__ . '/attributes.php' );
+		$attributes = file_get_contents( __DIR__ . '/attributes.json' );
+		$attributes = json_decode( $attributes, true );
 
 		register_block_type(
 			'snow-monkey-forms/control-radio-buttons',
