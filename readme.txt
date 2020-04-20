@@ -1,11 +1,11 @@
 === Snow Monkey Forms ===
-Contributors: inc2734
+Contributors: inc2734, mimitips
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
 Requires at least: 5.4
 Tested up to: 5.4
 Requires PHP: 5.6
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 0.5.1 =
+* Update icons. These icons reated by <a href="https://profiles.wordpress.org/mimitips/">mimitips</a>
 
 = 0.5.0 =
 * Update each blocks icons.
