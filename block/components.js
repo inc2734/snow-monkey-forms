@@ -40,6 +40,7 @@ export const ValuesControl = ( { value, onChange } ) => {
 		<TextareaControl
 			label={ __( 'value', 'snow-monkey-forms' ) }
 			help={ sprintf(
+				// translators: %1$s: line-break-char
 				__(
 					'Optional. Initial value. Enter in the following format: value%1$s',
 					'snow-monkey-forms'
@@ -125,6 +126,7 @@ export const OptionsControl = ( { value, onChange } ) => {
 			label={ __( 'options', 'snow-monkey-forms' ) }
 			value={ value }
 			help={ sprintf(
+				// translators: %1$s: line-break-char
 				__(
 					'Required. Enter in the following format: "value" : "label"%1$s or value%1$s',
 					'snow-monkey-forms'

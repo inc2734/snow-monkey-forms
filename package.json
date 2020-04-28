@@ -4,14 +4,14 @@
   "dependencies": {},
   "devDependencies": {
     "@wordpress/browserslist-config": "^2.6.0",
-    "@wordpress/scripts": "^7.2.0",
+    "@wordpress/scripts": "^8.0.1",
     "autoprefixer": "^9.7.6",
     "classnames": "^2.2.6",
     "cssnano": "^4.1.10",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.0",
     "npm-run-all": "^4.1.5",
     "po2json": "^1.0.0-alpha",
-    "postcss-cli": "^7.1.0",
+    "postcss-cli": "^7.1.1",
     "rimraf": "^3.0.2",
     "sass-basis": "^10.1.1"
   },

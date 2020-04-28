@@ -41,7 +41,9 @@ export default function( {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Block settings', 'snow-monkey-forms' ) }>
+				<PanelBody
+					title={ __( 'Block settings', 'snow-monkey-forms' ) }
+				>
 					<ToggleControl
 						label={ __(
 							'Display label column',
