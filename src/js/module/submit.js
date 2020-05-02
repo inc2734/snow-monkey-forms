@@ -70,6 +70,11 @@ export default function submit( event ) {
 		icon.attr( 'aria-hidden', 'true' );
 
 		response = JSON.parse( response );
+		if ( 'undefined' === typeof response.method ) {
+			failCallback();
+			return;
+		}
+
 		const method = response.method;
 
 		form.attr( 'data-screen', method );
