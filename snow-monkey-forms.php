@@ -91,7 +91,7 @@ class Bootstrap {
 			'snow-monkey-forms',
 			'var snowmonkeyforms = ' . json_encode(
 				[
-					'view_json_url' => home_url() . '/wp-json/snow-monkey-form/v1/view',
+					'view_json_url' => rest_url( '/snow-monkey-form/v1/view' ),
 				]
 			),
 			'before'
@@ -146,9 +146,9 @@ class Bootstrap {
 			[
 				'methods'  => 'POST',
 				'callback' => function() {
-					$referer = filter_input( INPUT_SERVER, 'HTTP_REFERER' );
-					$siteurl = get_bloginfo( 'url' );
-					if ( 0 !== strpos( $referer, $siteurl ) ) {
+					$referer = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : false;
+					$homeurl = untrailingslashit( home_url( '/' ) );
+					if ( 0 !== strpos( $referer, $homeurl ) ) {
 						exit;
 					}
 
