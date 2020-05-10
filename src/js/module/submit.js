@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import { __ } from '@wordpress/i18n';
 
 const maybeHasControls = ( method ) => {
 	return (
@@ -39,7 +38,7 @@ export default function submit( event ) {
 	};
 
 	const focusToFirstItem = () => {
-		const firstItem = $( '.smf-item' ).eq( 0 );
+		const firstItem = form.find( '.smf-item' ).eq( 0 );
 		if ( 0 < firstItem.length ) {
 			firstItem.focus();
 		}
@@ -58,13 +57,15 @@ export default function submit( event ) {
 	};
 
 	const focusToContent = () => {
-		const content = $( '.smf-complete-content, .smf-system-error-content' );
+		const content = form.find(
+			'.smf-complete-content, .smf-system-error-content'
+		);
 		if ( 0 < content.length ) {
 			content.eq( 0 ).focus();
 		}
 	};
 
-	const icon = $( '.smf-sending' );
+	const icon = form.find( '.smf-sending' );
 
 	const doneCallback = ( response ) => {
 		icon.attr( 'aria-hidden', 'true' );
@@ -85,7 +86,7 @@ export default function submit( event ) {
 		if ( maybeHasControls( method ) ) {
 			replaceControls( response.controls );
 
-			const errorMessages = $( '.smf-error-messages' );
+			const errorMessages = form.find( '.smf-error-messages' );
 			if ( 0 < errorMessages.length ) {
 				forcusToFirstErrorControl( errorMessages );
 			} else {
@@ -107,13 +108,10 @@ export default function submit( event ) {
 		const errorMessage = $(
 			'<div class="smf-system-error-content" tabindex="-1" />'
 		);
-		errorMessage.text(
-			__( 'An unexpected problem has occurred.', 'snow-monkey-forms' ) +
-				__(
-					'Please try again later or contact your administrator by other means.',
-					'snow-monkey-forms'
-				)
+		const errorMessageReady = form.find(
+			'.smf-system-error-content-ready'
 		);
+		errorMessage.text( errorMessageReady.text() );
 		replaceContent( errorMessage );
 		replaceAction( '' );
 		focusToContent();

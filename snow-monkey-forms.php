@@ -38,7 +38,6 @@ class Bootstrap {
 	public function _plugins_loaded() {
 		load_plugin_textdomain( 'snow-monkey-forms', false, basename( __DIR__ ) . '/languages' );
 		add_filter( 'load_textdomain_mofile', [ $this, '_load_textdomain_mofile' ], 10, 2 );
-		load_plugin_textdomain( 'snow-monkey-forms', false, basename( __DIR__ ) . '/languages' );
 
 		Csrf::save_token();
 
@@ -95,12 +94,6 @@ class Bootstrap {
 				]
 			),
 			'before'
-		);
-
-		wp_set_script_translations(
-			'snow-monkey-forms',
-			'snow-monkey-forms',
-			SNOW_MONKEY_FORMS_PATH . '/languages'
 		);
 
 		wp_enqueue_style(

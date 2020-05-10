@@ -46,6 +46,13 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 		<?php echo $response->action; // xss ok. ?>
 	</div>
 
+	<div class="smf-system-error-content-ready">
+		<?php
+		esc_html_e( 'An unexpected problem has occurred.', 'snow-monkey-forms' );
+		esc_html_e( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' );
+		?>
+	</div>
+
 	<?php Meta::the_formid( $form_id ); ?>
 	<?php Meta::the_token(); ?>
 </form>

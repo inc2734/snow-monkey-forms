@@ -117,6 +117,10 @@
   }
 }
 
+.smf-system-error-content-ready {
+  display: none !important;
+}
+
 .smf-item[tabindex="-1"],
 .smf-complete-content[tabindex="-1"],
 .smf-system-error-content[tabindex="-1"] {
