@@ -1,5 +1,7 @@
+import classnames from 'classnames';
+
 import { InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl } from '@wordpress/components';
+import { PanelBody, TextControl, SelectControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
 
@@ -8,7 +10,14 @@ import { uniqId, optionsToJsonArray, valuesToJsonArray } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const edit = ( { attributes, setAttributes } ) => {
-	const { name, options, values, delimiter, description } = attributes;
+	const {
+		name,
+		options,
+		values,
+		delimiter,
+		direction,
+		description,
+	} = attributes;
 
 	if ( '' === name ) {
 		setAttributes( { name: `checkboxes-${ uniqId() }` } );
@@ -22,6 +31,10 @@ const edit = ( { attributes, setAttributes } ) => {
 
 	const arrayedOptions = optionsToJsonArray( options );
 	const arrayedValues = valuesToJsonArray( values );
+
+	const classes = classnames( 'smf-checkboxes-control', {
+		[ `smf-checkboxes-control--${ direction }` ]: !! direction,
+	} );
 
 	return (
 		<>
@@ -64,6 +77,28 @@ const edit = ( { attributes, setAttributes } ) => {
 				<PanelBody
 					title={ __( 'Block settings', 'snow-monkey-forms' ) }
 				>
+					<SelectControl
+						label={ __( 'Direction', 'snow-monkey-forms' ) }
+						value={ direction }
+						options={ [
+							{
+								value: '',
+								label: __( 'Default', 'snow-monkey-forms' ),
+							},
+							{
+								value: 'horizontal',
+								label: __( 'Horizontal', 'snow-monkey-forms' ),
+							},
+							{
+								value: 'vertical',
+								label: __( 'Vertical', 'snow-monkey-forms' ),
+							},
+						] }
+						onChange={ ( attribute ) =>
+							setAttributes( { direction: attribute } )
+						}
+					/>
+
 					<TextControl
 						label={ __( 'Description', 'snow-monkey-forms' ) }
 						value={ description }
@@ -73,36 +108,37 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
+
 			<div className="smf-placeholder" data-name={ name }>
-				<div className="smf-checkboxes-control">
+				<div className={ classes }>
 					<div className="smf-checkboxes-control__control">
 						{ arrayedOptions.map( ( option ) => {
 							const optionValue = Object.keys( option )[ 0 ];
 							const optionLabel = Object.values( option )[ 0 ];
 
 							return (
-								<label
-									className="smf-label"
-									key={ optionValue }
-									htmlFor={ `${ name }-${ optionValue }` }
-								>
-									<span className="smf-checkbox-control">
-										<input
-											type="checkbox"
-											name={ `${ name }[]` }
-											value={ optionValue }
-											checked={ arrayedValues.includes(
-												optionValue
-											) }
-											disabled="disabled"
-											className="smf-checkbox-control__control"
-											id={ `${ name }-${ optionValue }` }
-										/>
-										<span className="smf-checkbox-control__label">
-											{ optionLabel }
+								<div className="smf-label" key={ optionValue }>
+									<label
+										htmlFor={ `${ name }-${ optionValue }` }
+									>
+										<span className="smf-checkbox-control">
+											<input
+												type="checkbox"
+												name={ `${ name }[]` }
+												value={ optionValue }
+												checked={ arrayedValues.includes(
+													optionValue
+												) }
+												disabled="disabled"
+												className="smf-checkbox-control__control"
+												id={ `${ name }-${ optionValue }` }
+											/>
+											<span className="smf-checkbox-control__label">
+												{ optionLabel }
+											</span>
 										</span>
-									</span>
-								</label>
+									</label>
+								</div>
 							);
 						} ) }
 					</div>

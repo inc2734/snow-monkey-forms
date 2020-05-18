@@ -23,6 +23,11 @@ class RadioButtons extends Contract\Control {
 	/**
 	 * @var string
 	 */
+	protected $direction = '';
+
+	/**
+	 * @var string
+	 */
 	protected $description = '';
 
 	/**
@@ -99,11 +104,18 @@ class RadioButtons extends Contract\Control {
 			);
 		}
 
+		$direction = $this->get_property( 'direction' );
+		$classes[] = 'smf-radio-control';
+		if ( $direction ) {
+			$classes[] = 'smf-radio-control--' . $direction;
+		}
+
 		return sprintf(
-			'<div class="smf-radio-buttons-control" %1$s>
-				<div class="smf-radio-buttons-control__control">%2$s</div>
+			'<div class="%1$s" %2$s>
+				<div class="smf-radio-buttons-control__control">%3$s</div>
 			</div>
-			%3$s',
+			%4$s',
+			esc_attr( implode( ' ', $classes ) ),
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
 			$this->_children( 'input' ),
 			$description

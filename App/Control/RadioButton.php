@@ -51,12 +51,14 @@ class RadioButton extends Contract\Control {
 		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
 
 		return sprintf(
-			'<label class="smf-label">
-				<span class="smf-radio-button-control">
-					<input type="radio" %1$s>
-					<span class="smf-radio-button-control__label">%2$s</span>
-				</span>
-			</label>',
+			'<div class="smf-label">
+				<label>
+					<span class="smf-radio-button-control">
+						<input type="radio" %1$s>
+						<span class="smf-radio-button-control__label">%2$s</span>
+					</span>
+				</label>
+			</div>',
 			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
 			esc_html( $label )
 		);

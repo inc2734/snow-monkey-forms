@@ -38,20 +38,55 @@
   .smf-checkboxes-control,
   .smf-radio-buttons-control {
     &__control {
-      > .smf-label + .smf-label {
-        @include _margin-left(.5);
+      > .smf-label {
+        @include _media-min(md) {
+          display: inline-block;
+          @include _margin-right(.5);
+        }
       }
     }
   }
 
-  .smf-checkbox-control,
-  .smf-radio-button-control {
-    &__control {
-      @include _margin-right(.25);
+  .smf-checkboxes-control {
+    &--horizontal {
+      .smf-checkboxes-control {
+        &__control {
+          > .smf-label {
+            display: inline-block;
+          }
+        }
+      }
+    }
 
-      &::before {
-        width: auto;
-        height: auto;
+    &--vertical {
+      .smf-checkboxes-control {
+        &__control {
+          > .smf-label {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .smf-radio-buttons-control {
+    &--horizontal {
+      .smf-radio-buttons-control {
+        &__control {
+          > .smf-label {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    &--vertical {
+      .smf-radio-buttons-control {
+        &__control {
+          > .smf-label {
+            display: block;
+          }
+        }
       }
     }
   }
@@ -62,6 +97,16 @@
 
   .smf-radio-button-control {
     @include _radio();
+  }
+
+  .smf-checkbox-control,
+  .smf-radio-button-control {
+    align-items: flex-start;
+
+    &__control {
+      margin-top: $_between-lines;
+      @include _margin-right(.25);
+    }
   }
 
   .smf-select-control {

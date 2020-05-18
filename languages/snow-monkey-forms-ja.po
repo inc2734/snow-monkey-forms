@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-04-09 15:07+0900\n"
-"PO-Revision-Date: 2020-04-09 15:07+0900\n"
+"POT-Creation-Date: 2020-05-18 14:19+0900\n"
+"PO-Revision-Date: 2020-05-18 14:20+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -59,7 +59,7 @@ msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
 #: App/Rest/Route/View.php:100 App/Rest/Route/View.php:148
-#: src/js/module/submit.js:108
+#: block/snow-monkey-form/view.php:52
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
@@ -67,7 +67,7 @@ msgstr "後でもう一度やり直すか、他の方法で管理者に連絡し
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:147 src/js/module/submit.js:106
+#: App/Rest/Route/View.php:147 block/snow-monkey-form/view.php:51
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
@@ -114,52 +114,69 @@ msgid "Complete"
 msgstr "完了"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:169 snow-monkey-forms.php:384
+#: snow-monkey-forms.php:162 snow-monkey-forms.php:377
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:182
+#: snow-monkey-forms.php:175
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:202
+#: snow-monkey-forms.php:195
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:222
+#: snow-monkey-forms.php:215
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:248
+#: snow-monkey-forms.php:241
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: block/checkboxes/edit.js:29 block/email/edit.js:37 block/file/edit.js:20
-#: block/radio-buttons/edit.js:28 block/select/edit.js:34 block/tel/edit.js:37
+#: block/checkboxes/edit.js:42 block/email/edit.js:37 block/file/edit.js:20
+#: block/radio-buttons/edit.js:34 block/select/edit.js:34 block/tel/edit.js:37
 #: block/text/edit.js:37 block/textarea/edit.js:34 block/url/edit.js:37
 msgid "Attributes"
 msgstr "属性"
 
-#: block/checkboxes/edit.js:52
+#: block/checkboxes/edit.js:65
 msgid "Delimiter"
 msgstr "区切り文字"
 
-#: block/checkboxes/edit.js:54
+#: block/checkboxes/edit.js:67
 msgid "Optional. Character that separates each item."
 msgstr "任意。各項目を区切る文字。"
 
-#: block/checkboxes/edit.js:65 block/email/edit.js:96 block/file/edit.js:44
-#: block/item/edit.js:44 block/radio-buttons/edit.js:52 block/select/edit.js:72
+#: block/checkboxes/edit.js:78 block/email/edit.js:96 block/file/edit.js:44
+#: block/item/edit.js:45 block/radio-buttons/edit.js:58 block/select/edit.js:72
 #: block/tel/edit.js:96 block/text/edit.js:96 block/textarea/edit.js:85
 #: block/url/edit.js:96
 msgid "Block settings"
 msgstr "ブロック設定"
 
-#: block/checkboxes/edit.js:68 block/email/edit.js:99 block/file/edit.js:47
-#: block/item/edit.js:82 block/radio-buttons/edit.js:55 block/select/edit.js:75
+#: block/checkboxes/edit.js:81 block/radio-buttons/edit.js:61
+msgid "Direction"
+msgstr "方向"
+
+#: block/checkboxes/edit.js:86 block/form/input/form-settings-panel.js:36
+#: block/radio-buttons/edit.js:66
+msgid "Default"
+msgstr "デフォルト"
+
+#: block/checkboxes/edit.js:90 block/radio-buttons/edit.js:70
+msgid "Horizontal"
+msgstr "横"
+
+#: block/checkboxes/edit.js:94 block/radio-buttons/edit.js:74
+msgid "Vertical"
+msgstr "縦"
+
+#: block/checkboxes/edit.js:103 block/email/edit.js:99 block/file/edit.js:47
+#: block/item/edit.js:84 block/radio-buttons/edit.js:83 block/select/edit.js:75
 #: block/tel/edit.js:99 block/text/edit.js:99 block/textarea/edit.js:88
 #: block/url/edit.js:99
 msgid "Description"
@@ -185,47 +202,47 @@ msgstr "value"
 msgid "Optional. Initial value."
 msgstr "任意。初期値。"
 
-#: block/components.js:44
+#: block/components.js:45
 msgid "Optional. Initial value. Enter in the following format: value%1$s"
 msgstr "任意。初期値。次の形式で入力: value%1$s"
 
-#: block/components.js:58
+#: block/components.js:59
 msgid "placeholder"
 msgstr "placeholder"
 
-#: block/components.js:68
+#: block/components.js:69
 msgid "maxlength"
 msgstr "maxlength"
 
-#: block/components.js:70
+#: block/components.js:71
 msgid "Optional. Maximum number of characters. If 0, not restricted."
 msgstr "任意。最大文字数。0の場合、制限されません。"
 
-#: block/components.js:82
+#: block/components.js:83
 msgid "size"
 msgstr "size"
 
-#: block/components.js:84
+#: block/components.js:85
 msgid "Optional. The width of this item. If 0, not restricted."
 msgstr "任意。この項目の幅。0の場合、制限されません。"
 
-#: block/components.js:96
+#: block/components.js:97
 msgid "id"
 msgstr "id"
 
-#: block/components.js:106
+#: block/components.js:107
 msgid "class"
 msgstr "class"
 
-#: block/components.js:108
+#: block/components.js:109
 msgid "Separate multiple classes with spaces."
 msgstr "複数クラスを半角スペースで区切ります。"
 
-#: block/components.js:125
+#: block/components.js:126
 msgid "options"
 msgstr "options"
 
-#: block/components.js:129
+#: block/components.js:131
 msgid ""
 "Required. Enter in the following format: \"value\" : \"label\"%1$s or value"
 "%1$s"
@@ -328,10 +345,6 @@ msgstr "プログレストラッカーを使用する"
 msgid "Form style"
 msgstr "フォームスタイル"
 
-#: block/form/input/form-settings-panel.js:36
-msgid "Default"
-msgstr "デフォルト"
-
 #: block/form/input/form-settings-panel.js:40
 msgid "Simple table"
 msgstr "Simple table"
@@ -360,11 +373,11 @@ msgstr "送信されたすべての値を次のフォーマットで埋め込む
 msgid "Form"
 msgstr "フォーム"
 
-#: block/item/edit.js:47
+#: block/item/edit.js:49
 msgid "Display label column"
 msgstr "ラベルカラムを表示する"
 
-#: block/item/edit.js:68
+#: block/item/edit.js:70
 msgid "Label"
 msgstr "ラベル"
 
