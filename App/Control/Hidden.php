@@ -38,7 +38,7 @@ class Hidden extends Contract\Control {
 		return $this->input();
 	}
 
-	public function error( $error_message = '' ) {
+	public function invalid( $message = '' ) {
 		return $this->input();
 	}
 }

@@ -58,7 +58,7 @@ abstract class Control {
 	abstract public function save( $value );
 	abstract public function input();
 	abstract public function confirm();
-	abstract public function error( $error_message = '' );
+	abstract public function invalid( $message = '' );
 
 	protected function _generate_attributes( array $_attributes ) {
 		$attributes = [];

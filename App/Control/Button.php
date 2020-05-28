@@ -48,7 +48,7 @@ class Button extends Contract\Control {
 		$this->input();
 	}
 
-	public function error( $error_message = '' ) {
+	public function invalid( $message = '' ) {
 		$this->input();
 	}
 }

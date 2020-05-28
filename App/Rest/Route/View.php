@@ -83,7 +83,7 @@ class View {
 
 		// Validate check.
 		if ( ! $this->validator->validate() ) {
-			Meta::set_method( 'error' );
+			Meta::set_method( 'invalid' );
 			return $this->_send();
 		}
 

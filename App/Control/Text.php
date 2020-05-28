@@ -85,7 +85,7 @@ class Text extends Contract\Control {
 		);
 	}
 
-	public function error( $error_message = '' ) {
+	public function invalid( $message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 
 		return sprintf(
@@ -94,7 +94,7 @@ class Text extends Contract\Control {
 				%2$s
 			</div>',
 			$this->input(),
-			$error_message
+			$message
 		);
 	}
 }

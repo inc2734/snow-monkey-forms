@@ -119,7 +119,7 @@ class Select extends Contract\Control {
 		return $this->_children( 'confirm' );
 	}
 
-	public function error( $error_message = '' ) {
+	public function invalid( $message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 
 		return sprintf(
@@ -128,7 +128,7 @@ class Select extends Contract\Control {
 				%2$s
 			</div>',
 			$this->input(),
-			$error_message
+			$message
 		);
 	}
 }

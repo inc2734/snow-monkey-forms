@@ -70,7 +70,7 @@ class Option extends Contract\Control {
 		);
 	}
 
-	public function error( $error_message = '' ) {
+	public function invalid( $message = '' ) {
 		return $this->input();
 	}
 }

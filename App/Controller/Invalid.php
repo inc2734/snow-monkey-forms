@@ -11,7 +11,7 @@ use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
-class Error extends Contract\Controller {
+class Invalid extends Contract\Controller {
 
 	protected function set_controls() {
 		$controls = [];
@@ -21,7 +21,7 @@ class Error extends Contract\Controller {
 			$value = $this->responser->get( $name );
 			$control->save( $value );
 			$error_message = $this->validator->get_error_message( $name );
-			$controls[ $name ] = $error_message ? $control->error( $error_message ) : $control->input();
+			$controls[ $name ] = $error_message ? $control->invalid( $error_message ) : $control->input();
 		}
 
 		return $controls;

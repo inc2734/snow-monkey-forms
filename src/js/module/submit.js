@@ -4,7 +4,7 @@ const maybeHasControls = ( method ) => {
 	return (
 		'' === method ||
 		'back' === method ||
-		'error' === method ||
+		'invalid' === method ||
 		'confirm' === method
 	);
 };
