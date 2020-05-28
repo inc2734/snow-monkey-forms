@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import addCustomEvent from '@inc2734/add-custom-event';
 
 const maybeHasControls = ( method ) => {
 	return (
@@ -19,6 +20,13 @@ export default function submit( event ) {
 	const form = $( event.target );
 	const contents = form.find( '.smf-form' );
 	const actionArea = form.find( '.smf-action' );
+	const formData = new FormData( form.get( 0 ) );
+
+	const detail = {
+		status: 'init',
+		inputs: form.serializeArray(),
+		formData,
+	};
 
 	const replaceContent = ( content ) => {
 		contents.html( content );
@@ -100,6 +108,27 @@ export default function submit( event ) {
 			replaceContent( '' );
 			replaceAction( '' );
 		}
+
+		detail.status = method;
+		switch ( detail.status ) {
+			case 'back':
+				addCustomEvent( event.target, 'smf.back', detail );
+				break;
+			case 'confirm':
+				addCustomEvent( event.target, 'smf.confirm', detail );
+				break;
+			case 'complete':
+				addCustomEvent( event.target, 'smf.complete', detail );
+				break;
+			case 'invalid':
+				addCustomEvent( event.target, 'smf.invalid', detail );
+				break;
+			case 'systemerror':
+				addCustomEvent( event.target, 'smf.systemerror', detail );
+				break;
+		}
+
+		addCustomEvent( event.target, 'smf.submit', detail );
 	};
 
 	const failCallback = () => {
@@ -115,12 +144,17 @@ export default function submit( event ) {
 		replaceContent( errorMessage );
 		replaceAction( '' );
 		focusToContent();
+
+		detail.status = 'systemerror';
+		addCustomEvent( event.target, 'smf.systemerror', detail );
 	};
+
+	addCustomEvent( event.target, 'smf.beforesubmit', detail );
 
 	$.ajax( {
 		type: 'POST',
 		url: snowmonkeyforms.view_json_url,
-		data: new FormData( form.get( 0 ) ),
+		data: formData,
 		processData: false,
 		contentType: false,
 	} )
