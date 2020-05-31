@@ -12,12 +12,24 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class Dispatcher {
 
 	public static function dispatch( $method, Responser $responser, Setting $setting, Validator $validator ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Controller\\' . Helper::generate_class_name( $method );
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Controller\\' . static::_generate_class_name( $method );
 
 		if ( ! class_exists( $class_name ) ) {
 			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
 		}
 
 		return new $class_name( $responser, $setting, $validator );
+	}
+
+	protected static function _generate_class_name( $string ) {
+		$classes = [];
+		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/App/Controller/*.php' ) as $file ) {
+			$slug = strtolower( basename( $file, '.php' ) );
+			$classes[ $slug ] = $file;
+		}
+
+		return isset( $classes[ strtolower( $string ) ] )
+			? basename( $classes[ strtolower( $string ) ], '.php' )
+			: false;
 	}
 }

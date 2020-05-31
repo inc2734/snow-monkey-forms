@@ -12,12 +12,32 @@ use Snow_Monkey\Plugin\Forms\App\Control;
 class Helper {
 
 	/**
-	 * Return class name
+	 * Return Control
+	 *
+	 * @param string $type
+	 * @param array $properties
+	 * @return Control
+	 */
+	public static function control( $type, array $properties = [] ) {
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::_generate_control_class_name( $type );
+
+		if ( ! class_exists( $class_name ) ) {
+			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
+		}
+
+		return new $class_name( $properties );
+	}
+
+	/**
+	 * Return class name.
+	 *  - foo => Foo
+	 *  - foo_bar => FooBar
+	 *  - FooBar => Foobar
 	 *
 	 * @param   string  $string
 	 * @return  string
 	 */
-	public static function generate_class_name( $string ) {
+	protected static function _generate_control_class_name( $string ) {
 		$class_name_array = array_map(
 			function( $string ) {
 				return ucfirst( strtolower( $string ) );
@@ -26,23 +46,6 @@ class Helper {
 		);
 
 		return implode( '', $class_name_array );
-	}
-
-	/**
-	 * Return Control
-	 *
-	 * @param string $type
-	 * @param array $properties
-	 * @return Control
-	 */
-	public static function control( $type, array $properties = [] ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::generate_class_name( $type );
-
-		if ( ! class_exists( $class_name ) ) {
-			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
-		}
-
-		return new $class_name( $properties );
 	}
 
 	/**

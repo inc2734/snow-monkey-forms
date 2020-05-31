@@ -92,12 +92,31 @@ class Validator {
 	}
 
 	protected function _get_validation_class( $validation_name ) {
-		$class_name = '\Snow_Monkey\Plugin\Forms\App\Validation\\' . Helper::generate_class_name( $validation_name );
+		$class_name = '\Snow_Monkey\Plugin\Forms\App\Validation\\' . static::_generate_class_name( $validation_name );
 
 		if ( ! class_exists( $class_name ) ) {
 			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
 		}
 
 		return $class_name;
+	}
+
+	protected static function _generate_class_name( $string ) {
+		$cache_key   = 'validation/classes';
+		$cache_group = 'snow-monkey-forms';
+		$classes     = wp_cache_get( $cache_key, $cache_group );
+
+		if ( ! $classes ) {
+			$classes = [];
+			foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/App/Validation/*.php' ) as $file ) {
+				$slug = strtolower( basename( $file, '.php' ) );
+				$classes[ $slug ] = $file;
+			}
+			wp_cache_set( $cache_key, $classes, $cache_group );
+		}
+
+		return isset( $classes[ strtolower( $string ) ] )
+			? basename( $classes[ strtolower( $string ) ], '.php' )
+			: false;
 	}
 }
