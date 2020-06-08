@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
 "POT-Creation-Date: 2020-05-18 14:19+0900\n"
-"PO-Revision-Date: 2020-05-18 14:20+0900\n"
+"PO-Revision-Date: 2020-06-09 08:22+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -436,7 +436,7 @@ msgstr "必須"
 #. Description of the plugin/theme
 msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
 msgstr ""
-"Snow Monkey orms はブロックエディターのためのメールフォームプラグインです。"
+"Snow Monkey Forms はブロックエディターのためのメールフォームプラグインです。"
 
 #. Author of the plugin/theme
 msgid "inc2734"
