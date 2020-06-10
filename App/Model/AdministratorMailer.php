@@ -32,6 +32,44 @@ class AdministratorMailer {
 	public function send() {
 		$mail_parser = new MailParser( $this->responser, $this->setting );
 
+		$skip = apply_filters(
+			'snow_monkey_forms/administrator_mailer/skip',
+			false,
+			$this->responser,
+			$this->setting
+		);
+
+		$is_sended = $skip
+			? $this->_process_skip()
+			: $this->_process_sending( $mail_parser );
+
+		$is_sended = apply_filters(
+			'snow_monkey_forms/administrator_mailer/is_sended',
+			$is_sended,
+			$this->responser,
+			$this->setting
+		);
+
+		if ( ! $is_sended ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Failed to send administrator email.' );
+		}
+
+		do_action(
+			'snow_monkey_forms/administrator_mailer/after_send',
+			$is_sended,
+			$this->responser,
+			$this->setting,
+			$mail_parser
+		);
+
+		return $is_sended;
+	}
+
+	protected function _process_skip() {
+		return true;
+	}
+
+	protected function _process_sending( MailParser $mail_parser ) {
 		$mailer = new Mailer(
 			[
 				'to'          => $this->setting->get( 'administrator_email_to' ),
@@ -43,13 +81,6 @@ class AdministratorMailer {
 			]
 		);
 
-		$is_sended = $mailer->send();
-		if ( ! $is_sended ) {
-			throw new \RuntimeException( '[Snow Monkey Forms] Failed to send administrator email.' );
-		}
-
-		do_action( 'snow_monkey_forms/administrator_mailer/after_send', $is_sended, $this->responser, $this->setting, $mail_parser );
-
-		return $is_sended;
+		return $mailer->send();
 	}
 }
