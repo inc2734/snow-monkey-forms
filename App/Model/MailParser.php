@@ -36,7 +36,7 @@ class MailParser {
 				}
 
 				if ( 'all-fields' === $matches[1] ) {
-					$return_value  = '';
+					$return_value = '';
 					$controls = $this->setting->get_controls();
 					foreach ( $controls as $name => $control ) {
 						$value = $this->_stringfy( $name, $this->responser->get( $name ) );
@@ -46,8 +46,16 @@ class MailParser {
 				}
 
 				$value = $this->responser->get( $matches[1] );
-				$value = $this->_stringfy( $matches[1], $value );
-				return $value;
+
+				$value = apply_filters(
+					'snow_monkey_forms/custom_mail_tag',
+					$value,
+					$matches[1],
+					$this->responser,
+					$this->setting
+				);
+
+				return $this->_stringfy( $matches[1], $value );
 			},
 			$string
 		);
