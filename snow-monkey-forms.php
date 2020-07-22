@@ -151,6 +151,9 @@ class Bootstrap {
 					$route = new Rest\Route\View( $data );
 					return $route->send();
 				},
+				'permission_callback' => function() {
+					return true;
+				},
 			]
 		);
 	}
