@@ -1,5 +1,12 @@
-import $ from 'jquery';
 import addCustomEvent from '@inc2734/add-custom-event';
+
+const closest = ( el, targetClass ) => {
+	for ( let item = el; item; item = item.parentElement ) {
+		if ( item.classList.contains( targetClass ) ) {
+			return item;
+		}
+	}
+};
 
 const maybeHasControls = ( method ) => {
 	return (
@@ -17,66 +24,95 @@ const maybeComplete = ( method ) => {
 export default function submit( event ) {
 	event.preventDefault();
 
-	const form = $( event.target );
-	const contents = form.find( '.smf-form' );
-	const actionArea = form.find( '.smf-action' );
-	const formData = new FormData( form.get( 0 ) );
+	const form = event.target;
+	const contents = form.querySelector( '.smf-form' );
+	const actionArea = form.querySelector( '.smf-action' );
+	const formData = new FormData( form );
+
+	const inputs = [].slice
+		.call(
+			form.querySelectorAll(
+				'input[name]:not([disabled]), textarea[name]:not([disabled]), select[name]:not([disabled])'
+			)
+		)
+		.map( ( element ) => {
+			let value;
+			if ( 'checkbox' === element.type || 'radio' === element.type ) {
+				if ( element.checked ) {
+					value = element.value;
+				}
+			} else {
+				value = element.value;
+			}
+
+			if ( 'undefined' === typeof value ) {
+				return false;
+			}
+
+			return {
+				name: element.getAttribute( 'name' ),
+				value,
+			};
+		} )
+		.filter( ( element ) => element );
 
 	const detail = {
 		status: 'init',
-		inputs: form.serializeArray(),
+		inputs,
 		formData,
 	};
 
 	const replaceContent = ( content ) => {
-		contents.html( content );
+		contents.innerHTML = content;
 	};
 
 	const replaceControls = ( controls ) => {
-		$.each( controls, ( key, control ) => {
-			const placeholder = form.find(
+		for ( const key in controls ) {
+			const control = controls[ key ];
+			const placeholder = form.querySelector(
 				`.smf-placeholder[data-name="${ key }"]`
 			);
-			placeholder.html( control );
-		} );
+			placeholder.innerHTML = control;
+		}
 	};
 
 	const replaceAction = ( contentType ) => {
-		actionArea.html( contentType );
+		actionArea.innerHTML = contentType;
 	};
 
 	const focusToFirstItem = () => {
-		const firstItem = form.find( '.smf-item' ).eq( 0 );
-		if ( 0 < firstItem.length ) {
+		const firstItem = form.querySelector( '.smf-item' );
+		if ( !! firstItem ) {
 			firstItem.focus();
 		}
 	};
 
 	const forcusToFirstErrorControl = ( errorMessages ) => {
 		if ( 0 < errorMessages.length ) {
-			const firstErrorMessage = errorMessages.eq( 0 );
-			const firstErrorControl = firstErrorMessage
-				.closest( '.smf-placeholder' )
-				.find( 'input, select, textarea, button' );
-			if ( 0 < firstErrorControl.length ) {
+			const firstErrorMessage = errorMessages[ 0 ];
+			const placeholder = closest( firstErrorMessage, 'smf-placeholder' );
+			const firstErrorControl =
+				!! placeholder &&
+				placeholder.querySelector( 'input, select, textarea, button' );
+			if ( !! firstErrorControl ) {
 				firstErrorControl.focus();
 			}
 		}
 	};
 
 	const focusToContent = () => {
-		const content = form.find(
+		const content = form.querySelector(
 			'.smf-complete-content, .smf-system-error-content'
 		);
-		if ( 0 < content.length ) {
-			content.eq( 0 ).focus();
+		if ( !! content ) {
+			content.focus();
 		}
 	};
 
-	const icon = form.find( '.smf-sending' );
+	const icon = form.querySelector( '.smf-sending' );
 
 	const doneCallback = ( response ) => {
-		icon.attr( 'aria-hidden', 'true' );
+		icon.setAttribute( 'aria-hidden', 'true' );
 
 		response = JSON.parse( response );
 		if ( 'undefined' === typeof response.method ) {
@@ -86,15 +122,21 @@ export default function submit( event ) {
 
 		const method = response.method;
 
-		form.attr( 'data-screen', method );
+		form.setAttribute( 'data-screen', method );
 
 		replaceAction( response.action );
-		form.find( '.smf-placeholder' ).html( '' );
+		[].slice
+			.call( form.querySelectorAll( '.smf-placeholder' ) )
+			.forEach( ( element ) => {
+				element.innerHTML = '';
+			} );
 
 		if ( maybeHasControls( method ) ) {
 			replaceControls( response.controls );
 
-			const errorMessages = form.find( '.smf-error-messages' );
+			const errorMessages = [].slice.call(
+				form.querySelectorAll( '.smf-error-messages' )
+			);
 			if ( 0 < errorMessages.length ) {
 				forcusToFirstErrorControl( errorMessages );
 			} else {
@@ -132,15 +174,17 @@ export default function submit( event ) {
 	};
 
 	const failCallback = () => {
-		form.attr( 'data-screen', 'systemerror' );
+		form.setAttribute( 'data-screen', 'systemerror' );
 
-		const errorMessage = $(
-			'<div class="smf-system-error-content" tabindex="-1" />'
-		);
-		const errorMessageReady = form.find(
+		const errorMessage = document.createElement( 'div' );
+		errorMessage.classList.add( 'smf-system-error-content' );
+		errorMessage.setAttribute( 'tabindex', '-1' );
+
+		const errorMessageReady = form.querySelector(
 			'.smf-system-error-content-ready'
 		);
-		errorMessage.text( errorMessageReady.text() );
+		errorMessage.textContent = errorMessageReady.textContent;
+
 		replaceContent( errorMessage );
 		replaceAction( '' );
 		focusToContent();
@@ -151,13 +195,16 @@ export default function submit( event ) {
 
 	addCustomEvent( event.target, 'smf.beforesubmit', detail );
 
-	$.ajax( {
-		type: 'POST',
-		url: snowmonkeyforms.view_json_url,
-		data: formData,
-		processData: false,
-		contentType: false,
-	} )
-		.done( doneCallback )
-		.fail( failCallback );
+	const xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = () => {
+		if ( 4 === xhr.readyState ) {
+			if ( 200 === xhr.status ) {
+				doneCallback( JSON.parse( xhr.response ) );
+			} else {
+				failCallback();
+			}
+		}
+	};
+	xhr.open( 'POST', snowmonkeyforms.view_json_url, true );
+	xhr.send( formData );
 }

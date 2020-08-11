@@ -6,5 +6,6 @@ module.exports = {
 		...defaultConfig.globals,
 		snowmonkeyforms: true,
 		FormData: true,
+		XMLHttpRequest: true,
 	},
 };

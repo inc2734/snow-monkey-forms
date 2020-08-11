@@ -1,43 +1,100 @@
-import $ from 'jquery';
+// import $ from 'jquery';
 import submit from './module/submit';
 
-$( document ).on( 'change', '.smf-file-control__control', ( event ) => {
-	const control = $( event.currentTarget );
-	const filename = control.parent().find( '.smf-file-control__filename' );
-	const files = control.prop( 'files' );
-	if ( 0 < files.length && 0 < filename.length ) {
-		const file = files[ 0 ];
-		if ( 'undefined' !== typeof file.name ) {
-			filename.text( file.name );
+document.addEventListener(
+	'change',
+	( event ) => {
+		const control = event.target;
+		if ( control.classList.contains( 'smf-file-control__control' ) ) {
+			const filename = control.parentNode.querySelector(
+				'.smf-file-control__filename'
+			);
+			const files = control.files;
+			if ( 0 < files.length && !! filename ) {
+				const file = files[ 0 ];
+				if ( 'undefined' !== typeof file.name ) {
+					filename.textContent = file.name;
+				}
+			}
 		}
-	}
-} );
-
-$( document ).on( 'click', '[data-action="back"]', ( event ) =>
-	$( event.currentTarget )
-		.closest( '.smf-action' )
-		.find( '[type="hidden"][name="snow-monkey-forms-meta[method]"]' )
-		.attr( 'value', 'back' )
+	},
+	false
 );
 
-$( document ).on( 'click', '.smf-action [type="submit"]', ( event ) => {
-	$( event.currentTarget )
-		.find( '.smf-sending' )
-		.attr( 'aria-hidden', 'false' );
+const closest = ( el, targetClass ) => {
+	for ( let item = el; item; item = item.parentElement ) {
+		if ( item.classList.contains( targetClass ) ) {
+			return item;
+		}
+	}
+};
+
+document.addEventListener(
+	'click',
+	( event ) => {
+		const control = event.target;
+		if ( 'back' === control.getAttribute( 'data-action' ) ) {
+			const action = closest( control, 'smf-action' );
+			if ( !! action ) {
+				const method = action.querySelector(
+					'[type="hidden"][name="snow-monkey-forms-meta[method]"]'
+				);
+				if ( !! method ) {
+					method.setAttribute( 'value', 'back' );
+				}
+			}
+		}
+	},
+	false
+);
+
+document.addEventListener(
+	'click',
+	( event ) => {
+		const control = event.target;
+		const submites = [].slice.call(
+			document.querySelectorAll( '.smf-action [type="submit"]' )
+		);
+		if ( -1 !== submites.indexOf( control ) ) {
+			const sendingMark = control.querySelector( '.smf-sending' );
+			if ( !! sendingMark ) {
+				sendingMark.setAttribute( 'aria-hidden', 'false' );
+			}
+		}
+	},
+	false
+);
+
+const forms = [].slice.call( document.querySelectorAll( '.snow-monkey-form' ) );
+forms.forEach( ( form ) => {
+	form.addEventListener( 'submit', submit, false );
 } );
 
-$( '.snow-monkey-form' ).each( ( i, e ) => {
-	const form = $( e );
-	form.on( 'submit', submit );
-} );
+[ 'change', 'keyup' ].forEach( ( eventName ) => {
+	document.addEventListener(
+		eventName,
+		( event ) => {
+			const control = event.target;
+			if ( '1' === control.getAttribute( 'data-invalid' ) ) {
+				control.removeAttribute( 'data-invalid' );
 
-$( document ).on( 'change keyup', '[data-invalid="1"]', ( event ) => {
-	$( event.currentTarget ).removeAttr( 'data-invalid' );
-	$( event.currentTarget )
-		.find( '[data-invalid="1"]' )
-		.removeAttr( 'data-invalid' );
-	$( event.currentTarget )
-		.closest( '.smf-placeholder' )
-		.find( '.smf-error-messages' )
-		.remove();
+				[].slice
+					.call( control.querySelectorAll( '[data-invalid="1"]' ) )
+					.forEach( ( element ) =>
+						element.removeAttribute( 'data-invalid' )
+					);
+
+				const placeholder = closest( control, 'smf-placeholder' );
+				if ( !! placeholder ) {
+					const errorMessage = placeholder.querySelector(
+						'.smf-error-messages'
+					);
+					if ( !! errorMessage ) {
+						errorMessage.parentNode.removeChild( errorMessage );
+					}
+				}
+			}
+		},
+		false
+	);
 } );
