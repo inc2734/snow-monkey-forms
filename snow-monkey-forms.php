@@ -41,16 +41,10 @@ class Bootstrap {
 
 		Csrf::save_token();
 
-		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/index.php' ) as $file ) {
-			require_once( $file );
-		}
-		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/*/index.php' ) as $file ) {
-			require_once( $file );
-		}
-
 		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_assets' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
 		add_action( 'rest_api_init', [ $this, '_endpoint' ] );
+		add_action( 'init', [ $this, '_register_blocks' ] );
 		add_action( 'init', [ $this, '_register_post_type' ] );
 		add_action( 'init', [ $this, '_register_meta' ] );
 		add_filter( 'block_categories', [ $this, '_block_categories' ] );
@@ -159,6 +153,15 @@ class Bootstrap {
 				},
 			]
 		);
+	}
+
+	public function _register_blocks() {
+		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/index.php' ) as $file ) {
+			require_once( $file );
+		}
+		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/*/index.php' ) as $file ) {
+			require_once( $file );
+		}
 	}
 
 	public function _register_post_type() {
@@ -290,9 +293,14 @@ class Bootstrap {
 			'snow-monkey-forms',
 			'administrator_email_subject',
 			[
-				'show_in_rest' => true,
 				'single'       => true,
 				'type'         => 'string',
+				'show_in_rest' => [
+					'schema' => [
+						'type'    => 'string',
+						'default' => __( 'Admin notification', 'snow-monkey-forms' ),
+					],
+				],
 			]
 		);
 
@@ -300,9 +308,14 @@ class Bootstrap {
 			'snow-monkey-forms',
 			'administrator_email_body',
 			[
-				'show_in_rest' => true,
 				'single'       => true,
 				'type'         => 'string',
+				'show_in_rest' => [
+					'schema' => [
+						'type'    => 'string',
+						'default' => '{all-fields}',
+					],
+				],
 			]
 		);
 
@@ -310,9 +323,14 @@ class Bootstrap {
 			'snow-monkey-forms',
 			'auto_reply_email_to',
 			[
-				'show_in_rest' => true,
 				'single'       => true,
 				'type'         => 'string',
+				'show_in_rest' => [
+					'schema' => [
+						'type'    => 'string',
+						'default' => '{email}',
+					],
+				],
 			]
 		);
 
@@ -340,9 +358,14 @@ class Bootstrap {
 			'snow-monkey-forms',
 			'auto_reply_email_subject',
 			[
-				'show_in_rest' => true,
 				'single'       => true,
 				'type'         => 'string',
+				'show_in_rest' => [
+					'schema' => [
+						'type'    => 'string',
+						'default' => __( 'Automatic reply notification', 'snow-monkey-forms' ),
+					],
+				],
 			]
 		);
 
@@ -350,9 +373,14 @@ class Bootstrap {
 			'snow-monkey-forms',
 			'auto_reply_email_body',
 			[
-				'show_in_rest' => true,
 				'single'       => true,
 				'type'         => 'string',
+				'show_in_rest' => [
+					'schema' => [
+						'type'    => 'string',
+						'default' => '{all-fields}',
+					],
+				],
 			]
 		);
 

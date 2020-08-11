@@ -5,14 +5,7 @@
  * @license GPL-2.0+
  */
 
-use Snow_Monkey\Plugin\Forms\App\Helper;
-
-add_action(
-	'init',
-	function() {
-		register_block_type_from_metadata(
-			__DIR__,
-			[]
-		);
-	}
+register_block_type_from_metadata(
+	__DIR__,
+	[]
 );
