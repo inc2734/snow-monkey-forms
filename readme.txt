@@ -5,7 +5,7 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 5.5
 Tested up to: 5.5
 Requires PHP: 5.6
-Stable tag: 0.8.0
+Stable tag: 0.9.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,7 @@ Yes! You can use the Snow Monkey Forms with any theme, but we recommend using ou
 
 = 0.9.0 =
 * Requires WordPress 5.5
+* Remove jQuery
 
 = 0.8.0 =
 * Add filter hook `snow_monkey_forms/custom_mail_tag`.
