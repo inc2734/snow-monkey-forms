@@ -1,24 +1,16 @@
-import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 
-import attributes from './attributes.json';
+import metadata from './block.json';
 import edit from './edit';
 import save from './save';
 
-registerBlockType( 'snow-monkey-forms/form--input', {
+const { name } = metadata;
+
+export { metadata, name };
+
+export const settings = {
 	title: __( 'Form', 'snow-monkey-forms' ),
 	icon: 'editor-ul',
-	category: 'snow-monkey-forms',
-	parent: [ false ],
-	supports: {
-		customClassName: true,
-		className: false,
-		inserter: false,
-		multiple: false,
-		reusable: false,
-	},
-
-	attributes,
 	edit,
 	save,
-} );
+};

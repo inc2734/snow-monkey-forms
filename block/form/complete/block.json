@@ -1,0 +1,12 @@
+{
+  "name": "snow-monkey-forms/form--complete",
+  "category": "snow-monkey-forms",
+  "parent": [ false ],
+  "supports": {
+    "customClassName": false,
+    "inserter": false,
+    "multiple": false,
+    "reusable": false,
+    "lightBlockWrapper": true
+  }
+}

@@ -44,6 +44,9 @@ class Bootstrap {
 		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/index.php' ) as $file ) {
 			require_once( $file );
 		}
+		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/*/index.php' ) as $file ) {
+			require_once( $file );
+		}
 
 		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_assets' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );

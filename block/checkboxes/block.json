@@ -1,0 +1,43 @@
+{
+  "name": "snow-monkey-forms/control-checkboxes",
+  "category": "snow-monkey-forms",
+  "parent": [ "snow-monkey-forms/item" ],
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "values": {
+      "type": "string",
+      "default":""
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "options": {
+      "type": "string",
+      "default": ""
+    },
+    "delimiter": {
+      "type": "string",
+      "default": ", "
+    },
+    "direction": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "validations": {
+      "type": "string",
+      "default": "{}"
+    }
+  },
+  "supports": {
+    "customClassName": false,
+    "lightBlockWrapper": true
+  }
+}

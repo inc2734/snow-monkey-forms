@@ -16,13 +16,9 @@ use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
 add_action(
 	'init',
 	function() {
-		$attributes = file_get_contents( __DIR__ . '/attributes.json' );
-		$attributes = json_decode( $attributes, true );
-
-		register_block_type(
-			'snow-monkey-forms/snow-monkey-form',
+		register_block_type_from_metadata(
+			__DIR__,
 			[
-				'attributes'      => $attributes,
 				'render_callback' => function( $attributes, $content ) {
 					if ( empty( $attributes['formId'] ) ) {
 						return;

@@ -2,7 +2,7 @@ import { useEntityProp } from '@wordpress/core-data';
 import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
-export default function( { attributes, onChangeFormStyle } ) {
+export default function ( { attributes, onChangeFormStyle } ) {
 	const { formStyle } = attributes;
 
 	const [ meta, setMeta ] = useEntityProp(

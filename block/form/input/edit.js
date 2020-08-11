@@ -1,6 +1,10 @@
 import classnames from 'classnames';
 
-import { InspectorControls, InnerBlocks } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	InnerBlocks,
+	__experimentalBlock as Block,
+} from '@wordpress/block-editor';
 import { useEntityProp } from '@wordpress/core-data';
 import { dispatch, useSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
@@ -11,7 +15,7 @@ import FormSettingsPanel from './form-settings-panel';
 import AdministratorEmailSettingsPanel from './administrator-email-settings-panel';
 import AutoReplyEmailSettingsPanel from './auto-reply-email-settings-panel';
 
-export default function( props ) {
+export default function ( props ) {
 	const { attributes, setAttributes, className } = props;
 	const { formStyle } = attributes;
 
@@ -48,6 +52,7 @@ export default function( props ) {
 		}
 	}, [] );
 
+	const BlockWrapper = Block.div;
 	const classes = classnames( 'smf-form', className, {
 		[ formStyle ]: !! formStyle,
 	} );
@@ -66,7 +71,7 @@ export default function( props ) {
 				<AutoReplyEmailSettingsPanel />
 			</InspectorControls>
 
-			<div className="components-panel snow-monkey-forms-setting-panel">
+			<BlockWrapper className="components-panel snow-monkey-forms-setting-panel">
 				<div className="components-panel__header edit-post-sidebar-header">
 					{ __( 'Input', 'snow-monkey-forms' ) }
 
@@ -89,7 +94,7 @@ export default function( props ) {
 						/>
 					</div>
 				</div>
-			</div>
+			</BlockWrapper>
 		</>
 	);
 }

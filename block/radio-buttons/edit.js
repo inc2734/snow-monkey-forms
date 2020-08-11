@@ -1,6 +1,9 @@
 import classnames from 'classnames';
 
-import { InspectorControls } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	__experimentalBlock as Block,
+} from '@wordpress/block-editor';
 import { PanelBody, TextControl, SelectControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
@@ -24,6 +27,7 @@ const edit = ( { attributes, setAttributes } ) => {
 
 	const arrayedOptions = optionsToJsonArray( options );
 
+	const BlockWrapper = Block.div;
 	const classes = classnames( 'smf-radio-buttons-control', {
 		[ `smf-radio-buttons-control--${ direction }` ]: !! direction,
 	} );
@@ -89,7 +93,7 @@ const edit = ( { attributes, setAttributes } ) => {
 				</PanelBody>
 			</InspectorControls>
 
-			<div className="smf-placeholder" data-name={ name }>
+			<BlockWrapper className="smf-placeholder" data-name={ name }>
 				<div className={ classes }>
 					<div className="smf-radio-buttons-control__control">
 						{ arrayedOptions.map( ( option ) => {
@@ -128,7 +132,7 @@ const edit = ( { attributes, setAttributes } ) => {
 						{ description }
 					</div>
 				) }
-			</div>
+			</BlockWrapper>
 		</>
 	);
 };

@@ -1,0 +1,26 @@
+{
+  "name": "snow-monkey-forms/item",
+	"category": "snow-monkey-forms",
+	"parent": [ "snow-monkey-forms/form--input" ],
+  "attributes": {
+    "label": {
+      "type": "string",
+      "source": "html",
+      "selector": ".smf-item__label",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "source": "html",
+      "selector": ".smf-item__description",
+      "default": ""
+    },
+    "isDisplayLabelColumn": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "support": {
+    "lightBlockWrapper": true
+  }
+}

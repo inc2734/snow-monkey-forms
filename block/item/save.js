@@ -2,7 +2,7 @@ import classnames from 'classnames';
 
 import { InnerBlocks, RichText } from '@wordpress/block-editor';
 
-export default function( { attributes, className } ) {
+export default function ( { attributes, className } ) {
 	const { label, description, isDisplayLabelColumn } = attributes;
 
 	const classes = classnames( 'smf-item', className, {

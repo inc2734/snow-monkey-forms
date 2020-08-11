@@ -1,4 +1,7 @@
-import { InspectorControls } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	__experimentalBlock as Block,
+} from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { __ } from '@wordpress/i18n';
@@ -27,6 +30,8 @@ const edit = ( { attributes, setAttributes } ) => {
 	}
 
 	const arrayedOptions = optionsToJsonArray( options );
+
+	const BlockWrapper = Block.div;
 
 	return (
 		<>
@@ -80,7 +85,8 @@ const edit = ( { attributes, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div className="smf-placeholder" data-name={ name }>
+
+			<BlockWrapper className="smf-placeholder" data-name={ name }>
 				<div className="smf-select-control">
 					<select
 						name={ name }
@@ -109,7 +115,7 @@ const edit = ( { attributes, setAttributes } ) => {
 						{ description }
 					</div>
 				) }
-			</div>
+			</BlockWrapper>
 		</>
 	);
 };

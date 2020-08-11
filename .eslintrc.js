@@ -5,5 +5,6 @@ module.exports = {
 	globals: {
 		...defaultConfig.globals,
 		snowmonkeyforms: true,
+		FormData: true,
 	},
 };

@@ -1,0 +1,47 @@
+{
+  "name": "snow-monkey-forms/control-textarea",
+  "category": "snow-monkey-forms",
+  "parent": [ "snow-monkey-forms/item" ],
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": ""
+    },
+    "rows": {
+      "type": "number",
+      "default": 5
+    },
+    "value": {
+      "type": "string",
+      "default": ""
+    },
+    "placeholder": {
+      "type": "string",
+      "default": ""
+    },
+    "disabled": {
+      "type": "boolean",
+      "default": false
+    },
+    "id": {
+      "type": "string",
+      "default": ""
+    },
+    "controlClass": {
+      "type": "string",
+      "default": ""
+    },
+    "description": {
+      "type": "string",
+      "default": ""
+    },
+    "validations": {
+      "type": "string",
+      "default": "{}"
+    }
+  },
+  "supports": {
+    "customClassName": false,
+    "lightBlockWrapper": true
+  }
+}

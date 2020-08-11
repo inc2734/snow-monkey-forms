@@ -9,12 +9,18 @@
   }
 }
 
-.is-selected [data-type="snow-monkey-forms/item"] .block-list-appender {
-  display: none !important;
-}
-
 .editor-styles-wrapper .block-editor-writing-flow {
   @import 'app';
+
+  [data-type="snow-monkey-forms/item"] .block-list-appender {
+    height: auto;
+    margin-bottom: 0 !important;
+    margin-top: 1em !important;
+  }
+
+  .is-selected [data-type="snow-monkey-forms/item"] .block-list-appender {
+    display: none !important;
+  }
 
   .smf-select-control__control {
     background-image: none;

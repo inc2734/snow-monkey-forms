@@ -4,7 +4,7 @@ import { __ } from '@wordpress/i18n';
 
 import HelpButton from './help-button';
 
-export default function() {
+export default function () {
 	const [ meta, setMeta ] = useEntityProp(
 		'postType',
 		'snow-monkey-forms',

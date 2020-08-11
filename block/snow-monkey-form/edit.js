@@ -4,7 +4,7 @@ import { useSelect } from '@wordpress/data';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 
-export default function( { attributes, setAttributes, isSelected } ) {
+export default function ( { attributes, setAttributes, isSelected } ) {
 	const { formId } = attributes;
 
 	const forms = useSelect( ( select ) => {

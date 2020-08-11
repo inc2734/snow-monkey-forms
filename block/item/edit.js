@@ -6,12 +6,13 @@ import {
 	InspectorControls,
 	InnerBlocks,
 	RichText,
+	__experimentalBlock as Block,
 } from '@wordpress/block-editor';
 import { getBlockTypes } from '@wordpress/blocks';
 import { useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-export default function( {
+export default function ( {
 	attributes,
 	setAttributes,
 	isSelected,
@@ -34,6 +35,7 @@ export default function( {
 		);
 	}, [] );
 
+	const BlockWrapper = Block.div;
 	const classes = classnames( 'smf-item', className, {
 		'smf-item--divider': ! isDisplayLabelColumn,
 	} );
@@ -57,7 +59,7 @@ export default function( {
 				</PanelBody>
 			</InspectorControls>
 
-			<div className={ classes } tabIndex="-1">
+			<BlockWrapper className={ classes } tabIndex="-1">
 				{ isDisplayLabelColumn && (
 					<div className="smf-item__col smf-item__col--label">
 						<div className="smf-item__label">
@@ -101,7 +103,7 @@ export default function( {
 						/>
 					</div>
 				</div>
-			</div>
+			</BlockWrapper>
 		</>
 	);
 }

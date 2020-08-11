@@ -2,7 +2,7 @@ import { Popover, IconButton } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-export default function() {
+export default function () {
 	const [ isVisible, setIsVisible ] = useState( false );
 
 	return (
