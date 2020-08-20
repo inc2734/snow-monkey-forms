@@ -1,7 +1,7 @@
 {
   "name": "snow-monkey-forms/control-checkboxes",
   "category": "snow-monkey-forms",
-  "parent": [ "snow-monkey-forms/item" ],
+  "parent": [ "snow-monkey-forms/noparent" ],
   "attributes": {
     "name": {
       "type": "string",

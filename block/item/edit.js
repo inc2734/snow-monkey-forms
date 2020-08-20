@@ -22,13 +22,16 @@ export default function ( {
 
 	const ALLOWED_BLOCKS = useMemo( () => {
 		const blocks = getBlockTypes();
+		const blacklist = [
+			'snow-monkey-forms/snow-monkey-form',
+			'snow-monkey-forms/item',
+		];
+
 		return compact(
 			blocks.map( ( block ) => {
-				const blacklist = [
-					'snow-monkey-forms/snow-monkey-form',
-					'snow-monkey-forms/item',
-				];
-				return ! blacklist.includes( block.name ) && ! block.parent
+				return ! blacklist.includes( block.name ) &&
+					( ! block.parent ||
+						block.parent.includes( 'snow-monkey-forms/noparent' ) )
 					? block.name
 					: null;
 			} )
@@ -97,9 +100,9 @@ export default function ( {
 						<InnerBlocks
 							allowedBlocks={ ALLOWED_BLOCKS }
 							templateLock={ false }
-							renderAppender={ () => (
-								<InnerBlocks.ButtonBlockAppender />
-							) }
+							// renderAppender={ () => (
+							// 	<InnerBlocks.ButtonBlockAppender />
+							// ) }
 						/>
 					</div>
 				</div>
