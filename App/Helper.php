@@ -84,7 +84,7 @@ class Helper {
 					$decoded = json_decode( sprintf( '{%1$s}', $value ), true );
 					$decoded = is_array( $decoded ) ? $decoded : [ $value => $value ];
 					$decoded = is_array( $decoded ) && ! $decoded ? [ '' => '' ] : $decoded;
-					$options[] = $decoded;
+					$options[ key( $decoded ) ] = $decoded;
 				}
 			}
 			$attributes['options'] = $options ? $options : [];
@@ -93,7 +93,7 @@ class Helper {
 		if ( isset( $attributes['values'] ) ) {
 			$values = str_replace( [ "\r\n", "\r", "\n" ], "\n", $attributes['values'] );
 			$values = explode( "\n", $values );
-			$values = array_filter( $values );
+			$values = array_unique( array_filter( $values ) );
 			$attributes['values'] = $values;
 		}
 

@@ -6,24 +6,27 @@ import {
 } from '@wordpress/block-editor';
 import { PanelBody, TextControl, SelectControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import { NameControl, OptionsControl, ValueControl } from '../components';
 import { uniqId, optionsToJsonArray } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
-const edit = ( { attributes, setAttributes } ) => {
+const Edit = ( { attributes, setAttributes } ) => {
 	const { name, value, options, direction, description } = attributes;
 
-	if ( '' === name ) {
-		setAttributes( { name: `radio-buttons-${ uniqId() }` } );
-	}
+	useEffect( () => {
+		if ( '' === name ) {
+			setAttributes( { name: `radio-buttons-${ uniqId() }` } );
+		}
 
-	if ( '' === options ) {
-		setAttributes( {
-			options: 'value1\n"value2" : "label2"\n"value3" : "label3"',
-		} );
-	}
+		if ( '' === options ) {
+			setAttributes( {
+				options: 'value1\n"value2" : "label2"\n"value3" : "label3"',
+			} );
+		}
+	} );
 
 	const arrayedOptions = optionsToJsonArray( options );
 
@@ -137,4 +140,4 @@ const edit = ( { attributes, setAttributes } ) => {
 	);
 };
 
-export default compose( withValidations )( edit );
+export default compose( withValidations )( Edit );

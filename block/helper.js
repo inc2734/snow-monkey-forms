@@ -1,4 +1,4 @@
-import { uniq } from 'lodash';
+import { uniqBy } from 'lodash';
 
 export function stringToNumber( value, defaultValue ) {
 	if ( '' === value ) {
@@ -18,17 +18,37 @@ export function uniqId() {
 }
 
 export function optionsToJsonArray( text ) {
-	const optionsArray = text.replace( /\r?\n/g, '\n' ).split( '\n' );
+	const preOptionsArray = text.replace( /\r?\n/g, '\n' ).split( '\n' );
 
-	return optionsArray.map( ( option ) => {
-		try {
-			return JSON.parse( `{ ${ option } }` );
-		} catch ( error ) {
-			return { [ option ]: option };
-		}
+	const optionsMapArray = uniqBy(
+		preOptionsArray.map( ( element ) => {
+			const optionMap = ( () => {
+				try {
+					return JSON.parse( `{ ${ element } }` );
+				} catch ( error ) {
+					return { [ element ]: element };
+				}
+			} )();
+
+			return {
+				value: Object.keys( optionMap )[ 0 ],
+				label: Object.values( optionMap )[ 0 ],
+			};
+		} ),
+		'value'
+	);
+
+	return optionsMapArray.map( ( element ) => {
+		const o = {};
+		o[ element.value ] = element.label;
+		return o;
 	} );
 }
 
 export function valuesToJsonArray( text ) {
-	return uniq( text.replace( /\r?\n/g, '\n' ).split( '\n' ) );
+	const preValuesArray = optionsToJsonArray( text );
+
+	return preValuesArray.map( ( element ) => {
+		return Object.keys( element )[ 0 ];
+	} );
 }

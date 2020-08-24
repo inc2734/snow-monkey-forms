@@ -4,6 +4,7 @@ import {
 } from '@wordpress/block-editor';
 import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -16,7 +17,7 @@ import {
 import { uniqId } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
-const edit = ( { attributes, setAttributes } ) => {
+const Edit = ( { attributes, setAttributes } ) => {
 	const {
 		name,
 		rows,
@@ -27,9 +28,11 @@ const edit = ( { attributes, setAttributes } ) => {
 		description,
 	} = attributes;
 
-	if ( '' === name ) {
-		setAttributes( { name: `textarea-${ uniqId() }` } );
-	}
+	useEffect( () => {
+		if ( '' === name ) {
+			setAttributes( { name: `textarea-${ uniqId() }` } );
+		}
+	} );
 
 	const BlockWrapper = Block.div;
 
@@ -121,4 +124,4 @@ const edit = ( { attributes, setAttributes } ) => {
 	);
 };
 
-export default compose( withValidations )( edit );
+export default compose( withValidations )( Edit );
