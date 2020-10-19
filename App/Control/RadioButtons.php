@@ -14,7 +14,7 @@ class RadioButtons extends Contract\Control {
 
 	/**
 	 * @var array
-	 *   @var boolean data-invalid
+	 *  - boolean data-invalid
 	 */
 	protected $attributes = [
 		'data-invalid' => false,
@@ -60,10 +60,18 @@ class RadioButtons extends Contract\Control {
 	 */
 	protected $children = [];
 
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
 	public function save( $value ) {
 		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
 	}
 
+	/**
+	 * Initialize.
+	 */
 	protected function _init() {
 		$children = [];
 		foreach ( $this->get_property( 'options' ) as $option ) {
@@ -80,17 +88,22 @@ class RadioButtons extends Contract\Control {
 						'checked'      => $this->get_property( 'value' ) === $value,
 						'data-invalid' => $this->get_attribute( 'data-invalid' ),
 					],
-					'label' => $label,
+					'label'      => $label,
 				]
 			);
 		}
 		$this->_set_children( $children );
 	}
 
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	public function input() {
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
-			$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+			$checked = (string) $control->get_attribute( 'value' ) === (string) $this->get_property( 'value' );
 			$control->set_attribute( 'checked', $checked );
 			$children[ $key ] = $control;
 		}
@@ -105,6 +118,7 @@ class RadioButtons extends Contract\Control {
 		}
 
 		$direction = $this->get_property( 'direction' );
+		$classes   = [];
 		$classes[] = 'smf-radio-control';
 		if ( $direction ) {
 			$classes[] = 'smf-radio-control--' . $direction;
@@ -122,10 +136,15 @@ class RadioButtons extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return HTML for confirm page.
+	 *
+	 * @return string
+	 */
 	public function confirm() {
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
-			$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+			$checked = (string) $control->get_attribute( 'value' ) === (string) $this->get_property( 'value' );
 			$control->set_attribute( 'checked', $checked );
 			$children[ $key ] = $control;
 		}
@@ -134,6 +153,12 @@ class RadioButtons extends Contract\Control {
 		return $this->_children( 'confirm' );
 	}
 
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 * @return string
+	 */
 	public function invalid( $message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 

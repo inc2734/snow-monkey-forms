@@ -28,10 +28,28 @@ abstract class Controller {
 	 */
 	protected $validator;
 
+	/**
+	 * @var array
+	 */
 	protected $controls = [];
-	protected $action   = '';
-	protected $message  = '';
 
+	/**
+	 * @var string
+	 */
+	protected $action = '';
+
+	/**
+	 * @var string
+	 */
+	protected $message = '';
+
+	/**
+	 * Constructor.
+	 *
+	 * @param Responser $responser Responser object.
+	 * @param Setting   $setting   Setting object.
+	 * @param Validator $validator Valdator object.
+	 */
 	public function __construct( Responser $responser, Setting $setting, Validator $validator ) {
 		$this->responser = $responser;
 		$this->setting   = $setting;
@@ -42,14 +60,36 @@ abstract class Controller {
 		$this->message  = $this->set_message();
 	}
 
+	/**
+	 * Set the form controls.
+	 *
+	 * @return array
+	 */
 	abstract protected function set_controls();
+
+	/**
+	 * Set the form action area HTML.
+	 *
+	 * @return string
+	 */
 	abstract protected function set_action();
+
+	/**
+	 * Set the content to be displayed.
+	 *
+	 * @return string
+	 */
 	abstract protected function set_message();
 
+	/**
+	 * Send json.
+	 *
+	 * @return json
+	 */
 	public function send() {
-		$class_name = get_class( $this );
+		$class_name       = get_class( $this );
 		$class_name_paths = explode( '\\', $class_name );
-		$method = strtolower( array_pop( $class_name_paths ) );
+		$method           = strtolower( array_pop( $class_name_paths ) );
 		return $this->responser->send( $method, $this->controls, $this->action, $this->message );
 	}
 }

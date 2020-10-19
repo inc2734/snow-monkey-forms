@@ -10,7 +10,7 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 register_block_type_from_metadata(
 	__DIR__,
 	[
-		'render_callback' => function( $attributes, $content ) {
+		'render_callback' => function( $attributes ) {
 			if ( ! isset( $attributes['name'] ) ) {
 				return;
 			}

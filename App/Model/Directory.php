@@ -13,6 +13,8 @@ use DirectoryIterator;
 class Directory {
 
 	/**
+	 * Return the path to the directory where the files are saved.
+	 *
 	 * @return false|string
 	 */
 	public static function get() {
@@ -28,6 +30,8 @@ class Directory {
 	}
 
 	/**
+	 * Return the url to the directory where the files are saved.
+	 *
 	 * @return false|string
 	 */
 	public static function get_url() {
@@ -39,7 +43,9 @@ class Directory {
 	}
 
 	/**
-	 * @param string $fileurl
+	 * Return the file path from the file url.
+	 *
+	 * @param string $fileurl The file url.
 	 * @return string
 	 */
 	public static function fileurl_to_filepath( $fileurl ) {
@@ -47,7 +53,9 @@ class Directory {
 	}
 
 	/**
-	 * @param string $filepath
+	 * Return the file url from the file path.
+	 *
+	 * @param string $filepath The file path.
 	 * @return string
 	 */
 	public static function filepath_to_fileurl( $filepath ) {
@@ -55,7 +63,9 @@ class Directory {
 	}
 
 	/**
-	 * @param boolean $force
+	 * Empty the directory.
+
+	 * @param boolean $force Ignore the survival period.
 	 * @return boolean
 	 */
 	public static function do_empty( $force = false ) {
@@ -67,6 +77,14 @@ class Directory {
 		return static::_remove_children( $dir, $force );
 	}
 
+	/**
+	 * Remove child directories.
+	 *
+	 * @param string  $dir   Target directory.
+	 * @param boolean $force Ignore the survival period.
+	 * @return boolean
+	 * @throws \Exception If deletion of the directory fails.
+	 */
 	protected static function _remove_children( $dir, $force = false ) {
 		$fileinfo = new SplFileInfo( $dir );
 		if ( ! $fileinfo->isDir() ) {
@@ -99,6 +117,13 @@ class Directory {
 		return true;
 	}
 
+	/**
+	 * Remove the file.
+	 *
+	 * @param string $file The file path.
+	 * @return boolean
+	 * @throws \RuntimeException If the deletion of a file fails.
+	 */
 	public static function remove( $file ) {
 		$fileinfo = new SplFileInfo( $file );
 
@@ -115,16 +140,29 @@ class Directory {
 		return true;
 	}
 
+	/**
+	 * Return true when file removable.
+	 *
+	 * @param string $file The file path.
+	 * @return boolean
+	 */
 	protected static function _is_removable( $file ) {
 		if ( ! file_exists( $file ) ) {
 			return false;
 		}
 
-		$mtime = filemtime( $file );
+		$mtime         = filemtime( $file );
 		$survival_time = apply_filters( 'snow_monkey_forms/saved_files/survival_time', 60 * 5 );
 		return ! $mtime || time() > $mtime + $survival_time;
 	}
 
+	/**
+	 * Create .htaccess.
+	 *
+	 * @param string $save_dir The directory where .htaccess is created.
+	 * @return boolean
+	 * @throws \RuntimeException If the creation of .htaccess fails.
+	 */
 	protected static function _create_htaccess( $save_dir ) {
 		$htaccess = path_join( $save_dir, '.htaccess' );
 		if ( file_exists( $htaccess ) ) {

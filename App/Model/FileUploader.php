@@ -19,12 +19,15 @@ class FileUploader {
 	 */
 	protected $files = [];
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		$this->files = $_FILES;
 	}
 
 	/**
-	 * Return true if exist input[type="file"]
+	 * Return true if exist input[type="file"].
 	 *
 	 * @return boolean
 	 */
@@ -33,10 +36,9 @@ class FileUploader {
 	}
 
 	/**
-	 * Save uploaded files
+	 * Save uploaded files.
 	 *
-	 * @return false|array
-	 *   @var [$name] string $fileurl
+	 * @return false|array Array of file url.
 	 */
 	public function save_uploaded_files() {
 		$files = $this->_get_uploaded_files();
@@ -57,10 +59,9 @@ class FileUploader {
 	}
 
 	/**
-	 * Return array of File
+	 * Return array of File.
 	 *
-	 * @return array
-	 *   @var [$name] File $file
+	 * @return array Array of File object.
 	 */
 	protected function _get_uploaded_files() {
 		$files = [];

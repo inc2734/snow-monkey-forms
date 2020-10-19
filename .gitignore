@@ -7,3 +7,5 @@ dist/
 *.sql
 snow-monkey-forms/
 snow-monkey-forms.zip
+.wp-env.override.json
+/sql/

@@ -9,11 +9,17 @@ namespace Snow_Monkey\Plugin\Forms\App\Contract;
 
 abstract class Control {
 
+	/**
+	 * @var array
+	 */
 	protected $validations = [];
 
+	/**
+	 * Constructor.
+	 *
+	 * @param array $new_properties Array of property.
+	 */
 	public function __construct( array $new_properties ) {
-		$properties = get_object_vars( $this );
-
 		foreach ( $new_properties as $key => $value ) {
 			$property  = $this->get_property( $key );
 			$attribute = $this->get_attribute( $key );
@@ -52,14 +58,47 @@ abstract class Control {
 		$this->_init();
 	}
 
+	/**
+	 * Initialize.
+	 */
 	protected function _init() {
 	}
 
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
 	abstract public function save( $value );
+
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	abstract public function input();
+
+	/**
+	 * Return HTML for confirm page.
+	 *
+	 * @return string
+	 */
 	abstract public function confirm();
+
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 * @return string
+	 */
 	abstract public function invalid( $message = '' );
 
+	/**
+	 * Generate attributes. <attribute>="<value>" <attribute>="<value>" ...
+	 *
+	 * @param array $_attributes Array of attribute.
+	 * @return string|null
+	 */
 	protected function _generate_attributes( array $_attributes ) {
 		$attributes = [];
 
@@ -90,7 +129,14 @@ abstract class Control {
 		return $attributes ? $attributes : null;
 	}
 
-	protected function _generate_attribute_string( $key, $value ) {
+	/**
+	 * Generate attribute string. <attribute>="<value>".
+	 *
+	 * @param string $name  The attribute name.
+	 * @param string $value The attribute value.
+	 * @return string
+	 */
+	protected function _generate_attribute_string( $name, $value ) {
 		$value = trim( $value );
 		if ( '' === $value ) {
 			return;
@@ -98,15 +144,28 @@ abstract class Control {
 
 		return sprintf(
 			'%s="%s"',
-			esc_attr( $key ),
+			esc_attr( $name ),
 			esc_attr( $value )
 		);
 	}
 
+	/**
+	 * Return property.
+	 *
+	 * @param string $name The property name.
+	 * @return string
+	 */
 	public function get_property( $name ) {
 		return isset( $this->$name ) ? $this->$name : null;
 	}
 
+	/**
+	 * Set property.
+	 *
+	 * @param string $name  The property name.
+	 * @param string $value The property value.
+	 * @return boolean
+	 */
 	public function set_property( $name, $value ) {
 		if ( isset( $this->$name ) ) {
 			$this->$name = $value;
@@ -115,34 +174,70 @@ abstract class Control {
 		return false;
 	}
 
+	/**
+	 * Return attribute.
+	 *
+	 * @param string $name the attribute name.
+	 * @return string
+	 */
 	public function get_attribute( $name ) {
-		return in_array( $name, array_keys( $this->attributes ) ) ? $this->attributes[ $name ] : null;
+		return in_array(
+			$name,
+			array_keys( $this->attributes ),
+			true
+		)
+			? $this->attributes[ $name ]
+			: null;
 	}
 
+	/**
+	 * Set attribute.
+	 *
+	 * @param string $name  The attribute name.
+	 * @param string $value The attribute value.
+	 * @return boolean
+	 */
 	public function set_attribute( $name, $value ) {
-		if ( in_array( $name, array_keys( $this->attributes ) ) ) {
+		if ( in_array( $name, array_keys( $this->attributes ), true ) ) {
 			$this->attributes[ $name ] = $value;
 			return true;
 		}
 		return false;
 	}
 
+	/**
+	 * Return children. Array of Control object.
+	 *
+	 * @return array
+	 */
 	protected function _get_children() {
 		return array_filter( $this->get_property( 'children' ) );
 	}
 
+	/**
+	 * Set children property.
+	 *
+	 * @param array $children Array of Control object.
+	 */
 	protected function _set_children( $children ) {
 		$this->set_property( 'children', $children );
 	}
 
-	protected function _children( $type, $delimiter = '' ) {
+	/**
+	 * Return children HTML.
+	 *
+	 * @param string $method    input|confirm|complete|invalid|systemerror.
+	 * @param string $delimiter Delimiter.
+	 * @return string
+	 */
+	protected function _children( $method, $delimiter = '' ) {
 		return implode(
 			$delimiter,
 			array_filter(
 				array_map(
-					function( $control ) use ( $type ) {
-						if ( method_exists( $control, $type ) ) {
-							return $control->$type();
+					function( $control ) use ( $method ) {
+						if ( method_exists( $control, $method ) ) {
+							return $control->$method();
 						}
 						return false;
 					},

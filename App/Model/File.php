@@ -12,20 +12,22 @@ use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 class File {
 
 	/**
-	 * @var array
-	 *   @var string name
-	 *   @var string type
-	 *   @var string tmp_name
-	 *   @var int error
-	 *   @var int size
+	 * @var array $_FILE
 	 */
 	protected $file;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param array $file $_FILE.
+	 */
 	public function __construct( array $file ) {
 		$this->file = $file;
 	}
 
 	/**
+	 * Return $_FILE error.
+	 *
 	 * @return false|int
 	 */
 	public function get_error() {
@@ -33,6 +35,8 @@ class File {
 	}
 
 	/**
+	 * Return $_FILE name.
+	 *
 	 * @return false|string
 	 */
 	public function get_filename() {
@@ -40,6 +44,8 @@ class File {
 	}
 
 	/**
+	 * Return $_FILE tmp_name.
+	 *
 	 * @return false|string
 	 */
 	protected function _get_tmp_name() {
@@ -47,17 +53,23 @@ class File {
 	}
 
 	/**
+	 * Moves an uploaded file to a new location.
+	 *
+	 * @param array $destination The destination of the moved file.
 	 * @return boolean
 	 */
-	protected function _move_to( $save_file_path ) {
+	protected function _move_to( $destination ) {
 		$tmp_name = $this->_get_tmp_name();
-		if ( false === $tmp_name ) {
-			return false;
-		}
-		return move_uploaded_file( $tmp_name, $save_file_path );
+
+		return false === $tmp_name
+			? false
+			: move_uploaded_file( $tmp_name, $destination );
 	}
 
 	/**
+	 * Return sanitized file name.
+	 *
+	 * @param string $filename The file name.
 	 * @return false|string
 	 */
 	protected function _sanitized_file_name( $filename ) {
@@ -68,6 +80,13 @@ class File {
 		return sanitize_file_name( basename( $filename ) );
 	}
 
+	/**
+	 * Save the file.
+	 *
+	 * @param string $filename Posted file name.
+	 * @return string
+	 * @throws \RuntimeException When the file upload fails.
+	 */
 	public function save( $filename ) {
 		$filename = $this->_sanitized_file_name( $filename );
 		$error    = $this->get_error();

@@ -24,17 +24,34 @@ class AutoReplyMailer {
 	 */
 	protected $setting;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param Responser $responser Responser object.
+	 * @param Setting   $setting   Setting object.
+	 */
 	public function __construct( Responser $responser, Setting $setting ) {
 		$this->responser = $responser;
 		$this->setting   = $setting;
 	}
 
+	/**
+	 * Return true when should send.
+	 *
+	 * @return boolean
+	 */
 	public function should_send() {
 		$mail_parser = new MailParser( $this->responser, $this->setting );
-		$to = $mail_parser->parse( $this->setting->get( 'auto_reply_email_to' ) );
+		$to          = $mail_parser->parse( $this->setting->get( 'auto_reply_email_to' ) );
 		return ! is_null( $to ) && '' !== $to;
 	}
 
+	/**
+	 * Send e-mail.
+	 *
+	 * @return boolean
+	 * @throws \RuntimeException When sending an e-mail fails.
+	 */
 	public function send() {
 		$mail_parser = new MailParser( $this->responser, $this->setting );
 
@@ -71,10 +88,21 @@ class AutoReplyMailer {
 		return $is_sended;
 	}
 
+	/**
+	 * Skip send e-mail.
+	 *
+	 * @return boolean
+	 */
 	protected function _process_skip() {
 		return true;
 	}
 
+	/**
+	 * Send e-mail.
+	 *
+	 * @param MailParser $mail_parser MailParser object.
+	 * @return boolean
+	 */
 	protected function _process_sending( MailParser $mail_parser ) {
 		$mailer = new Mailer(
 			[

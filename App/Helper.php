@@ -14,9 +14,10 @@ class Helper {
 	/**
 	 * Return Control
 	 *
-	 * @param string $type
-	 * @param array $properties
+	 * @param string $type       The Control type.
+	 * @param array  $properties Array of the Control properties.
 	 * @return Control
+	 * @throws \LogicException If the Control Class was not found.
 	 */
 	public static function control( $type, array $properties = [] ) {
 		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::_generate_control_class_name( $type );
@@ -30,12 +31,12 @@ class Helper {
 
 	/**
 	 * Return class name.
-	 *  - foo => Foo
+	 *  - foo     => Foo
 	 *  - foo_bar => FooBar
-	 *  - FooBar => Foobar
+	 *  - FooBar  => Foobar
 	 *
-	 * @param   string  $string
-	 * @return  string
+	 * @param string $string Control class name.
+	 * @return string
 	 */
 	protected static function _generate_control_class_name( $string ) {
 		$class_name_array = array_map(
@@ -49,21 +50,20 @@ class Helper {
 	}
 
 	/**
-	 * Display input HTML of Control
+	 * Display input HTML of Control.
 	 *
-	 * @param   string  $type
-	 * @param   array   $properties
-	 * @return  void
+	 * @param string $type       The Control type.
+	 * @param array  $properties Array of the Control properties.
 	 */
 	public static function the_control( $type, $properties ) {
 		echo static::control( $type, $properties )->input(); // xss ok.
 	}
 
 	/**
-	 * Convert attributes of js block to properties of php Control
+	 * Convert attributes of js block to properties of php Control.
 	 *
-	 * @param   array  $attributes
-	 * @return  array
+	 * @param array $attributes The Control attributes.
+	 * @return array
 	 */
 	public static function block_meta_normalization( array $attributes ) {
 		if ( isset( $attributes['validations'] ) ) {
@@ -81,9 +81,9 @@ class Helper {
 				$_options = explode( "\n", $_options );
 
 				foreach ( $_options as $value ) {
-					$decoded = json_decode( sprintf( '{%1$s}', $value ), true );
-					$decoded = is_array( $decoded ) ? $decoded : [ $value => $value ];
-					$decoded = is_array( $decoded ) && ! $decoded ? [ '' => '' ] : $decoded;
+					$decoded                    = json_decode( sprintf( '{%1$s}', $value ), true );
+					$decoded                    = is_array( $decoded ) ? $decoded : [ $value => $value ];
+					$decoded                    = is_array( $decoded ) && ! $decoded ? [ '' => '' ] : $decoded;
 					$options[ key( $decoded ) ] = $decoded;
 				}
 			}
@@ -91,9 +91,9 @@ class Helper {
 		}
 
 		if ( isset( $attributes['values'] ) ) {
-			$values = str_replace( [ "\r\n", "\r", "\n" ], "\n", $attributes['values'] );
-			$values = explode( "\n", $values );
-			$values = array_unique( array_filter( $values ) );
+			$values               = str_replace( [ "\r\n", "\r", "\n" ], "\n", $attributes['values'] );
+			$values               = explode( "\n", $values );
+			$values               = array_unique( array_filter( $values ) );
 			$attributes['values'] = $values;
 		}
 

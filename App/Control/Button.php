@@ -14,10 +14,10 @@ class Button extends Contract\Control {
 
 	/**
 	 * @var array
-	 *   @var string name
-	 *   @var boolean disabled
-	 *   @var string id
-	 *   @var string class
+	 *  - string  name
+	 *  - boolean disabled
+	 *  - string  id
+	 *  - string  class
 	 */
 	protected $attributes = [
 		'name'     => '',
@@ -31,9 +31,23 @@ class Button extends Contract\Control {
 	 */
 	protected $label = '';
 
-	public function save( $value ) {
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
+	public function save(
+		// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+		$value
+		// phpcs:enable
+	) {
 	}
 
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	public function input() {
 		return sprintf(
 			'<span class="smf-button-control">
@@ -44,11 +58,23 @@ class Button extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return HTML for confirm page.
+	 */
 	public function confirm() {
 		$this->input();
 	}
 
-	public function invalid( $message = '' ) {
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 */
+	public function invalid(
+		// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+		$message = ''
+		// phpcs:enable
+	) {
 		$this->input();
 	}
 }

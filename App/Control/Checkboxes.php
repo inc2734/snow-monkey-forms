@@ -14,7 +14,7 @@ class Checkboxes extends Contract\Control {
 
 	/**
 	 * @var array
-	 *   @var boolean data-invalid
+	 *  - boolean data-invalid
 	 */
 	protected $attributes = [
 		'data-invalid' => false,
@@ -65,6 +65,9 @@ class Checkboxes extends Contract\Control {
 	 */
 	protected $children = [];
 
+	/**
+	 * Initialized.
+	 */
 	protected function _init() {
 		$this->set_property( 'name', $this->get_property( 'name' ) . '[]' );
 
@@ -83,21 +86,36 @@ class Checkboxes extends Contract\Control {
 						'checked'      => $this->get_property( 'value' ) === $value,
 						'data-invalid' => $this->get_attribute( 'data-invalid' ),
 					],
-					'label' => $label,
+					'label'      => $label,
 				]
 			);
 		}
 		$this->_set_children( $children );
 	}
 
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
 	public function save( $value ) {
 		$this->set_property( 'values', ! is_array( $value ) ? [] : $value );
 	}
 
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	public function input() {
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
-			$checked = in_array( $control->get_attribute( 'value' ), $this->get_property( 'values' ) );
+			$checked = in_array(
+				(string) $control->get_attribute( 'value' ),
+				$this->get_property( 'values' ),
+				true
+			);
+
 			$control->set_attribute( 'checked', $checked );
 			$children[ $key ] = $control;
 		}
@@ -112,6 +130,7 @@ class Checkboxes extends Contract\Control {
 		}
 
 		$direction = $this->get_property( 'direction' );
+		$classes   = [];
 		$classes[] = 'smf-checkboxes-control';
 		if ( $direction ) {
 			$classes[] = 'smf-checkboxes-control--' . $direction;
@@ -129,10 +148,20 @@ class Checkboxes extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return HTML for confirm page.
+	 *
+	 * @return string
+	 */
 	public function confirm() {
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
-			$checked = in_array( $control->get_attribute( 'value' ), $this->get_property( 'values' ) );
+			$checked = in_array(
+				(string) $control->get_attribute( 'value' ),
+				$this->get_property( 'values' ),
+				true
+			);
+
 			$control->set_attribute( 'checked', $checked );
 			$children[ $key ] = $control;
 		}
@@ -143,6 +172,12 @@ class Checkboxes extends Contract\Control {
 		return $this->_children( 'confirm', $delimiter );
 	}
 
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 * @return string
+	 */
 	public function invalid( $message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 

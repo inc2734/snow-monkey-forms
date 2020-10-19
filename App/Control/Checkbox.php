@@ -14,13 +14,13 @@ class Checkbox extends Contract\Control {
 
 	/**
 	 * @var array
-	 *   @var string name
-	 *   @var string value
-	 *   @var string checked
-	 *   @var boolean disabled
-	 *   @var string id
-	 *   @var string class
-	 *   @var boolean data-invalid
+	 *  - string  name
+	 *  - string  value
+	 *  - string  checked
+	 *  - boolean disabled
+	 *  - string  id
+	 *  - string  class
+	 *  - boolean data-invalid
 	 */
 	protected $attributes = [
 		'name'         => '',
@@ -42,10 +42,20 @@ class Checkbox extends Contract\Control {
 	 */
 	protected $label = '';
 
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
 	public function save( $value ) {
 		$this->set_attribute( 'checked', $this->get_attribute( 'value' ) === $value );
 	}
 
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	public function input() {
 		$label = $this->get_property( 'label' );
 		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
@@ -64,6 +74,11 @@ class Checkbox extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return HTML for confirm page.
+	 *
+	 * @return string
+	 */
 	public function confirm() {
 		if ( ! $this->get_attribute( 'checked' ) ) {
 			return;
@@ -87,6 +102,12 @@ class Checkbox extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 * @return string
+	 */
 	public function invalid( $message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 

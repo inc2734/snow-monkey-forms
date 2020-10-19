@@ -13,7 +13,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
 register_block_type_from_metadata(
 	__DIR__,
 	[
-		'render_callback' => function( $attributes, $content ) {
+		'render_callback' => function( $attributes ) {
 			if ( empty( $attributes['formId'] ) ) {
 				return;
 			}
@@ -27,7 +27,11 @@ register_block_type_from_metadata(
 			$responser  = new Responser( [] );
 			$validator  = new Validator( $responser, $setting );
 			$controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
-			$response   = json_decode( $controller->send() );
+
+			// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+			// The $response is used in views.
+			$response = json_decode( $controller->send() );
+			// phpcs:enable
 
 			ob_start();
 			include( __DIR__ . '/view.php' );

@@ -36,7 +36,9 @@ class View {
 	protected $validator;
 
 	/**
-	 * @param array $data posted data
+	 * Constructor.
+	 *
+	 * @param array $data Posted data.
 	 */
 	public function __construct( array $data ) {
 		// Set form meta data and remove from post data.
@@ -58,7 +60,7 @@ class View {
 		foreach ( Meta::get_saved_files() as $name ) {
 			if ( isset( $data[ $name ] ) ) {
 				$saved_file = $data[ $name ];
-				$file = Directory::fileurl_to_filepath( $saved_file );
+				$file       = Directory::fileurl_to_filepath( $saved_file );
 				if ( ! file_exists( $file ) ) {
 					$data[ $name ] = null;
 				}
@@ -71,7 +73,7 @@ class View {
 	}
 
 	/**
-	 * Return json for a form rendering
+	 * Return json for a form rendering.
 	 *
 	 * @return json
 	 */
@@ -117,9 +119,9 @@ class View {
 	}
 
 	/**
-	 * Return json for a form rendering with systemerror
+	 * Return json for a form rendering with systemerror.
 	 *
-	 * @param string $error_message
+	 * @param string $error_message System error message.
 	 * @return json
 	 */
 	protected function _send_systemerror( $error_message = '' ) {
@@ -129,7 +131,7 @@ class View {
 	}
 
 	/**
-	 * Return json for a form rendering
+	 * Return json for a form rendering.
 	 *
 	 * @return json
 	 */
@@ -154,7 +156,7 @@ class View {
 	}
 
 	/**
-	 * Remove saved files
+	 * Remove saved files.
 	 *
 	 * @return void
 	 */

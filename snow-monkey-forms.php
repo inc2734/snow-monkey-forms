@@ -31,10 +31,16 @@ require_once( SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php' );
 
 class Bootstrap {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_action( 'plugins_loaded', [ $this, '_plugins_loaded' ] );
 	}
 
+	/**
+	 * Plugins loaded.
+	 */
 	public function _plugins_loaded() {
 		load_plugin_textdomain( 'snow-monkey-forms', false, basename( __DIR__ ) . '/languages' );
 		add_filter( 'load_textdomain_mofile', [ $this, '_load_textdomain_mofile' ], 10, 2 );
@@ -55,8 +61,8 @@ class Bootstrap {
 	/**
 	 * When local .mo file exists, load this.
 	 *
-	 * @param string $mofile
-	 * @param string $domain
+	 * @param string $mofile Path to the MO file.
+	 * @param string $domain Text domain. Unique identifier for retrieving translated strings.
 	 * @return string
 	 */
 	public function _load_textdomain_mofile( $mofile, $domain ) {
@@ -73,12 +79,14 @@ class Bootstrap {
 		return $local_mofile;
 	}
 
+	/**
+	 * Enqueue assets.
+	 */
 	public function _enqueue_assets() {
-		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms',
 			SNOW_MONKEY_FORMS_URL . '/dist/js/app.js',
-			$asset['dependencies'],
+			[],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.js' ),
 			true
 		);
@@ -101,6 +109,9 @@ class Bootstrap {
 		);
 	}
 
+	/**
+	 * Enqueue block editor assets.
+	 */
 	public function _enqueue_block_editor_assets() {
 		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/blocks.asset.php' );
 		wp_enqueue_script(
@@ -129,13 +140,16 @@ class Bootstrap {
 		}
 	}
 
+	/**
+	 * Register endpoint. This endpoint returns the form view.
+	 */
 	public function _endpoint() {
 		register_rest_route(
 			'snow-monkey-form/v1',
 			'/view',
 			[
-				'methods'  => 'POST',
-				'callback' => function() {
+				'methods'             => 'POST',
+				'callback'            => function() {
 					$referer = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : false;
 					$homeurl = untrailingslashit( home_url( '/' ) );
 					if ( 0 !== strpos( $referer, $homeurl ) ) {
@@ -155,6 +169,9 @@ class Bootstrap {
 		);
 	}
 
+	/**
+	 * Register blocks.
+	 */
 	public function _register_blocks() {
 		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/block/*/index.php' ) as $file ) {
 			require_once( $file );
@@ -164,16 +181,19 @@ class Bootstrap {
 		}
 	}
 
+	/**
+	 * Register post type.
+	 */
 	public function _register_post_type() {
 		register_post_type(
 			'snow-monkey-forms',
 			[
-				'label'        => __( 'Snow Monkey Forms', 'snow-monkey-forms' ),
-				'public'       => false,
-				'show_ui'      => true,
-				'show_in_rest' => true,
-				'supports'     => [ 'title', 'editor', 'custom-fields' ],
-				'template' => [
+				'label'         => __( 'Snow Monkey Forms', 'snow-monkey-forms' ),
+				'public'        => false,
+				'show_ui'       => true,
+				'show_in_rest'  => true,
+				'supports'      => [ 'title', 'editor', 'custom-fields' ],
+				'template'      => [
 					[
 						'snow-monkey-forms/form--input',
 						[],
@@ -258,6 +278,9 @@ class Bootstrap {
 		);
 	}
 
+	/**
+	 * Register meta.
+	 */
 	public function _register_meta() {
 		register_post_meta(
 			'snow-monkey-forms',
@@ -405,6 +428,12 @@ class Bootstrap {
 		);
 	}
 
+	/**
+	 * Register block categories.
+	 *
+	 * @param array $categories array Array of block categories.
+	 * @return array
+	 */
 	public function _block_categories( $categories ) {
 		$categories[] = [
 			'slug'  => 'snow-monkey-forms',
@@ -414,6 +443,9 @@ class Bootstrap {
 		return $categories;
 	}
 
+	/**
+	 * Empty the Save directory.
+	 */
 	public function _do_empty_save_dir() {
 		try {
 			Directory::do_empty();
@@ -447,6 +479,10 @@ function snow_monkey_forms_uninstall() {
 		error_log( $e->getMessage() );
 	}
 }
+
+/**
+ * Register uninstall hook
+ */
 function snow_monkey_forms_activate() {
 	register_uninstall_hook( __FILE__, '\Snow_Monkey\Plugin\Forms\snow_monkey_forms_uninstall' );
 }

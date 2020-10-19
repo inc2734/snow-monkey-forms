@@ -86,6 +86,11 @@ class Setting {
 	 */
 	protected $use_confirm_page = true;
 
+	/**
+	 * Construct.
+	 *
+	 * @param int $form_id The post ID (ID of form editing page).
+	 */
 	public function __construct( $form_id ) {
 		$_posts = get_posts(
 			[
@@ -122,32 +127,60 @@ class Setting {
 		$this->auto_reply_email_from    = get_post_meta( $form_id, 'auto_reply_email_from', true );
 		$this->auto_reply_email_sender  = get_post_meta( $form_id, 'auto_reply_email_sender', true );
 
-		$use_confirm_page = get_post_meta( $form_id, 'use_confirm_page', true );
+		$use_confirm_page       = get_post_meta( $form_id, 'use_confirm_page', true );
 		$this->use_confirm_page = ! $use_confirm_page ? false : true;
 
-		$use_progress_tracker = get_post_meta( $form_id, 'use_progress_tracker', true );
+		$use_progress_tracker       = get_post_meta( $form_id, 'use_progress_tracker', true );
 		$this->use_progress_tracker = ! $use_progress_tracker ? false : true;
 	}
 
+	/**
+	 * Return setting.
+	 *
+	 * @param string $key The setting name.
+	 * @return mixed
+	 */
 	public function get( $key ) {
 		$properties = array_keys( get_object_vars( $this ) );
-		if ( in_array( $key, $properties ) ) {
+		if ( in_array( $key, $properties, true ) ) {
 			return $this->$key;
 		}
 	}
 
+	/**
+	 * Set system error message.
+	 *
+	 * @param string $message System error message.
+	 */
 	public function set_system_error_message( $message ) {
 		$this->system_error_messages[] = $message;
 	}
 
+	/**
+	 * Return the control.
+	 *
+	 * @param string $name The form field name.
+	 * @return \Snow_Monkey\Plugin\Forms\App\Contract\Control
+	 */
 	public function get_control( $name ) {
 		return isset( $this->controls[ $name ] ) ? $this->controls[ $name ] : false;
 	}
 
+	/**
+	 * Return controls.
+	 *
+	 * @return array
+	 */
 	public function get_controls() {
 		return $this->controls;
 	}
 
+	/**
+	 * Extract input content.
+	 *
+	 * @param string $post_content The post (post_content of form editing page) content.
+	 * @return string
+	 */
 	private function _extract_input_content( $post_content ) {
 		$match = preg_match(
 			'|<!-- wp:snow-monkey-forms/form--input .*?-->(.*?)<!-- /wp:snow-monkey-forms/form--input -->|ms',
@@ -158,6 +191,12 @@ class Setting {
 		return $match ? $matches[1] : null;
 	}
 
+	/**
+	 * Extract complete content.
+	 *
+	 * @param string $post_content The post (post_content of form editing page) content.
+	 * @return string
+	 */
 	private function _extract_complete_content( $post_content ) {
 		$match = preg_match(
 			'|<!-- wp:snow-monkey-forms/form--complete -->(.*?)<!-- /wp:snow-monkey-forms/form--complete -->|ms',
@@ -168,6 +207,11 @@ class Setting {
 		return $match ? $matches[1] : null;
 	}
 
+	/**
+	 * Set the form controls to $this->controls.
+	 *
+	 * @param string $input_content The input page content.
+	 */
 	private function _set_controls( $input_content ) {
 		preg_replace_callback(
 			'|<!-- wp:snow-monkey-forms/control-([^ ]+?) ({.+?}) /-->|ms',

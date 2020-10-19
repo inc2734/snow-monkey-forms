@@ -14,8 +14,8 @@ class Option extends Contract\Control {
 
 	/**
 	 * @var array
-	 *   @var string value
-	 *   @var boolean selected
+	 *  - string  value
+	 *  - boolean selected
 	 */
 	protected $attributes = [
 		'value'    => '',
@@ -32,10 +32,20 @@ class Option extends Contract\Control {
 	 */
 	protected $name = '';
 
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
 	public function save( $value ) {
 		$this->set_attribute( 'selected', $this->get_attribute( 'value' ) === $value );
 	}
 
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	public function input() {
 		$label = $this->get_property( 'label' );
 		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
@@ -47,6 +57,11 @@ class Option extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return HTML for confirm page.
+	 *
+	 * @return string
+	 */
 	public function confirm() {
 		if ( ! $this->get_attribute( 'selected' ) ) {
 			return;
@@ -70,7 +85,17 @@ class Option extends Contract\Control {
 		);
 	}
 
-	public function invalid( $message = '' ) {
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 * @return string
+	 */
+	public function invalid(
+		// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+		$message = ''
+		// phpcs:enable
+	) {
 		return $this->input();
 	}
 }

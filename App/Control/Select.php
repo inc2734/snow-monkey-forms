@@ -14,11 +14,11 @@ class Select extends Contract\Control {
 
 	/**
 	 * @var array
-	 *   @var string name
-	 *   @var boolean disabled
-	 *   @var string id
-	 *   @var string class
-	 *   @var boolean data-invalid
+	 *  - string  name
+	 *  - boolean disabled
+	 *  - string  id
+	 *  - string  class
+	 *  - boolean data-invalid
 	 */
 	protected $attributes = [
 		'name'         => '',
@@ -53,6 +53,9 @@ class Select extends Contract\Control {
 	 */
 	protected $children = [];
 
+	/**
+	 * Initialize.
+	 */
 	protected function _init() {
 		$children = [];
 		foreach ( $this->get_property( 'options' ) as $option ) {
@@ -66,18 +69,28 @@ class Select extends Contract\Control {
 						'value'    => $value,
 						'selected' => $this->get_property( 'value' ) === $value,
 					],
-					'label' => $label,
-					'name'  => $this->get_attribute( 'name' ),
+					'label'      => $label,
+					'name'       => $this->get_attribute( 'name' ),
 				]
 			);
 		}
 		$this->_set_children( $children );
 	}
 
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
 	public function save( $value ) {
 		$this->set_property( 'value', ! is_array( $value ) ? $value : '' );
 	}
 
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	public function input() {
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
@@ -107,6 +120,11 @@ class Select extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return HTML for confirm page.
+	 *
+	 * @return string
+	 */
 	public function confirm() {
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
@@ -119,6 +137,12 @@ class Select extends Contract\Control {
 		return $this->_children( 'confirm' );
 	}
 
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 * @return string
+	 */
 	public function invalid( $message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 

@@ -14,15 +14,15 @@ class Text extends Contract\Control {
 
 	/**
 	 * @var array
-	 *   @var string name
-	 *   @var string value
-	 *   @var string placeholder
-	 *   @var boolean disabled
-	 *   @var int maxlength
-	 *   @var int size
-	 *   @var string id
-	 *   @var string class
-	 *   @var boolean data-invalid
+	 *  - string  name
+	 *  - string  value
+	 *  - string  placeholder
+	 *  - boolean disabled
+	 *  - int     maxlength
+	 *  - int     size
+	 *  - string  id
+	 *  - string  class
+	 *  - boolean data-invalid
 	 */
 	protected $attributes = [
 		'name'         => '',
@@ -46,10 +46,20 @@ class Text extends Contract\Control {
 	 */
 	protected $validations = [];
 
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
 	public function save( $value ) {
 		$this->set_attribute( 'value', ! is_array( $value ) ? $value : '' );
 	}
 
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	public function input() {
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
@@ -69,6 +79,11 @@ class Text extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return HTML for confirm page.
+	 *
+	 * @return string
+	 */
 	public function confirm() {
 		return sprintf(
 			'%1$s%2$s',
@@ -85,6 +100,12 @@ class Text extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 * @return string
+	 */
 	public function invalid( $message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 

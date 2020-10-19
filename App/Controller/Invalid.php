@@ -13,20 +13,30 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Invalid extends Contract\Controller {
 
+	/**
+	 * Set the form controls.
+	 *
+	 * @return array
+	 */
 	protected function set_controls() {
-		$controls = [];
+		$controls         = [];
 		$setting_controls = $this->setting->get( 'controls' );
 
 		foreach ( $setting_controls as $name => $control ) {
 			$value = $this->responser->get( $name );
 			$control->save( $value );
-			$error_message = $this->validator->get_error_message( $name );
+			$error_message     = $this->validator->get_error_message( $name );
 			$controls[ $name ] = $error_message ? $control->invalid( $error_message ) : $control->input();
 		}
 
 		return $controls;
 	}
 
+	/**
+	 * Set the form action area HTML.
+	 *
+	 * @return string
+	 */
 	protected function set_action() {
 		ob_start();
 
@@ -43,6 +53,11 @@ class Invalid extends Contract\Controller {
 		return ob_get_clean();
 	}
 
+	/**
+	 * Set the content to be displayed.
+	 *
+	 * @return string
+	 */
 	protected function set_message() {
 		return $this->message;
 	}

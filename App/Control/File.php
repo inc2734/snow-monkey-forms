@@ -14,11 +14,11 @@ class File extends Contract\Control {
 
 	/**
 	 * @var array
-	 *   @var string name
-	 *   @var boolean disabled
-	 *   @var string id
-	 *   @var string class
-	 *   @var boolean data-invalid
+	 *  - string  name
+	 *  - boolean disabled
+	 *  - string  id
+	 *  - string  class
+	 *  - boolean data-invalid
 	 */
 	protected $attributes = [
 		'name'         => '',
@@ -43,10 +43,20 @@ class File extends Contract\Control {
 	 */
 	protected $validations = [];
 
+	/**
+	 * Save the value.
+	 *
+	 * @param mixed $value The value to be saved.
+	 */
 	public function save( $value ) {
 		$this->set_property( 'value', $value );
 	}
 
+	/**
+	 * Return HTML for input page.
+	 *
+	 * @return string
+	 */
 	public function input() {
 		$value = $this->get_property( 'value' );
 		if ( $value ) {
@@ -83,6 +93,11 @@ class File extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return HTML for confirm page.
+	 *
+	 * @return string
+	 */
 	public function confirm() {
 		return sprintf(
 			'%1$s%2$s',
@@ -99,6 +114,12 @@ class File extends Contract\Control {
 		);
 	}
 
+	/**
+	 * Return invalid message.
+	 *
+	 * @param string $message The message to be displayed.
+	 * @return string
+	 */
 	public function invalid( $message = '' ) {
 		$this->set_attribute( 'data-invalid', true );
 

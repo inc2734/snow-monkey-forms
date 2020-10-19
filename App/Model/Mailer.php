@@ -37,15 +37,19 @@ class Mailer {
 	protected $sender = '';
 
 	/**
-	 * @var array
-	 *   @var string filepath
+	 * @var array Array of filepath.
 	 */
 	protected $attachments = [];
 
+	/**
+	 * Constructor.
+	 *
+	 * @param array $args Array of properties.
+	 */
 	public function __construct( $args ) {
 		$properties = array_keys( get_object_vars( $this ) );
 		foreach ( $args as $key => $value ) {
-			if ( ! in_array( $key, $properties ) ) {
+			if ( ! in_array( $key, $properties, true ) ) {
 				continue;
 			}
 
@@ -57,6 +61,12 @@ class Mailer {
 		}
 	}
 
+	/**
+	 * Set from.
+	 *
+	 * @param string $from_email From.
+	 * @return string
+	 */
 	public function _wp_mail_from( $from_email ) {
 		if ( empty( $this->from ) ) {
 			return $from_email;
@@ -70,10 +80,21 @@ class Mailer {
 		return $this->from;
 	}
 
+	/**
+	 * Set from name.
+	 *
+	 * @param string $from_name From name.
+	 * @return string
+	 */
 	public function _wp_mail_from_name( $from_name ) {
 		return empty( $this->sender ) ? $from_name : $this->sender;
 	}
 
+	/**
+	 * Send e-mail.
+	 *
+	 * @return boolean
+	 */
 	public function send() {
 		if ( ! $this->to ) {
 			return false;

@@ -13,10 +13,20 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Input extends Contract\Controller {
 
+	/**
+	 * Set the form controls.
+	 *
+	 * @return array
+	 */
 	protected function set_controls() {
 		return $this->controls;
 	}
 
+	/**
+	 * Set the form action area HTML.
+	 *
+	 * @return string
+	 */
 	protected function set_action() {
 		ob_start();
 
@@ -31,6 +41,11 @@ class Input extends Contract\Controller {
 		return ob_get_clean();
 	}
 
+	/**
+	 * Set the content to be displayed.
+	 *
+	 * @return string
+	 */
 	protected function set_message() {
 		return $this->message;
 	}
