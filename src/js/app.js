@@ -48,23 +48,6 @@ document.addEventListener(
 	false
 );
 
-document.addEventListener(
-	'click',
-	( event ) => {
-		const control = event.target;
-		const submites = [].slice.call(
-			document.querySelectorAll( '.smf-action [type="submit"]' )
-		);
-		if ( -1 !== submites.indexOf( control ) ) {
-			const sendingMark = control.querySelector( '.smf-sending' );
-			if ( !! sendingMark ) {
-				sendingMark.setAttribute( 'aria-hidden', 'false' );
-			}
-		}
-	},
-	false
-);
-
 const forms = [].slice.call( document.querySelectorAll( '.snow-monkey-form' ) );
 forms.forEach( ( form ) => {
 	form.addEventListener( 'submit', submit, false );

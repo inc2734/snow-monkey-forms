@@ -110,9 +110,14 @@ export default function submit( event ) {
 	};
 
 	const icon = form.querySelector( '.smf-sending' );
+	if ( !! icon ) {
+		icon.setAttribute( 'aria-hidden', 'false' );
+	}
 
 	const doneCallback = ( response ) => {
-		icon.setAttribute( 'aria-hidden', 'true' );
+		if ( !! icon ) {
+			icon.setAttribute( 'aria-hidden', 'true' );
+		}
 
 		response = JSON.parse( response );
 		if ( 'undefined' === typeof response.method ) {
