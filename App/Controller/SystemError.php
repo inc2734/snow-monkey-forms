@@ -35,9 +35,12 @@ class SystemError extends Contract\Controller {
 	 * @return string
 	 */
 	protected function set_message() {
+		$message = implode( '<br>', $this->setting->get( 'system_error_messages' ) );
+		$message = apply_filters( 'snow_monkey_forms/system_error/message', $message, $this->responser );
+
 		return sprintf(
 			'<div class="smf-system-error-content" tabindex="-1">%1$s</div>',
-			wp_kses_post( implode( '<br>', $this->setting->get( 'system_error_messages' ) ) )
+			wp_kses_post( $message )
 		);
 	}
 }

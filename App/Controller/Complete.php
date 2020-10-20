@@ -35,9 +35,12 @@ class Complete extends Contract\Controller {
 	 * @return string
 	 */
 	protected function set_message() {
+		$message = $this->setting->get( 'complete_content' );
+		$message = apply_filters( 'snow_monkey_forms/complete/message', $message, $this->responser );
+
 		return sprintf(
 			'<div class="smf-complete-content" tabindex="-1">%1$s</div>',
-			wp_kses_post( $this->setting->get( 'complete_content' ) )
+			wp_kses_post( $message )
 		);
 	}
 }
