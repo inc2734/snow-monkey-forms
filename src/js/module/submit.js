@@ -28,6 +28,11 @@ export default function submit( event ) {
 	const contents = form.querySelector( '.smf-form' );
 	const actionArea = form.querySelector( '.smf-action' );
 	const formData = new FormData( form );
+	const submitter = event.submitter;
+	const icon = submitter.querySelector( '.smf-sending' );
+	if ( !! icon ) {
+		icon.setAttribute( 'aria-hidden', 'false' );
+	}
 
 	const inputs = [].slice
 		.call(
@@ -108,11 +113,6 @@ export default function submit( event ) {
 			content.focus();
 		}
 	};
-
-	const icon = form.querySelector( '.smf-sending' );
-	if ( !! icon ) {
-		icon.setAttribute( 'aria-hidden', 'false' );
-	}
 
 	const doneCallback = ( response ) => {
 		if ( !! icon ) {
