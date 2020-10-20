@@ -5,7 +5,7 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 5.5
 Tested up to: 5.5
 Requires PHP: 5.6
-Stable tag: 0.9.2
+Stable tag: 0.10.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,11 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 0.10.0 =
+* Add filter hook `snow_monkey_forms/complete/message`.
+* Add filter hook `snow_monkey_forms/system_error/message`.
+* Fixed a bug where the button loading icon would not disappear when form validation occurred.
 
 = 0.9.2 =
 * Fixed a bug where checkboxes, radio buttons, and select boxes would sometimes not render correctly if there were duplicate items.
