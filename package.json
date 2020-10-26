@@ -5,19 +5,20 @@
   "devDependencies": {
     "@inc2734/add-custom-event": "^0.5.0",
     "@wordpress/browserslist-config": "^2.7.0",
-    "@wordpress/scripts": "^12.4.0",
     "@wordpress/env": "^2.1.0",
+    "@wordpress/scripts": "^12.4.0",
     "autoprefixer": "^10.0.1",
+    "browser-sync": "^2.26.13",
     "classnames": "^2.2.6",
     "cssnano": "^4.1.10",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "po2json": "^1.0.0-alpha",
-    "postcss": "^8.1.2",
+    "postcss": "^8.1.4",
     "postcss-cli": "^8.1.0",
+    "prettier": "npm:wp-prettier@2.0.5",
     "rimraf": "^3.0.2",
-    "sass-basis": "^12.1.0",
-    "prettier": "npm:wp-prettier@2.0.5"
+    "sass-basis": "^12.1.0"
   },
   "scripts": {
     "wp-env": "wp-env",
@@ -46,6 +47,7 @@
     "zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive",
     "po2json:snow-monkey-forms@blocks": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms@blocks.json -f jed",
     "po2json:snow-monkey-forms@plugin-sidebar": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms@plugin-sidebar.json -f jed",
-    "po2json": "npm-run-all -p po2json:*"
+    "po2json": "npm-run-all -p po2json:*",
+    "browsersync": "browser-sync start -p 'localhost:8888' -f '**/*' 'dist/**'"
   }
 }

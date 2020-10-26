@@ -28,10 +28,16 @@ export default function submit( event ) {
 	const contents = form.querySelector( '.smf-form' );
 	const actionArea = form.querySelector( '.smf-action' );
 	const formData = new FormData( form );
-	const submitter = event.submitter;
-	const icon = submitter.querySelector( '.smf-sending' );
+	const clickedButton = actionArea.querySelector( '[data-clicked="true"]' );
+	const submitter = event.submitter || clickedButton;
+	const icon = !! submitter
+		? submitter.querySelector( '.smf-sending' )
+		: undefined;
 	if ( !! icon ) {
 		icon.setAttribute( 'aria-hidden', 'false' );
+	}
+	if ( !! clickedButton ) {
+		clickedButton.removeAttribute( 'data-clicked' );
 	}
 
 	const inputs = [].slice

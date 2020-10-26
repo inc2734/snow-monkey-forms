@@ -33,6 +33,10 @@ document.addEventListener(
 	'click',
 	( event ) => {
 		const control = event.target;
+		if ( !! control.getAttribute( 'data-action' ) ) {
+			control.setAttribute( 'data-clicked', 'true' );
+		}
+
 		if ( 'back' === control.getAttribute( 'data-action' ) ) {
 			const action = closest( control, 'smf-action' );
 			if ( !! action ) {
