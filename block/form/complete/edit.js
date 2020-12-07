@@ -1,9 +1,8 @@
 import { getBlockTypes } from '@wordpress/blocks';
+
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+
 import { useMemo } from '@wordpress/element';
-import {
-	InnerBlocks,
-	__experimentalBlock as Block,
-} from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
 
 export default function () {
@@ -19,10 +18,12 @@ export default function () {
 			.filter( ( block ) => block );
 	}, [] );
 
-	const BlockWrapper = Block.div;
+	const blockProps = useBlockProps( {
+		className: [ 'components-panel', 'snow-monkey-forms-setting-panel' ],
+	} );
 
 	return (
-		<BlockWrapper className="components-panel snow-monkey-forms-setting-panel">
+		<div { ...blockProps }>
 			<div className="components-panel__header edit-post-sidebar-header">
 				{ __( 'Complete', 'snow-monkey-forms' ) }
 			</div>
@@ -32,6 +33,6 @@ export default function () {
 					templateLock={ false }
 				/>
 			</div>
-		</BlockWrapper>
+		</div>
 	);
 }

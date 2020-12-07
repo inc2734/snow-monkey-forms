@@ -166,11 +166,5 @@
   display: none !important;
 }
 
-.smf-item[tabindex="-1"],
-.smf-complete-content[tabindex="-1"],
-.smf-system-error-content[tabindex="-1"] {
-  outline: none;
-}
-
 @import 'block-styles/app';
 @import 'component/component';

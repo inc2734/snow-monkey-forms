@@ -9,13 +9,23 @@
   }
 }
 
-.editor-styles-wrapper .block-editor-writing-flow {
+.editor-styles-wrapper {
   @import 'app';
 
-  [data-type="snow-monkey-forms/item"] .block-list-appender {
-    height: auto;
-    margin-bottom: 0 !important;
-    margin-top: 1em !important;
+  .smf-item {
+    &.is-hovered:not(.is-highlighted),
+    &.is-selected:not(.is-highlighted),
+    &.has-child-selected:not(.is-highlighted) {
+      &::after {
+        top: -5px;
+        right: -5px;
+        bottom: -5px;
+        left: -5px;
+        z-index: 1;
+        box-shadow: 0 0 0 1px rgba(#007cba, .25);
+        @include _transition(box-shadow);
+      }
+    }
   }
 
   .smf-select-control__control {
@@ -28,4 +38,3 @@
 }
 
 @import 'block-styles/editor';
-@import 'component/component';

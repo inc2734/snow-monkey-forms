@@ -1,9 +1,7 @@
 import classnames from 'classnames';
 
-import {
-	InspectorControls,
-	__experimentalBlock as Block,
-} from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+
 import { PanelBody, TextControl, SelectControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { useEffect } from '@wordpress/element';
@@ -38,9 +36,12 @@ const Edit = ( { attributes, setAttributes } ) => {
 	const arrayedOptions = optionsToJsonArray( options );
 	const arrayedValues = valuesToJsonArray( values );
 
-	const BlockWrapper = Block.div;
 	const classes = classnames( 'smf-checkboxes-control', {
 		[ `smf-checkboxes-control--${ direction }` ]: !! direction,
+	} );
+
+	const blockProps = useBlockProps( {
+		className: 'smf-placeholder',
 	} );
 
 	return (
@@ -116,7 +117,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 				</PanelBody>
 			</InspectorControls>
 
-			<BlockWrapper className="smf-placeholder" data-name={ name }>
+			<div { ...blockProps } data-name={ name }>
 				<div className={ classes }>
 					<div className="smf-checkboxes-control__control">
 						{ arrayedOptions.map( ( option ) => {
@@ -155,7 +156,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 						{ description }
 					</div>
 				) }
-			</BlockWrapper>
+			</div>
 		</>
 	);
 };

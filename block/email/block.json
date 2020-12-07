@@ -1,4 +1,5 @@
 {
+  "apiVersion": 2,
   "name": "snow-monkey-forms/control-email",
 	"category": "snow-monkey-forms",
   "parent": [ "snow-monkey-forms/noparent" ],
@@ -45,7 +46,6 @@
     }
   },
   "supports": {
-    "customClassName": false,
-    "lightBlockWrapper": true
+    "customClassName": false
   }
 }

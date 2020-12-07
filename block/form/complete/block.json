@@ -1,4 +1,5 @@
 {
+  "apiVersion": 2,
   "name": "snow-monkey-forms/form--complete",
   "category": "snow-monkey-forms",
   "parent": [ false ],
@@ -6,7 +7,6 @@
     "customClassName": false,
     "inserter": false,
     "multiple": false,
-    "reusable": false,
-    "lightBlockWrapper": true
+    "reusable": false
   }
 }

@@ -1,4 +1,5 @@
 {
+  "apiVersion": 2,
   "name": "snow-monkey-forms/item",
 	"category": "snow-monkey-forms",
 	"parent": [ "snow-monkey-forms/form--input" ],
@@ -19,8 +20,5 @@
       "type": "boolean",
       "default": true
     }
-  },
-  "support": {
-    "lightBlockWrapper": true
   }
 }

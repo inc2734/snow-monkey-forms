@@ -1,7 +1,5 @@
-import {
-	InspectorControls,
-	__experimentalBlock as Block,
-} from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+
 import { PanelBody, TextControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { useEffect } from '@wordpress/element';
@@ -14,6 +12,7 @@ import {
 	IdControl,
 	ClassControl,
 } from '../components';
+
 import { uniqId } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
@@ -34,7 +33,9 @@ const Edit = ( { attributes, setAttributes } ) => {
 		}
 	} );
 
-	const BlockWrapper = Block.div;
+	const blockProps = useBlockProps( {
+		className: 'smf-placeholder',
+	} );
 
 	return (
 		<>
@@ -102,7 +103,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 				</PanelBody>
 			</InspectorControls>
 
-			<BlockWrapper className="smf-placeholder" data-name={ name }>
+			<div { ...blockProps } data-name={ name }>
 				<div className="smf-textarea-control">
 					<textarea
 						name={ name }
@@ -119,7 +120,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 						{ description }
 					</div>
 				) }
-			</BlockWrapper>
+			</div>
 		</>
 	);
 };

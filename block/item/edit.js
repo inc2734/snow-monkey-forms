@@ -1,14 +1,17 @@
 import classnames from 'classnames';
 import { compact } from 'lodash';
 
+import { getBlockTypes } from '@wordpress/blocks';
+
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import {
 	InspectorControls,
 	InnerBlocks,
 	RichText,
-	__experimentalBlock as Block,
+	useBlockProps,
+	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
 } from '@wordpress/block-editor';
-import { getBlockTypes } from '@wordpress/blocks';
+
 import { useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -20,7 +23,7 @@ export default function ( {
 } ) {
 	const { label, description, isDisplayLabelColumn } = attributes;
 
-	const ALLOWED_BLOCKS = useMemo( () => {
+	const allowedBlocks = useMemo( () => {
 		const blocks = getBlockTypes();
 		const blacklist = [
 			'snow-monkey-forms/snow-monkey-form',
@@ -38,10 +41,24 @@ export default function ( {
 		);
 	}, [] );
 
-	const BlockWrapper = Block.div;
 	const classes = classnames( 'smf-item', className, {
 		'smf-item--divider': ! isDisplayLabelColumn,
 	} );
+
+	const blockProps = useBlockProps( {
+		className: classes,
+	} );
+
+	const innerBlocksProps = useInnerBlocksProps(
+		{
+			className: 'smf-item__controls',
+		},
+		{
+			allowedBlocks,
+			templateLock: false,
+			renderAppender: InnerBlocks.ButtonBlockAppender,
+		}
+	);
 
 	return (
 		<>
@@ -62,7 +79,7 @@ export default function ( {
 				</PanelBody>
 			</InspectorControls>
 
-			<BlockWrapper className={ classes } tabIndex="-1">
+			<div { ...blockProps } tabIndex="-1">
 				{ isDisplayLabelColumn && (
 					<div className="smf-item__col smf-item__col--label">
 						<div className="smf-item__label">
@@ -96,17 +113,9 @@ export default function ( {
 				) }
 
 				<div className="smf-item__col smf-item__col--controls">
-					<div className="smf-item__controls">
-						<InnerBlocks
-							allowedBlocks={ ALLOWED_BLOCKS }
-							templateLock={ false }
-							// renderAppender={ () => (
-							// 	<InnerBlocks.ButtonBlockAppender />
-							// ) }
-						/>
-					</div>
+					<div { ...innerBlocksProps } />
 				</div>
-			</BlockWrapper>
+			</div>
 		</>
 	);
 }

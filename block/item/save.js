@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 
-import { InnerBlocks, RichText } from '@wordpress/block-editor';
+import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
 
 export default function ( { attributes, className } ) {
 	const { label, description, isDisplayLabelColumn } = attributes;
@@ -10,7 +10,7 @@ export default function ( { attributes, className } ) {
 	} );
 
 	return (
-		<div className={ classes } tabIndex="-1">
+		<div { ...useBlockProps.save( { className: classes } ) } tabIndex="-1">
 			{ isDisplayLabelColumn && (
 				<div className="smf-item__col smf-item__col--label">
 					<div className="smf-item__label">

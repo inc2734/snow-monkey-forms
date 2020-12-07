@@ -3,8 +3,10 @@ import classnames from 'classnames';
 import {
 	InspectorControls,
 	InnerBlocks,
-	__experimentalBlock as Block,
+	useBlockProps,
+	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
 } from '@wordpress/block-editor';
+
 import { dispatch } from '@wordpress/data';
 import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
@@ -17,10 +19,26 @@ export default function ( props ) {
 	const { attributes, setAttributes, className } = props;
 	const { formStyle } = attributes;
 
-	const BlockWrapper = Block.div;
+	const allowedBlocks = [ 'snow-monkey-forms/item' ];
+
 	const classes = classnames( 'smf-form', className, {
 		[ formStyle ]: !! formStyle,
 	} );
+
+	const blockProps = useBlockProps( {
+		className: [ 'components-panel', 'snow-monkey-forms-setting-panel' ],
+	} );
+
+	const innerBlocksProps = useInnerBlocksProps(
+		{
+			className: classes,
+		},
+		{
+			allowedBlocks,
+			templateLock: false,
+			renderAppender: InnerBlocks.ButtonBlockAppender,
+		}
+	);
 
 	return (
 		<>
@@ -36,12 +54,12 @@ export default function ( props ) {
 				<AutoReplyEmailSettingsPanel />
 			</InspectorControls>
 
-			<BlockWrapper className="components-panel snow-monkey-forms-setting-panel">
+			<div { ...blockProps }>
 				<div className="components-panel__header edit-post-sidebar-header">
 					{ __( 'Input', 'snow-monkey-forms' ) }
 
 					<Button
-						isDefault
+						isSecondary
 						onClick={ () =>
 							dispatch( 'core/edit-post' ).openGeneralSidebar(
 								'edit-post/block'
@@ -52,14 +70,9 @@ export default function ( props ) {
 					</Button>
 				</div>
 				<div className="components-panel__body is-opened">
-					<div className={ classes }>
-						<InnerBlocks
-							allowedBlocks={ [ 'snow-monkey-forms/item' ] }
-							templateLock={ false }
-						/>
-					</div>
+					<div { ...innerBlocksProps } />
 				</div>
-			</BlockWrapper>
+			</div>
 		</>
 	);
 }
