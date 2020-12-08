@@ -5,7 +5,7 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 5.6-RC3
 Tested up to: 5.6-RC3
 Requires PHP: 5.6
-Stable tag: 1.0.0-beta1
+Stable tag: 1.0.0-RC1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 1.0.0 =
+* WordPress 5.6 compatibility.
 
 = 0.10.2 =
 * Fixed a bug that prevented sending with IE and Safari.
