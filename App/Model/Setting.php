@@ -87,6 +87,21 @@ class Setting {
 	protected $use_confirm_page = true;
 
 	/**
+	 * @var string
+	 */
+	protected $confirm_button_label = null;
+
+	/**
+	 * @var string
+	 */
+	protected $back_button_label = null;
+
+	/**
+	 * @var string
+	 */
+	protected $send_button_label = null;
+
+	/**
 	 * Construct.
 	 *
 	 * @param int $form_id The post ID (ID of form editing page).
@@ -132,6 +147,21 @@ class Setting {
 
 		$use_progress_tracker       = get_post_meta( $form_id, 'use_progress_tracker', true );
 		$this->use_progress_tracker = ! $use_progress_tracker ? false : true;
+
+		$confirm_button_label       = get_post_meta( $form_id, 'confirm_button_label', true );
+		$this->confirm_button_label = $confirm_button_label
+			? $confirm_button_label
+			: __( 'Confirm', 'snow-monkey-forms' );
+
+		$back_button_label       = get_post_meta( $form_id, 'back_button_label', true );
+		$this->back_button_label = $back_button_label
+			? $back_button_label
+			: __( 'Back', 'snow-monkey-forms' );
+
+		$send_button_label       = get_post_meta( $form_id, 'send_button_label', true );
+		$this->send_button_label = $send_button_label
+			? $send_button_label
+			: __( 'Send', 'snow-monkey-forms' );
 	}
 
 	/**

@@ -79,7 +79,7 @@ export default function ( {
 				</PanelBody>
 			</InspectorControls>
 
-			<div { ...blockProps } tabIndex="-1">
+			<div { ...blockProps }>
 				{ isDisplayLabelColumn && (
 					<div className="smf-item__col smf-item__col--label">
 						<div className="smf-item__label">

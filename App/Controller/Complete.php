@@ -39,7 +39,7 @@ class Complete extends Contract\Controller {
 		$message = apply_filters( 'snow_monkey_forms/complete/message', $message, $this->responser );
 
 		return sprintf(
-			'<div class="smf-complete-content" tabindex="-1">%1$s</div>',
+			'<div class="smf-complete-content">%1$s</div>',
 			wp_kses_post( $message )
 		);
 	}

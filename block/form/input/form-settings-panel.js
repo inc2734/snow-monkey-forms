@@ -1,5 +1,10 @@
 import { useEntityProp } from '@wordpress/core-data';
-import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
+import {
+	PanelBody,
+	SelectControl,
+	ToggleControl,
+	TextControl,
+} from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 export default function ( { attributes, onChangeFormStyle } ) {
@@ -49,6 +54,37 @@ export default function ( { attributes, onChangeFormStyle } ) {
 					},
 				] }
 				onChange={ onChangeFormStyle }
+			/>
+
+			{ meta.use_confirm_page && (
+				<>
+					<TextControl
+						label={ __(
+							'Confirm button label',
+							'snow-monkey-forms'
+						) }
+						value={ meta.confirm_button_label }
+						onChange={ ( value ) =>
+							setMeta( { confirm_button_label: value } )
+						}
+					/>
+
+					<TextControl
+						label={ __( 'Back button label', 'snow-monkey-forms' ) }
+						value={ meta.back_button_label }
+						onChange={ ( value ) =>
+							setMeta( { back_button_label: value } )
+						}
+					/>
+				</>
+			) }
+
+			<TextControl
+				label={ __( 'Send button label', 'snow-monkey-forms' ) }
+				value={ meta.send_button_label }
+				onChange={ ( value ) =>
+					setMeta( { send_button_label: value } )
+				}
 			/>
 		</PanelBody>
 	);

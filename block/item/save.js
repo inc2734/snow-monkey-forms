@@ -10,7 +10,7 @@ export default function ( { attributes, className } ) {
 	} );
 
 	return (
-		<div { ...useBlockProps.save( { className: classes } ) } tabIndex="-1">
+		<div { ...useBlockProps.save( { className: classes } ) }>
 			{ isDisplayLabelColumn && (
 				<div className="smf-item__col smf-item__col--label">
 					<div className="smf-item__label">

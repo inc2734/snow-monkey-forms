@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-05-18 14:19+0900\n"
-"PO-Revision-Date: 2020-06-09 08:22+0900\n"
+"POT-Creation-Date: 2020-12-24 11:38+0900\n"
+"PO-Revision-Date: 2020-12-24 11:38+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -24,165 +24,52 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: tests\n"
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
-#: App/Control/File.php:55
-msgid "Uploaded file"
-msgstr "アップロード済みのファイル"
-
-#: App/Control/File.php:79 block/file/edit.js:66
-msgid "Choose file"
-msgstr "ファイルを選択"
-
-#: App/Control/File.php:80 block/file/edit.js:69
-msgid "No file chosen"
-msgstr "選択されていません"
-
-#: App/Controller/Back.php:32 App/Controller/Error.php:34
-#: App/Controller/Input.php:24
-msgid "Confirm"
-msgstr "確認画面へ"
-
-#: App/Controller/Confirm.php:32
-msgid "Back"
-msgstr "戻る"
-
-#: App/Controller/Confirm.php:33 App/Controller/Error.php:37
-#: App/Controller/Input.php:27
-msgid "Send"
-msgstr "送信する"
-
-#: App/Rest/Route/View.php:81
-msgid "Invalid access."
-msgstr "無効なアクセスです。"
-
-#: App/Rest/Route/View.php:99
-msgid "Failed to send administrator email."
-msgstr "管理者メールの送信に失敗しました。"
-
-#: App/Rest/Route/View.php:100 App/Rest/Route/View.php:148
-#: block/snow-monkey-form/view.php:52
-msgid "Please try again later or contact your administrator by other means."
-msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
-
-#: App/Rest/Route/View.php:111
-msgid "Failed to send auto reply email."
-msgstr "自動返信メールの送信に失敗しました。"
-
-#: App/Rest/Route/View.php:147 block/snow-monkey-form/view.php:51
-msgid "An unexpected problem has occurred."
-msgstr "予期しない問題が発生しました。"
-
-#: App/Validation/Email.php:24
-msgid "Please enter a valid email address."
-msgstr "有効なメールアドレスを入力してください。"
-
-#: App/Validation/Required.php:22
-msgid "Please enter."
-msgstr "入力してください。"
-
-#: App/Validation/Url.php:22
-msgid "Please enter a valid URL."
-msgstr "有効な URL を入力してください。"
-
-#: block/snow-monkey-form/view.php:18
-msgctxt "progress-tracker"
-msgid "1"
-msgstr "1"
-
-#: block/snow-monkey-form/view.php:21
-msgctxt "progress-tracker"
-msgid "Input"
-msgstr "入力"
-
-#: block/snow-monkey-form/view.php:26
-msgctxt "progress-tracker"
-msgid "2"
-msgstr "2"
-
-#: block/snow-monkey-form/view.php:29
-msgctxt "progress-tracker"
-msgid "Confirm"
-msgstr "確認"
-
-#: block/snow-monkey-form/view.php:34
-msgctxt "progress-tracker"
-msgid "3"
-msgstr "3"
-
-#: block/snow-monkey-form/view.php:37
-msgctxt "progress-tracker"
-msgid "Complete"
-msgstr "完了"
-
-#. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:162 snow-monkey-forms.php:377
-msgid "Snow Monkey Forms"
-msgstr "Snow Monkey Forms"
-
-#: snow-monkey-forms.php:175
-msgctxt "form-field-label"
-msgid "Name"
-msgstr "お名前"
-
-#: snow-monkey-forms.php:195
-msgctxt "form-field-label"
-msgid "Email"
-msgstr "Eメール"
-
-#: snow-monkey-forms.php:215
-msgctxt "form-field-label"
-msgid "Message"
-msgstr "メッセージ"
-
-#: snow-monkey-forms.php:241
-msgid "Complete !"
-msgstr "完了しました。"
-
-#: block/checkboxes/edit.js:42 block/email/edit.js:37 block/file/edit.js:20
-#: block/radio-buttons/edit.js:34 block/select/edit.js:34 block/tel/edit.js:37
-#: block/text/edit.js:37 block/textarea/edit.js:34 block/url/edit.js:37
+#: block/checkboxes/edit.js:50 block/email/edit.js:45 block/file/edit.js:28
+#: block/radio-buttons/edit.js:42 block/select/edit.js:43 block/tel/edit.js:46
+#: block/text/edit.js:46 block/textarea/edit.js:43 block/url/edit.js:46
 msgid "Attributes"
 msgstr "属性"
 
-#: block/checkboxes/edit.js:65
+#: block/checkboxes/edit.js:73
 msgid "Delimiter"
 msgstr "区切り文字"
 
-#: block/checkboxes/edit.js:67
+#: block/checkboxes/edit.js:75
 msgid "Optional. Character that separates each item."
 msgstr "任意。各項目を区切る文字。"
 
-#: block/checkboxes/edit.js:78 block/email/edit.js:96 block/file/edit.js:44
-#: block/item/edit.js:45 block/radio-buttons/edit.js:58 block/select/edit.js:72
-#: block/tel/edit.js:96 block/text/edit.js:96 block/textarea/edit.js:85
-#: block/url/edit.js:96
+#: block/checkboxes/edit.js:86 block/email/edit.js:104 block/file/edit.js:52
+#: block/item/edit.js:67 block/radio-buttons/edit.js:66 block/select/edit.js:81
+#: block/tel/edit.js:105 block/text/edit.js:105 block/textarea/edit.js:94
+#: block/url/edit.js:105
 msgid "Block settings"
 msgstr "ブロック設定"
 
-#: block/checkboxes/edit.js:81 block/radio-buttons/edit.js:61
+#: block/checkboxes/edit.js:89 block/radio-buttons/edit.js:69
 msgid "Direction"
 msgstr "方向"
 
-#: block/checkboxes/edit.js:86 block/form/input/form-settings-panel.js:36
-#: block/radio-buttons/edit.js:66
+#: block/checkboxes/edit.js:94 block/form/input/form-settings-panel.js:36
+#: block/radio-buttons/edit.js:74
 msgid "Default"
 msgstr "デフォルト"
 
-#: block/checkboxes/edit.js:90 block/radio-buttons/edit.js:70
+#: block/checkboxes/edit.js:98 block/radio-buttons/edit.js:78
 msgid "Horizontal"
 msgstr "横"
 
-#: block/checkboxes/edit.js:94 block/radio-buttons/edit.js:74
+#: block/checkboxes/edit.js:102 block/radio-buttons/edit.js:82
 msgid "Vertical"
 msgstr "縦"
 
-#: block/checkboxes/edit.js:103 block/email/edit.js:99 block/file/edit.js:47
-#: block/item/edit.js:84 block/radio-buttons/edit.js:83 block/select/edit.js:75
-#: block/tel/edit.js:99 block/text/edit.js:99 block/textarea/edit.js:88
-#: block/url/edit.js:99
+#: block/checkboxes/edit.js:111 block/email/edit.js:107 block/file/edit.js:55
+#: block/item/edit.js:106 block/radio-buttons/edit.js:91
+#: block/select/edit.js:84 block/tel/edit.js:108 block/text/edit.js:108
+#: block/textarea/edit.js:97 block/url/edit.js:108
 msgid "Description"
 msgstr "説明"
 
-#: block/checkboxes/index.js:10
+#: block/checkboxes/index.js:13
 msgid "Checkboxes"
 msgstr "チェックボックス"
 
@@ -248,19 +135,27 @@ msgid ""
 "%1$s"
 msgstr "必須。次の形式で入力: “value” : “label”%1$s あるいは value%1$s"
 
-#: block/email/index.js:10
+#: block/email/index.js:13
 msgid "email"
 msgstr "email"
 
-#: block/file/index.js:10
+#: block/file/edit.js:75 App/Control/File.php:89
+msgid "Choose file"
+msgstr "ファイルを選択"
+
+#: block/file/edit.js:78 App/Control/File.php:90
+msgid "No file chosen"
+msgstr "選択されていません"
+
+#: block/file/index.js:13
 msgid "File"
 msgstr "ファイル"
 
-#: block/form/complete/edit.js:22
+#: block/form/complete/edit.js:28
 msgid "Complete"
 msgstr "完了画面"
 
-#: block/form/complete/index.js:8
+#: block/form/complete/index.js:12
 msgid "Complete page"
 msgstr "完了画面"
 
@@ -313,19 +208,11 @@ msgstr ""
 "設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
 "い: {name}"
 
-#: block/form/input/edit.js:33
-msgid "Admin notification"
-msgstr "管理者通知"
-
-#: block/form/input/edit.js:42
-msgid "Automatic reply notification"
-msgstr "自動返信通知"
-
-#: block/form/input/edit.js:71
+#: block/form/input/edit.js:59
 msgid "Input"
 msgstr "入力画面"
 
-#: block/form/input/edit.js:81
+#: block/form/input/edit.js:69
 msgid "Open the form settings"
 msgstr "フォーム設定を開く"
 
@@ -357,6 +244,18 @@ msgstr "Letter"
 msgid "Business"
 msgstr "Business"
 
+#: block/form/input/form-settings-panel.js:57
+msgid "Confirm button label"
+msgstr "確認ボタンのラベル"
+
+#: block/form/input/form-settings-panel.js:65
+msgid "Back button label"
+msgstr "戻るボタンのラベル"
+
+#: block/form/input/form-settings-panel.js:75
+msgid "Send button label"
+msgstr "送信ボタンのラベル"
+
 #: block/form/input/help-button.js:11
 msgid "Help"
 msgstr "ヘルプ"
@@ -369,27 +268,27 @@ msgstr "送信された値は次の形式で埋め込むことができます: "
 msgid "You can embed all submitted values ​​in the following format: "
 msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
 
-#: block/form/input/index.js:9
+#: block/form/input/index.js:12
 msgid "Form"
 msgstr "フォーム"
 
-#: block/item/edit.js:49
+#: block/item/edit.js:71
 msgid "Display label column"
 msgstr "ラベルカラムを表示する"
 
-#: block/item/edit.js:70
+#: block/item/edit.js:92
 msgid "Label"
 msgstr "ラベル"
 
-#: block/item/index.js:10
+#: block/item/index.js:13
 msgid "Item"
 msgstr "項目"
 
-#: block/radio-buttons/index.js:10
+#: block/radio-buttons/index.js:13
 msgid "Radio buttons"
 msgstr "ラジオボタン"
 
-#: block/select/index.js:10
+#: block/select/index.js:13
 msgid "Select"
 msgstr "セレクトボックス"
 
@@ -397,31 +296,31 @@ msgstr "セレクトボックス"
 msgid "Select a form"
 msgstr "フォームを選択してください"
 
-#: block/snow-monkey-form/index.js:9
+#: block/snow-monkey-form/index.js:12
 msgid "Snow Monkey Form"
 msgstr "Snow Monkey Forms"
 
-#: block/tel/index.js:10
+#: block/tel/index.js:13
 msgid "Tel"
 msgstr "Tel"
 
-#: block/text/index.js:10
+#: block/text/index.js:13
 msgid "Text"
 msgstr "テキスト"
 
-#: block/textarea/edit.js:43
+#: block/textarea/edit.js:52
 msgid "rows"
 msgstr "rows"
 
-#: block/textarea/edit.js:44
+#: block/textarea/edit.js:53
 msgid "Number of lines"
 msgstr "行数"
 
-#: block/textarea/index.js:10
+#: block/textarea/index.js:13
 msgid "Textarea"
 msgstr "テキストエリア"
 
-#: block/url/index.js:10
+#: block/url/index.js:13
 msgid "URL"
 msgstr "URL"
 
@@ -432,6 +331,119 @@ msgstr "バリデーション"
 #: hoc/with-validations.js:26
 msgid "Required"
 msgstr "必須"
+
+#: App/Control/File.php:65
+msgid "Uploaded file"
+msgstr "アップロード済みのファイル"
+
+#: App/Controller/Back.php:42 App/Controller/Input.php:34
+#: App/Controller/Invalid.php:44
+msgid "Confirm"
+msgstr "確認画面へ"
+
+#: App/Controller/Confirm.php:42
+msgid "Back"
+msgstr "戻る"
+
+#: App/Controller/Confirm.php:43 App/Controller/Input.php:37
+#: App/Controller/Invalid.php:47
+msgid "Send"
+msgstr "送信する"
+
+#: App/Rest/Route/View.php:83
+msgid "Invalid access."
+msgstr "無効なアクセスです。"
+
+#: App/Rest/Route/View.php:101
+msgid "Failed to send administrator email."
+msgstr "管理者メールの送信に失敗しました。"
+
+#: App/Rest/Route/View.php:102 App/Rest/Route/View.php:150
+#: block/snow-monkey-form/view.php:52
+msgid "Please try again later or contact your administrator by other means."
+msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
+
+#: App/Rest/Route/View.php:113
+msgid "Failed to send auto reply email."
+msgstr "自動返信メールの送信に失敗しました。"
+
+#: App/Rest/Route/View.php:149 block/snow-monkey-form/view.php:51
+msgid "An unexpected problem has occurred."
+msgstr "予期しない問題が発生しました。"
+
+#: App/Validation/Email.php:40
+msgid "Please enter a valid email address."
+msgstr "有効なメールアドレスを入力してください。"
+
+#: App/Validation/Required.php:34
+msgid "Please enter."
+msgstr "入力してください。"
+
+#: App/Validation/Url.php:34
+msgid "Please enter a valid URL."
+msgstr "有効な URL を入力してください。"
+
+#: block/snow-monkey-form/view.php:18
+msgctxt "progress-tracker"
+msgid "1"
+msgstr "1"
+
+#: block/snow-monkey-form/view.php:21
+msgctxt "progress-tracker"
+msgid "Input"
+msgstr "入力"
+
+#: block/snow-monkey-form/view.php:26
+msgctxt "progress-tracker"
+msgid "2"
+msgstr "2"
+
+#: block/snow-monkey-form/view.php:29
+msgctxt "progress-tracker"
+msgid "Confirm"
+msgstr "確認"
+
+#: block/snow-monkey-form/view.php:34
+msgctxt "progress-tracker"
+msgid "3"
+msgstr "3"
+
+#: block/snow-monkey-form/view.php:37
+msgctxt "progress-tracker"
+msgid "Complete"
+msgstr "完了"
+
+#. Plugin Name of the plugin/theme
+#: snow-monkey-forms.php:191 snow-monkey-forms.php:470
+msgid "Snow Monkey Forms"
+msgstr "Snow Monkey Forms"
+
+#: snow-monkey-forms.php:204
+msgctxt "form-field-label"
+msgid "Name"
+msgstr "お名前"
+
+#: snow-monkey-forms.php:224
+msgctxt "form-field-label"
+msgid "Email"
+msgstr "Eメール"
+
+#: snow-monkey-forms.php:244
+msgctxt "form-field-label"
+msgid "Message"
+msgstr "メッセージ"
+
+#: snow-monkey-forms.php:270
+msgid "Complete !"
+msgstr "完了しました。"
+
+#: snow-monkey-forms.php:324
+msgid "Admin notification"
+msgstr "管理者通知"
+
+#: snow-monkey-forms.php:389
+msgid "Automatic reply notification"
+msgstr "自動返信通知"
 
 #. Description of the plugin/theme
 msgid "The Snow Monkey Forms is a mail form plugin for the block editor."

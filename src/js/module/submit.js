@@ -25,6 +25,7 @@ export default function submit( event ) {
 	event.preventDefault();
 
 	const form = event.target;
+	const focusPoint = form.querySelector( '.smf-focus-point' );
 	const contents = form.querySelector( '.smf-form' );
 	const actionArea = form.querySelector( '.smf-action' );
 	const formData = new FormData( form );
@@ -91,11 +92,12 @@ export default function submit( event ) {
 		actionArea.innerHTML = contentType;
 	};
 
-	const focusToFirstItem = () => {
-		const firstItem = form.querySelector( '.smf-item' );
-		if ( !! firstItem ) {
-			firstItem.focus();
+	const focusFocusPoint = () => {
+		if ( ! focusPoint ) {
+			return;
 		}
+
+		focusPoint.focus();
 	};
 
 	const forcusToFirstErrorControl = ( errorMessages ) => {
@@ -108,15 +110,6 @@ export default function submit( event ) {
 			if ( !! firstErrorControl ) {
 				firstErrorControl.focus();
 			}
-		}
-	};
-
-	const focusToContent = () => {
-		const content = form.querySelector(
-			'.smf-complete-content, .smf-system-error-content'
-		);
-		if ( !! content ) {
-			content.focus();
 		}
 	};
 
@@ -151,11 +144,11 @@ export default function submit( event ) {
 			if ( 0 < errorMessages.length ) {
 				forcusToFirstErrorControl( errorMessages );
 			} else {
-				focusToFirstItem();
+				focusFocusPoint();
 			}
 		} else if ( maybeComplete( method ) ) {
 			replaceContent( response.message );
-			focusToContent();
+			focusFocusPoint();
 			replaceAction( response.action );
 		} else {
 			replaceContent( '' );
@@ -189,7 +182,6 @@ export default function submit( event ) {
 
 		const errorMessage = document.createElement( 'div' );
 		errorMessage.classList.add( 'smf-system-error-content' );
-		errorMessage.setAttribute( 'tabindex', '-1' );
 
 		const errorMessageReady = form.querySelector(
 			'.smf-system-error-content-ready'
@@ -198,7 +190,7 @@ export default function submit( event ) {
 
 		replaceContent( errorMessage );
 		replaceAction( '' );
-		focusToContent();
+		focusFocusPoint();
 
 		detail.status = 'systemerror';
 		addCustomEvent( event.target, 'smf.systemerror', detail );

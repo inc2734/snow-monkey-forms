@@ -426,6 +426,36 @@ class Bootstrap {
 				'type'         => 'boolean',
 			]
 		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'confirm_button_label',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'back_button_label',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'complete_button_label',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
 	}
 
 	/**
