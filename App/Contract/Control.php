@@ -100,6 +100,8 @@ abstract class Control {
 	 * @return string|null
 	 */
 	protected function _generate_attributes( array $_attributes ) {
+		$_attributes = apply_filters( 'snow_monkey_forms/control/attributes', $_attributes );
+
 		$attributes = [];
 
 		foreach ( $_attributes as $key => $value ) {
