@@ -15,6 +15,8 @@ class Textarea extends Contract\Control {
 	/**
 	 * @var array
 	 *  - string  name
+	 *  - int     rows
+	 *  - string  placeholder
 	 *  - boolean disabled
 	 *  - string  id
 	 *  - string  class
@@ -23,6 +25,7 @@ class Textarea extends Contract\Control {
 	protected $attributes = [
 		'name'         => '',
 		'rows'         => 5,
+		'placeholder'  => '',
 		'disabled'     => false,
 		'id'           => '',
 		'class'        => 'smf-textarea-control__control',
