@@ -1,6 +1,12 @@
+import config from '../../src/js/config';
+
 export default function () {
 	return (
-		<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			viewBox="0 0 24 24"
+			xmlns="http://www.w3.org/2000/svg"
+			style={ { color: config.blandColor } }
+		>
 			<path
 				clipRule="evenodd"
 				d="M22 7.5H2a.5.5 0 00-.5.5v8a.5.5 0 00.5.5h20a.5.5 0 00.5-.5V8a.5.5 0 00-.5-.5zM2 6a2 2 0 00-2 2v8a2 2 0 002 2h20a2 2 0 002-2V8a2 2 0 00-2-2z"

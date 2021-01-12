@@ -1,6 +1,13 @@
+import config from '../../src/js/config';
+
 export default function () {
 	return (
-		<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			style={ { color: config.blandColor } }
+		>
 			<path
 				d="M7.5 8.5L12 4.5L16.5 8.5"
 				fill="none"

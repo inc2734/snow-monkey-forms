@@ -1,5 +1,6 @@
 import { __ } from '@wordpress/i18n';
 
+import config from '../../src/js/config';
 import metadata from './block.json';
 import Edit from './edit';
 import Save from './save';
@@ -10,7 +11,10 @@ export { metadata, name };
 
 export const settings = {
 	title: __( 'Snow Monkey Form', 'snow-monkey-forms' ),
-	icon: 'editor-ol',
+	icon: {
+		foreground: config.blandColor,
+		src: 'editor-ol',
+	},
 	edit: Edit,
 	save: Save,
 };
