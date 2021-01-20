@@ -40,7 +40,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 		</ol>
 	<?php endif; ?>
 
-	<div class="smf-focus-point" tabindex="-1"></div>
+	<input class="smf-focus-point" tabindex="-1" aria-hidden="true" />
 	<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
 
 	<div class="smf-action">
