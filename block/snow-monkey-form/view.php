@@ -56,4 +56,5 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 	<?php Meta::the_formid( $form_id ); ?>
 	<?php Meta::the_token(); ?>
+	<?php do_action( 'snow_monkey_forms/form/append' ); ?>
 </form>

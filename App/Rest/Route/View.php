@@ -83,6 +83,11 @@ class View {
 			return $this->_send_systemerror( __( 'Invalid access.', 'snow-monkey-forms' ) );
 		}
 
+		$spam_validate = apply_filters( 'snow_monkey_forms/spam/validate', true );
+		if ( ! $spam_validate ) {
+			return $this->_send_systemerror( __( 'There is a possibility of spamming.', 'snow-monkey-forms' ) );
+		}
+
 		// Validate check.
 		if ( ! $this->validator->validate() ) {
 			Meta::set_method( 'invalid' );

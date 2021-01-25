@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2020-12-24 11:38+0900\n"
-"PO-Revision-Date: 2020-12-24 11:38+0900\n"
+"POT-Creation-Date: 2021-01-25 11:45+0900\n"
+"PO-Revision-Date: 2021-01-25 11:49+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -49,7 +49,7 @@ msgstr "ブロック設定"
 msgid "Direction"
 msgstr "方向"
 
-#: block/checkboxes/edit.js:94 block/form/input/form-settings-panel.js:36
+#: block/checkboxes/edit.js:94 block/form/input/form-settings-panel.js:41
 #: block/radio-buttons/edit.js:74
 msgid "Default"
 msgstr "デフォルト"
@@ -155,7 +155,7 @@ msgstr "ファイル"
 msgid "Complete"
 msgstr "完了画面"
 
-#: block/form/complete/index.js:12
+#: block/form/complete/index.js:13
 msgid "Complete page"
 msgstr "完了画面"
 
@@ -216,43 +216,43 @@ msgstr "入力画面"
 msgid "Open the form settings"
 msgstr "フォーム設定を開く"
 
-#: block/form/input/form-settings-panel.js:15
+#: block/form/input/form-settings-panel.js:20
 msgid "Form settings"
 msgstr "フォーム設定"
 
-#: block/form/input/form-settings-panel.js:17
+#: block/form/input/form-settings-panel.js:22
 msgid "Use confirm page"
 msgstr "確認画面を使用する"
 
-#: block/form/input/form-settings-panel.js:23
+#: block/form/input/form-settings-panel.js:28
 msgid "Use progress tracker"
 msgstr "プログレストラッカーを使用する"
 
-#: block/form/input/form-settings-panel.js:31
+#: block/form/input/form-settings-panel.js:36
 msgid "Form style"
 msgstr "フォームスタイル"
 
-#: block/form/input/form-settings-panel.js:40
+#: block/form/input/form-settings-panel.js:45
 msgid "Simple table"
 msgstr "Simple table"
 
-#: block/form/input/form-settings-panel.js:44
+#: block/form/input/form-settings-panel.js:49
 msgid "Letter"
 msgstr "Letter"
 
-#: block/form/input/form-settings-panel.js:48
+#: block/form/input/form-settings-panel.js:53
 msgid "Business"
 msgstr "Business"
 
-#: block/form/input/form-settings-panel.js:57
+#: block/form/input/form-settings-panel.js:63
 msgid "Confirm button label"
 msgstr "確認ボタンのラベル"
 
-#: block/form/input/form-settings-panel.js:65
+#: block/form/input/form-settings-panel.js:73
 msgid "Back button label"
 msgstr "戻るボタンのラベル"
 
-#: block/form/input/form-settings-panel.js:75
+#: block/form/input/form-settings-panel.js:83
 msgid "Send button label"
 msgstr "送信ボタンのラベル"
 
@@ -268,7 +268,7 @@ msgstr "送信された値は次の形式で埋め込むことができます: "
 msgid "You can embed all submitted values ​​in the following format: "
 msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
 
-#: block/form/input/index.js:12
+#: block/form/input/index.js:13
 msgid "Form"
 msgstr "フォーム"
 
@@ -280,7 +280,7 @@ msgstr "ラベルカラムを表示する"
 msgid "Label"
 msgstr "ラベル"
 
-#: block/item/index.js:13
+#: block/item/index.js:14
 msgid "Item"
 msgstr "項目"
 
@@ -296,7 +296,7 @@ msgstr "セレクトボックス"
 msgid "Select a form"
 msgstr "フォームを選択してください"
 
-#: block/snow-monkey-form/index.js:12
+#: block/snow-monkey-form/index.js:13
 msgid "Snow Monkey Form"
 msgstr "Snow Monkey Forms"
 
@@ -336,17 +336,15 @@ msgstr "必須"
 msgid "Uploaded file"
 msgstr "アップロード済みのファイル"
 
-#: App/Controller/Back.php:42 App/Controller/Input.php:34
-#: App/Controller/Invalid.php:44
+#: App/Model/Setting.php:154
 msgid "Confirm"
 msgstr "確認画面へ"
 
-#: App/Controller/Confirm.php:42
+#: App/Model/Setting.php:159
 msgid "Back"
 msgstr "戻る"
 
-#: App/Controller/Confirm.php:43 App/Controller/Input.php:37
-#: App/Controller/Invalid.php:47
+#: App/Model/Setting.php:164
 msgid "Send"
 msgstr "送信する"
 
@@ -354,22 +352,51 @@ msgstr "送信する"
 msgid "Invalid access."
 msgstr "無効なアクセスです。"
 
-#: App/Rest/Route/View.php:101
+#: App/Rest/Route/View.php:88
+msgid "There is a possibility of spamming."
+msgstr "スパム送信の可能性があります。"
+
+#: App/Rest/Route/View.php:106
 msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:102 App/Rest/Route/View.php:150
-#: block/snow-monkey-form/view.php:52
+#: App/Rest/Route/View.php:107 App/Rest/Route/View.php:155
+#: block/snow-monkey-form/view.php:53
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
-#: App/Rest/Route/View.php:113
+#: App/Rest/Route/View.php:118
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:149 block/snow-monkey-form/view.php:51
+#: App/Rest/Route/View.php:154 block/snow-monkey-form/view.php:52
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
+
+#: App/Service/ReCaptcha/Controller/Controller.php:40
+#: App/Service/ReCaptcha/Controller/Controller.php:41
+#: App/Service/ReCaptcha/Controller/Controller.php:55
+msgid "reCAPTCHA"
+msgstr "reCAPTCHA"
+
+#: App/Service/ReCaptcha/Controller/Controller.php:52
+#: App/Service/ReCaptcha/Controller/Controller.php:95
+msgid "reCAPTCHA protects your contact form from fraud and abuse."
+msgstr "reCAPTCHA は問い合わせフォームを詐欺や悪用から保護します。"
+
+#. translators: %1$s: <a> open tag, %2$s: </a> close tag.
+#: App/Service/ReCaptcha/Controller/Controller.php:99
+#, php-format
+msgid "For detail see %1$sreCAPTCHA%2$s."
+msgstr "詳細については、%1$sreCAPTCHA%2$sを参照してください。"
+
+#: App/Service/ReCaptcha/Controller/Controller.php:113
+msgid "Site Key"
+msgstr "Site Key"
+
+#: App/Service/ReCaptcha/Controller/Controller.php:131
+msgid "Secret Key"
+msgstr "Secret Key"
 
 #: App/Validation/Email.php:40
 msgid "Please enter a valid email address."
@@ -414,34 +441,34 @@ msgid "Complete"
 msgstr "完了"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:191 snow-monkey-forms.php:470
+#: snow-monkey-forms.php:195 snow-monkey-forms.php:494
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:204
+#: snow-monkey-forms.php:208
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:224
+#: snow-monkey-forms.php:228
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:244
+#: snow-monkey-forms.php:248
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:270
+#: snow-monkey-forms.php:274
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: snow-monkey-forms.php:324
+#: snow-monkey-forms.php:328
 msgid "Admin notification"
 msgstr "管理者通知"
 
-#: snow-monkey-forms.php:389
+#: snow-monkey-forms.php:393
 msgid "Automatic reply notification"
 msgstr "自動返信通知"
 

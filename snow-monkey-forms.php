@@ -19,6 +19,8 @@ namespace Snow_Monkey\Plugin\Forms;
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 use Snow_Monkey\Plugin\Forms\App\Rest;
+use Snow_Monkey\Plugin\Forms\App\Service\Admin\Admin;
+use Snow_Monkey\Plugin\Forms\App\Service\ReCaptcha\ReCaptcha;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -42,7 +44,7 @@ class Bootstrap {
 	 * Plugins loaded.
 	 */
 	public function _plugins_loaded() {
-		load_plugin_textdomain( 'snow-monkey-forms', false, basename( __DIR__ ) . '/languages' );
+		load_plugin_textdomain( 'snow-monkey-forms', false, SNOW_MONKEY_FORMS_PATH . '/languages' );
 		add_filter( 'load_textdomain_mofile', [ $this, '_load_textdomain_mofile' ], 10, 2 );
 
 		Csrf::save_token();
@@ -56,6 +58,8 @@ class Bootstrap {
 		add_filter( 'block_categories', [ $this, '_block_categories' ] );
 
 		add_action( 'template_redirect', [ $this, '_do_empty_save_dir' ] );
+
+		new ReCaptcha();
 	}
 
 	/**
@@ -450,6 +454,26 @@ class Bootstrap {
 		register_post_meta(
 			'snow-monkey-forms',
 			'complete_button_label',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'recaptcha_site_key',
+			[
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			]
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'recaptcha_secret_key',
 			[
 				'show_in_rest' => true,
 				'single'       => true,
