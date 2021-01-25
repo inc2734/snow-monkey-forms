@@ -21,6 +21,10 @@ class ReCaptcha {
 		$this->site_key   = Controller::get_option( 'site-key' );
 		$this->secret_key = Controller::get_option( 'secret-key' );
 
+		if ( ! $this->site_key || ! $this->secret_key ) {
+			return;
+		}
+
 		add_action( 'wp_enqueue_scripts', [ $this, '_wp_enqueue_scripts' ] );
 		add_filter( 'snow_monkey_forms/spam/validate', [ $this, '_validate' ] );
 		add_action( 'snow_monkey_forms/form/append', [ $this, '_add_token_field' ] );
@@ -69,10 +73,6 @@ class ReCaptcha {
 	 * Enqueue assets.
 	 */
 	public function _wp_enqueue_scripts() {
-		if ( ! $this->site_key || ! $this->secret_key ) {
-			return;
-		}
-
 		wp_enqueue_script(
 			'google-recaptcha',
 			add_query_arg(
