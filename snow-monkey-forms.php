@@ -453,7 +453,7 @@ class Bootstrap {
 
 		register_post_meta(
 			'snow-monkey-forms',
-			'complete_button_label',
+			'send_button_label',
 			[
 				'show_in_rest' => true,
 				'single'       => true,
