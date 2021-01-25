@@ -93,7 +93,7 @@ class Helper {
 		if ( isset( $attributes['values'] ) ) {
 			$values               = str_replace( [ "\r\n", "\r", "\n" ], "\n", $attributes['values'] );
 			$values               = explode( "\n", $values );
-			$values               = array_unique( array_filter( $values ) );
+			$values               = array_unique( $values );
 			$attributes['values'] = $values;
 		}
 

@@ -105,7 +105,12 @@ abstract class Control {
 		$attributes = [];
 
 		foreach ( $_attributes as $key => $value ) {
-			if ( '' === $value || false === $value || is_null( $value ) || is_array( $value ) ) {
+			if (
+				'' === $value && 'value' !== $key
+				|| false === $value
+				|| is_null( $value )
+				|| is_array( $value )
+			) {
 				continue;
 			}
 
@@ -140,7 +145,7 @@ abstract class Control {
 	 */
 	protected function _generate_attribute_string( $name, $value ) {
 		$value = trim( $value );
-		if ( '' === $value ) {
+		if ( '' === $value && 'value' !== $name ) {
 			return;
 		}
 
