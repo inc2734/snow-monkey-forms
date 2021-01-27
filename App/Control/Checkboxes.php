@@ -83,7 +83,7 @@ class Checkboxes extends Contract\Control {
 						'name'         => $this->get_property( 'name' ),
 						'value'        => $value,
 						'disabled'     => $this->get_property( 'disabled' ),
-						'checked'      => $this->get_property( 'value' ) === $value,
+						'checked'      => (string) $this->get_property( 'value' ) === (string) $value,
 						'data-invalid' => $this->get_attribute( 'data-invalid' ),
 					],
 					'label'      => $label,

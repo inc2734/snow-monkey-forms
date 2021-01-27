@@ -38,7 +38,8 @@ class Option extends Contract\Control {
 	 * @param mixed $value The value to be saved.
 	 */
 	public function save( $value ) {
-		$this->set_attribute( 'selected', $this->get_attribute( 'value' ) === $value );
+		$selected = (string) $this->get_attribute( 'value' ) === (string) $value;
+		$this->set_attribute( 'selected', $selected );
 	}
 
 	/**

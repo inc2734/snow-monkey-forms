@@ -48,7 +48,8 @@ class Checkbox extends Contract\Control {
 	 * @param mixed $value The value to be saved.
 	 */
 	public function save( $value ) {
-		$this->set_attribute( 'checked', $this->get_attribute( 'value' ) === $value );
+		$checked = (string) $this->get_attribute( 'value' ) === (string) $value;
+		$this->set_attribute( 'checked', $checked );
 	}
 
 	/**

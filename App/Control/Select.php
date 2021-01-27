@@ -67,7 +67,7 @@ class Select extends Contract\Control {
 				[
 					'attributes' => [
 						'value'    => $value,
-						'selected' => $this->get_property( 'value' ) === $value,
+						'selected' => (string) $this->get_property( 'value' ) === (string) $value,
 					],
 					'label'      => $label,
 					'name'       => $this->get_attribute( 'name' ),
@@ -94,7 +94,7 @@ class Select extends Contract\Control {
 	public function input() {
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
-			$selected = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
+			$selected = (string) $control->get_attribute( 'value' ) === (string) $this->get_property( 'value' );
 			$control->set_attribute( 'selected', $selected );
 			$children[ $key ] = $control;
 		}
@@ -128,8 +128,8 @@ class Select extends Contract\Control {
 	public function confirm() {
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
-			$checked = $control->get_attribute( 'value' ) === $this->get_property( 'value' );
-			$control->set_attribute( 'selected', $checked );
+			$selected = (string) $control->get_attribute( 'value' ) === (string) $this->get_property( 'value' );
+			$control->set_attribute( 'selected', $selected );
 			$children[ $key ] = $control;
 		}
 		$this->_set_children( $children );
