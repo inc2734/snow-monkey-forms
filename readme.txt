@@ -52,8 +52,8 @@ Yes! You can use the Snow Monkey Forms with any theme, but we recommend using ou
 == Changelog ==
 
 = 1.4.0 =
-* Add `Snow_Monkey\Plugin\Forms\App\Model\Setting` as the 2nd argument to `snow_monkey_forms/complete/message`.
-* Add `Snow_Monkey\Plugin\Forms\App\Model\Setting` as the 2nd argument to `snow_monkey_forms/system_error/message`.
+* Add `Snow_Monkey\Plugin\Forms\App\Model\Setting` as the 3rd argument to `snow_monkey_forms/complete/message`.
+* Add `Snow_Monkey\Plugin\Forms\App\Model\Setting` as the 3rd argument to `snow_monkey_forms/system_error/message`.
 * Fixed a bug in which select boxes, radio buttons, and check boxes sometimes malfunctioned when the choices were numeric.
 
 = 1.3.1 =
