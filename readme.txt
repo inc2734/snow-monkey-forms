@@ -5,7 +5,7 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 5.6
 Tested up to: 5.6
 Requires PHP: 5.6
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,11 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 1.4.0 =
+* Add `Snow_Monkey\Plugin\Forms\App\Model\Setting` as the 2nd argument to `snow_monkey_forms/complete/message`.
+* Add `Snow_Monkey\Plugin\Forms\App\Model\Setting` as the 2nd argument to `snow_monkey_forms/system_error/message`.
+* Fixed a bug in which select boxes, radio buttons, and check boxes sometimes malfunctioned when the choices were numeric.
 
 = 1.3.1 =
 * Fixed a bug in which sending failed if reCAPTCHA was not set.
