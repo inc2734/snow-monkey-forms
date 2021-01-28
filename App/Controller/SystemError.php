@@ -36,7 +36,12 @@ class SystemError extends Contract\Controller {
 	 */
 	protected function set_message() {
 		$message = implode( '<br>', $this->setting->get( 'system_error_messages' ) );
-		$message = apply_filters( 'snow_monkey_forms/system_error/message', $message, $this->responser );
+		$message = apply_filters(
+			'snow_monkey_forms/system_error/message',
+			$message,
+			$this->responser,
+			$this->setting
+		);
 
 		return sprintf(
 			'<div class="smf-system-error-content">%1$s</div>',

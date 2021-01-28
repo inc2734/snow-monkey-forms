@@ -36,7 +36,12 @@ class Complete extends Contract\Controller {
 	 */
 	protected function set_message() {
 		$message = $this->setting->get( 'complete_content' );
-		$message = apply_filters( 'snow_monkey_forms/complete/message', $message, $this->responser );
+		$message = apply_filters(
+			'snow_monkey_forms/complete/message',
+			$message,
+			$this->responser,
+			$this->setting
+		);
 
 		return sprintf(
 			'<div class="smf-complete-content">%1$s</div>',
