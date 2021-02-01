@@ -177,7 +177,7 @@ export default function submit( event ) {
 		addCustomEvent( event.target, 'smf.submit', detail );
 	};
 
-	const failCallback = () => {
+	const failCallback = ( statusText = null ) => {
 		form.setAttribute( 'data-screen', 'systemerror' );
 
 		const errorMessage = document.createElement( 'div' );
@@ -187,8 +187,16 @@ export default function submit( event ) {
 			'.smf-system-error-content-ready'
 		);
 		errorMessage.textContent = errorMessageReady.textContent;
+		if ( !! statusText ) {
+			const brElement = document.createElement( 'br' );
+			const statusTextElement = document.createElement( 'span' );
+			statusTextElement.classList.add( 'smf-system-error-status-text' );
+			statusTextElement.textContent = `(status: ${ statusText })`;
+			errorMessage.appendChild( brElement );
+			errorMessage.appendChild( statusTextElement );
+		}
 
-		replaceContent( errorMessage );
+		replaceContent( errorMessage.outerHTML );
 		replaceAction( '' );
 		focusFocusPoint();
 
@@ -204,7 +212,7 @@ export default function submit( event ) {
 			if ( 200 === xhr.status ) {
 				doneCallback( JSON.parse( xhr.response ) );
 			} else {
-				failCallback();
+				failCallback( xhr?.statusText );
 			}
 		}
 	};

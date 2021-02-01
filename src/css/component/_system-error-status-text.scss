@@ -1,0 +1,4 @@
+.smf-system-error-status-text {
+  color: $_color-gray;
+  @include _font-size-line-height($_base-font-size-px - 2);
+}
