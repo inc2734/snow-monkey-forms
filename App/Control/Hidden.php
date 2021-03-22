@@ -38,9 +38,11 @@ class Hidden extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+
 		return sprintf(
 			'<input type="hidden" %1$s>',
-			$this->_generate_attributes( $this->get_property( 'attributes' ) )
+			$this->_generate_attributes_string( $attributes )
 		);
 	}
 

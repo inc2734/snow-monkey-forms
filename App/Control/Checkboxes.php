@@ -108,6 +108,8 @@ class Checkboxes extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
 			$checked = in_array(
@@ -121,6 +123,13 @@ class Checkboxes extends Contract\Control {
 		}
 		$this->_set_children( $children );
 
+		$direction = $this->get_property( 'direction' );
+		$classes   = [];
+		$classes[] = 'smf-checkboxes-control';
+		if ( $direction ) {
+			$classes[] = 'smf-checkboxes-control--' . $direction;
+		}
+
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
@@ -129,20 +138,13 @@ class Checkboxes extends Contract\Control {
 			);
 		}
 
-		$direction = $this->get_property( 'direction' );
-		$classes   = [];
-		$classes[] = 'smf-checkboxes-control';
-		if ( $direction ) {
-			$classes[] = 'smf-checkboxes-control--' . $direction;
-		}
-
 		return sprintf(
 			'<div class="%1$s" %2$s>
 				<div class="smf-checkboxes-control__control">%3$s</div>
 			</div>
 			%4$s',
 			esc_attr( implode( ' ', $classes ) ),
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			$this->_children( 'input' ),
 			$description
 		);

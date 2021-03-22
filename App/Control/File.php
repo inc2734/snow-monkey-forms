@@ -58,6 +58,8 @@ class File extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+
 		$value = $this->get_property( 'value' );
 		if ( $value ) {
 			$value = sprintf(
@@ -85,7 +87,7 @@ class File extends Contract\Control {
 				%4$s
 			</div>
 			%5$s',
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			__( 'Choose file', 'snow-monkey-forms' ),
 			__( 'No file chosen', 'snow-monkey-forms' ),
 			$value,

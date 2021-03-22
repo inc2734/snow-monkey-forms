@@ -94,10 +94,10 @@ abstract class Control {
 	abstract public function invalid( $message = '' );
 
 	/**
-	 * Generate attributes. <attribute>="<value>" <attribute>="<value>" ...
+	 * Generate attributes array.
 	 *
 	 * @param array $_attributes Array of attribute.
-	 * @return string|null
+	 * @return array
 	 */
 	protected function _generate_attributes( array $_attributes ) {
 		$_attributes = apply_filters( 'snow_monkey_forms/control/attributes', $_attributes );
@@ -124,6 +124,24 @@ abstract class Control {
 				}
 			}
 
+			$attributes[ $key ] = $value;
+		}
+
+		return $attributes;
+	}
+
+	/**
+	 * Generate attributes. <attribute>="<value>" <attribute>="<value>" ...
+	 *
+	 * @param array $_attributes Array of attribute.
+	 * @return string|null
+	 */
+	protected function _generate_attributes_string( array $_attributes ) {
+		$_attributes = $this->_generate_attributes( $_attributes );
+
+		$attributes = [];
+
+		foreach ( $_attributes as $key => $value ) {
 			$attribute_string = $this->_generate_attribute_string( $key, $value );
 			if ( ! $attribute_string ) {
 				continue;

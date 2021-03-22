@@ -62,6 +62,12 @@ class Textarea extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+		if ( isset( $attributes['value'] ) ) {
+			$this->set_property( 'value', $attributes['value'] );
+			unset( $attributes['value'] );
+		}
+
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
@@ -75,7 +81,7 @@ class Textarea extends Contract\Control {
 				<textarea %1$s>%2$s</textarea>
 			</div>
 			%3$s',
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			esc_html( $this->get_property( 'value' ) ),
 			$description
 		);

@@ -48,12 +48,14 @@ class Option extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+
 		$label = $this->get_property( 'label' );
 		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
 
 		return sprintf(
 			'<option %1$s>%2$s</option>',
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			esc_html( $label )
 		);
 	}

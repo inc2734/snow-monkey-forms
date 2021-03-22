@@ -541,3 +541,20 @@ function snow_monkey_forms_activate() {
 	register_uninstall_hook( __FILE__, '\Snow_Monkey\Plugin\Forms\snow_monkey_forms_uninstall' );
 }
 register_activation_hook( __FILE__, '\Snow_Monkey\Plugin\Forms\snow_monkey_forms_activate' );
+
+
+
+
+
+
+add_filter(
+	'snow_monkey_forms/control/attributes',
+	function( $attributes ) {
+		if ( ! array_key_exists( 'name', $attributes ) ) {
+			return $attributes;
+		}
+
+		$attributes['value'] = 10;
+		return $attributes;
+	}
+);

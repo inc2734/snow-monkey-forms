@@ -92,6 +92,12 @@ class Select extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+		if ( isset( $attributes['value'] ) ) {
+			$this->set_property( 'value', $attributes['value'] );
+			unset( $attributes['value'] );
+		}
+
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
 			$selected = (string) $control->get_attribute( 'value' ) === (string) $this->get_property( 'value' );
@@ -114,7 +120,7 @@ class Select extends Contract\Control {
 				<span class="smf-select-control__toggle"></span>
 			</div>
 			%3$s',
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			$this->_children( 'input' ),
 			$description
 		);

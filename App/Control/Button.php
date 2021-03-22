@@ -49,11 +49,13 @@ class Button extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+
 		return sprintf(
 			'<span class="smf-button-control">
 				<button type="submit" %1$s>%2$s</button>
 			</span>',
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			wp_kses_post( $this->get_property( 'label' ) )
 		);
 	}

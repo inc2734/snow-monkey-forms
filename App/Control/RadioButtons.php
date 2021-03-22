@@ -101,6 +101,8 @@ class RadioButtons extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {
 			$checked = (string) $control->get_attribute( 'value' ) === (string) $this->get_property( 'value' );
@@ -108,6 +110,13 @@ class RadioButtons extends Contract\Control {
 			$children[ $key ] = $control;
 		}
 		$this->_set_children( $children );
+
+		$direction = $this->get_property( 'direction' );
+		$classes   = [];
+		$classes[] = 'smf-radio-cuttons-control';
+		if ( $direction ) {
+			$classes[] = 'smf-radio-buttons-control--' . $direction;
+		}
 
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
@@ -117,20 +126,13 @@ class RadioButtons extends Contract\Control {
 			);
 		}
 
-		$direction = $this->get_property( 'direction' );
-		$classes   = [];
-		$classes[] = 'smf-radio-cuttons-control';
-		if ( $direction ) {
-			$classes[] = 'smf-radio-buttons-control--' . $direction;
-		}
-
 		return sprintf(
 			'<div class="%1$s" %2$s>
 				<div class="smf-radio-buttons-control__control">%3$s</div>
 			</div>
 			%4$s',
 			esc_attr( implode( ' ', $classes ) ),
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			$this->_children( 'input' ),
 			$description
 		);

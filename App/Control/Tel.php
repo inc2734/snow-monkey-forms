@@ -61,6 +61,8 @@ class Tel extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
 			$description = sprintf(
@@ -74,7 +76,7 @@ class Tel extends Contract\Control {
 				<input type="tel" %1$s>
 			</div>
 			%2$s',
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			$description
 		);
 	}

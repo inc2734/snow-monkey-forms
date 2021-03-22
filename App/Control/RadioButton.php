@@ -58,6 +58,8 @@ class RadioButton extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
+		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+
 		$label = $this->get_property( 'label' );
 		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
 
@@ -70,7 +72,7 @@ class RadioButton extends Contract\Control {
 					</span>
 				</label>
 			</div>',
-			$this->_generate_attributes( $this->get_property( 'attributes' ) ),
+			$this->_generate_attributes_string( $attributes ),
 			esc_html( $label )
 		);
 	}
