@@ -41,7 +41,7 @@ export default function submit( event ) {
 		clickedButton.removeAttribute( 'data-clicked' );
 	}
 
-	focusPoint.removeAttribute('disabled');
+	focusPoint.removeAttribute( 'disabled' );
 
 	const inputs = [].slice
 		.call(
@@ -100,7 +100,7 @@ export default function submit( event ) {
 		}
 
 		focusPoint.focus();
-		focusPoint.setAttribute('disabled', 'disabled');
+		focusPoint.setAttribute( 'disabled', 'disabled' );
 	};
 
 	const forcusToFirstErrorControl = ( errorMessages ) => {
