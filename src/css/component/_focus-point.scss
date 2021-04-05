@@ -1,16 +1,22 @@
 .smf-focus-point {
   margin: 0 !important;
-  height: 1px !important;
+  height: 4px !important;
   width: 1px !important;
   border: none !important;
   box-shadow: none !important;
+  caret-color: transparent !important;
+  background-color: transparent !important;
   pointer-events: none !important;
   line-height: 0 !important;
-  font-size: 1px !important;
+  font-size: 16px !important;
   padding: 0 !important;
   outline: none !important;
   overflow: hidden !important;
-  opacity: 0 !important;
+  opacity: 0.1 !important;
+
+  &[disabled] {
+    visibility: hidden;
+  }
 }
 
 .snow-monkey-form {
