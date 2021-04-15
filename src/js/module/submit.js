@@ -97,7 +97,10 @@ export default function submit( event ) {
 			return;
 		}
 
-		window.scrollTo(0, window.pageYOffset + focusPoint.getBoundingClientRect().top);
+		window.scrollTo(
+			0,
+			window.pageYOffset + focusPoint.getBoundingClientRect().top
+		);
 	};
 
 	const forcusToFirstErrorControl = ( errorMessages ) => {

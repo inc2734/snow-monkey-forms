@@ -87,6 +87,15 @@ class Controller {
 			self::OPTION_NAME,
 			'',
 			function() {
+				if ( ! empty( $_GET['settings-updated'] ) ) {
+					?>
+					<div class="updated settings-error notice is-dismissible">
+						<p>
+							<strong><?php esc_html_e( 'Settings saved.', 'snow-monkey-forms' ); ?></strong>
+						</p>
+					</div>
+					<?php
+				}
 				?>
 				<p>
 					<?php

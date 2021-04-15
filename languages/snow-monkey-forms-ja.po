@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2021-01-25 11:45+0900\n"
-"PO-Revision-Date: 2021-01-25 11:49+0900\n"
+"POT-Creation-Date: 2021-04-15 09:19+0900\n"
+"PO-Revision-Date: 2021-04-15 09:24+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -139,11 +139,11 @@ msgstr "必須。次の形式で入力: “value” : “label”%1$s あるい�
 msgid "email"
 msgstr "email"
 
-#: block/file/edit.js:75 App/Control/File.php:89
+#: block/file/edit.js:75 App/Control/File.php:91
 msgid "Choose file"
 msgstr "ファイルを選択"
 
-#: block/file/edit.js:78 App/Control/File.php:90
+#: block/file/edit.js:78 App/Control/File.php:92
 msgid "No file chosen"
 msgstr "選択されていません"
 
@@ -332,7 +332,7 @@ msgstr "バリデーション"
 msgid "Required"
 msgstr "必須"
 
-#: App/Control/File.php:65
+#: App/Control/File.php:67
 msgid "Uploaded file"
 msgstr "アップロード済みのファイル"
 
@@ -361,7 +361,7 @@ msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
 #: App/Rest/Route/View.php:107 App/Rest/Route/View.php:155
-#: block/snow-monkey-form/view.php:53
+#: block/snow-monkey-form/view.php:54
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
@@ -369,32 +369,35 @@ msgstr "後でもう一度やり直すか、他の方法で管理者に連絡し
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:154 block/snow-monkey-form/view.php:52
+#: App/Rest/Route/View.php:154 block/snow-monkey-form/view.php:53
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
 #: App/Service/ReCaptcha/Controller/Controller.php:40
 #: App/Service/ReCaptcha/Controller/Controller.php:41
-#: App/Service/ReCaptcha/Controller/Controller.php:55
+#: App/Service/ReCaptcha/Controller/Controller.php:54
 msgid "reCAPTCHA"
 msgstr "reCAPTCHA"
 
-#: App/Service/ReCaptcha/Controller/Controller.php:52
-#: App/Service/ReCaptcha/Controller/Controller.php:95
+#: App/Service/ReCaptcha/Controller/Controller.php:94
+msgid "Settings saved."
+msgstr "設定を保存しました。"
+
+#: App/Service/ReCaptcha/Controller/Controller.php:103
 msgid "reCAPTCHA protects your contact form from fraud and abuse."
 msgstr "reCAPTCHA は問い合わせフォームを詐欺や悪用から保護します。"
 
 #. translators: %1$s: <a> open tag, %2$s: </a> close tag.
-#: App/Service/ReCaptcha/Controller/Controller.php:99
+#: App/Service/ReCaptcha/Controller/Controller.php:111
 #, php-format
 msgid "For detail see %1$sreCAPTCHA%2$s."
 msgstr "詳細については、%1$sreCAPTCHA%2$sを参照してください。"
 
-#: App/Service/ReCaptcha/Controller/Controller.php:113
+#: App/Service/ReCaptcha/Controller/Controller.php:125
 msgid "Site Key"
 msgstr "Site Key"
 
-#: App/Service/ReCaptcha/Controller/Controller.php:131
+#: App/Service/ReCaptcha/Controller/Controller.php:143
 msgid "Secret Key"
 msgstr "Secret Key"
 
@@ -410,32 +413,32 @@ msgstr "入力してください。"
 msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
 
-#: block/snow-monkey-form/view.php:18
+#: block/snow-monkey-form/view.php:20
 msgctxt "progress-tracker"
 msgid "1"
 msgstr "1"
 
-#: block/snow-monkey-form/view.php:21
+#: block/snow-monkey-form/view.php:23
 msgctxt "progress-tracker"
 msgid "Input"
 msgstr "入力"
 
-#: block/snow-monkey-form/view.php:26
+#: block/snow-monkey-form/view.php:28
 msgctxt "progress-tracker"
 msgid "2"
 msgstr "2"
 
-#: block/snow-monkey-form/view.php:29
+#: block/snow-monkey-form/view.php:31
 msgctxt "progress-tracker"
 msgid "Confirm"
 msgstr "確認"
 
-#: block/snow-monkey-form/view.php:34
+#: block/snow-monkey-form/view.php:36
 msgctxt "progress-tracker"
 msgid "3"
 msgstr "3"
 
-#: block/snow-monkey-form/view.php:37
+#: block/snow-monkey-form/view.php:39
 msgctxt "progress-tracker"
 msgid "Complete"
 msgstr "完了"
@@ -484,9 +487,6 @@ msgstr "inc2734"
 #. Author URI of the plugin/theme
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
-
-#~ msgid "Settings"
-#~ msgstr "設定"
 
 #~ msgid "Input page"
 #~ msgstr "入力画面"
