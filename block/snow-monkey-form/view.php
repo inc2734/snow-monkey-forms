@@ -11,6 +11,8 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 ?>
 
 <form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action=""  enctype="multipart/form-data" data-screen="input">
+	<div class="smf-focus-point" aria-hidden="true"></div>
+
 	<?php if ( $setting->get( 'use_progress_tracker' ) ) : ?>
 		<ol class="smf-progress-tracker">
 			<li class="smf-progress-tracker__item smf-progress-tracker__item--input">
@@ -40,7 +42,6 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 		</ol>
 	<?php endif; ?>
 
-	<input class="smf-focus-point" tabindex="-1" aria-hidden="true" disabled="disabled" />
 	<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
 
 	<div class="smf-action">

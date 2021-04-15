@@ -41,8 +41,6 @@ export default function submit( event ) {
 		clickedButton.removeAttribute( 'data-clicked' );
 	}
 
-	focusPoint.removeAttribute( 'disabled' );
-
 	const inputs = [].slice
 		.call(
 			form.querySelectorAll(
@@ -99,8 +97,7 @@ export default function submit( event ) {
 			return;
 		}
 
-		focusPoint.focus();
-		focusPoint.setAttribute( 'disabled', 'disabled' );
+		window.scrollTo(0, window.pageYOffset + focusPoint.getBoundingClientRect().top);
 	};
 
 	const forcusToFirstErrorControl = ( errorMessages ) => {
@@ -212,7 +209,7 @@ export default function submit( event ) {
 	const xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = () => {
 		if ( 4 === xhr.readyState ) {
-			if ( 200 === xhr.status ) {
+			if ( 200 === xhr.status && !! xhr.status ) {
 				doneCallback( JSON.parse( xhr.response ) );
 			} else {
 				failCallback( xhr?.statusText );
@@ -220,5 +217,6 @@ export default function submit( event ) {
 		}
 	};
 	xhr.open( 'POST', snowmonkeyforms.view_json_url, true );
+
 	xhr.send( formData );
 }
