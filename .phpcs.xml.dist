@@ -46,4 +46,5 @@
   <exclude-pattern>*/tests/*</exclude-pattern>
   <exclude-pattern>*/languages/*</exclude-pattern>
   <exclude-pattern>*/dist/*</exclude-pattern>
+  <exclude-pattern>/.export/*</exclude-pattern>
 </ruleset>
