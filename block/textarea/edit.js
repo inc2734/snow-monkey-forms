@@ -9,6 +9,7 @@ import {
 	NameControl,
 	ValueControl,
 	PlaceholderControl,
+	MaxLengthControl,
 	IdControl,
 	ClassControl,
 } from '../components';
@@ -22,6 +23,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 		rows,
 		value,
 		placeholder,
+		maxlength,
 		id,
 		controlClass,
 		description,
@@ -76,6 +78,18 @@ const Edit = ( { attributes, setAttributes } ) => {
 						}
 					/>
 
+					<MaxLengthControl
+						value={ maxlength }
+						onChange={ ( attribute ) => {
+							setAttributes( {
+								maxlength: stringToNumber(
+									attribute,
+									maxlength
+								),
+							} );
+						} }
+					/>
+
 					<IdControl
 						value={ id }
 						onChange={ ( attribute ) =>
@@ -111,6 +125,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 						value={ value }
 						rows={ rows }
 						placeholder={ placeholder }
+						maxLength={ maxlength || undefined }
 						disabled="disabled"
 						id={ id || undefined }
 						className={ `smf-textarea-control__control ${ controlClass }` }
