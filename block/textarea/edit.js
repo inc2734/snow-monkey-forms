@@ -13,7 +13,7 @@ import {
 	ClassControl,
 } from '../components';
 
-import { uniqId } from '../helper';
+import { stringToNumber, uniqId } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const Edit = ( { attributes, setAttributes } ) => {
@@ -53,11 +53,12 @@ const Edit = ( { attributes, setAttributes } ) => {
 						help={ __( 'Number of lines', 'snow-monkey-forms' ) }
 						type="number"
 						value={ rows }
-						onChange={ ( attribute ) =>
+						onChange={ ( attribute ) => {
+							attribute = stringToNumber( attribute, rows );
 							setAttributes( {
 								rows: 0 < attribute ? attribute : 1,
-							} )
-						}
+							} );
+						} }
 					/>
 
 					<ValueControl
