@@ -10,7 +10,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Validator;
 use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
 
-register_block_type_from_metadata(
+register_block_type(
 	__DIR__,
 	[
 		'render_callback' => function( $attributes ) {

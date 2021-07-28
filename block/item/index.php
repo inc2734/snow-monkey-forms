@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-register_block_type_from_metadata(
+register_block_type(
 	__DIR__,
 	[]
 );

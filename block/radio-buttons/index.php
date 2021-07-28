@@ -7,7 +7,7 @@
 
 use Snow_Monkey\Plugin\Forms\App\Helper;
 
-register_block_type_from_metadata(
+register_block_type(
 	__DIR__,
 	[
 		'render_callback' => function( $attributes ) {

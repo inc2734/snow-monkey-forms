@@ -45,7 +45,7 @@
     "test:unit:php": "wp-env run phpunit 'phpunit -c /var/www/html/wp-content/plugins/snow-monkey-forms/.phpunit.xml.dist --verbose'",
     "test:unit": "run-s test:unit:*",
     "test": "run-s test:*",
-    "format:js": "wp-scripts format-js block hoc src/js",
+    "format:js": "wp-scripts format block hoc src/js",
     "format": "npm-run-all -p format:*",
     "clean:zip": "rimraf snow-monkey-forms.zip",
     "zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/tests' --exclude='package*.json' . snow-monkey-forms && cd snow-monkey-forms && composer install --no-dev",

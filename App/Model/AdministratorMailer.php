@@ -29,7 +29,6 @@ class AdministratorMailer {
 	 *
 	 * @param Responser $responser Responser object.
 	 * @param Setting   $setting   Setting object.
-	 * @return boolean
 	 */
 	public function __construct( Responser $responser, Setting $setting ) {
 		$this->responser = $responser;

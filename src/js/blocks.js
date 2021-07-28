@@ -1,7 +1,6 @@
-import {
-	registerBlockType,
-	unstable__bootstrapServerSideBlockDefinitions, // eslint-disable-line camelcase
-} from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
+
+import { __ } from '@wordpress/i18n';
 
 const registerBlock = ( block ) => {
 	if ( ! block ) {
@@ -10,9 +9,26 @@ const registerBlock = ( block ) => {
 
 	const { metadata, settings, name } = block;
 	if ( metadata ) {
-		unstable__bootstrapServerSideBlockDefinitions( { [ name ]: metadata } );
+		if ( !! metadata.title ) {
+			/* eslint @wordpress/i18n-no-variables: 0 */
+			metadata.title = __( metadata.title, 'snow-monkey-forms' );
+			settings.title = metadata.title;
+		}
+		if ( !! metadata.description ) {
+			/* eslint @wordpress/i18n-no-variables: 0 */
+			metadata.description = __(
+				metadata.description,
+				'snow-monkey-forms'
+			);
+			settings.description = metadata.description;
+		}
+		if ( !! metadata.keywords ) {
+			/* eslint @wordpress/i18n-no-variables: 0 */
+			metadata.keywords = __( metadata.keywords, 'snow-monkey-forms' );
+			settings.keywords = metadata.keywords;
+		}
 	}
-	registerBlockType( name, settings );
+	registerBlockType( { name, ...metadata }, settings );
 };
 
 import * as email from '../../block/email';
