@@ -55,7 +55,7 @@ class Bootstrap {
 		add_action( 'init', [ $this, '_register_blocks' ] );
 		add_action( 'init', [ $this, '_register_post_type' ] );
 		add_action( 'init', [ $this, '_register_meta' ] );
-		add_filter( 'block_categories', [ $this, '_block_categories' ] );
+		add_filter( 'block_categories_all', [ $this, '_block_categories' ] );
 
 		add_action( 'template_redirect', [ $this, '_do_empty_save_dir' ] );
 
