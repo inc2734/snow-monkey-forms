@@ -14,6 +14,10 @@
 }
 
 .smf-item {
+  label {
+    cursor: pointer;
+  }
+
   &__description {
     @include _margin-top(.125);
     color: _dark($_color-gray);

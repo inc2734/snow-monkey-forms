@@ -7,13 +7,20 @@
     "label": {
       "type": "string",
       "source": "html",
-      "selector": ".smf-item__label",
+      "selector": ".smf-item__label .smf-item__label__text",
       "default": ""
     },
     "description": {
       "type": "string",
       "source": "html",
       "selector": ".smf-item__description",
+      "default": ""
+    },
+    "labelFor": {
+      "type": "string",
+      "source": "attribute",
+      "selector": ".smf-item__label label",
+      "attribute": "for",
       "default": ""
     },
     "isDisplayLabelColumn": {

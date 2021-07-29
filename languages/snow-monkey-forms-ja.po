@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2021-04-15 09:19+0900\n"
-"PO-Revision-Date: 2021-04-15 09:24+0900\n"
+"POT-Creation-Date: 2021-07-29 09:07+0900\n"
+"PO-Revision-Date: 2021-07-29 09:10+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: block/checkboxes/edit.js:50 block/email/edit.js:45 block/file/edit.js:28
 #: block/radio-buttons/edit.js:42 block/select/edit.js:43 block/tel/edit.js:46
-#: block/text/edit.js:46 block/textarea/edit.js:43 block/url/edit.js:46
+#: block/text/edit.js:46 block/textarea/edit.js:45 block/url/edit.js:46
 msgid "Attributes"
 msgstr "属性"
 
@@ -40,7 +40,7 @@ msgstr "任意。各項目を区切る文字。"
 
 #: block/checkboxes/edit.js:86 block/email/edit.js:104 block/file/edit.js:52
 #: block/item/edit.js:67 block/radio-buttons/edit.js:66 block/select/edit.js:81
-#: block/tel/edit.js:105 block/text/edit.js:105 block/textarea/edit.js:94
+#: block/tel/edit.js:105 block/text/edit.js:105 block/textarea/edit.js:109
 #: block/url/edit.js:105
 msgid "Block settings"
 msgstr "ブロック設定"
@@ -63,9 +63,9 @@ msgid "Vertical"
 msgstr "縦"
 
 #: block/checkboxes/edit.js:111 block/email/edit.js:107 block/file/edit.js:55
-#: block/item/edit.js:106 block/radio-buttons/edit.js:91
+#: block/item/edit.js:139 block/radio-buttons/edit.js:91
 #: block/select/edit.js:84 block/tel/edit.js:108 block/text/edit.js:108
-#: block/textarea/edit.js:97 block/url/edit.js:108
+#: block/textarea/edit.js:112 block/url/edit.js:108
 msgid "Description"
 msgstr "説明"
 
@@ -276,7 +276,19 @@ msgstr "フォーム"
 msgid "Display label column"
 msgstr "ラベルカラムを表示する"
 
-#: block/item/edit.js:92
+#: block/item/edit.js:82
+msgid "label for"
+msgstr "label for"
+
+#: block/item/edit.js:84
+msgid ""
+"Add a label element and link it with a form field of your choice. Enter the "
+"id of the form field you want to link to."
+msgstr ""
+"label 要素を追加し、任意のフォーム項目に紐付けます。紐付け先のフォーム項目の "
+"id を入力します。"
+
+#: block/item/edit.js:110 block/item/edit.js:124
 msgid "Label"
 msgstr "ラベル"
 
@@ -308,11 +320,11 @@ msgstr "Tel"
 msgid "Text"
 msgstr "テキスト"
 
-#: block/textarea/edit.js:52
+#: block/textarea/edit.js:54
 msgid "rows"
 msgstr "rows"
 
-#: block/textarea/edit.js:53
+#: block/textarea/edit.js:55
 msgid "Number of lines"
 msgstr "行数"
 

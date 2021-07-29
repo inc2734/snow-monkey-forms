@@ -3,7 +3,7 @@ import { compact } from 'lodash';
 
 import { getBlockTypes } from '@wordpress/blocks';
 
-import { PanelBody, ToggleControl } from '@wordpress/components';
+import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 import {
 	InspectorControls,
 	InnerBlocks,
@@ -21,7 +21,7 @@ export default function ( {
 	isSelected,
 	className,
 } ) {
-	const { label, description, isDisplayLabelColumn } = attributes;
+	const { label, description, labelFor, isDisplayLabelColumn } = attributes;
 
 	const allowedBlocks = useMemo( () => {
 		const blocks = getBlockTypes();
@@ -76,6 +76,20 @@ export default function ( {
 							setAttributes( { isDisplayLabelColumn: attribute } )
 						}
 					/>
+
+					{ !! isDisplayLabelColumn && (
+						<TextControl
+							label={ __( 'label for', 'snow-monkey-forms' ) }
+							help={ __(
+								'Add a label element and link it with a form field of your choice. Enter the id of the form field you want to link to.',
+								'snow-monkey-forms'
+							) }
+							value={ labelFor }
+							onChange={ ( attribute ) =>
+								setAttributes( { labelFor: attribute } )
+							}
+						/>
+					) }
 				</PanelBody>
 			</InspectorControls>
 
@@ -83,16 +97,35 @@ export default function ( {
 				{ isDisplayLabelColumn && (
 					<div className="smf-item__col smf-item__col--label">
 						<div className="smf-item__label">
-							<RichText
-								value={ label }
-								onChange={ ( value ) =>
-									setAttributes( { label: value } )
-								}
-								placeholder={ __(
-									'Label',
-									'snow-monkey-forms'
-								) }
-							/>
+							{ !! labelFor ? (
+								<label htmlFor={ labelFor }>
+									<RichText
+										tagName="span"
+										className="smf-item__label__text"
+										value={ label }
+										onChange={ ( value ) =>
+											setAttributes( { label: value } )
+										}
+										placeholder={ __(
+											'Label',
+											'snow-monkey-forms'
+										) }
+									/>
+								</label>
+							) : (
+								<RichText
+									tagName="span"
+									className="smf-item__label__text"
+									value={ label }
+									onChange={ ( value ) =>
+										setAttributes( { label: value } )
+									}
+									placeholder={ __(
+										'Label',
+										'snow-monkey-forms'
+									) }
+								/>
+							) }
 						</div>
 						{ ( ! RichText.isEmpty( description ) ||
 							isSelected ) && (
