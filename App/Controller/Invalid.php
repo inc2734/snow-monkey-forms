@@ -25,8 +25,10 @@ class Invalid extends Contract\Controller {
 		foreach ( $setting_controls as $name => $control ) {
 			$value = $this->responser->get( $name );
 			$control->save( $value );
-			$error_message     = $this->validator->get_error_message( $name );
-			$controls[ $name ] = $error_message ? $control->invalid( $error_message ) : $control->input();
+			$error_messages    = $this->validator->get_error_messages( $name );
+			$controls[ $name ] = $error_messages
+				? $control->invalid( implode( ' ', $error_messages ) )
+				: $control->input();
 		}
 
 		return $controls;

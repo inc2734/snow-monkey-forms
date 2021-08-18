@@ -65,12 +65,12 @@ class Validator {
 	}
 
 	/**
-	 * Return all validation error message.
+	 * Return all validation error messages.
 	 *
 	 * @param string $name Target form field name.
-	 * @return string
+	 * @return array
 	 */
-	public function get_error_message( $name ) {
+	public function get_error_messages( $name ) {
 		$error_messages = [];
 
 		if ( ! isset( $this->validation_map[ $name ] ) ) {
@@ -88,11 +88,16 @@ class Validator {
 			}
 
 			if ( false === $validation_class::validate( $this->responser->get( $name ) ) ) {
-				$error_messages[] = $validation_class::get_message();
+				$error_messages[ $validation_name ] = apply_filters(
+					'snow_monkey_forms/validator/error_message',
+					$validation_class::get_message(),
+					$validation_name,
+					$name
+				);
 			}
 		}
 
-		return implode( ' ', $error_messages );
+		return $error_messages;
 	}
 
 	/**
