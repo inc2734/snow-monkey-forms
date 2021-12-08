@@ -42,6 +42,11 @@ class Mailer {
 	protected $attachments = [];
 
 	/**
+	 * @var array
+	 */
+	protected $headers = [];
+
+	/**
 	 * Constructor.
 	 *
 	 * @param array $args Array of properties.
@@ -91,6 +96,17 @@ class Mailer {
 	}
 
 	/**
+	 * Get headers for wp_mail.
+	 *
+	 * @return array
+	 */
+	public function _get_headers() {
+		$this->headers = apply_filters( 'snow_monkey_forms/mailer/headers', $this->headers );
+
+		return $this->headers;
+	}
+
+	/**
 	 * Send e-mail.
 	 *
 	 * @return boolean
@@ -107,7 +123,7 @@ class Mailer {
 			$this->to,
 			$this->subject,
 			$this->body,
-			[],
+			$this->_get_headers(),
 			$this->attachments
 		);
 
