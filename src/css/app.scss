@@ -1,157 +1,157 @@
 @import 'core/core';
 @import '../../node_modules/sass-basis/src/css/basis-core';
 
-@mixin smf-button {
-  cursor: pointer;
-  display: inline-block;
-  @include _form-control-base-border();
-  background-color: _lighter($_color-gray);
-  background-image: linear-gradient(180deg, #fff, _lighter($_color-gray));
-  border-radius: $_border-radius;
-  color: $_color-text;
-  @include _padding(.25, .5);
-  text-decoration: none;
-}
+// @mixin smf-button {
+//   cursor: pointer;
+//   display: inline-block;
+//   @include _form-control-base-border();
+//   background-color: _lighter($_color-gray);
+//   background-image: linear-gradient(180deg, #fff, _lighter($_color-gray));
+//   border-radius: $_border-radius;
+//   color: $_color-text;
+//   @include _padding(.25, .5);
+//   text-decoration: none;
+// }
 
-.smf-item {
-  label {
-    cursor: pointer;
-  }
+// .smf-item {
+//   label {
+//     cursor: pointer;
+//   }
 
-  &__description {
-    @include _margin-top(.125);
-    color: _dark($_color-gray);
-    @include _font-size-line-height($_base-font-size-px - 2px);
-  }
-}
+//   &__description {
+//     @include _margin-top(.125);
+//     color: _dark($_color-gray);
+//     @include _font-size-line-height($_base-font-size-px - 2px);
+//   }
+// }
 
 .smf-form .smf-item {
-  .smf-text-control,
-  .smf-textarea-control {
-    &__control {
-      @include _form-control();
-    }
-  }
+  // .smf-text-control,
+  // .smf-textarea-control {
+  //   &__control {
+  //     @include _form-control();
+  //   }
+  // }
 
-  .smf-textarea-control {
-    &__control {
-      display: block;
-    }
-  }
+  // .smf-textarea-control {
+  //   &__control {
+  //     display: block;
+  //   }
+  // }
 
-  .smf-checkboxes-control,
-  .smf-radio-buttons-control {
-    &__control {
-      > .smf-label {
-        @include _media-min(md) {
-          display: inline-block;
-          @include _margin-right(.5);
-        }
-      }
-    }
-  }
+  // .smf-checkboxes-control,
+  // .smf-radio-buttons-control {
+  //   &__control {
+  //     > .smf-label {
+  //       @include _media-min(md) {
+  //         display: inline-block;
+  //         @include _margin-right(.5);
+  //       }
+  //     }
+  //   }
+  // }
 
-  .smf-checkboxes-control {
-    &--horizontal {
-      .smf-checkboxes-control {
-        &__control {
-          > .smf-label {
-            display: inline-block;
-          }
-        }
-      }
-    }
+  // .smf-checkboxes-control {
+  //   &--horizontal {
+  //     .smf-checkboxes-control {
+  //       &__control {
+  //         > .smf-label {
+  //           display: inline-block;
+  //         }
+  //       }
+  //     }
+  //   }
 
-    &--vertical {
-      .smf-checkboxes-control {
-        &__control {
-          > .smf-label {
-            display: block;
-          }
-        }
-      }
-    }
-  }
+  //   &--vertical {
+  //     .smf-checkboxes-control {
+  //       &__control {
+  //         > .smf-label {
+  //           display: block;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
-  .smf-radio-buttons-control {
-    &--horizontal {
-      .smf-radio-buttons-control {
-        &__control {
-          > .smf-label {
-            display: inline-block;
-          }
-        }
-      }
-    }
+  // .smf-radio-buttons-control {
+  //   &--horizontal {
+  //     .smf-radio-buttons-control {
+  //       &__control {
+  //         > .smf-label {
+  //           display: inline-block;
+  //         }
+  //       }
+  //     }
+  //   }
 
-    &--vertical {
-      .smf-radio-buttons-control {
-        &__control {
-          > .smf-label {
-            display: block;
-          }
-        }
-      }
-    }
-  }
+  //   &--vertical {
+  //     .smf-radio-buttons-control {
+  //       &__control {
+  //         > .smf-label {
+  //           display: block;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 
-  .smf-checkbox-control {
-    @include _checkbox();
-  }
+  // .smf-checkbox-control {
+  //   @include _checkbox();
+  // }
 
-  .smf-radio-button-control {
-    @include _radio();
-  }
+  // .smf-radio-button-control {
+  //   @include _radio();
+  // }
 
-  .smf-checkbox-control,
-  .smf-radio-button-control {
-    align-items: flex-start;
+  // .smf-checkbox-control,
+  // .smf-radio-button-control {
+  //   align-items: flex-start;
 
-    &__control {
-      margin-top: $_between-lines;
-      @include _margin-right(.25);
-    }
-  }
+  //   &__control {
+  //     margin-top: $_between-lines;
+  //     @include _margin-right(.25);
+  //   }
+  // }
 
-  .smf-select-control {
-    @include _select();
-  }
+  // .smf-select-control {
+  //   @include _select();
+  // }
 
-  .smf-file-control {
-    &__label,
-    &__filename {
-      display: none;
-    }
+  // .smf-file-control {
+  //   &__label,
+  //   &__filename {
+  //     display: none;
+  //   }
 
-    @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
-      > label {
-        display: inline-flex;
-        flex-wrap: nowrap;
-        align-items: center;
+  //   @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+  //     > label {
+  //       display: inline-flex;
+  //       flex-wrap: nowrap;
+  //       align-items: center;
 
-        > * {
-          flex: 0 0 auto;
-        }
-      }
+  //       > * {
+  //         flex: 0 0 auto;
+  //       }
+  //     }
 
-      &__control {
-        display: none;
-      }
+  //     &__control {
+  //       display: none;
+  //     }
 
-      &__label {
-        @include smf-button();
-      }
+  //     &__label {
+  //       @include smf-button();
+  //     }
 
-      &__filename {
-        margin-left: 1em;
-        display: inline-block;
-      }
+  //     &__filename {
+  //       margin-left: 1em;
+  //       display: inline-block;
+  //     }
 
-      &__value {
-        margin-top: .25em;
-      }
-    }
-  }
+  //     &__value {
+  //       margin-top: .25em;
+  //     }
+  //   }
+  // }
 
   [data-invalid="1"] {
     border-color: #d98585;

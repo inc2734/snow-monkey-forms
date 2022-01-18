@@ -6,10 +6,9 @@ import { getBlockTypes } from '@wordpress/blocks';
 import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 import {
 	InspectorControls,
-	InnerBlocks,
 	RichText,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 import { useMemo } from '@wordpress/element';
@@ -56,7 +55,6 @@ export default function ( {
 		{
 			allowedBlocks,
 			templateLock: false,
-			renderAppender: InnerBlocks.ButtonBlockAppender,
 		}
 	);
 

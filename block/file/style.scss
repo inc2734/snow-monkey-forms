@@ -1,0 +1,40 @@
+@import '../../src/css/core/core';
+@import '../../node_modules/sass-basis/src/css/basis-core';
+
+.smf-form .smf-item {
+  .smf-file-control {
+    &__label,
+    &__filename {
+      display: none;
+    }
+
+    @supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
+      > label {
+        display: inline-flex;
+        flex-wrap: nowrap;
+        align-items: center;
+
+        > * {
+          flex: 0 0 auto;
+        }
+      }
+
+      &__control {
+        display: none;
+      }
+
+      &__label {
+        @include smf-button();
+      }
+
+      &__filename {
+        margin-left: 1em;
+        display: inline-block;
+      }
+
+      &__value {
+        margin-top: .25em;
+      }
+    }
+  }
+}

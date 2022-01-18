@@ -117,13 +117,12 @@ class Bootstrap {
 	 * Enqueue block editor assets.
 	 */
 	public function _enqueue_block_editor_assets() {
-		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/blocks.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms@blocks',
 			SNOW_MONKEY_FORMS_URL . '/dist/js/blocks.js',
-			$asset['dependencies'],
+			[],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/blocks.js' ),
-			true
+			false
 		);
 
 		wp_set_script_translations(
@@ -138,10 +137,6 @@ class Bootstrap {
 			[],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.css' )
 		);
-
-		if ( 'snow-monkey-forms' !== get_post_type() ) {
-			return;
-		}
 	}
 
 	/**

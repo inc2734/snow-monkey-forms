@@ -6,5 +6,7 @@
       "type": "number",
       "default": 0
     }
-  }
+  },
+  "version": "3.0.0",
+  "editorScript": "file:../../dist/block/snow-monkey-form/editor.js"
 }

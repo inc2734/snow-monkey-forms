@@ -8,5 +8,7 @@
     "inserter": false,
     "multiple": false,
     "reusable": false
-  }
+  },
+  "version": "3.0.0",
+  "editorScript": "file:../../../dist/block/form/complete/editor.js"
 }

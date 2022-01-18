@@ -47,5 +47,8 @@
   },
   "supports": {
     "customClassName": false
-  }
+  },
+  "version": "3.0.0",
+  "style": "snow-monkey-forms-control-text-style",
+  "editorScript": "file:../../dist/block/text/editor.js"
 }

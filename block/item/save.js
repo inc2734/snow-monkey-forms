@@ -1,6 +1,10 @@
 import classnames from 'classnames';
 
-import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
+import {
+	RichText,
+	useBlockProps,
+	useInnerBlocksProps,
+} from '@wordpress/block-editor';
 
 export default function ( { attributes, className } ) {
 	const { label, description, labelFor, isDisplayLabelColumn } = attributes;
@@ -39,9 +43,11 @@ export default function ( { attributes, className } ) {
 			) }
 
 			<div className="smf-item__col smf-item__col--controls">
-				<div className="smf-item__controls">
-					<InnerBlocks.Content />
-				</div>
+				<div
+					{ ...useInnerBlocksProps.save( {
+						className: 'smf-item__controls',
+					} ) }
+				/>
 			</div>
 		</div>
 	);

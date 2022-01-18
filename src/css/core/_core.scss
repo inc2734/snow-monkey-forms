@@ -1,2 +1,14 @@
 $_base-font-size-px: 16px !default;
 $_half-leading: .4 !default;
+
+@mixin smf-button {
+  cursor: pointer;
+  display: inline-block;
+  @include _form-control-base-border();
+  background-color: _lighter($_color-gray);
+  background-image: linear-gradient(180deg, #fff, _lighter($_color-gray));
+  border-radius: $_border-radius;
+  color: $_color-text;
+  @include _padding(.25, .5);
+  text-decoration: none;
+}

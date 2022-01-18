@@ -27,5 +27,9 @@
       "type": "boolean",
       "default": true
     }
-  }
+  },
+  "version": "3.0.0",
+  "style": "file:../../dist/block/item/style.css",
+  "editorStyle": "file:../../dist/block/item/editor.css",
+  "editorScript": "file:../../dist/block/item/editor.js"
 }

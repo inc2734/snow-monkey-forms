@@ -2,9 +2,8 @@ import classnames from 'classnames';
 
 import {
 	InspectorControls,
-	InnerBlocks,
 	useBlockProps,
-	__experimentalUseInnerBlocksProps as useInnerBlocksProps,
+	useInnerBlocksProps,
 } from '@wordpress/block-editor';
 
 import { dispatch } from '@wordpress/data';
@@ -36,7 +35,6 @@ export default function ( props ) {
 		{
 			allowedBlocks,
 			templateLock: false,
-			renderAppender: InnerBlocks.ButtonBlockAppender,
 		}
 	);
 

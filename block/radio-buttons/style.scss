@@ -1,0 +1,50 @@
+@import '../../src/css/core/core';
+@import '../../node_modules/sass-basis/src/css/basis-core';
+
+.smf-form .smf-item {
+  .smf-radio-buttons-control {
+    &__control {
+      > .smf-label {
+        @include _media-min(md) {
+          display: inline-block;
+          @include _margin-right(.5);
+        }
+      }
+    }
+  }
+
+  .smf-radio-buttons-control {
+    &--horizontal {
+      .smf-radio-buttons-control {
+        &__control {
+          > .smf-label {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    &--vertical {
+      .smf-radio-buttons-control {
+        &__control {
+          > .smf-label {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .smf-radio-button-control {
+    @include _radio();
+  }
+
+  .smf-radio-button-control {
+    align-items: flex-start;
+
+    &__control {
+      margin-top: $_between-lines;
+      @include _margin-right(.25);
+    }
+  }
+}
