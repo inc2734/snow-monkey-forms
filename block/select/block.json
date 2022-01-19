@@ -40,8 +40,7 @@
   "supports": {
     "customClassName": false
   },
-  "version": "3.0.0",
-  "style": "file:../../dist/block/select/style.css",
-  "editorStyle": "file:../../dist/block/select/editor.css",
+  "style": "snow-monkey-forms/select",
+  "editorStyle": "snow-monkey-forms/select/editor",
   "editorScript": "file:../../dist/block/select/editor.js"
 }

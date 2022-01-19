@@ -6,6 +6,7 @@
     &__control {
       @include _form-control();
       display: block;
+      width: 100%;
     }
   }
 }

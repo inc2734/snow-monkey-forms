@@ -36,7 +36,6 @@
   "supports": {
     "customClassName": false
   },
-  "version": "3.0.0",
-  "style": "file:../../dist/block/radio-buttons/style.css",
+  "style": "snow-monkey-forms/radio-buttons",
   "editorScript": "file:../../dist/block/radio-buttons/editor.js"
 }

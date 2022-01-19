@@ -28,8 +28,7 @@
       "default": true
     }
   },
-  "version": "3.0.0",
-  "style": "file:../../dist/block/item/style.css",
-  "editorStyle": "file:../../dist/block/item/editor.css",
+  "style": "snow-monkey-forms/item",
+  "editorStyle": "snow-monkey-forms/item/editor",
   "editorScript": "file:../../dist/block/item/editor.js"
 }

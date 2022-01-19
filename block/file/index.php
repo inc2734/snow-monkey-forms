@@ -5,6 +5,13 @@
  * @license GPL-2.0+
  */
 
+wp_register_style(
+	'snow-monkey-forms/file',
+	SNOW_MONKEY_FORMS_URL . '/dist/block/file/style.css',
+	[],
+	filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/block/file/style.css' )
+);
+
 register_block_type(
 	__DIR__,
 	[

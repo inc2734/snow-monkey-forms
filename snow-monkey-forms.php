@@ -50,6 +50,7 @@ class Bootstrap {
 		Csrf::save_token();
 
 		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_assets' ] );
+		add_action( 'enqueue_block_assets', [ $this, '_enqueue_block_assets' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
 		add_action( 'rest_api_init', [ $this, '_endpoint' ] );
 		add_action( 'init', [ $this, '_register_blocks' ] );
@@ -104,7 +105,12 @@ class Bootstrap {
 			),
 			'before'
 		);
+	}
 
+	/**
+	 * Enqueue block assets.
+	 */
+	public function _enqueue_block_assets() {
 		wp_enqueue_style(
 			'snow-monkey-forms',
 			SNOW_MONKEY_FORMS_URL . '/dist/css/app.css',
@@ -134,7 +140,7 @@ class Bootstrap {
 		wp_enqueue_style(
 			'snow-monkey-forms@editor',
 			SNOW_MONKEY_FORMS_URL . '/dist/css/editor.css',
-			[],
+			[ 'snow-monkey-forms' ],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.css' )
 		);
 	}

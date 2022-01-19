@@ -6,7 +6,7 @@
  */
 
 wp_register_style(
-	'snow-monkey-forms-control-text-style',
+	'snow-monkey-forms/text',
 	SNOW_MONKEY_FORMS_URL . '/dist/block/text/style.css',
 	[],
 	filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/block/text/style.css' )
