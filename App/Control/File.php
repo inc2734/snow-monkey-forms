@@ -9,6 +9,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Control;
 
 use Snow_Monkey\Plugin\Forms\App\Contract;
 use Snow_Monkey\Plugin\Forms\App\Helper;
+use Snow_Monkey\Plugin\Forms\App\Model\FileUploader;
 
 class File extends Contract\Control {
 
@@ -41,7 +42,9 @@ class File extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
+	protected $validations = [
+		'uploaded' => true,
+	];
 
 	/**
 	 * Save the value.
@@ -60,13 +63,26 @@ class File extends Contract\Control {
 	public function input() {
 		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
 
-		$value = $this->get_property( 'value' );
+		$value   = $this->get_property( 'value' );
+		$invalid = FileUploader::has_error_code( $value );
 		if ( $value ) {
-			$value = sprintf(
-				'<div class="smf-file-control__value">%1$s: %2$s</div>',
-				__( 'Uploaded file', 'snow-monkey-forms' ),
-				$this->confirm()
-			);
+			if ( ! $invalid ) {
+				$value = sprintf(
+					'<div class="smf-file-control__value">%1$s: %2$s</div>',
+					__( 'Uploaded file', 'snow-monkey-forms' ),
+					$this->confirm()
+				);
+			} else {
+				$value = Helper::control(
+					'hidden',
+					[
+						'attributes' => [
+							'name'  => $this->get_attribute( 'name' ),
+							'value' => $this->get_property( 'value' ),
+						],
+					]
+				)->input();
+			}
 		}
 
 		$description = $this->get_property( 'description' );

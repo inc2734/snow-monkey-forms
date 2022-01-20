@@ -48,7 +48,7 @@ class File {
 	 *
 	 * @return false|string
 	 */
-	protected function _get_tmp_name() {
+	public function get_tmp_name() {
 		return isset( $this->file['tmp_name'] ) ? $this->file['tmp_name'] : false;
 	}
 
@@ -59,7 +59,7 @@ class File {
 	 * @return boolean
 	 */
 	protected function _move_to( $destination ) {
-		$tmp_name = $this->_get_tmp_name();
+		$tmp_name = $this->get_tmp_name();
 
 		return false === $tmp_name
 			? false

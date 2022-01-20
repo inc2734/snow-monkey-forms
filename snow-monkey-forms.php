@@ -44,8 +44,8 @@ class Bootstrap {
 	 * Plugins loaded.
 	 */
 	public function _plugins_loaded() {
-		load_plugin_textdomain( 'snow-monkey-forms', false, SNOW_MONKEY_FORMS_PATH . '/languages' );
 		add_filter( 'load_textdomain_mofile', [ $this, '_load_textdomain_mofile' ], 10, 2 );
+		load_plugin_textdomain( 'snow-monkey-forms', false, basename( SNOW_MONKEY_FORMS_PATH ) . '/languages' );
 
 		Csrf::save_token();
 

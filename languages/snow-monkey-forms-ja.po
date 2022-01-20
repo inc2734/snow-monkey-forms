@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2021-07-29 09:07+0900\n"
-"PO-Revision-Date: 2021-07-29 09:10+0900\n"
+"POT-Creation-Date: 2022-01-20 09:49+0900\n"
+"PO-Revision-Date: 2022-01-20 09:53+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0\n"
-"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: snow-monkey-forms.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -39,7 +39,7 @@ msgid "Optional. Character that separates each item."
 msgstr "任意。各項目を区切る文字。"
 
 #: block/checkboxes/edit.js:86 block/email/edit.js:104 block/file/edit.js:52
-#: block/item/edit.js:67 block/radio-buttons/edit.js:66 block/select/edit.js:81
+#: block/item/edit.js:65 block/radio-buttons/edit.js:66 block/select/edit.js:81
 #: block/tel/edit.js:105 block/text/edit.js:105 block/textarea/edit.js:109
 #: block/url/edit.js:105
 msgid "Block settings"
@@ -63,7 +63,7 @@ msgid "Vertical"
 msgstr "縦"
 
 #: block/checkboxes/edit.js:111 block/email/edit.js:107 block/file/edit.js:55
-#: block/item/edit.js:139 block/radio-buttons/edit.js:91
+#: block/item/edit.js:137 block/radio-buttons/edit.js:91
 #: block/select/edit.js:84 block/tel/edit.js:108 block/text/edit.js:108
 #: block/textarea/edit.js:112 block/url/edit.js:108
 msgid "Description"
@@ -139,11 +139,11 @@ msgstr "必須。次の形式で入力: “value” : “label”%1$s あるい�
 msgid "email"
 msgstr "email"
 
-#: block/file/edit.js:75 App/Control/File.php:91
+#: block/file/edit.js:75 App/Control/File.php:107
 msgid "Choose file"
 msgstr "ファイルを選択"
 
-#: block/file/edit.js:78 App/Control/File.php:92
+#: block/file/edit.js:78 App/Control/File.php:108
 msgid "No file chosen"
 msgstr "選択されていません"
 
@@ -208,11 +208,11 @@ msgstr ""
 "設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
 "い: {name}"
 
-#: block/form/input/edit.js:59
+#: block/form/input/edit.js:57
 msgid "Input"
 msgstr "入力画面"
 
-#: block/form/input/edit.js:69
+#: block/form/input/edit.js:67
 msgid "Open the form settings"
 msgstr "フォーム設定を開く"
 
@@ -272,15 +272,15 @@ msgstr "送信されたすべての値を次のフォーマットで埋め込む
 msgid "Form"
 msgstr "フォーム"
 
-#: block/item/edit.js:71
+#: block/item/edit.js:69
 msgid "Display label column"
 msgstr "ラベルカラムを表示する"
 
-#: block/item/edit.js:82
+#: block/item/edit.js:80
 msgid "label for"
 msgstr "label for"
 
-#: block/item/edit.js:84
+#: block/item/edit.js:82
 msgid ""
 "Add a label element and link it with a form field of your choice. Enter the "
 "id of the form field you want to link to."
@@ -288,7 +288,7 @@ msgstr ""
 "label 要素を追加し、任意のフォーム項目に紐付けます。紐付け先のフォーム項目の "
 "id を入力します。"
 
-#: block/item/edit.js:110 block/item/edit.js:124
+#: block/item/edit.js:108 block/item/edit.js:122
 msgid "Label"
 msgstr "ラベル"
 
@@ -344,7 +344,7 @@ msgstr "バリデーション"
 msgid "Required"
 msgstr "必須"
 
-#: App/Control/File.php:67
+#: App/Control/File.php:72
 msgid "Uploaded file"
 msgstr "アップロード済みのファイル"
 
@@ -360,28 +360,28 @@ msgstr "戻る"
 msgid "Send"
 msgstr "送信する"
 
-#: App/Rest/Route/View.php:83
+#: App/Rest/Route/View.php:85
 msgid "Invalid access."
 msgstr "無効なアクセスです。"
 
-#: App/Rest/Route/View.php:88
+#: App/Rest/Route/View.php:90
 msgid "There is a possibility of spamming."
 msgstr "スパム送信の可能性があります。"
 
-#: App/Rest/Route/View.php:106
+#: App/Rest/Route/View.php:108
 msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:107 App/Rest/Route/View.php:155
+#: App/Rest/Route/View.php:109 App/Rest/Route/View.php:157
 #: block/snow-monkey-form/view.php:54
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
-#: App/Rest/Route/View.php:118
+#: App/Rest/Route/View.php:120
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:154 block/snow-monkey-form/view.php:53
+#: App/Rest/Route/View.php:156 block/snow-monkey-form/view.php:53
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
@@ -421,6 +421,10 @@ msgstr "有効なメールアドレスを入力してください。"
 msgid "Please enter."
 msgstr "入力してください。"
 
+#: App/Validation/Uploaded.php:35
+msgid "Upload failed."
+msgstr "アップロードに失敗しました。"
+
 #: App/Validation/Url.php:34
 msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
@@ -456,34 +460,34 @@ msgid "Complete"
 msgstr "完了"
 
 #. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:195 snow-monkey-forms.php:494
+#: snow-monkey-forms.php:196 snow-monkey-forms.php:495
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: snow-monkey-forms.php:208
+#: snow-monkey-forms.php:209
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:228
+#: snow-monkey-forms.php:229
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:248
+#: snow-monkey-forms.php:249
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:274
+#: snow-monkey-forms.php:275
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: snow-monkey-forms.php:328
+#: snow-monkey-forms.php:329
 msgid "Admin notification"
 msgstr "管理者通知"
 
-#: snow-monkey-forms.php:393
+#: snow-monkey-forms.php:394
 msgid "Automatic reply notification"
 msgstr "自動返信通知"
 

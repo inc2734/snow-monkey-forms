@@ -57,12 +57,14 @@ class View {
 		}
 
 		// If a file was removed, post data remove too.
-		foreach ( Meta::get_saved_files() as $name ) {
+		foreach ( Meta::get_saved_files() as $name => $value ) {
 			if ( isset( $data[ $name ] ) ) {
-				$saved_file = $data[ $name ];
-				$file       = Directory::fileurl_to_filepath( $saved_file );
-				if ( ! file_exists( $file ) ) {
-					$data[ $name ] = null;
+				if ( ! array_key_exists( $value, FileUploader::get_error_codes() ) ) {
+					$saved_file = $data[ $name ];
+					$file       = Directory::fileurl_to_filepath( $saved_file );
+					if ( ! file_exists( $file ) ) {
+						$data[ $name ] = null;
+					}
 				}
 			}
 		}

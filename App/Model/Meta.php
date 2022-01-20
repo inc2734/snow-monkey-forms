@@ -152,7 +152,7 @@ class Meta {
 	 * @param array $saved_files Saved files data.
 	 */
 	public static function set_saved_files( $saved_files ) {
-		static::$saved_files = is_array( $saved_files ) ? $saved_files : [];
+		static::$saved_files = is_array( $saved_files ) ? array_unique( $saved_files ) : [];
 	}
 
 	/**
