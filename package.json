@@ -100,7 +100,7 @@
     "format:js": "wp-scripts format block hoc src/js",
     "format": "npm-run-all -p format:*",
     "clean:zip": "rimraf snow-monkey-forms.zip",
-    "zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/tests' --exclude='package*.json' . snow-monkey-forms && wp-env start && wp-env run composer install --no-dev -d snow-monkey-forms",
+    "zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/tests' --exclude='package*.json' . snow-monkey-forms && wp-env start && wp-env run composer 'install --no-dev -d snow-monkey-forms'",
     "zip:archive": "zip -9 -qmr snow-monkey-forms.zip snow-monkey-forms",
     "zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive",
     "po2json:snow-monkey-forms@blocks": "po2json languages/snow-monkey-forms-ja.po languages/snow-monkey-forms-ja-snow-monkey-forms@blocks.json -f jed",
