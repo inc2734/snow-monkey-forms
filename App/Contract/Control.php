@@ -162,7 +162,10 @@ abstract class Control {
 	 * @return string
 	 */
 	protected function _generate_attribute_string( $name, $value ) {
-		$value = trim( $value );
+		if ( 'value' !== $name ) {
+			$value = trim( $value );
+		}
+
 		if ( '' === $value && 'value' !== $name ) {
 			return;
 		}
