@@ -35,7 +35,7 @@ register_block_type(
 
 			ob_start();
 			include( __DIR__ . '/view.php' );
-			return ob_get_clean();
+			return str_replace( [ "\r\n", "\r", "\n", "\t" ], '', ob_get_clean() );
 		},
 	]
 );
