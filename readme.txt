@@ -5,7 +5,7 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 5.9
 Tested up to: 5.9
 Requires PHP: 5.6
-Stable tag: 3.0.0
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,12 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 3.1.0 =
+* Add filter hook `snow_monkey_forms/administrator_mailer/headers`.
+* Add filter hook `snow_monkey_forms/auto_reply_mailer/headers`.
+* Add filter hook `snow_monkey_forms/mailer/headers`.
+* Add autocomplete setting to text, textarea, select, url and tel.
 
 = 3.0.1 =
 * Fixed a bug in select boxes, radio buttons, and checkboxes that if there is a space before or after an option, the item will not be selected/checked even if it is selected and sent.
