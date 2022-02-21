@@ -101,9 +101,7 @@ class Mailer {
 	 * @return array
 	 */
 	public function _get_headers() {
-		$this->headers = apply_filters( 'snow_monkey_forms/mailer/headers', $this->headers );
-
-		return $this->headers;
+		return apply_filters( 'snow_monkey_forms/mailer/headers', $this->headers );
 	}
 
 	/**

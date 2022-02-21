@@ -98,6 +98,15 @@ class AutoReplyMailer {
 	}
 
 	/**
+	 * Get headers for wp_mail.
+	 *
+	 * @return array
+	 */
+	public function _get_headers() {
+		return apply_filters( 'snow_monkey_forms/auto_reply_mailer/headers', [] );
+	}
+
+	/**
 	 * Send e-mail.
 	 *
 	 * @param MailParser $mail_parser MailParser object.
@@ -112,6 +121,7 @@ class AutoReplyMailer {
 				'attachments' => $mail_parser->get_attachments( $this->setting->get( 'auto_reply_email_body' ) ),
 				'from'        => $this->setting->get( 'auto_reply_email_from' ),
 				'sender'      => $this->setting->get( 'auto_reply_email_sender' ),
+				'headers'     => $this->_get_headers(),
 			]
 		);
 

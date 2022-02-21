@@ -87,6 +87,15 @@ class AdministratorMailer {
 	}
 
 	/**
+	 * Get headers for wp_mail.
+	 *
+	 * @return array
+	 */
+	public function _get_headers() {
+		return apply_filters( 'snow_monkey_forms/administrator_mailer/headers', [] );
+	}
+
+	/**
 	 * Send e-mail.
 	 *
 	 * @param MailParser $mail_parser MailParser object.
@@ -100,6 +109,7 @@ class AdministratorMailer {
 			'attachments' => $mail_parser->get_attachments( $this->setting->get( 'administrator_email_body' ) ),
 			'from'        => $mail_parser->parse( $this->setting->get( 'administrator_email_from' ) ),
 			'sender'      => $mail_parser->parse( $this->setting->get( 'administrator_email_sender' ) ),
+			'headers'     => $this->_get_headers(),
 		];
 
 		$args = apply_filters(
