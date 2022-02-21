@@ -16,6 +16,7 @@ class Select extends Contract\Control {
 	 * @var array
 	 *  - string  name
 	 *  - boolean disabled
+	 *  - string  autocomplete
 	 *  - string  id
 	 *  - string  class
 	 *  - boolean data-invalid
@@ -23,6 +24,7 @@ class Select extends Contract\Control {
 	protected $attributes = [
 		'name'         => '',
 		'disabled'     => false,
+		'autocomplete' => '',
 		'id'           => '',
 		'class'        => 'smf-select-control__control',
 		'data-invalid' => false,

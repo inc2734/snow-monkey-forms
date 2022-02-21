@@ -28,6 +28,10 @@
       "type": "boolean",
       "default": false
     },
+    "autocomplete": {
+      "type": "string",
+      "default": "url"
+    },
     "id": {
       "type": "string",
       "default": ""

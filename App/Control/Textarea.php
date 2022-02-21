@@ -19,6 +19,7 @@ class Textarea extends Contract\Control {
 	 *  - string  placeholder
 	 *  - boolean disabled
 	 *  - int     maxlength
+	 *  - string  autocomplete
 	 *  - string  id
 	 *  - string  class
 	 *  - boolean data-invalid
@@ -29,6 +30,7 @@ class Textarea extends Contract\Control {
 		'placeholder'  => '',
 		'disabled'     => false,
 		'maxlength'    => 0,
+		'autocomplete' => '',
 		'id'           => '',
 		'class'        => 'smf-textarea-control__control',
 		'data-invalid' => false,

@@ -9,6 +9,7 @@ import {
 	NameControl,
 	OptionsControl,
 	ValueControl,
+	AutocompleteControl,
 	IdControl,
 	ClassControl,
 } from '../components';
@@ -17,7 +18,15 @@ import { uniqId, optionsToJsonArray } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const Edit = ( { attributes, setAttributes } ) => {
-	const { name, value, options, id, controlClass, description } = attributes;
+	const {
+		name,
+		value,
+		options,
+		id,
+		controlClass,
+		description,
+		autocomplete,
+	} = attributes;
 
 	useEffect( () => {
 		if ( '' === name ) {
@@ -59,6 +68,13 @@ const Edit = ( { attributes, setAttributes } ) => {
 						value={ value }
 						onChange={ ( attribute ) =>
 							setAttributes( { value: attribute } )
+						}
+					/>
+
+					<AutocompleteControl
+						value={ autocomplete }
+						onChange={ ( attribute ) =>
+							setAttributes( { autocomplete: attribute } )
 						}
 					/>
 

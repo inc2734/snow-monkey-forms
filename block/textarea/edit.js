@@ -10,6 +10,7 @@ import {
 	ValueControl,
 	PlaceholderControl,
 	MaxLengthControl,
+	AutocompleteControl,
 	IdControl,
 	ClassControl,
 } from '../components';
@@ -24,6 +25,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 		value,
 		placeholder,
 		maxlength,
+		autocomplete,
 		id,
 		controlClass,
 		description,
@@ -87,6 +89,13 @@ const Edit = ( { attributes, setAttributes } ) => {
 									maxlength
 								),
 							} );
+						} }
+					/>
+
+					<AutocompleteControl
+						value={ autocomplete }
+						onChange={ ( attribute ) => {
+							setAttributes( { autocomplete: attribute } );
 						} }
 					/>
 

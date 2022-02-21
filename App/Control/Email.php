@@ -74,7 +74,7 @@ class Email extends Contract\Control {
 
 		return sprintf(
 			'<div class="smf-text-control">
-				<input type="email" %1$s>
+				<input type="email" autocomplete="email" %1$s>
 			</div>
 			%2$s',
 			$this->_generate_attributes_string( $attributes ),

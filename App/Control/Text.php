@@ -20,6 +20,7 @@ class Text extends Contract\Control {
 	 *  - boolean disabled
 	 *  - int     maxlength
 	 *  - int     size
+	 *  - string  autocomplete
 	 *  - string  id
 	 *  - string  class
 	 *  - boolean data-invalid
@@ -31,6 +32,7 @@ class Text extends Contract\Control {
 		'disabled'     => false,
 		'maxlength'    => 0,
 		'size'         => 0,
+		'autocomplete' => '',
 		'id'           => '',
 		'class'        => 'smf-text-control__control',
 		'data-invalid' => false,

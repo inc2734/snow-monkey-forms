@@ -1,4 +1,8 @@
-import { TextControl, TextareaControl } from '@wordpress/components';
+import {
+	SelectControl,
+	TextControl,
+	TextareaControl,
+} from '@wordpress/components';
 import { __, sprintf } from '@wordpress/i18n';
 
 export const NameControl = ( { value, onChange } ) => {
@@ -86,6 +90,83 @@ export const SizeControl = ( { value, onChange } ) => {
 				'snow-monkey-forms'
 			) }
 			value={ value }
+			onChange={ onChange }
+		/>
+	);
+};
+
+export const AutocompleteControl = ( { value, onChange, options = [] } ) => {
+	const defaultOptions = [
+		'',
+		'name',
+		'honorific-prefix',
+		'given-name',
+		'additional-name',
+		'family-name',
+		'honorific-suffix',
+		'nickname',
+		'email',
+		'username',
+		'new-password',
+		'current-password',
+		'one-time-code',
+		'organization-title',
+		'organization',
+		'street-address',
+		'address-line1',
+		'address-line2',
+		'address-line3',
+		'address-level4',
+		'address-level3',
+		'address-level2',
+		'address-level1',
+		'country',
+		'country-name',
+		'postal-code',
+		'cc-name',
+		'cc-given-name',
+		'cc-additional-name',
+		'cc-family-name',
+		'cc-number',
+		'cc-exp',
+		'cc-exp-month',
+		'cc-exp-year',
+		'cc-csc',
+		'cc-type',
+		'transaction-currency',
+		'transaction-amount',
+		'language',
+		'bday',
+		'bday-day',
+		'bday-month',
+		'bday-year',
+		'sex',
+		'tel',
+		'tel-country-code',
+		'tel-national',
+		'tel-area-code',
+		'tel-local',
+		'tel-extension',
+		'impp',
+		'url',
+		'photo',
+	];
+
+	const newOptions =
+		1 > options.length
+			? defaultOptions.map( ( option ) => {
+					return {
+						value: option,
+						label: option,
+					};
+			  } )
+			: options;
+
+	return (
+		<SelectControl
+			label={ __( 'autocomplete', 'snow-monkey-forms' ) }
+			value={ value }
+			options={ newOptions }
 			onChange={ onChange }
 		/>
 	);

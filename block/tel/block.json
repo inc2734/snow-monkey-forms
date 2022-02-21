@@ -28,6 +28,10 @@
       "type": "boolean",
       "default": false
     },
+    "autocomplete": {
+      "type": "string",
+      "default": "tel-national"
+    },
     "id": {
       "type": "string",
       "default": ""

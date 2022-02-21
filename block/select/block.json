@@ -16,6 +16,10 @@
       "type": "boolean",
       "default": false
     },
+    "autocomplete": {
+      "type": "string",
+      "default": ""
+    },
     "id": {
       "type": "string",
       "default": ""
