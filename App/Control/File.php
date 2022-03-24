@@ -61,7 +61,8 @@ class File extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
-		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+		$attributes = $this->get_property( 'attributes' );
+		$attributes = $this->_normalize_attributes( $attributes );
 
 		$value   = $this->get_property( 'value' );
 		$invalid = FileUploader::has_error_code( $value );
@@ -128,7 +129,7 @@ class File extends Contract\Control {
 						'value' => $this->get_property( 'value' ),
 					],
 				]
-			)->input()
+			)->confirm()
 		);
 	}
 

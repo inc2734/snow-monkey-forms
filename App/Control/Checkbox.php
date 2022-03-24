@@ -61,7 +61,8 @@ class Checkbox extends Contract\Control {
 		$label = $this->get_property( 'label' );
 		$label = '' === $label || is_null( $label ) ? $this->get_attribute( 'value' ) : $label;
 
-		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+		$attributes = $this->get_property( 'attributes' );
+		$attributes = $this->_normalize_attributes( $attributes );
 
 		return sprintf(
 			'<div class="smf-label">
@@ -101,7 +102,7 @@ class Checkbox extends Contract\Control {
 						'value' => $this->get_attribute( 'value' ),
 					],
 				]
-			)->input()
+			)->confirm()
 		);
 	}
 

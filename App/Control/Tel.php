@@ -63,7 +63,8 @@ class Tel extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
-		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+		$attributes = $this->get_property( 'attributes' );
+		$attributes = $this->_normalize_attributes( $attributes );
 
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
@@ -100,7 +101,7 @@ class Tel extends Contract\Control {
 						'value' => $this->get_attribute( 'value' ),
 					],
 				]
-			)->input()
+			)->confirm()
 		);
 	}
 

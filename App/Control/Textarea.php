@@ -66,7 +66,8 @@ class Textarea extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
-		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+		$attributes = $this->get_property( 'attributes' );
+		$attributes = $this->_normalize_attributes( $attributes );
 		if ( isset( $attributes['value'] ) ) {
 			$this->set_property( 'value', $attributes['value'] );
 			unset( $attributes['value'] );
@@ -108,7 +109,7 @@ class Textarea extends Contract\Control {
 						'value' => $this->get_property( 'value' ),
 					],
 				]
-			)->input()
+			)->confirm()
 		);
 	}
 

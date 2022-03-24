@@ -56,7 +56,9 @@ class Helper {
 	 * @param array  $properties Array of the Control properties.
 	 */
 	public static function the_control( $type, $properties ) {
-		echo static::control( $type, $properties )->input(); // xss ok.
+		$control = static::control( $type, $properties );
+		$control->filtering_attributes();
+		echo $control->input(); // xss ok.
 	}
 
 	/**

@@ -49,7 +49,8 @@ class Button extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
-		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+		$attributes = $this->get_property( 'attributes' );
+		$attributes = $this->_normalize_attributes( $attributes );
 
 		return sprintf(
 			'<span class="smf-button-control">
@@ -64,7 +65,7 @@ class Button extends Contract\Control {
 	 * Return HTML for confirm page.
 	 */
 	public function confirm() {
-		$this->input();
+		return $this->input();
 	}
 
 	/**
@@ -77,6 +78,6 @@ class Button extends Contract\Control {
 		$message = ''
 		// phpcs:enable
 	) {
-		$this->input();
+		return $this->input();
 	}
 }

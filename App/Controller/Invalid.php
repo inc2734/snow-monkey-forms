@@ -24,6 +24,7 @@ class Invalid extends Contract\Controller {
 
 		foreach ( $setting_controls as $name => $control ) {
 			$value = $this->responser->get( $name );
+			$control->filtering_attributes();
 			$control->save( $value );
 			$error_messages    = $this->validator->get_error_messages( $name );
 			$controls[ $name ] = $error_messages

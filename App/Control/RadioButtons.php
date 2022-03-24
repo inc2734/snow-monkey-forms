@@ -101,7 +101,8 @@ class RadioButtons extends Contract\Control {
 	 * @return string
 	 */
 	public function input() {
-		$attributes = $this->_generate_attributes( $this->get_property( 'attributes' ) );
+		$attributes = $this->get_property( 'attributes' );
+		$attributes = $this->_normalize_attributes( $attributes );
 
 		$children = $this->_get_children();
 		foreach ( $children as $key => $control ) {

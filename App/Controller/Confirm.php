@@ -24,6 +24,7 @@ class Confirm extends Contract\Controller {
 
 		foreach ( $setting_controls as $name => $control ) {
 			$value = $this->responser->get( $name );
+			$control->filtering_attributes();
 			$control->save( $value );
 			$controls[ $name ] = $control->confirm();
 		}
