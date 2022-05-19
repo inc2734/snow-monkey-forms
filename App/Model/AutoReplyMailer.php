@@ -103,7 +103,12 @@ class AutoReplyMailer {
 	 * @return array
 	 */
 	public function _get_headers() {
-		return apply_filters( 'snow_monkey_forms/auto_reply_mailer/headers', [] );
+		return apply_filters(
+			'snow_monkey_forms/auto_reply_mailer/headers',
+			[],
+			$this->responser,
+			$this->setting
+		);
 	}
 
 	/**
