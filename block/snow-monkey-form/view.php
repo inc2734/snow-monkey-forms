@@ -23,17 +23,25 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 					<?php echo esc_html_x( 'Input', 'progress-tracker', 'snow-monkey-forms' ); ?>
 				</div>
 			</li>
-			<li class="smf-progress-tracker__item smf-progress-tracker__item--confirm">
-				<div class="smf-progress-tracker__item__number">
-					<?php echo esc_html_x( '2', 'progress-tracker', 'snow-monkey-forms' ); ?>
-				</div>
-				<div class="smf-progress-tracker__item__text">
-					<?php echo esc_html_x( 'Confirm', 'progress-tracker', 'snow-monkey-forms' ); ?>
-				</div>
-			</li>
+
+			<?php if ( $setting->get( 'use_confirm_page' ) ) : ?>
+				<li class="smf-progress-tracker__item smf-progress-tracker__item--confirm">
+					<div class="smf-progress-tracker__item__number">
+						<?php echo esc_html_x( '2', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					</div>
+					<div class="smf-progress-tracker__item__text">
+						<?php echo esc_html_x( 'Confirm', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					</div>
+				</li>
+			<?php endif; ?>
+
 			<li class="smf-progress-tracker__item smf-progress-tracker__item--complete">
 				<div class="smf-progress-tracker__item__number">
-					<?php echo esc_html_x( '3', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					<?php if ( $setting->get( 'use_confirm_page' ) ) : ?>
+						<?php echo esc_html_x( '3', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					<?php else : ?>
+						<?php echo esc_html_x( '2', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					<?php endif; ?>
 				</div>
 				<div class="smf-progress-tracker__item__text">
 					<?php echo esc_html_x( 'Complete', 'progress-tracker', 'snow-monkey-forms' ); ?>
