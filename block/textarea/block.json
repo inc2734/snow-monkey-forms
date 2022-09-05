@@ -1,58 +1,58 @@
 {
-  "apiVersion": 2,
-  "name": "snow-monkey-forms/control-textarea",
-  "category": "snow-monkey-forms",
-  "parent": [ "snow-monkey-forms/noparent" ],
-  "attributes": {
-    "name": {
-      "type": "string",
-      "default": ""
-    },
-    "rows": {
-      "type": "number",
-      "default": 5
-    },
-    "value": {
-      "type": "string",
-      "default": ""
-    },
-    "placeholder": {
-      "type": "string",
-      "default": ""
-    },
-    "maxlength": {
-      "type": "number",
-      "default": 0
-    },
-    "disabled": {
-      "type": "boolean",
-      "default": false
-    },
-    "autocomplete": {
-      "type": "string",
-      "default": ""
-    },
-    "id": {
-      "type": "string",
-      "default": ""
-    },
-    "controlClass": {
-      "type": "string",
-      "default": ""
-    },
-    "description": {
-      "type": "string",
-      "default": ""
-    },
-    "validations": {
-      "type": "string",
-      "default": "{}"
-    }
-  },
-  "supports": {
-    "customClassName": false
-  },
-  "style": "snow-monkey-forms/textarea",
-  "editorStyle": "snow-monkey-forms/textarea/edtor",
-  "editorScript": "file:../../dist/block/textarea/editor.js"
+	"apiVersion": 2,
+	"name": "snow-monkey-forms/control-textarea",
+	"category": "snow-monkey-forms",
+	"ancestor": [ "snow-monkey-forms/item" ],
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"rows": {
+			"type": "number",
+			"default": 5
+		},
+		"value": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholder": {
+			"type": "string",
+			"default": ""
+		},
+		"maxlength": {
+			"type": "number",
+			"default": 0
+		},
+		"disabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"autocomplete": {
+			"type": "string",
+			"default": ""
+		},
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"controlClass": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"validations": {
+			"type": "string",
+			"default": "{}"
+		}
+	},
+	"supports": {
+		"customClassName": false
+	},
+	"style": "snow-monkey-forms/textarea",
+	"editorStyle": "snow-monkey-forms/textarea/edtor",
+	"editorScript": "file:../../dist/block/textarea/editor.js"
 }

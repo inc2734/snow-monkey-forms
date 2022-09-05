@@ -31,11 +31,7 @@ export default function ( {
 
 		return compact(
 			blocks.map( ( block ) => {
-				return ! blacklist.includes( block.name ) &&
-					( ! block.parent ||
-						block.parent.includes( 'snow-monkey-forms/noparent' ) )
-					? block.name
-					: null;
+				return ! blacklist.includes( block.name ) ? block.name : null;
 			} )
 		);
 	}, [] );

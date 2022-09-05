@@ -25,9 +25,11 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 		grecaptcha.ready( () => {
 			grecaptcha
+				/* eslint-disable camelcase */
 				.execute( snowmonkeyforms_recaptcha.siteKey, {
 					action: 'homepage',
 				} )
+				/* eslint-enable */
 				.then( ( token ) => {
 					const field = form.querySelector(
 						'[name="smf-recaptcha-response"]'

@@ -1,20 +1,20 @@
 {
-  "apiVersion": 2,
-  "name": "snow-monkey-forms/form--input",
+	"apiVersion": 2,
+	"name": "snow-monkey-forms/form--input",
 	"category": "snow-monkey-forms",
-  "parent": [ false ],
-  "attributes": {
-    "formStyle": {
-      "type": "string",
-      "default": ""
-    }
-  },
-  "supports": {
-    "customClassName": true,
-    "className": false,
-    "inserter": false,
-    "multiple": false,
-    "reusable": false
-  },
-  "editorScript": "file:../../../dist/block/form/input/editor.js"
+	"parent": [ false ],
+	"attributes": {
+		"formStyle": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"customClassName": true,
+		"className": false,
+		"inserter": false,
+		"multiple": false,
+		"reusable": false
+	},
+	"editorScript": "file:../../../dist/block/form/input/editor.js"
 }

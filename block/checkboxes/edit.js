@@ -12,14 +12,8 @@ import { uniqId, optionsToJsonArray, valuesToJsonArray } from '../helper';
 import withValidations from '../../hoc/with-validations';
 
 const Edit = ( { attributes, setAttributes } ) => {
-	const {
-		name,
-		options,
-		values,
-		delimiter,
-		direction,
-		description,
-	} = attributes;
+	const { name, options, values, delimiter, direction, description } =
+		attributes;
 
 	useEffect( () => {
 		if ( '' === name ) {

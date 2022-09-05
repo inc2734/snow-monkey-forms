@@ -1,50 +1,50 @@
 {
-  "apiVersion": 2,
-  "name": "snow-monkey-forms/control-select",
-  "category": "snow-monkey-forms",
-  "parent": [ "snow-monkey-forms/noparent" ],
-  "attributes": {
-    "name": {
-      "type": "string",
-      "default": ""
-    },
-    "value": {
-      "type": "string",
-      "default": ""
-    },
-    "disabled": {
-      "type": "boolean",
-      "default": false
-    },
-    "autocomplete": {
-      "type": "string",
-      "default": ""
-    },
-    "id": {
-      "type": "string",
-      "default": ""
-    },
-    "controlClass": {
-      "type": "string",
-      "default": ""
-    },
-    "options": {
-      "type": "string",
-      "default": ""
-    },
-    "description": {
-      "type": "string",
-      "default": ""
-    },
-    "validations": {
-      "type": "string",
-      "default": "{}"
-    }
-  },
-  "supports": {
-    "customClassName": false
-  },
-  "style": "snow-monkey-forms/select",
-  "editorStyle": "snow-monkey-forms/select/editor",
-  "editorScript": "file:../../dist/block/select/editor.js"
+	"apiVersion": 2,
+	"name": "snow-monkey-forms/control-select",
+	"category": "snow-monkey-forms",
+	"ancestor": [ "snow-monkey-forms/item" ],
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"value": {
+			"type": "string",
+			"default": ""
+		},
+		"disabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"autocomplete": {
+			"type": "string",
+			"default": ""
+		},
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"controlClass": {
+			"type": "string",
+			"default": ""
+		},
+		"options": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"validations": {
+			"type": "string",
+			"default": "{}"
+		}
+	},
+	"supports": {
+		"customClassName": false
+	},
+	"style": "snow-monkey-forms/select",
+	"editorStyle": "snow-monkey-forms/select/editor",
+	"editorScript": "file:../../dist/block/select/editor.js"
 }

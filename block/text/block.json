@@ -1,58 +1,58 @@
 {
-  "apiVersion": 2,
-  "name": "snow-monkey-forms/control-text",
-  "category": "snow-monkey-forms",
-  "parent": [ "snow-monkey-forms/noparent" ],
-  "attributes": {
-    "name": {
-      "type": "string",
-      "default": ""
-    },
-    "value": {
-      "type": "string",
-      "default": ""
-    },
-    "placeholder": {
-      "type": "string",
-      "default": ""
-    },
-    "maxlength": {
-      "type": "number",
-      "default": 0
-    },
-    "size": {
-      "type": "number",
-      "default": 0
-    },
-    "disabled": {
-      "type": "boolean",
-      "default": false
-    },
-    "autocomplete": {
-      "type": "string",
-      "default": ""
-    },
-    "id": {
-      "type": "string",
-      "default": ""
-    },
-    "controlClass": {
-      "type": "string",
-      "default": ""
-    },
-    "description": {
-      "type": "string",
-      "default": ""
-    },
-    "validations": {
-      "type": "string",
-      "default": "{}"
-    }
-  },
-  "supports": {
-    "customClassName": false
-  },
-  "version": "3.0.0",
-  "style": "snow-monkey-forms/text",
-  "editorScript": "file:../../dist/block/text/editor.js"
+	"apiVersion": 2,
+	"name": "snow-monkey-forms/control-text",
+	"category": "snow-monkey-forms",
+	"ancestor": [ "snow-monkey-forms/item" ],
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"value": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholder": {
+			"type": "string",
+			"default": ""
+		},
+		"maxlength": {
+			"type": "number",
+			"default": 0
+		},
+		"size": {
+			"type": "number",
+			"default": 0
+		},
+		"disabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"autocomplete": {
+			"type": "string",
+			"default": ""
+		},
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"controlClass": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"validations": {
+			"type": "string",
+			"default": "{}"
+		}
+	},
+	"supports": {
+		"customClassName": false
+	},
+	"version": "3.0.0",
+	"style": "snow-monkey-forms/text",
+	"editorScript": "file:../../dist/block/text/editor.js"
 }

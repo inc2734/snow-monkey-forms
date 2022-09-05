@@ -1,11 +1,11 @@
 {
-  "name": "snow-monkey-forms/snow-monkey-form",
+	"name": "snow-monkey-forms/snow-monkey-form",
 	"category": "snow-monkey-forms",
-  "attributes": {
-    "formId": {
-      "type": "number",
-      "default": 0
-    }
-  },
-  "editorScript": "file:../../dist/block/snow-monkey-form/editor.js"
+	"attributes": {
+		"formId": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"editorScript": "file:../../dist/block/snow-monkey-form/editor.js"
 }

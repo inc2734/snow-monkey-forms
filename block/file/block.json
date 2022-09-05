@@ -1,33 +1,33 @@
 {
-  "apiVersion": 2,
-  "name": "snow-monkey-forms/control-file",
-  "category": "snow-monkey-forms",
-  "parent": [ "snow-monkey-forms/noparent" ],
-  "attributes": {
-    "name": {
-      "type": "string",
-      "default": ""
-    },
-    "id": {
-      "type": "string",
-      "default": ""
-    },
-    "controlClass": {
-      "type": "string",
-      "default": ""
-    },
-    "description": {
-      "type": "string",
-      "default": ""
-    },
-    "validations": {
-      "type": "string",
-      "default": "{}"
-    }
-  },
-  "supports": {
-    "customClassName": false
-  },
-  "style": "snow-monkey-forms/file",
-  "editorScript": "file:../../dist/block/file/editor.js"
+	"apiVersion": 2,
+	"name": "snow-monkey-forms/control-file",
+	"category": "snow-monkey-forms",
+	"ancestor": [ "snow-monkey-forms/item" ],
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"controlClass": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"validations": {
+			"type": "string",
+			"default": "{}"
+		}
+	},
+	"supports": {
+		"customClassName": false
+	},
+	"style": "snow-monkey-forms/file",
+	"editorScript": "file:../../dist/block/file/editor.js"
 }
