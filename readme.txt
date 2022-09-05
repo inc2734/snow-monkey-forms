@@ -5,7 +5,7 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 6.0
 Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 4.0.1
+Stable tag: 4.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 4.0.2 =
+* Changed so that each form control can be placed as a descendant of an item, not just as a child of the item block.
 
 = 4.0.1 =
 * Fixed a bug where "Confirm" was displayed on the progress tracker even when the confirm screen was not used.
