@@ -109,7 +109,9 @@ export default function submit( event ) {
 			const placeholder = closest( firstErrorMessage, 'smf-placeholder' );
 			const firstErrorControl =
 				!! placeholder &&
-				placeholder.querySelector( 'input, select, textarea, button' );
+				placeholder.querySelector(
+					'input, select, textarea, button, .smf-file-control'
+				);
 			if ( !! firstErrorControl ) {
 				firstErrorControl.focus();
 			}

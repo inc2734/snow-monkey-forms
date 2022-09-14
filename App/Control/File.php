@@ -95,7 +95,7 @@ class File extends Contract\Control {
 		}
 
 		return sprintf(
-			'<div class="smf-file-control">
+			'<div class="smf-file-control" tabindex="0">
 				<label>
 					<input type="file" %1$s>
 					<span class="smf-file-control__label">%2$s</span>
