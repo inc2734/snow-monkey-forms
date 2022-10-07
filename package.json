@@ -41,6 +41,7 @@
     "stop": "npm run export && wp-env stop",
     "cli": "wp-env run cli",
     "wp": "wp-env run cli wp",
+    "composer": "wp-env run composer",
     "clean:js": "rimraf dist/js",
     "clean:css": "rimraf dist/css",
     "build": "npm-run-all -p js block css po2json",

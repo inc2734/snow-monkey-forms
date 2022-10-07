@@ -3,6 +3,12 @@
 	"name": "snow-monkey-forms/form--complete",
 	"category": "snow-monkey-forms",
 	"parent": [ false ],
+	"attributes": {
+		"lock": {
+			"remove": true,
+			"move": true
+		}
+	},
 	"supports": {
 		"customClassName": false,
 		"inserter": false,

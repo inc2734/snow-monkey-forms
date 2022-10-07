@@ -7,6 +7,10 @@
 		"formStyle": {
 			"type": "string",
 			"default": ""
+		},
+		"lock": {
+			"remove": true,
+			"move": true
 		}
 	},
 	"supports": {

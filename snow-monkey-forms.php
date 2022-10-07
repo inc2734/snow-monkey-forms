@@ -193,15 +193,20 @@ class Bootstrap {
 		register_post_type(
 			'snow-monkey-forms',
 			[
-				'label'         => __( 'Snow Monkey Forms', 'snow-monkey-forms' ),
-				'public'        => false,
-				'show_ui'       => true,
-				'show_in_rest'  => true,
-				'supports'      => [ 'title', 'editor', 'custom-fields' ],
-				'template'      => [
+				'label'        => __( 'Snow Monkey Forms', 'snow-monkey-forms' ),
+				'public'       => false,
+				'show_ui'      => true,
+				'show_in_rest' => true,
+				'supports'     => [ 'title', 'editor', 'custom-fields' ],
+				'template'     => [
 					[
 						'snow-monkey-forms/form--input',
-						[],
+						[
+							'lock' => [
+								'move'   => true,
+								'remove' => true,
+							],
+						],
 						[
 							[
 								'snow-monkey-forms/item',
@@ -267,7 +272,11 @@ class Bootstrap {
 					],
 					[
 						'snow-monkey-forms/form--complete',
-						[],
+						[
+							'lock' => [
+								'remove' => true,
+							],
+						],
 						[
 							[
 								'core/paragraph',
@@ -278,7 +287,6 @@ class Bootstrap {
 						],
 					],
 				],
-				'template_lock' => 'insert',
 			]
 		);
 	}
