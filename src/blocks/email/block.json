@@ -51,6 +51,7 @@
 	"supports": {
 		"customClassName": false
 	},
+	"style": "file:../text/style.css",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 }

@@ -55,5 +55,6 @@
 	"supports": {
 		"customClassName": false
 	},
+	"style": "file:../text/style.css",
 	"render": "file:./render.php"
 }
