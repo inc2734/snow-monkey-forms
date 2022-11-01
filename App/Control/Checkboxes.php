@@ -16,9 +16,9 @@ class Checkboxes extends Contract\Control {
 	 * @var array
 	 *  - boolean data-invalid
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -33,7 +33,7 @@ class Checkboxes extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
+	protected $validations = array();
 
 	/**
 	 * @var string
@@ -43,7 +43,7 @@ class Checkboxes extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $values = [];
+	protected $values = array();
 
 	/**
 	 * @var boolean
@@ -58,12 +58,12 @@ class Checkboxes extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $options = [];
+	protected $options = array();
 
 	/**
 	 * @var array
 	 */
-	protected $children = [];
+	protected $children = array();
 
 	/**
 	 * Initialized.
@@ -71,23 +71,23 @@ class Checkboxes extends Contract\Control {
 	protected function _init() {
 		$this->set_property( 'name', $this->get_property( 'name' ) . '[]' );
 
-		$children = [];
+		$children = array();
 		foreach ( $this->get_property( 'options' ) as $option ) {
 			$value = array_keys( $option )[0];
 			$label = array_values( $option )[0];
 
 			$children[] = Helper::control(
 				'checkbox',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'         => $this->get_property( 'name' ),
 						'value'        => $value,
 						'disabled'     => $this->get_property( 'disabled' ),
 						'checked'      => (string) $this->get_property( 'value' ) === (string) $value,
 						'data-invalid' => $this->get_attribute( 'data-invalid' ),
-					],
+					),
 					'label'      => $label,
-				]
+				)
 			);
 		}
 		$this->_set_children( $children );
@@ -99,7 +99,7 @@ class Checkboxes extends Contract\Control {
 	 * @param mixed $value The value to be saved.
 	 */
 	public function save( $value ) {
-		$this->set_property( 'values', ! is_array( $value ) ? [] : $value );
+		$this->set_property( 'values', ! is_array( $value ) ? array() : $value );
 	}
 
 	/**
@@ -125,7 +125,7 @@ class Checkboxes extends Contract\Control {
 		$this->_set_children( $children );
 
 		$direction = $this->get_property( 'direction' );
-		$classes   = [];
+		$classes   = array();
 		$classes[] = 'smf-checkboxes-control';
 		if ( $direction ) {
 			$classes[] = 'smf-checkboxes-control--' . $direction;

@@ -24,7 +24,7 @@ class Textarea extends Contract\Control {
 	 *  - string  class
 	 *  - boolean data-invalid
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'         => '',
 		'rows'         => 5,
 		'placeholder'  => '',
@@ -34,7 +34,7 @@ class Textarea extends Contract\Control {
 		'id'           => '',
 		'class'        => 'smf-textarea-control__control',
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -44,7 +44,7 @@ class Textarea extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
+	protected $validations = array();
 
 	/**
 	 * @var string
@@ -103,12 +103,12 @@ class Textarea extends Contract\Control {
 			nl2br( esc_html( $this->get_property( 'value' ) ) ),
 			Helper::control(
 				'hidden',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_property( 'value' ),
-					],
-				]
+					),
+				)
 			)->confirm()
 		);
 	}

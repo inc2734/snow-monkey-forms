@@ -39,12 +39,12 @@ class Mailer {
 	/**
 	 * @var array Array of filepath.
 	 */
-	protected $attachments = [];
+	protected $attachments = array();
 
 	/**
 	 * @var array
 	 */
-	protected $headers = [];
+	protected $headers = array();
 
 	/**
 	 * Constructor.
@@ -114,8 +114,8 @@ class Mailer {
 			return false;
 		}
 
-		add_filter( 'wp_mail_from', [ $this, '_wp_mail_from' ] );
-		add_filter( 'wp_mail_from_name', [ $this, '_wp_mail_from_name' ] );
+		add_filter( 'wp_mail_from', array( $this, '_wp_mail_from' ) );
+		add_filter( 'wp_mail_from_name', array( $this, '_wp_mail_from_name' ) );
 
 		$is_sended = wp_mail(
 			$this->to,
@@ -125,8 +125,8 @@ class Mailer {
 			$this->attachments
 		);
 
-		remove_filter( 'wp_mail_from', [ $this, '_wp_mail_from' ] );
-		remove_filter( 'wp_mail_from_name', [ $this, '_wp_mail_from_name' ] );
+		remove_filter( 'wp_mail_from', array( $this, '_wp_mail_from' ) );
+		remove_filter( 'wp_mail_from_name', array( $this, '_wp_mail_from_name' ) );
 
 		return $is_sended;
 	}

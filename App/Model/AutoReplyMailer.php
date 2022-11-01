@@ -105,7 +105,7 @@ class AutoReplyMailer {
 	public function _get_headers() {
 		return apply_filters(
 			'snow_monkey_forms/auto_reply_mailer/headers',
-			[],
+			array(),
 			$this->responser,
 			$this->setting
 		);
@@ -119,7 +119,7 @@ class AutoReplyMailer {
 	 */
 	protected function _process_sending( MailParser $mail_parser ) {
 		$mailer = new Mailer(
-			[
+			array(
 				'to'          => $mail_parser->parse( $this->setting->get( 'auto_reply_email_to' ) ),
 				'subject'     => $mail_parser->parse( $this->setting->get( 'auto_reply_email_subject' ) ),
 				'body'        => $mail_parser->parse( $this->setting->get( 'auto_reply_email_body' ) ),
@@ -127,7 +127,7 @@ class AutoReplyMailer {
 				'from'        => $this->setting->get( 'auto_reply_email_from' ),
 				'sender'      => $this->setting->get( 'auto_reply_email_sender' ),
 				'headers'     => $this->_get_headers(),
-			]
+			)
 		);
 
 		return $mailer->send();

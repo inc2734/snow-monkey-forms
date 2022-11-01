@@ -1,0 +1,59 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"textdomain": "snow-monkey-forms",
+	"name": "snow-monkey-forms/control-url",
+	"title": "URL",
+	"category": "snow-monkey-forms",
+	"ancestor": [ "snow-monkey-forms/item" ],
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"value": {
+			"type": "string",
+			"default": ""
+		},
+		"placeholder": {
+			"type": "string",
+			"default": ""
+		},
+		"maxlength": {
+			"type": "number",
+			"default": 0
+		},
+		"size": {
+			"type": "number",
+			"default": 0
+		},
+		"disabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"autocomplete": {
+			"type": "string",
+			"default": "url"
+		},
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"controlClass": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"validations": {
+			"type": "string",
+			"default": "{}"
+		}
+	},
+	"supports": {
+		"customClassName": false
+	},
+	"render": "file:./render.php"
+}

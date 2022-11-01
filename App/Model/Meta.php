@@ -22,7 +22,7 @@ class Meta {
 	/**
 	 * @var array
 	 */
-	protected static $saved_files = [];
+	protected static $saved_files = array();
 
 	/**
 	 * @var int
@@ -90,12 +90,12 @@ class Meta {
 		foreach ( $values as $key => $value ) {
 			Helper::the_control(
 				'hidden',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'  => static::get_key() . '[' . $name . '][' . $key . ']',
 						'value' => $value,
-					],
-				]
+					),
+				)
 			);
 		}
 	}
@@ -109,12 +109,12 @@ class Meta {
 	protected static function _the_meta( $name, $value ) {
 		Helper::the_control(
 			'hidden',
-			[
-				'attributes' => [
+			array(
+				'attributes' => array(
 					'name'  => static::get_key() . '[' . $name . ']',
 					'value' => $value,
-				],
-			]
+				),
+			)
 		);
 	}
 
@@ -128,12 +128,12 @@ class Meta {
 	public static function the_meta_button( $action, $label ) {
 		Helper::the_control(
 			'button',
-			[
-				'attributes' => [
+			array(
+				'attributes' => array(
 					'data-action' => $action,
-				],
+				),
 				'label'      => $label . '<span class="smf-sending" aria-hidden="true"></span>',
-			]
+			)
 		);
 	}
 
@@ -152,7 +152,7 @@ class Meta {
 	 * @param array $saved_files Saved files data.
 	 */
 	public static function set_saved_files( $saved_files ) {
-		static::$saved_files = is_array( $saved_files ) ? array_unique( $saved_files ) : [];
+		static::$saved_files = is_array( $saved_files ) ? array_unique( $saved_files ) : array();
 	}
 
 	/**

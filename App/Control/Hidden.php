@@ -17,11 +17,11 @@ class Hidden extends Contract\Control {
 	 *  - string  value
 	 *  - boolean disabled
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'     => '',
 		'value'    => '',
 		'disabled' => false,
-	];
+	);
 
 	/**
 	 * Save the value.

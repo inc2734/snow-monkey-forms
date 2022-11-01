@@ -19,7 +19,7 @@ class Helper {
 	 * @return Control
 	 * @throws \LogicException If the Control Class was not found.
 	 */
-	public static function control( $type, array $properties = [] ) {
+	public static function control( $type, array $properties = array() ) {
 		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::_generate_control_class_name( $type );
 
 		if ( ! class_exists( $class_name ) ) {
@@ -70,30 +70,30 @@ class Helper {
 	public static function block_meta_normalization( array $attributes ) {
 		if ( isset( $attributes['validations'] ) ) {
 			$validations = json_decode( $attributes['validations'], true );
-			$validations = is_array( $validations ) ? $validations : [];
+			$validations = is_array( $validations ) ? $validations : array();
 
-			$attributes['validations'] = $attributes['validations'] ? $validations : [];
+			$attributes['validations'] = $attributes['validations'] ? $validations : array();
 		}
 
 		if ( isset( $attributes['options'] ) ) {
-			$options = [];
+			$options = array();
 
 			if ( ! empty( $attributes['options'] ) ) {
-				$_options = str_replace( [ "\r\n", "\r", "\n" ], "\n", $attributes['options'] );
+				$_options = str_replace( array( "\r\n", "\r", "\n" ), "\n", $attributes['options'] );
 				$_options = explode( "\n", $_options );
 
 				foreach ( $_options as $value ) {
 					$decoded                    = json_decode( sprintf( '{%1$s}', $value ), true );
-					$decoded                    = is_array( $decoded ) ? $decoded : [ $value => $value ];
-					$decoded                    = is_array( $decoded ) && ! $decoded ? [ '' => '' ] : $decoded;
+					$decoded                    = is_array( $decoded ) ? $decoded : array( $value => $value );
+					$decoded                    = is_array( $decoded ) && ! $decoded ? array( '' => '' ) : $decoded;
 					$options[ key( $decoded ) ] = $decoded;
 				}
 			}
-			$attributes['options'] = $options ? $options : [];
+			$attributes['options'] = $options ? $options : array();
 		}
 
 		if ( isset( $attributes['values'] ) ) {
-			$values               = str_replace( [ "\r\n", "\r", "\n" ], "\n", $attributes['values'] );
+			$values               = str_replace( array( "\r\n", "\r", "\n" ), "\n", $attributes['values'] );
 			$values               = explode( "\n", $values );
 			$values               = array_unique( $values );
 			$attributes['values'] = $values;

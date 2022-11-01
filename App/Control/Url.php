@@ -25,7 +25,7 @@ class Url extends Contract\Control {
 	 *  - string  class
 	 *  - boolean data-invalid
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'         => '',
 		'value'        => '',
 		'placeholder'  => '',
@@ -36,7 +36,7 @@ class Url extends Contract\Control {
 		'id'           => '',
 		'class'        => 'smf-text-control__control',
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -46,9 +46,9 @@ class Url extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [
+	protected $validations = array(
 		'url' => true,
-	];
+	);
 
 	/**
 	 * Save the value.
@@ -97,12 +97,12 @@ class Url extends Contract\Control {
 			esc_html( $this->get_attribute( 'value' ) ),
 			Helper::control(
 				'hidden',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_attribute( 'value' ),
-					],
-				]
+					),
+				)
 			)->confirm()
 		);
 	}

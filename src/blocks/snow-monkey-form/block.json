@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"textdomain": "snow-monkey-forms",
+	"name": "snow-monkey-forms/snow-monkey-form",
+	"title": "Snow Monkey Form",
+	"category": "snow-monkey-forms",
+	"attributes": {
+		"formId": {
+			"type": "number",
+			"default": 0
+		}
+	},
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}

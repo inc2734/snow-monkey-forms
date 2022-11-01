@@ -1,8 +1,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
-"POT-Creation-Date: 2022-01-20 09:49+0900\n"
-"PO-Revision-Date: 2022-01-20 09:53+0900\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
+"forms\n"
+"POT-Creation-Date: 2022-11-01T05:54:46+00:00\n"
+"PO-Revision-Date: 2022-11-01 14:55+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -10,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: snow-monkey-forms.php\n"
@@ -24,339 +26,47 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-2: tests\n"
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
-#: block/checkboxes/edit.js:50 block/email/edit.js:45 block/file/edit.js:28
-#: block/radio-buttons/edit.js:42 block/select/edit.js:43 block/tel/edit.js:46
-#: block/text/edit.js:46 block/textarea/edit.js:45 block/url/edit.js:46
-msgid "Attributes"
-msgstr "属性"
-
-#: block/checkboxes/edit.js:73
-msgid "Delimiter"
-msgstr "区切り文字"
-
-#: block/checkboxes/edit.js:75
-msgid "Optional. Character that separates each item."
-msgstr "任意。各項目を区切る文字。"
-
-#: block/checkboxes/edit.js:86 block/email/edit.js:104 block/file/edit.js:52
-#: block/item/edit.js:65 block/radio-buttons/edit.js:66 block/select/edit.js:81
-#: block/tel/edit.js:105 block/text/edit.js:105 block/textarea/edit.js:109
-#: block/url/edit.js:105
-msgid "Block settings"
-msgstr "ブロック設定"
-
-#: block/checkboxes/edit.js:89 block/radio-buttons/edit.js:69
-msgid "Direction"
-msgstr "方向"
-
-#: block/checkboxes/edit.js:94 block/form/input/form-settings-panel.js:41
-#: block/radio-buttons/edit.js:74
-msgid "Default"
-msgstr "デフォルト"
-
-#: block/checkboxes/edit.js:98 block/radio-buttons/edit.js:78
-msgid "Horizontal"
-msgstr "横"
-
-#: block/checkboxes/edit.js:102 block/radio-buttons/edit.js:82
-msgid "Vertical"
-msgstr "縦"
-
-#: block/checkboxes/edit.js:111 block/email/edit.js:107 block/file/edit.js:55
-#: block/item/edit.js:137 block/radio-buttons/edit.js:91
-#: block/select/edit.js:84 block/tel/edit.js:108 block/text/edit.js:108
-#: block/textarea/edit.js:112 block/url/edit.js:108
-msgid "Description"
-msgstr "説明"
-
-#: block/checkboxes/index.js:13
-msgid "Checkboxes"
-msgstr "チェックボックス"
-
-#: block/components.js:12
-msgid "name"
-msgstr "name"
-
-#: block/components.js:14
-msgid "Required. Input a unique machine-readable name."
-msgstr "必須。一意の機械読み取り可能な名前を入力してください。"
-
-#: block/components.js:30 block/components.js:41
-msgid "value"
-msgstr "value"
-
-#: block/components.js:31
-msgid "Optional. Initial value."
-msgstr "任意。初期値。"
-
-#: block/components.js:45
-msgid "Optional. Initial value. Enter in the following format: value%1$s"
-msgstr "任意。初期値。次の形式で入力: value%1$s"
-
-#: block/components.js:59
-msgid "placeholder"
-msgstr "placeholder"
-
-#: block/components.js:69
-msgid "maxlength"
-msgstr "maxlength"
-
-#: block/components.js:71
-msgid "Optional. Maximum number of characters. If 0, not restricted."
-msgstr "任意。最大文字数。0の場合、制限されません。"
-
-#: block/components.js:83
-msgid "size"
-msgstr "size"
-
-#: block/components.js:85
-msgid "Optional. The width of this item. If 0, not restricted."
-msgstr "任意。この項目の幅。0の場合、制限されません。"
-
-#: block/components.js:97
-msgid "id"
-msgstr "id"
-
-#: block/components.js:107
-msgid "class"
-msgstr "class"
-
-#: block/components.js:109
-msgid "Separate multiple classes with spaces."
-msgstr "複数クラスを半角スペースで区切ります。"
-
-#: block/components.js:126
-msgid "options"
-msgstr "options"
-
-#: block/components.js:131
-msgid ""
-"Required. Enter in the following format: \"value\" : \"label\"%1$s or value"
-"%1$s"
-msgstr "必須。次の形式で入力: “value” : “label”%1$s あるいは value%1$s"
-
-#: block/email/index.js:13
-msgid "email"
-msgstr "email"
-
-#: block/file/edit.js:75 App/Control/File.php:107
-msgid "Choose file"
-msgstr "ファイルを選択"
-
-#: block/file/edit.js:78 App/Control/File.php:108
-msgid "No file chosen"
-msgstr "選択されていません"
-
-#: block/file/index.js:13
-msgid "File"
-msgstr "ファイル"
-
-#: block/form/complete/edit.js:28
-msgid "Complete"
-msgstr "完了画面"
-
-#: block/form/complete/index.js:13
-msgid "Complete page"
-msgstr "完了画面"
-
-#: block/form/input/administrator-email-settings-panel.js:19
-msgid "Administrator email"
-msgstr "管理者宛メール"
-
-#: block/form/input/administrator-email-settings-panel.js:21
-#: block/form/input/auto-reply-email-settings-panel.js:21
-msgid "To (Email address)"
-msgstr "To（メールアドレス）"
-
-#: block/form/input/administrator-email-settings-panel.js:32
-#: block/form/input/auto-reply-email-settings-panel.js:40
-msgid "Subject"
-msgstr "件名"
-
-#: block/form/input/administrator-email-settings-panel.js:47
-#: block/form/input/auto-reply-email-settings-panel.js:54
-msgid "Body"
-msgstr "Body"
-
-#: block/form/input/administrator-email-settings-panel.js:60
-#: block/form/input/auto-reply-email-settings-panel.js:67
-msgid "From (Email address)"
-msgstr "From（メールアドレス）"
-
-#: block/form/input/administrator-email-settings-panel.js:61
-#: block/form/input/administrator-email-settings-panel.js:70
-#: block/form/input/auto-reply-email-settings-panel.js:68
-#: block/form/input/auto-reply-email-settings-panel.js:77
-msgid "Optional"
-msgstr "任意"
-
-#: block/form/input/administrator-email-settings-panel.js:69
-#: block/form/input/auto-reply-email-settings-panel.js:76
-msgid "Sender"
-msgstr "送信者"
-
-#: block/form/input/auto-reply-email-settings-panel.js:19
-msgid "Auto reply email"
-msgstr "自動返信メール"
-
-#: block/form/input/auto-reply-email-settings-panel.js:23
-#, python-brace-format
-msgid ""
-"Enter the name attribute value of the installed email form field in the "
-"following format: {name}"
-msgstr ""
-"設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
-"い: {name}"
-
-#: block/form/input/edit.js:57
-msgid "Input"
-msgstr "入力画面"
-
-#: block/form/input/edit.js:67
-msgid "Open the form settings"
-msgstr "フォーム設定を開く"
-
-#: block/form/input/form-settings-panel.js:20
-msgid "Form settings"
-msgstr "フォーム設定"
-
-#: block/form/input/form-settings-panel.js:22
-msgid "Use confirm page"
-msgstr "確認画面を使用する"
-
-#: block/form/input/form-settings-panel.js:28
-msgid "Use progress tracker"
-msgstr "プログレストラッカーを使用する"
-
-#: block/form/input/form-settings-panel.js:36
-msgid "Form style"
-msgstr "フォームスタイル"
-
-#: block/form/input/form-settings-panel.js:45
-msgid "Simple table"
-msgstr "Simple table"
-
-#: block/form/input/form-settings-panel.js:49
-msgid "Letter"
-msgstr "Letter"
-
-#: block/form/input/form-settings-panel.js:53
-msgid "Business"
-msgstr "Business"
-
-#: block/form/input/form-settings-panel.js:63
-msgid "Confirm button label"
-msgstr "確認ボタンのラベル"
-
-#: block/form/input/form-settings-panel.js:73
-msgid "Back button label"
-msgstr "戻るボタンのラベル"
-
-#: block/form/input/form-settings-panel.js:83
-msgid "Send button label"
-msgstr "送信ボタンのラベル"
-
-#: block/form/input/help-button.js:11
-msgid "Help"
-msgstr "ヘルプ"
-
-#: block/form/input/help-button.js:19
-msgid "You can embed a submitted value in the following formats: "
-msgstr "送信された値は次の形式で埋め込むことができます: "
-
-#: block/form/input/help-button.js:28
-msgid "You can embed all submitted values ​​in the following format: "
-msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
-
-#: block/form/input/index.js:13
-msgid "Form"
-msgstr "フォーム"
-
-#: block/item/edit.js:69
-msgid "Display label column"
-msgstr "ラベルカラムを表示する"
-
-#: block/item/edit.js:80
-msgid "label for"
-msgstr "label for"
-
-#: block/item/edit.js:82
-msgid ""
-"Add a label element and link it with a form field of your choice. Enter the "
-"id of the form field you want to link to."
-msgstr ""
-"label 要素を追加し、任意のフォーム項目に紐付けます。紐付け先のフォーム項目の "
-"id を入力します。"
-
-#: block/item/edit.js:108 block/item/edit.js:122
-msgid "Label"
-msgstr "ラベル"
-
-#: block/item/index.js:14
-msgid "Item"
-msgstr "項目"
-
-#: block/radio-buttons/index.js:13
-msgid "Radio buttons"
-msgstr "ラジオボタン"
-
-#: block/select/index.js:13
-msgid "Select"
-msgstr "セレクトボックス"
-
-#: block/snow-monkey-form/edit.js:36 block/snow-monkey-form/edit.js:44
-msgid "Select a form"
-msgstr "フォームを選択してください"
-
-#: block/snow-monkey-form/index.js:13
-msgid "Snow Monkey Form"
+#. Plugin Name of the plugin
+#: snow-monkey-forms.php:215 snow-monkey-forms.php:522
+msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
-#: block/tel/index.js:13
-msgid "Tel"
-msgstr "Tel"
+#. Description of the plugin
+msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
+msgstr ""
+"Snow Monkey Forms はブロックエディターのためのメールフォームプラグインです。"
 
-#: block/text/index.js:13
-msgid "Text"
-msgstr "テキスト"
+#. Author of the plugin
+msgid "inc2734"
+msgstr "inc2734"
 
-#: block/textarea/edit.js:54
-msgid "rows"
-msgstr "rows"
+#. Author URI of the plugin
+msgid "https://2inc.org"
+msgstr "https://2inc.org"
 
-#: block/textarea/edit.js:55
-msgid "Number of lines"
-msgstr "行数"
-
-#: block/textarea/index.js:13
-msgid "Textarea"
-msgstr "テキストエリア"
-
-#: block/url/index.js:13
-msgid "URL"
-msgstr "URL"
-
-#: hoc/with-validations.js:23
-msgid "Validation"
-msgstr "バリデーション"
-
-#: hoc/with-validations.js:26
-msgid "Required"
-msgstr "必須"
-
-#: App/Control/File.php:72
+#: App/Control/File.php:73
 msgid "Uploaded file"
 msgstr "アップロード済みのファイル"
 
-#: App/Model/Setting.php:154
+#: App/Control/File.php:108 dist/blocks/file/index.js:1
+#: src/blocks/file/edit.js:75
+msgid "Choose file"
+msgstr "ファイルを選択"
+
+#: App/Control/File.php:109 dist/blocks/file/index.js:1
+#: src/blocks/file/edit.js:78
+msgid "No file chosen"
+msgstr "選択されていません"
+
+#: App/Model/Setting.php:161
 msgid "Confirm"
 msgstr "確認画面へ"
 
-#: App/Model/Setting.php:159
+#: App/Model/Setting.php:166
 msgid "Back"
 msgstr "戻る"
 
-#: App/Model/Setting.php:164
+#: App/Model/Setting.php:171
 msgid "Send"
 msgstr "送信する"
 
@@ -373,7 +83,9 @@ msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
 #: App/Rest/Route/View.php:109 App/Rest/Route/View.php:157
-#: block/snow-monkey-form/view.php:54
+#: dist/blocks/snow-monkey-form/render.php:85
+#: dist/js/blocks/snow-monkey-form/render.php:85
+#: src/blocks/snow-monkey-form/render.php:85
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
@@ -381,7 +93,9 @@ msgstr "後でもう一度やり直すか、他の方法で管理者に連絡し
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:156 block/snow-monkey-form/view.php:53
+#: App/Rest/Route/View.php:156 dist/blocks/snow-monkey-form/render.php:84
+#: dist/js/blocks/snow-monkey-form/render.php:84
+#: src/blocks/snow-monkey-form/render.php:84
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
@@ -395,13 +109,12 @@ msgstr "reCAPTCHA"
 msgid "Settings saved."
 msgstr "設定を保存しました。"
 
-#: App/Service/ReCaptcha/Controller/Controller.php:103
+#: App/Service/ReCaptcha/Controller/Controller.php:102
 msgid "reCAPTCHA protects your contact form from fraud and abuse."
 msgstr "reCAPTCHA は問い合わせフォームを詐欺や悪用から保護します。"
 
 #. translators: %1$s: <a> open tag, %2$s: </a> close tag.
 #: App/Service/ReCaptcha/Controller/Controller.php:111
-#, php-format
 msgid "For detail see %1$sreCAPTCHA%2$s."
 msgstr "詳細については、%1$sreCAPTCHA%2$sを参照してください。"
 
@@ -429,80 +142,494 @@ msgstr "アップロードに失敗しました。"
 msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
 
-#: block/snow-monkey-form/view.php:20
+#: dist/blocks/snow-monkey-form/render.php:43
+#: dist/js/blocks/snow-monkey-form/render.php:43
+#: src/blocks/snow-monkey-form/render.php:43
 msgctxt "progress-tracker"
 msgid "1"
 msgstr "1"
 
-#: block/snow-monkey-form/view.php:23
+#: dist/blocks/snow-monkey-form/render.php:46
+#: dist/js/blocks/snow-monkey-form/render.php:46
+#: src/blocks/snow-monkey-form/render.php:46
 msgctxt "progress-tracker"
 msgid "Input"
 msgstr "入力"
 
-#: block/snow-monkey-form/view.php:28
+#: dist/blocks/snow-monkey-form/render.php:53
+#: dist/blocks/snow-monkey-form/render.php:66
+#: dist/js/blocks/snow-monkey-form/render.php:53
+#: dist/js/blocks/snow-monkey-form/render.php:66
+#: src/blocks/snow-monkey-form/render.php:53
+#: src/blocks/snow-monkey-form/render.php:66
 msgctxt "progress-tracker"
 msgid "2"
 msgstr "2"
 
-#: block/snow-monkey-form/view.php:31
+#: dist/blocks/snow-monkey-form/render.php:56
+#: dist/js/blocks/snow-monkey-form/render.php:56
+#: src/blocks/snow-monkey-form/render.php:56
 msgctxt "progress-tracker"
 msgid "Confirm"
 msgstr "確認"
 
-#: block/snow-monkey-form/view.php:36
+#: dist/blocks/snow-monkey-form/render.php:64
+#: dist/js/blocks/snow-monkey-form/render.php:64
+#: src/blocks/snow-monkey-form/render.php:64
 msgctxt "progress-tracker"
 msgid "3"
 msgstr "3"
 
-#: block/snow-monkey-form/view.php:39
+#: dist/blocks/snow-monkey-form/render.php:70
+#: dist/js/blocks/snow-monkey-form/render.php:70
+#: src/blocks/snow-monkey-form/render.php:70
 msgctxt "progress-tracker"
 msgid "Complete"
 msgstr "完了"
 
-#. Plugin Name of the plugin/theme
-#: snow-monkey-forms.php:196 snow-monkey-forms.php:495
-msgid "Snow Monkey Forms"
-msgstr "Snow Monkey Forms"
-
-#: snow-monkey-forms.php:209
+#: snow-monkey-forms.php:233
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:229
+#: snow-monkey-forms.php:253
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:249
+#: snow-monkey-forms.php:273
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:275
+#: snow-monkey-forms.php:303
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: snow-monkey-forms.php:329
+#: snow-monkey-forms.php:356
 msgid "Admin notification"
 msgstr "管理者通知"
 
-#: snow-monkey-forms.php:394
+#: snow-monkey-forms.php:421
 msgid "Automatic reply notification"
 msgstr "自動返信通知"
 
-#. Description of the plugin/theme
-msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
+#: dist/blocks/checkboxes/index.js:1 dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1 dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:16
+msgid "name"
+msgstr "name"
+
+#: dist/blocks/checkboxes/index.js:1 dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1 dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:17
+msgid "Required. Input a unique machine-readable name."
+msgstr "必須。一意の機械読み取り可能な名前を入力してください。"
+
+#: dist/blocks/checkboxes/index.js:1 dist/blocks/email/index.js:1
+#: dist/blocks/radio-buttons/index.js:1 dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1 dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:34 src/blocks/components.js:45
+msgid "value"
+msgstr "value"
+
+#. translators: %1$s: line-break-char
+#: dist/blocks/checkboxes/index.js:3 src/blocks/components.js:48
+msgid "Optional. Initial value. Enter in the following format: value%1$s"
+msgstr "任意。初期値。次の形式で入力: value%1$s"
+
+#: dist/blocks/checkboxes/index.js:3 dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1 src/blocks/components.js:207
+msgid "options"
+msgstr "options"
+
+#. translators: %1$s: line-break-char
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3 src/blocks/components.js:211
+msgid ""
+"Required. Enter in the following format: \"value\" : \"label\"%1$s or value"
+"%1$s"
+msgstr "必須。次の形式で入力: “value” : “label”%1$s あるいは value%1$s"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1 dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 hoc/with-validations.js:23
+msgid "Validation"
+msgstr "バリデーション"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1 dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 hoc/with-validations.js:26
+msgid "Required"
+msgstr "必須"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1 dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/checkboxes/edit.js:44
+#: src/blocks/email/edit.js:45 src/blocks/file/edit.js:28
+#: src/blocks/radio-buttons/edit.js:42 src/blocks/select/edit.js:52
+#: src/blocks/tel/edit.js:48 src/blocks/text/edit.js:48
+#: src/blocks/textarea/edit.js:47 src/blocks/url/edit.js:48
+msgid "Attributes"
+msgstr "属性"
+
+#: dist/blocks/checkboxes/index.js:5 src/blocks/checkboxes/edit.js:67
+msgid "Delimiter"
+msgstr "区切り文字"
+
+#: dist/blocks/checkboxes/index.js:5 src/blocks/checkboxes/edit.js:68
+msgid "Optional. Character that separates each item."
+msgstr "任意。各項目を区切る文字。"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1 dist/blocks/item/index.js:1
+#: dist/blocks/radio-buttons/index.js:3 dist/blocks/select/index.js:3
+#: dist/blocks/text/index.js:1 dist/blocks/textarea/index.js:1
+#: src/blocks/checkboxes/edit.js:80 src/blocks/email/edit.js:104
+#: src/blocks/file/edit.js:52 src/blocks/item/edit.js:61
+#: src/blocks/radio-buttons/edit.js:66 src/blocks/select/edit.js:97
+#: src/blocks/tel/edit.js:124 src/blocks/text/edit.js:114
+#: src/blocks/textarea/edit.js:118 src/blocks/url/edit.js:124
+msgid "Block settings"
+msgstr "ブロック設定"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/radio-buttons/index.js:3
+#: src/blocks/checkboxes/edit.js:83 src/blocks/radio-buttons/edit.js:69
+msgid "Direction"
+msgstr "方向"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/form/input/index.js:1
+#: dist/blocks/radio-buttons/index.js:3 src/blocks/checkboxes/edit.js:88
+#: src/blocks/form/input/form-settings-panel.js:41
+#: src/blocks/radio-buttons/edit.js:74
+msgid "Default"
+msgstr "デフォルト"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/radio-buttons/index.js:3
+#: src/blocks/checkboxes/edit.js:92 src/blocks/radio-buttons/edit.js:78
+msgid "Horizontal"
+msgstr "横"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/radio-buttons/index.js:3
+#: src/blocks/checkboxes/edit.js:96 src/blocks/radio-buttons/edit.js:82
+msgid "Vertical"
+msgstr "縦"
+
+#: dist/blocks/checkboxes/index.js:5 dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1 dist/blocks/item/index.js:1
+#: dist/blocks/radio-buttons/index.js:3 dist/blocks/select/index.js:3
+#: dist/blocks/text/index.js:1 dist/blocks/textarea/index.js:1
+#: src/blocks/checkboxes/edit.js:105 src/blocks/email/edit.js:107
+#: src/blocks/file/edit.js:55 src/blocks/item/edit.js:132
+#: src/blocks/radio-buttons/edit.js:91 src/blocks/select/edit.js:100
+#: src/blocks/tel/edit.js:127 src/blocks/text/edit.js:117
+#: src/blocks/textarea/edit.js:121 src/blocks/url/edit.js:127
+msgid "Description"
+msgstr "説明"
+
+#: dist/blocks/email/index.js:1 dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:35
+msgid "Optional. Initial value."
+msgstr "任意。初期値。"
+
+#: dist/blocks/email/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:63
+msgid "placeholder"
+msgstr "placeholder"
+
+#: dist/blocks/email/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:73
+msgid "maxlength"
+msgstr "maxlength"
+
+#: dist/blocks/email/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:74
+msgid "Optional. Maximum number of characters. If 0, not restricted."
+msgstr "任意。最大文字数。0の場合、制限されません。"
+
+#: dist/blocks/email/index.js:1 dist/blocks/text/index.js:1
+#: src/blocks/components.js:87
+msgid "size"
+msgstr "size"
+
+#: dist/blocks/email/index.js:1 dist/blocks/text/index.js:1
+#: src/blocks/components.js:88
+msgid "Optional. The width of this item. If 0, not restricted."
+msgstr "任意。この項目の幅。0の場合、制限されません。"
+
+#: dist/blocks/email/index.js:1 dist/blocks/file/index.js:1
+#: dist/blocks/select/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:178
+msgid "id"
+msgstr "id"
+
+#: dist/blocks/email/index.js:1 dist/blocks/file/index.js:1
+#: dist/blocks/select/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:188
+msgid "class"
+msgstr "class"
+
+#: dist/blocks/email/index.js:1 dist/blocks/file/index.js:1
+#: dist/blocks/select/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:189
+msgid "Separate multiple classes with spaces."
+msgstr "複数クラスを半角スペースで区切ります。"
+
+#: dist/blocks/form/complete/index.js:1 src/blocks/form/complete/edit.js:28
+msgid "Complete"
+msgstr "完了画面"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:20
+msgid "Form settings"
+msgstr "フォーム設定"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:22
+msgid "Use confirm page"
+msgstr "確認画面を使用する"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:28
+msgid "Use progress tracker"
+msgstr "プログレストラッカーを使用する"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:36
+msgid "Form style"
+msgstr "フォームスタイル"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:45
+msgid "Simple table"
+msgstr "Simple table"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:49
+msgid "Letter"
+msgstr "Letter"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:53
+msgid "Business"
+msgstr "Business"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:62
+msgid "Confirm button label"
+msgstr "確認ボタンのラベル"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:73
+msgid "Back button label"
+msgstr "戻るボタンのラベル"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:83
+msgid "Send button label"
+msgstr "送信ボタンのラベル"
+
+#: dist/blocks/form/input/index.js:1 src/blocks/form/input/help-button.js:11
+msgid "Help"
+msgstr "ヘルプ"
+
+#: dist/blocks/form/input/index.js:1 src/blocks/form/input/help-button.js:18
+msgid "You can embed a submitted value in the following formats: "
+msgstr "送信された値は次の形式で埋め込むことができます: "
+
+#: dist/blocks/form/input/index.js:1 src/blocks/form/input/help-button.js:27
+msgid "You can embed all submitted values ​​in the following format: "
+msgstr "送信されたすべての値を次のフォーマットで埋め込むことができます: "
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:19
+msgid "Administrator email"
+msgstr "管理者宛メール"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:21
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:21
+msgid "To (Email address)"
+msgstr "To（メールアドレス）"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:32
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:40
+msgid "Subject"
+msgstr "件名"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:47
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:54
+msgid "Body"
+msgstr "Body"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:60
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:67
+msgid "From (Email address)"
+msgstr "From（メールアドレス）"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:61
+#: src/blocks/form/input/administrator-email-settings-panel.js:70
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:68
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:77
+msgid "Optional"
+msgstr "任意"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:69
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:76
+msgid "Sender"
+msgstr "送信者"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:19
+msgid "Auto reply email"
+msgstr "自動返信メール"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:22
+msgid ""
+"Enter the name attribute value of the installed email form field in the "
+"following format: {name}"
 msgstr ""
-"Snow Monkey Forms はブロックエディターのためのメールフォームプラグインです。"
+"設置したEメール用フォームフィールドの name 属性値を次の形式で入力してくださ"
+"い: {name}"
 
-#. Author of the plugin/theme
-msgid "inc2734"
-msgstr "inc2734"
+#: dist/blocks/form/input/index.js:1 src/blocks/form/input/edit.js:57
+msgid "Input"
+msgstr "入力画面"
 
-#. Author URI of the plugin/theme
-msgid "https://2inc.org"
-msgstr "https://2inc.org"
+#: dist/blocks/form/input/index.js:1 src/blocks/form/input/edit.js:67
+msgid "Open the form settings"
+msgstr "フォーム設定を開く"
+
+#: dist/blocks/item/index.js:1 src/blocks/item/edit.js:64
+msgid "Display label column"
+msgstr "ラベルカラムを表示する"
+
+#: dist/blocks/item/index.js:1 src/blocks/item/edit.js:76
+msgid "label for"
+msgstr "label for"
+
+#: dist/blocks/item/index.js:1 src/blocks/item/edit.js:77
+msgid ""
+"Add a label element and link it with a form field of your choice. Enter the "
+"id of the form field you want to link to."
+msgstr ""
+"label 要素を追加し、任意のフォーム項目に紐付けます。紐付け先のフォーム項目の "
+"id を入力します。"
+
+#: dist/blocks/item/index.js:1 src/blocks/item/edit.js:103
+#: src/blocks/item/edit.js:117
+msgid "Label"
+msgstr "ラベル"
+
+#: dist/blocks/select/index.js:1 dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1 src/blocks/components.js:167
+msgid "autocomplete"
+msgstr "autocomplete"
+
+#: dist/blocks/snow-monkey-form/index.js:1
+#: src/blocks/snow-monkey-form/edit.js:36
+#: src/blocks/snow-monkey-form/edit.js:43
+msgid "Select a form"
+msgstr "フォームを選択してください"
+
+#: dist/blocks/textarea/index.js:1 src/blocks/textarea/edit.js:56
+msgid "rows"
+msgstr "rows"
+
+#: dist/blocks/textarea/index.js:1 src/blocks/textarea/edit.js:57
+msgid "Number of lines"
+msgstr "行数"
+
+#: dist/blocks/checkboxes/block.json dist/js/blocks/checkboxes/block.json
+#: src/blocks/checkboxes/block.json
+msgctxt "block title"
+msgid "Checkboxes"
+msgstr "チェックボックス"
+
+#: dist/blocks/email/block.json dist/js/blocks/email/block.json
+#: src/blocks/email/block.json
+msgctxt "block title"
+msgid "email"
+msgstr "email"
+
+#: dist/blocks/file/block.json dist/js/blocks/file/block.json
+#: src/blocks/file/block.json
+msgctxt "block title"
+msgid "File"
+msgstr "ファイル"
+
+#: dist/blocks/form/complete/block.json dist/js/blocks/form/complete/block.json
+#: src/blocks/form/complete/block.json
+msgctxt "block title"
+msgid "Complete page"
+msgstr "完了画面"
+
+#: dist/blocks/form/input/block.json dist/js/blocks/form/input/block.json
+#: src/blocks/form/input/block.json
+msgctxt "block title"
+msgid "Form"
+msgstr "フォーム"
+
+#: dist/blocks/item/block.json dist/js/blocks/item/block.json
+#: src/blocks/item/block.json
+msgctxt "block title"
+msgid "Item"
+msgstr "項目"
+
+#: dist/blocks/radio-buttons/block.json dist/js/blocks/radio-buttons/block.json
+#: src/blocks/radio-buttons/block.json
+msgctxt "block title"
+msgid "Radio buttons"
+msgstr "ラジオボタン"
+
+#: dist/blocks/select/block.json dist/js/blocks/select/block.json
+#: src/blocks/select/block.json
+msgctxt "block title"
+msgid "Select"
+msgstr "セレクトボックス"
+
+#: dist/blocks/snow-monkey-form/block.json
+#: dist/js/blocks/snow-monkey-form/block.json
+#: src/blocks/snow-monkey-form/block.json
+msgctxt "block title"
+msgid "Snow Monkey Form"
+msgstr "Snow Monkey Forms"
+
+#: dist/blocks/tel/block.json dist/js/blocks/tel/block.json
+#: src/blocks/tel/block.json
+msgctxt "block title"
+msgid "Tel"
+msgstr "Tel"
+
+#: dist/blocks/text/block.json dist/js/blocks/text/block.json
+#: src/blocks/text/block.json
+msgctxt "block title"
+msgid "Text"
+msgstr "テキスト"
+
+#: dist/blocks/textarea/block.json dist/js/blocks/textarea/block.json
+#: src/blocks/textarea/block.json
+msgctxt "block title"
+msgid "Textarea"
+msgstr "テキストエリア"
+
+#: dist/blocks/url/block.json dist/js/blocks/url/block.json
+#: src/blocks/url/block.json
+msgctxt "block title"
+msgid "URL"
+msgstr "URL"
 
 #~ msgid "Input page"
 #~ msgstr "入力画面"

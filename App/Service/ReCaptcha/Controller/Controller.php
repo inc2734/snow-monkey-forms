@@ -27,8 +27,8 @@ class Controller {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'admin_init', [ $this, '_init' ] );
-		add_action( 'admin_menu', [ $this, '_add_submenu_page' ] );
+		add_action( 'admin_init', array( $this, '_init' ) );
+		add_action( 'admin_menu', array( $this, '_add_submenu_page' ) );
 	}
 
 	/**
@@ -41,7 +41,7 @@ class Controller {
 			__( 'reCAPTCHA', 'snow-monkey-forms' ),
 			'manage_options',
 			self::OPTION_GROUP,
-			[ $this, '_content' ]
+			array( $this, '_content' )
 		);
 	}
 
@@ -71,10 +71,10 @@ class Controller {
 			self::OPTION_GROUP,
 			self::OPTION_NAME,
 			function( $option ) {
-				$default_option = [
+				$default_option = array(
 					'site-key'   => '',
 					'secret-key' => '',
-				];
+				);
 
 				return shortcode_atts(
 					$default_option,

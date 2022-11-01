@@ -22,7 +22,7 @@ class Checkbox extends Contract\Control {
 	 *  - string  class
 	 *  - boolean data-invalid
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'         => '',
 		'value'        => '',
 		'checked'      => false,
@@ -30,12 +30,12 @@ class Checkbox extends Contract\Control {
 		'id'           => '',
 		'class'        => 'smf-checkbox-control__control',
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
+	protected $validations = array();
 
 	/**
 	 * @var string
@@ -96,12 +96,12 @@ class Checkbox extends Contract\Control {
 			esc_html( $label ),
 			Helper::control(
 				'hidden',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_attribute( 'value' ),
-					],
-				]
+					),
+				)
 			)->confirm()
 		);
 	}

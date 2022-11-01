@@ -94,7 +94,7 @@ class AdministratorMailer {
 	public function _get_headers() {
 		return apply_filters(
 			'snow_monkey_forms/administrator_mailer/headers',
-			[],
+			array(),
 			$this->responser,
 			$this->setting
 		);
@@ -107,7 +107,7 @@ class AdministratorMailer {
 	 * @return boolean
 	 */
 	protected function _process_sending( MailParser $mail_parser ) {
-		$args = [
+		$args = array(
 			'to'          => $this->setting->get( 'administrator_email_to' ),
 			'subject'     => $mail_parser->parse( $this->setting->get( 'administrator_email_subject' ) ),
 			'body'        => $mail_parser->parse( $this->setting->get( 'administrator_email_body' ) ),
@@ -115,7 +115,7 @@ class AdministratorMailer {
 			'from'        => $mail_parser->parse( $this->setting->get( 'administrator_email_from' ) ),
 			'sender'      => $mail_parser->parse( $this->setting->get( 'administrator_email_sender' ) ),
 			'headers'     => $this->_get_headers(),
-		];
+		);
 
 		$args = apply_filters(
 			'snow_monkey_forms/administrator_mailer/args',

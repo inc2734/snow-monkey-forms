@@ -25,7 +25,7 @@ class Text extends Contract\Control {
 	 *  - string  class
 	 *  - boolean data-invalid
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'         => '',
 		'value'        => '',
 		'placeholder'  => '',
@@ -36,7 +36,7 @@ class Text extends Contract\Control {
 		'id'           => '',
 		'class'        => 'smf-text-control__control',
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -46,7 +46,7 @@ class Text extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
+	protected $validations = array();
 
 	/**
 	 * Save the value.
@@ -95,12 +95,12 @@ class Text extends Contract\Control {
 			esc_html( $this->get_attribute( 'value' ) ),
 			Helper::control(
 				'hidden',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_attribute( 'value' ),
-					],
-				]
+					),
+				)
 			)->confirm()
 		);
 	}

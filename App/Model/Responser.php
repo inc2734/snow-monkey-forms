@@ -12,17 +12,17 @@ class Responser {
 	/**
 	 * @var array
 	 */
-	protected $data = [];
+	protected $data = array();
 
 	/**
 	 * @var array
 	 */
-	protected $controls = [];
+	protected $controls = array();
 
 	/**
 	 * @var array
 	 */
-	protected $action = [];
+	protected $action = array();
 
 	/**
 	 * @var string
@@ -34,7 +34,7 @@ class Responser {
 	 *
 	 * @param array $data Posted data.
 	 */
-	public function __construct( array $data = [] ) {
+	public function __construct( array $data = array() ) {
 		$this->data = $data;
 	}
 
@@ -48,15 +48,15 @@ class Responser {
 	 * @param string $message  The message to be displayed on the screen.
 	 * @return json
 	 */
-	public function send( $method, array $controls = [], $action = '', $message = '' ) {
+	public function send( $method, array $controls = array(), $action = '', $message = '' ) {
 		return json_encode(
-			[
+			array(
 				'method'   => $method,
 				'data'     => $this->data,
 				'controls' => $controls,
 				'action'   => $action,
 				'message'  => apply_filters( 'the_content', $message ),
-			],
+			),
 			JSON_UNESCAPED_UNICODE
 		);
 	}

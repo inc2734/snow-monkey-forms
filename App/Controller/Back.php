@@ -19,7 +19,7 @@ class Back extends Contract\Controller {
 	 * @return array
 	 */
 	protected function set_controls() {
-		$controls         = [];
+		$controls         = array();
 		$setting_controls = $this->setting->get( 'controls' );
 
 		foreach ( $setting_controls as $name => $control ) {

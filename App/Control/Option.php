@@ -17,10 +17,10 @@ class Option extends Contract\Control {
 	 *  - string  value
 	 *  - boolean selected
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'value'    => '',
 		'selected' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -79,12 +79,12 @@ class Option extends Contract\Control {
 			esc_html( $label ),
 			Helper::control(
 				'hidden',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'  => $this->get_property( 'name' ),
 						'value' => $this->get_attribute( 'value' ),
-					],
-				]
+					),
+				)
 			)->confirm()
 		);
 	}

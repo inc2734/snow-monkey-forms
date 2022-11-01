@@ -23,7 +23,7 @@ class Email extends Contract\Control {
 	 *  - string  id
 	 *  - string  class
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'         => '',
 		'value'        => '',
 		'placeholder'  => '',
@@ -33,7 +33,7 @@ class Email extends Contract\Control {
 		'id'           => '',
 		'class'        => 'smf-text-control__control',
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -43,9 +43,9 @@ class Email extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [
+	protected $validations = array(
 		'email' => true,
-	];
+	);
 
 	/**
 	 * Save the value.
@@ -94,12 +94,12 @@ class Email extends Contract\Control {
 			esc_html( $this->get_attribute( 'value' ) ),
 			Helper::control(
 				'hidden',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_attribute( 'value' ),
-					],
-				]
+					),
+				)
 			)->confirm()
 		);
 	}

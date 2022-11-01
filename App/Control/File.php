@@ -21,13 +21,13 @@ class File extends Contract\Control {
 	 *  - string  class
 	 *  - boolean data-invalid
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'         => '',
 		'disabled'     => false,
 		'id'           => '',
 		'class'        => 'smf-file-control__control',
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -42,9 +42,9 @@ class File extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [
+	protected $validations = array(
 		'uploaded' => true,
-	];
+	);
 
 	/**
 	 * Save the value.
@@ -76,12 +76,12 @@ class File extends Contract\Control {
 			} else {
 				$value = Helper::control(
 					'hidden',
-					[
-						'attributes' => [
+					array(
+						'attributes' => array(
 							'name'  => $this->get_attribute( 'name' ),
 							'value' => $this->get_property( 'value' ),
-						],
-					]
+						),
+					)
 				)->input();
 			}
 		}
@@ -123,12 +123,12 @@ class File extends Contract\Control {
 			esc_html( basename( $this->get_property( 'value' ) ) ),
 			Helper::control(
 				'hidden',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_property( 'value' ),
-					],
-				]
+					),
+				)
 			)->confirm()
 		);
 	}

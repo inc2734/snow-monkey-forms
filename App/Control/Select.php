@@ -21,14 +21,14 @@ class Select extends Contract\Control {
 	 *  - string  class
 	 *  - boolean data-invalid
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'         => '',
 		'disabled'     => false,
 		'autocomplete' => '',
 		'id'           => '',
 		'class'        => 'smf-select-control__control',
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -38,7 +38,7 @@ class Select extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
+	protected $validations = array();
 
 	/**
 	 * @var string
@@ -48,32 +48,32 @@ class Select extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $options = [];
+	protected $options = array();
 
 	/**
 	 * @var array
 	 */
-	protected $children = [];
+	protected $children = array();
 
 	/**
 	 * Initialize.
 	 */
 	protected function _init() {
-		$children = [];
+		$children = array();
 		foreach ( $this->get_property( 'options' ) as $option ) {
 			$value = array_keys( $option )[0];
 			$label = array_values( $option )[0];
 
 			$children[] = Helper::control(
 				'option',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'value'    => $value,
 						'selected' => (string) $this->get_property( 'value' ) === (string) $value,
-					],
+					),
 					'label'      => $label,
 					'name'       => $this->get_attribute( 'name' ),
-				]
+				)
 			);
 		}
 		$this->_set_children( $children );

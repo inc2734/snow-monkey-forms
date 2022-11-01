@@ -12,7 +12,7 @@ abstract class Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
+	protected $validations = array();
 
 	/**
 	 * Constructor.
@@ -110,7 +110,7 @@ abstract class Control {
 	 * @return array
 	 */
 	protected function _normalize_attributes( array $_attributes ) {
-		$attributes = [];
+		$attributes = array();
 
 		foreach ( $_attributes as $key => $value ) {
 			if (
@@ -145,7 +145,7 @@ abstract class Control {
 	 * @return string|null
 	 */
 	protected function _generate_attributes_string( array $_attributes ) {
-		$attributes = [];
+		$attributes = array();
 
 		foreach ( $_attributes as $key => $value ) {
 			$attribute_string = $this->_generate_attribute_string( $key, $value );

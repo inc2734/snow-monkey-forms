@@ -24,7 +24,7 @@ class Validator {
 	/**
 	 * @var array
 	 */
-	protected $validation_map = [];
+	protected $validation_map = array();
 
 	/**
 	 * Construct.
@@ -71,7 +71,7 @@ class Validator {
 	 * @return array
 	 */
 	public function get_error_messages( $name ) {
-		$error_messages = [];
+		$error_messages = array();
 
 		if ( ! isset( $this->validation_map[ $name ] ) ) {
 			return;
@@ -107,7 +107,7 @@ class Validator {
 	 * @return array
 	 */
 	protected function _set_validation_map( Setting $setting ) {
-		$validation_map = [];
+		$validation_map = array();
 
 		foreach ( $setting->get( 'controls' ) as $name => $control ) {
 			$validations = $control->get_property( 'validations' );
@@ -151,7 +151,7 @@ class Validator {
 		$classes     = wp_cache_get( $cache_key, $cache_group );
 
 		if ( ! $classes ) {
-			$classes = [];
+			$classes = array();
 			foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/App/Validation/*.php' ) as $file ) {
 				$slug             = strtolower( basename( $file, '.php' ) );
 				$classes[ $slug ] = $file;

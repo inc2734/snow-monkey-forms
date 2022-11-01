@@ -19,12 +19,12 @@ class Setting {
 	/**
 	 * @var array
 	 */
-	protected $controls = [];
+	protected $controls = array();
 
 	/**
 	 * @var array
 	 */
-	protected $system_error_messages = [];
+	protected $system_error_messages = array();
 
 	/**
 	 * @var string
@@ -115,13 +115,13 @@ class Setting {
 		$this->form_id = $form_id;
 
 		$_posts = get_posts(
-			[
+			array(
 				'post_type'        => 'snow-monkey-forms',
-				'post__in'         => [ $this->form_id ],
+				'post__in'         => array( $this->form_id ),
 				'posts_per_page'   => 1,
 				'suppress_filters' => false,
 				'no_found_rows'    => true,
-			]
+			)
 		);
 
 		if ( ! $_posts ) {

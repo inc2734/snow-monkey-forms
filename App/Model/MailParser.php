@@ -80,7 +80,7 @@ class MailParser {
 	 * @return array
 	 */
 	public function get_attachments( $body ) {
-		$attachments = [];
+		$attachments = array();
 
 		foreach ( Meta::get_saved_files() as $name ) {
 			$saved_file = $this->responser->get( $name );
@@ -139,7 +139,7 @@ class MailParser {
 			return $attachments;
 		}
 
-		$new_attachments = [];
+		$new_attachments = array();
 		foreach ( $attachments as $name => $file ) {
 			if ( false !== strpos( $body, '{' . $name . '}' ) ) {
 				$new_attachments[ $name ] = $file;

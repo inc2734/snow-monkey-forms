@@ -1,3 +1,5 @@
+import '@wordpress/i18n';
+
 let preventDefault = false;
 
 document.addEventListener( 'DOMContentLoaded', () => {

@@ -25,9 +25,9 @@ class ReCaptcha {
 			return;
 		}
 
-		add_action( 'wp_enqueue_scripts', [ $this, '_wp_enqueue_scripts' ] );
-		add_filter( 'snow_monkey_forms/spam/validate', [ $this, '_validate' ] );
-		add_action( 'snow_monkey_forms/form/append', [ $this, '_add_token_field' ] );
+		add_action( 'wp_enqueue_scripts', array( $this, '_wp_enqueue_scripts' ) );
+		add_filter( 'snow_monkey_forms/spam/validate', array( $this, '_validate' ) );
+		add_action( 'snow_monkey_forms/form/append', array( $this, '_add_token_field' ) );
 	}
 
 	/**
@@ -76,20 +76,21 @@ class ReCaptcha {
 		wp_enqueue_script(
 			'google-recaptcha',
 			add_query_arg(
-				[
+				array(
 					'render' => $this->site_key,
-				],
+				),
 				'https://www.google.com/recaptcha/api.js'
 			),
-			[],
+			array(),
 			'3.0',
 			true
 		);
 
+		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/recaptcha.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-forms@recaptcha',
 			SNOW_MONKEY_FORMS_URL . '/dist/js/recaptcha.js',
-			[ 'google-recaptcha' ],
+			array_merge( $asset['dependencies'], array( 'google-recaptcha' ) ),
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/recaptcha.js' ),
 			true
 		);
@@ -97,9 +98,9 @@ class ReCaptcha {
 		wp_add_inline_script(
 			'snow-monkey-forms@recaptcha',
 			'var snowmonkeyforms_recaptcha = ' . json_encode(
-				[
+				array(
 					'siteKey' => $this->site_key,
-				]
+				)
 			),
 			'after'
 		);
@@ -111,12 +112,12 @@ class ReCaptcha {
 	public function _add_token_field() {
 		Helper::the_control(
 			'hidden',
-			[
-				'attributes' => [
+			array(
+				'attributes' => array(
 					'name'     => 'smf-recaptcha-response',
 					'disabled' => true,
-				],
-			]
+				),
+			)
 		);
 	}
 }

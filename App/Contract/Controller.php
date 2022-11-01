@@ -31,7 +31,7 @@ abstract class Controller {
 	/**
 	 * @var array
 	 */
-	protected $controls = [];
+	protected $controls = array();
 
 	/**
 	 * @var string

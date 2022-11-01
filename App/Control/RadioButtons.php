@@ -16,9 +16,9 @@ class RadioButtons extends Contract\Control {
 	 * @var array
 	 *  - boolean data-invalid
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'data-invalid' => false,
-	];
+	);
 
 	/**
 	 * @var string
@@ -33,7 +33,7 @@ class RadioButtons extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $validations = [];
+	protected $validations = array();
 
 	/**
 	 * @var string
@@ -48,7 +48,7 @@ class RadioButtons extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $options = [];
+	protected $options = array();
 
 	/**
 	 * @var string
@@ -58,7 +58,7 @@ class RadioButtons extends Contract\Control {
 	/**
 	 * @var array
 	 */
-	protected $children = [];
+	protected $children = array();
 
 	/**
 	 * Save the value.
@@ -73,23 +73,23 @@ class RadioButtons extends Contract\Control {
 	 * Initialize.
 	 */
 	protected function _init() {
-		$children = [];
+		$children = array();
 		foreach ( $this->get_property( 'options' ) as $option ) {
 			$value = array_keys( $option )[0];
 			$label = array_values( $option )[0];
 
 			$children[] = Helper::control(
 				'radio-button',
-				[
-					'attributes' => [
+				array(
+					'attributes' => array(
 						'name'         => $this->get_property( 'name' ),
 						'value'        => $value,
 						'disabled'     => $this->get_property( 'disabled' ),
 						'checked'      => (string) $this->get_property( 'value' ) === (string) $value,
 						'data-invalid' => $this->get_attribute( 'data-invalid' ),
-					],
+					),
 					'label'      => $label,
-				]
+				)
 			);
 		}
 		$this->_set_children( $children );
@@ -113,7 +113,7 @@ class RadioButtons extends Contract\Control {
 		$this->_set_children( $children );
 
 		$direction = $this->get_property( 'direction' );
-		$classes   = [];
+		$classes   = array();
 		$classes[] = 'smf-radio-cuttons-control';
 		if ( $direction ) {
 			$classes[] = 'smf-radio-buttons-control--' . $direction;

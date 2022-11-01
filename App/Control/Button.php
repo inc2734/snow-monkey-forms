@@ -19,12 +19,12 @@ class Button extends Contract\Control {
 	 *  - string  id
 	 *  - string  class
 	 */
-	protected $attributes = [
+	protected $attributes = array(
 		'name'     => '',
 		'disabled' => false,
 		'id'       => '',
 		'class'    => 'smf-button-control__control',
-	];
+	);
 
 	/**
 	 * @var string

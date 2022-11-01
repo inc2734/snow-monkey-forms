@@ -1,0 +1,721 @@
+# Copyright (C) 2022 inc2734
+# This file is distributed under the GPL2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Snow Monkey Forms 4.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-forms\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-11-01T05:54:46+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.7.1\n"
+"X-Domain: snow-monkey-forms\n"
+
+#. Plugin Name of the plugin
+#: snow-monkey-forms.php:215
+#: snow-monkey-forms.php:522
+msgid "Snow Monkey Forms"
+msgstr ""
+
+#. Description of the plugin
+msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
+msgstr ""
+
+#. Author of the plugin
+msgid "inc2734"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://2inc.org"
+msgstr ""
+
+#: App/Control/File.php:73
+msgid "Uploaded file"
+msgstr ""
+
+#: App/Control/File.php:108
+#: dist/blocks/file/index.js:1
+#: src/blocks/file/edit.js:75
+msgid "Choose file"
+msgstr ""
+
+#: App/Control/File.php:109
+#: dist/blocks/file/index.js:1
+#: src/blocks/file/edit.js:78
+msgid "No file chosen"
+msgstr ""
+
+#: App/Model/Setting.php:161
+msgid "Confirm"
+msgstr ""
+
+#: App/Model/Setting.php:166
+msgid "Back"
+msgstr ""
+
+#: App/Model/Setting.php:171
+msgid "Send"
+msgstr ""
+
+#: App/Rest/Route/View.php:85
+msgid "Invalid access."
+msgstr ""
+
+#: App/Rest/Route/View.php:90
+msgid "There is a possibility of spamming."
+msgstr ""
+
+#: App/Rest/Route/View.php:108
+msgid "Failed to send administrator email."
+msgstr ""
+
+#: App/Rest/Route/View.php:109
+#: App/Rest/Route/View.php:157
+#: dist/blocks/snow-monkey-form/render.php:85
+#: dist/js/blocks/snow-monkey-form/render.php:85
+#: src/blocks/snow-monkey-form/render.php:85
+msgid "Please try again later or contact your administrator by other means."
+msgstr ""
+
+#: App/Rest/Route/View.php:120
+msgid "Failed to send auto reply email."
+msgstr ""
+
+#: App/Rest/Route/View.php:156
+#: dist/blocks/snow-monkey-form/render.php:84
+#: dist/js/blocks/snow-monkey-form/render.php:84
+#: src/blocks/snow-monkey-form/render.php:84
+msgid "An unexpected problem has occurred."
+msgstr ""
+
+#: App/Service/ReCaptcha/Controller/Controller.php:40
+#: App/Service/ReCaptcha/Controller/Controller.php:41
+#: App/Service/ReCaptcha/Controller/Controller.php:54
+msgid "reCAPTCHA"
+msgstr ""
+
+#: App/Service/ReCaptcha/Controller/Controller.php:94
+msgid "Settings saved."
+msgstr ""
+
+#: App/Service/ReCaptcha/Controller/Controller.php:102
+msgid "reCAPTCHA protects your contact form from fraud and abuse."
+msgstr ""
+
+#. translators: %1$s: <a> open tag, %2$s: </a> close tag.
+#: App/Service/ReCaptcha/Controller/Controller.php:111
+msgid "For detail see %1$sreCAPTCHA%2$s."
+msgstr ""
+
+#: App/Service/ReCaptcha/Controller/Controller.php:125
+msgid "Site Key"
+msgstr ""
+
+#: App/Service/ReCaptcha/Controller/Controller.php:143
+msgid "Secret Key"
+msgstr ""
+
+#: App/Validation/Email.php:40
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: App/Validation/Required.php:34
+msgid "Please enter."
+msgstr ""
+
+#: App/Validation/Uploaded.php:35
+msgid "Upload failed."
+msgstr ""
+
+#: App/Validation/Url.php:34
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/render.php:43
+#: dist/js/blocks/snow-monkey-form/render.php:43
+#: src/blocks/snow-monkey-form/render.php:43
+msgctxt "progress-tracker"
+msgid "1"
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/render.php:46
+#: dist/js/blocks/snow-monkey-form/render.php:46
+#: src/blocks/snow-monkey-form/render.php:46
+msgctxt "progress-tracker"
+msgid "Input"
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/render.php:53
+#: dist/blocks/snow-monkey-form/render.php:66
+#: dist/js/blocks/snow-monkey-form/render.php:53
+#: dist/js/blocks/snow-monkey-form/render.php:66
+#: src/blocks/snow-monkey-form/render.php:53
+#: src/blocks/snow-monkey-form/render.php:66
+msgctxt "progress-tracker"
+msgid "2"
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/render.php:56
+#: dist/js/blocks/snow-monkey-form/render.php:56
+#: src/blocks/snow-monkey-form/render.php:56
+msgctxt "progress-tracker"
+msgid "Confirm"
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/render.php:64
+#: dist/js/blocks/snow-monkey-form/render.php:64
+#: src/blocks/snow-monkey-form/render.php:64
+msgctxt "progress-tracker"
+msgid "3"
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/render.php:70
+#: dist/js/blocks/snow-monkey-form/render.php:70
+#: src/blocks/snow-monkey-form/render.php:70
+msgctxt "progress-tracker"
+msgid "Complete"
+msgstr ""
+
+#: snow-monkey-forms.php:233
+msgctxt "form-field-label"
+msgid "Name"
+msgstr ""
+
+#: snow-monkey-forms.php:253
+msgctxt "form-field-label"
+msgid "Email"
+msgstr ""
+
+#: snow-monkey-forms.php:273
+msgctxt "form-field-label"
+msgid "Message"
+msgstr ""
+
+#: snow-monkey-forms.php:303
+msgid "Complete !"
+msgstr ""
+
+#: snow-monkey-forms.php:356
+msgid "Admin notification"
+msgstr ""
+
+#: snow-monkey-forms.php:421
+msgid "Automatic reply notification"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:1
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:16
+msgid "name"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:1
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:17
+msgid "Required. Input a unique machine-readable name."
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:1
+#: dist/blocks/email/index.js:1
+#: dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:34
+#: src/blocks/components.js:45
+msgid "value"
+msgstr ""
+
+#. translators: %1$s: line-break-char
+#: dist/blocks/checkboxes/index.js:3
+#: src/blocks/components.js:48
+msgid "Optional. Initial value. Enter in the following format: value%1$s"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:3
+#: dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1
+#: src/blocks/components.js:207
+msgid "options"
+msgstr ""
+
+#. translators: %1$s: line-break-char
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3
+#: src/blocks/components.js:211
+msgid "Required. Enter in the following format: \"value\" : \"label\"%1$s or value%1$s"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: hoc/with-validations.js:23
+msgid "Validation"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: hoc/with-validations.js:26
+msgid "Required"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/checkboxes/edit.js:44
+#: src/blocks/email/edit.js:45
+#: src/blocks/file/edit.js:28
+#: src/blocks/radio-buttons/edit.js:42
+#: src/blocks/select/edit.js:52
+#: src/blocks/tel/edit.js:48
+#: src/blocks/text/edit.js:48
+#: src/blocks/textarea/edit.js:47
+#: src/blocks/url/edit.js:48
+msgid "Attributes"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: src/blocks/checkboxes/edit.js:67
+msgid "Delimiter"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: src/blocks/checkboxes/edit.js:68
+msgid "Optional. Character that separates each item."
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/item/index.js:1
+#: dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/checkboxes/edit.js:80
+#: src/blocks/email/edit.js:104
+#: src/blocks/file/edit.js:52
+#: src/blocks/item/edit.js:61
+#: src/blocks/radio-buttons/edit.js:66
+#: src/blocks/select/edit.js:97
+#: src/blocks/tel/edit.js:124
+#: src/blocks/text/edit.js:114
+#: src/blocks/textarea/edit.js:118
+#: src/blocks/url/edit.js:124
+msgid "Block settings"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/radio-buttons/index.js:3
+#: src/blocks/checkboxes/edit.js:83
+#: src/blocks/radio-buttons/edit.js:69
+msgid "Direction"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/form/input/index.js:1
+#: dist/blocks/radio-buttons/index.js:3
+#: src/blocks/checkboxes/edit.js:88
+#: src/blocks/form/input/form-settings-panel.js:41
+#: src/blocks/radio-buttons/edit.js:74
+msgid "Default"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/radio-buttons/index.js:3
+#: src/blocks/checkboxes/edit.js:92
+#: src/blocks/radio-buttons/edit.js:78
+msgid "Horizontal"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/radio-buttons/index.js:3
+#: src/blocks/checkboxes/edit.js:96
+#: src/blocks/radio-buttons/edit.js:82
+msgid "Vertical"
+msgstr ""
+
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/item/index.js:1
+#: dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/checkboxes/edit.js:105
+#: src/blocks/email/edit.js:107
+#: src/blocks/file/edit.js:55
+#: src/blocks/item/edit.js:132
+#: src/blocks/radio-buttons/edit.js:91
+#: src/blocks/select/edit.js:100
+#: src/blocks/tel/edit.js:127
+#: src/blocks/text/edit.js:117
+#: src/blocks/textarea/edit.js:121
+#: src/blocks/url/edit.js:127
+msgid "Description"
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/radio-buttons/index.js:1
+#: dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:35
+msgid "Optional. Initial value."
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:63
+msgid "placeholder"
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:73
+msgid "maxlength"
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:74
+msgid "Optional. Maximum number of characters. If 0, not restricted."
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/text/index.js:1
+#: src/blocks/components.js:87
+msgid "size"
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/text/index.js:1
+#: src/blocks/components.js:88
+msgid "Optional. The width of this item. If 0, not restricted."
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:178
+msgid "id"
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:188
+msgid "class"
+msgstr ""
+
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:189
+msgid "Separate multiple classes with spaces."
+msgstr ""
+
+#: dist/blocks/form/complete/index.js:1
+#: src/blocks/form/complete/edit.js:28
+msgid "Complete"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:20
+msgid "Form settings"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:22
+msgid "Use confirm page"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:28
+msgid "Use progress tracker"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:36
+msgid "Form style"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:45
+msgid "Simple table"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:49
+msgid "Letter"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:53
+msgid "Business"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:62
+msgid "Confirm button label"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:73
+msgid "Back button label"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/form-settings-panel.js:83
+msgid "Send button label"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/help-button.js:11
+msgid "Help"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/help-button.js:18
+msgid "You can embed a submitted value in the following formats: "
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/help-button.js:27
+msgid "You can embed all submitted values ​​in the following format: "
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:19
+msgid "Administrator email"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:21
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:21
+msgid "To (Email address)"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:32
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:40
+msgid "Subject"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:47
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:54
+msgid "Body"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:60
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:67
+msgid "From (Email address)"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:61
+#: src/blocks/form/input/administrator-email-settings-panel.js:70
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:68
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:77
+msgid "Optional"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:69
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:76
+msgid "Sender"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:19
+msgid "Auto reply email"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:22
+msgid "Enter the name attribute value of the installed email form field in the following format: {name}"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/edit.js:57
+msgid "Input"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/edit.js:67
+msgid "Open the form settings"
+msgstr ""
+
+#: dist/blocks/item/index.js:1
+#: src/blocks/item/edit.js:64
+msgid "Display label column"
+msgstr ""
+
+#: dist/blocks/item/index.js:1
+#: src/blocks/item/edit.js:76
+msgid "label for"
+msgstr ""
+
+#: dist/blocks/item/index.js:1
+#: src/blocks/item/edit.js:77
+msgid "Add a label element and link it with a form field of your choice. Enter the id of the form field you want to link to."
+msgstr ""
+
+#: dist/blocks/item/index.js:1
+#: src/blocks/item/edit.js:103
+#: src/blocks/item/edit.js:117
+msgid "Label"
+msgstr ""
+
+#: dist/blocks/select/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/components.js:167
+msgid "autocomplete"
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/index.js:1
+#: src/blocks/snow-monkey-form/edit.js:36
+#: src/blocks/snow-monkey-form/edit.js:43
+msgid "Select a form"
+msgstr ""
+
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/textarea/edit.js:56
+msgid "rows"
+msgstr ""
+
+#: dist/blocks/textarea/index.js:1
+#: src/blocks/textarea/edit.js:57
+msgid "Number of lines"
+msgstr ""
+
+#: dist/blocks/checkboxes/block.json
+#: dist/js/blocks/checkboxes/block.json
+#: src/blocks/checkboxes/block.json
+msgctxt "block title"
+msgid "Checkboxes"
+msgstr ""
+
+#: dist/blocks/email/block.json
+#: dist/js/blocks/email/block.json
+#: src/blocks/email/block.json
+msgctxt "block title"
+msgid "email"
+msgstr ""
+
+#: dist/blocks/file/block.json
+#: dist/js/blocks/file/block.json
+#: src/blocks/file/block.json
+msgctxt "block title"
+msgid "File"
+msgstr ""
+
+#: dist/blocks/form/complete/block.json
+#: dist/js/blocks/form/complete/block.json
+#: src/blocks/form/complete/block.json
+msgctxt "block title"
+msgid "Complete page"
+msgstr ""
+
+#: dist/blocks/form/input/block.json
+#: dist/js/blocks/form/input/block.json
+#: src/blocks/form/input/block.json
+msgctxt "block title"
+msgid "Form"
+msgstr ""
+
+#: dist/blocks/item/block.json
+#: dist/js/blocks/item/block.json
+#: src/blocks/item/block.json
+msgctxt "block title"
+msgid "Item"
+msgstr ""
+
+#: dist/blocks/radio-buttons/block.json
+#: dist/js/blocks/radio-buttons/block.json
+#: src/blocks/radio-buttons/block.json
+msgctxt "block title"
+msgid "Radio buttons"
+msgstr ""
+
+#: dist/blocks/select/block.json
+#: dist/js/blocks/select/block.json
+#: src/blocks/select/block.json
+msgctxt "block title"
+msgid "Select"
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/block.json
+#: dist/js/blocks/snow-monkey-form/block.json
+#: src/blocks/snow-monkey-form/block.json
+msgctxt "block title"
+msgid "Snow Monkey Form"
+msgstr ""
+
+#: dist/blocks/tel/block.json
+#: dist/js/blocks/tel/block.json
+#: src/blocks/tel/block.json
+msgctxt "block title"
+msgid "Tel"
+msgstr ""
+
+#: dist/blocks/text/block.json
+#: dist/js/blocks/text/block.json
+#: src/blocks/text/block.json
+msgctxt "block title"
+msgid "Text"
+msgstr ""
+
+#: dist/blocks/textarea/block.json
+#: dist/js/blocks/textarea/block.json
+#: src/blocks/textarea/block.json
+msgctxt "block title"
+msgid "Textarea"
+msgstr ""
+
+#: dist/blocks/url/block.json
+#: dist/js/blocks/url/block.json
+#: src/blocks/url/block.json
+msgctxt "block title"
+msgid "URL"
+msgstr ""
