@@ -2,10 +2,10 @@
 Contributors: inc2734, mimitips
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
-Requires at least: 6.0
-Tested up to: 6.0
+Requires at least: 6.1
+Tested up to: 6.1
 Requires PHP: 5.6
-Stable tag: 4.0.3
+Stable tag: 5.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,6 +51,14 @@ Yes! You can use the Snow Monkey Forms with any theme, but we recommend using ou
 
 == Changelog ==
 
+= 5.0.0 =
+* Requires WordPress 6.1 or later.
+* Add filter hook `snow_monkey_forms/auto_reply_mailer/args` for changing auto reply mail settings.
+* Fixed a bug where block names were not translated.
+* Changed dynamic block template loading method.
+* Change the loading method (+ handle) of the blocks assets.
+* Updated translation file loading method.
+
 = 4.0.3 =
 * Fixed a bug that the focus ring was not displayed in the file block.
 
@@ -61,7 +69,7 @@ Yes! You can use the Snow Monkey Forms with any theme, but we recommend using ou
 * Fixed a bug where "Confirm" was displayed on the progress tracker even when the confirm screen was not used.
 
 = 4.0.0 =
-* Requires WordPress  or later.
+* Requires WordPress 6.0 or later.
 * `snow_monkey_forms/administrator_mailer/headers` Add `responser` and `setting` as filter hook arguments.
 
 = 3.1.2 =
