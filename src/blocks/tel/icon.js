@@ -1,4 +1,4 @@
-import config from '../../src/js/config';
+import config from '../../../src/js/config';
 
 export default function () {
 	return (
