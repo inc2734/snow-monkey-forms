@@ -5,7 +5,7 @@ Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, fo
 Requires at least: 6.1
 Tested up to: 6.1
 Requires PHP: 5.6
-Stable tag: 5.0.1
+Stable tag: 5.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 5.0.2 =
+* Fixed a bug that prevented form selection after inserting a Snow Monkey Form block.
 
 = 5.0.1 =
 * Fixed a bug that Tel and url blocks were not supported.
