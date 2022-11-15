@@ -1,3 +1,4 @@
+import { useBlockProps } from '@wordpress/block-editor';
 import { SelectControl, Placeholder } from '@wordpress/components';
 import { useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
@@ -29,7 +30,7 @@ export default function ( { attributes, setAttributes, isSelected } ) {
 	}, [ forms ] );
 
 	return (
-		<>
+		<div { ...useBlockProps() }>
 			{ isSelected ? (
 				<Placeholder
 					icon="editor-ul"
@@ -58,6 +59,6 @@ export default function ( { attributes, setAttributes, isSelected } ) {
 					attributes={ attributes }
 				/>
 			) }
-		</>
+		</div>
 	);
 }
