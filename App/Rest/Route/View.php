@@ -100,15 +100,14 @@ class View {
 		if ( 'complete' === Meta::get_method() ) {
 			// Administrator email sending.
 			$administrator_mailer = new AdministratorMailer( $this->responser, $this->setting );
-			// try {
-			// 	$administrator_mailer->send();
-			// } catch ( \Exception $e ) {
-			// 	error_log( $e->getMessage() );
-			// 	return $this->_send_systemerror(
-			// 		__( 'Failed to send administrator email.', 'snow-monkey-forms' ) .
-			// 		__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
-			// 	);
-			// }
+			try {
+				$administrator_mailer->send();
+			} catch ( \Exception $e ) {
+				return $this->_send_systemerror(
+					__( 'Failed to send administrator email.', 'snow-monkey-forms' ) .
+					__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
+				);
+			}
 
 			// Auto reply email sending.
 			$auto_reply_mailer = new AutoReplyMailer( $this->responser, $this->setting );
