@@ -235,13 +235,17 @@ class Setting {
 	 * @return string
 	 */
 	private function _extract_complete_content( $post_content ) {
-		$match = preg_match(
-			'|<!-- wp:snow-monkey-forms/form--complete -->(.*?)<!-- /wp:snow-monkey-forms/form--complete -->|ms',
-			$post_content,
-			$matches
-		);
+		$parsed_blocks   = parse_blocks( $post_content );
+		$complete_blocks = null;
 
-		return $match ? $matches[1] : null;
+		foreach ( $parsed_blocks as $parsed_block ) {
+			if ( ! empty( $parsed_block['blockName'] ) && 'snow-monkey-forms/form--complete' === $parsed_block['blockName'] ) {
+				$complete_blocks = render_block( $parsed_block );
+				break;
+			}
+		}
+
+		return $complete_blocks;
 	}
 
 	/**
