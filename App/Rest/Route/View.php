@@ -103,6 +103,7 @@ class View {
 			try {
 				$administrator_mailer->send();
 			} catch ( \Exception $e ) {
+				error_log( $e->getMessage() );
 				return $this->_send_systemerror(
 					__( 'Failed to send administrator email.', 'snow-monkey-forms' ) .
 					__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
