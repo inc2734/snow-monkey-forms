@@ -9,4 +9,11 @@
   }
 }
 
+.smf-help-popover {
+	.components-popover__content {
+		width: auto;
+		max-width: 280px;
+	}
+}
+
 @import 'block-styles/editor';

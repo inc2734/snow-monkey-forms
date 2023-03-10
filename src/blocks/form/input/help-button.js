@@ -1,4 +1,4 @@
-import { Popover, IconButton } from '@wordpress/components';
+import { Popover, Button } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -6,13 +6,13 @@ export default function () {
 	const [ isVisible, setIsVisible ] = useState( false );
 
 	return (
-		<IconButton
+		<Button
 			icon="editor-help"
 			label={ __( 'Help', 'snow-monkey-forms' ) }
 			onClick={ () => setIsVisible( ! isVisible ) }
 		>
 			{ isVisible && (
-				<Popover>
+				<Popover className="smf-help-popover" placement="top">
 					<ul style={ { margin: 0, padding: '13px' } }>
 						<li>
 							{ __(
@@ -35,6 +35,6 @@ export default function () {
 					</ul>
 				</Popover>
 			) }
-		</IconButton>
+		</Button>
 	);
 }
