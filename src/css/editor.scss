@@ -16,4 +16,8 @@
 	}
 }
 
-@import 'block-styles/editor';
+.editor-styles-wrapper {
+	.smf-item:not(:first-child) {
+		margin-top: 4px;
+	}
+}

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin name: Snow Monkey Forms
- * Version: 5.0.4
+ * Version: 5.0.5
  * Description: The Snow Monkey Forms is a mail form plugin for the block editor.
  * Author: inc2734
  * Author URI: https://2inc.org
@@ -30,6 +30,16 @@ define( 'SNOW_MONKEY_FORMS_URL', untrailingslashit( plugin_dir_url( __FILE__ ) )
 define( 'SNOW_MONKEY_FORMS_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 require_once( SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php' );
+
+/**
+ * Whether pro edition.
+ *
+ * @return boolean
+ */
+function is_pro() {
+	$is_pro = 'snow-monkey' === get_template() || 'snow-monkey/resources' === get_template();
+	return apply_filters( 'snow_monkey_forms_pro', $is_pro );
+}
 
 class Bootstrap {
 
@@ -112,6 +122,15 @@ class Bootstrap {
 	 * Enqueue block assets.
 	 */
 	public function _enqueue_block_assets() {
+		if ( apply_filters( 'snow_monkey_forms/enqueue/fallback_style', ! is_pro() ) ) {
+			wp_enqueue_style(
+				'snow-monkey-forms@fallback',
+				SNOW_MONKEY_FORMS_URL . '/dist/css/fallback.css',
+				array(),
+				filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/fallback.css' )
+			);
+		}
+
 		wp_enqueue_style(
 			'snow-monkey-forms',
 			SNOW_MONKEY_FORMS_URL . '/dist/css/app.css',

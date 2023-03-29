@@ -1,5 +1,9 @@
 $_base-font-size-px: 16px !default;
 $_half-leading: .4 !default;
+$_transition-duration: .2s !default;
+$_border-radius: 6px !default;
+$alert-color: #fff9e6 !default;
+$color-accent: #cd162c !default;
 
 @mixin smf-button {
   cursor: pointer;
