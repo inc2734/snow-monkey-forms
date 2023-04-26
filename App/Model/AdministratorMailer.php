@@ -116,7 +116,6 @@ class AdministratorMailer {
 			'sender'      => $mail_parser->parse( $this->setting->get( 'administrator_email_sender' ) ),
 			'headers'     => $this->_get_headers(),
 		);
-		error_log( print_r( $args['attachments'], true ) . "\n", 3, __DIR__ . '/error_log' );
 
 		$args = apply_filters(
 			'snow_monkey_forms/administrator_mailer/args',
