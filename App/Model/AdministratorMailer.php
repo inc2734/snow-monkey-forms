@@ -111,11 +111,12 @@ class AdministratorMailer {
 			'to'          => $this->setting->get( 'administrator_email_to' ),
 			'subject'     => $mail_parser->parse( $this->setting->get( 'administrator_email_subject' ) ),
 			'body'        => $mail_parser->parse( $this->setting->get( 'administrator_email_body' ) ),
-			'attachments' => $mail_parser->get_attachments( $this->setting->get( 'administrator_email_body' ) ),
+			'attachments' => array_values( $mail_parser->get_attachments( $this->setting->get( 'administrator_email_body' ) ) ),
 			'from'        => $mail_parser->parse( $this->setting->get( 'administrator_email_from' ) ),
 			'sender'      => $mail_parser->parse( $this->setting->get( 'administrator_email_sender' ) ),
 			'headers'     => $this->_get_headers(),
 		);
+		error_log( print_r( $args['attachments'], true ) . "\n", 3, __DIR__ . '/error_log' );
 
 		$args = apply_filters(
 			'snow_monkey_forms/administrator_mailer/args',
