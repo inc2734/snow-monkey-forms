@@ -83,11 +83,22 @@ class MailParser {
 		$attachments = array();
 
 		foreach ( Meta::get_saved_files() as $name ) {
-			$saved_file = $this->responser->get( $name );
-			if ( ! $saved_file ) {
+			$saved_filename = $this->responser->get( $name );
+			if ( ! $saved_filename ) {
 				continue;
 			}
-			$attachments[ $name ] = Directory::fileurl_to_filepath( $saved_file );
+
+			$save_dir = Directory::get();
+			$filepath = path_join( $save_dir, $saved_filename );
+			if ( 0 !== strpos( realpath( $filepath ), $save_dir ) ) {
+				throw new \RuntimeException( '[Snow Monkey Forms] Attachment of file failed.' );
+			}
+
+			if ( strstr( $filepath, "\0" ) ) {
+				throw new \RuntimeException( '[Snow Monkey Forms] Attachment of file failed.' );
+			}
+
+			$attachments[ $name ] = $filepath;
 		}
 
 		return $this->_sanitize_attachments( $attachments, $body );

@@ -107,27 +107,30 @@ class File {
 			throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
 		}
 
+		$new_save_dir = '';
+		$unique_dir   = '';
 		do {
-			$rand_max = mt_getrandmax();
-			$rand     = zeroise( mt_rand( 0, $rand_max ), strlen( $rand_max ) );
-			$uniqid   = md5( uniqid( $rand, true ) );
-			$save_dir = path_join( $save_dir, $uniqid . $rand );
+			$rand_max     = mt_getrandmax();
+			$rand         = zeroise( mt_rand( 0, $rand_max ), strlen( $rand_max ) );
+			$uniqid       = md5( uniqid( $rand, true ) ) . $rand;
+			$unique_dir   = ! $unique_dir ? $uniqid : path_join( $unique_dir, $uniqid );
+			$new_save_dir = path_join( $save_dir, $unique_dir );
 
-			if ( ! file_exists( $save_dir ) ) {
+			if ( ! file_exists( $new_save_dir ) ) {
 				break;
 			}
 		} while ( 0 );
 
-		if ( ! wp_mkdir_p( $save_dir ) ) {
+		if ( ! wp_mkdir_p( $new_save_dir ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
 		}
 
-		$new_filepath = path_join( $save_dir, $filename );
+		$new_filepath = path_join( $new_save_dir, $filename );
 
 		if ( ! $this->_move_to( $new_filepath ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] There was an error saving the uploaded file.' );
 		}
 
-		return Directory::filepath_to_fileurl( $new_filepath );
+		return path_join( $unique_dir, $filename );
 	}
 }

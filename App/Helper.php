@@ -106,4 +106,27 @@ class Helper {
 
 		return $attributes;
 	}
+
+	/**
+	 * Return blocks with their inner blocks flattened.
+	 *
+	 * @copyright Automattic\WooCommerce
+	 * @param array $blocks Array of blocks as returned by parse_blocks().
+	 * @return array All blocks.
+	 */
+	public static function flatten_blocks( $blocks ) {
+		return array_reduce(
+			$blocks,
+			function( $carry, $block ) {
+				array_push( $carry, array_diff_key( $block, array_flip( array( 'innerBlocks' ) ) ) );
+				if ( isset( $block['innerBlocks'] ) ) {
+					$inner_blocks = static::flatten_blocks( $block['innerBlocks'] );
+					return array_merge( $carry, $inner_blocks );
+				}
+
+				return $carry;
+			},
+			array()
+		);
+	}
 }

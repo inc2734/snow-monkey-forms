@@ -45,20 +45,43 @@ class Directory {
 	/**
 	 * Return the file path from the file url.
 	 *
+	 * @deprecated
 	 * @param string $fileurl The file url.
 	 * @return string
 	 */
 	public static function fileurl_to_filepath( $fileurl ) {
+		$filepath = str_replace( static::get_url(), static::get(), $fileurl );
+		$base_dir = static::get();
+
+		if ( 0 !== strpos( realpath( $filepath ), $base_dir ) ) {
+			return false;
+		}
+
+		if ( strstr( $fileurl, "\0" ) ) {
+			return false;
+		}
+
 		return str_replace( static::get_url(), static::get(), $fileurl );
 	}
 
 	/**
 	 * Return the file url from the file path.
 	 *
+	 * @deprecated
 	 * @param string $filepath The file path.
 	 * @return string
 	 */
 	public static function filepath_to_fileurl( $filepath ) {
+		$base_dir = static::get();
+
+		if ( 0 !== strpos( realpath( $filepath ), $base_dir ) ) {
+			return false;
+		}
+
+		if ( strstr( $filepath, "\0" ) ) {
+			return false;
+		}
+
 		return str_replace( static::get(), static::get_url(), $filepath );
 	}
 

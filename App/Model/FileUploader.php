@@ -7,6 +7,7 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 use Snow_Monkey\Plugin\Forms\App\Model\File;
 use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
@@ -21,9 +22,11 @@ class FileUploader {
 
 	/**
 	 * Constructor.
+	 *
+	 * @params array $_FILES
 	 */
-	public function __construct() {
-		$this->files = $_FILES;
+	public function __construct( $files ) {
+		$this->files = $files;
 	}
 
 	/**
@@ -92,15 +95,16 @@ class FileUploader {
 
 		$failed_saved_files = $this->set_error_code( array() );
 
+		$save_dir    = Directory::get();
 		$saved_files = array();
 		foreach ( $files as $name => $file ) {
 			if ( array_key_exists( $name, $failed_saved_files ) ) {
 				continue;
 			}
 
-			$fileurl = $file->save( sprintf( '%1$s-%2$s', $name, $file->get_filename() ) );
-			if ( $fileurl ) {
-				$saved_files[ $name ] = $fileurl;
+			$filename = $file->save( sprintf( '%1$s-%2$s', $name, $file->get_filename() ) );
+			if ( file_exists( path_join( $save_dir, $filename ) ) ) {
+				$saved_files[ $name ] = $filename;
 			}
 		}
 

@@ -17,6 +17,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\FileUploader;
 use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Validator;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class View {
 
@@ -47,8 +48,10 @@ class View {
 			unset( $data[ Meta::get_key() ] );
 		}
 
-		// Files upload
-		$uploader = new FileUploader();
+		$this->setting = DataStore::get( Meta::get_formid() );
+
+		$files    = $this->_sanitize_files( $_FILES );
+		$uploader = new FileUploader( $files );
 		if ( $uploader->exist_file_controls() ) {
 			$saved_files = $uploader->save_uploaded_files();
 			if ( is_array( $saved_files ) ) {
@@ -60,16 +63,15 @@ class View {
 		foreach ( Meta::get_saved_files() as $name => $value ) {
 			if ( isset( $data[ $name ] ) ) {
 				if ( ! array_key_exists( $value, FileUploader::get_error_codes() ) ) {
-					$saved_file = $data[ $name ];
-					$file       = Directory::fileurl_to_filepath( $saved_file );
-					if ( ! file_exists( $file ) ) {
+					$saved_filename = $data[ $name ];
+					$saved_filepath = path_join( Directory::get(), $saved_filename );
+					if ( ! file_exists( $saved_filepath ) ) {
 						$data[ $name ] = null;
 					}
 				}
 			}
 		}
 
-		$this->setting   = DataStore::get( Meta::get_formid() );
 		$this->responser = new Responser( $data );
 		$this->validator = new Validator( $this->responser, $this->setting );
 	}
@@ -174,7 +176,7 @@ class View {
 				continue;
 			}
 
-			$file = Directory::fileurl_to_filepath( $saved_file );
+			$file = path_join( Directory::get(), $saved_file );
 			if ( ! file_exists( $file ) ) {
 				continue;
 			}
@@ -185,5 +187,37 @@ class View {
 				error_log( $e->getMessage() );
 			}
 		}
+	}
+
+	/**
+	 * Sanitize $_FILES for FileUploader.
+	 *
+	 * @param array $files $_FILES
+	 * @return array
+	 */
+	protected function _sanitize_files( $files ) {
+		$blocks = parse_blocks( $this->setting->get( 'input_content' ) );
+		$blocks = Helper::flatten_blocks( $blocks );
+
+		$permitted_file_names = array();
+
+		foreach ( $blocks as $block ) {
+			if ( 'snow-monkey-forms/control-file' === $block['blockName'] ) {
+				if ( isset( $block['attrs']['name'] ) ) {
+					$name                          = $block['attrs']['name'];
+					$permitted_file_names[ $name ] = $name;
+				}
+			}
+		}
+
+		$new_files = array();
+
+		foreach ( $files as $name => $file ) {
+			if ( in_array( $name, $permitted_file_names, true ) ) {
+				$new_files[ $name ] = $file;
+			}
+		}
+
+		return $new_files;
 	}
 }
