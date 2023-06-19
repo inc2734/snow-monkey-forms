@@ -1,22 +1,22 @@
-# Copyright (C) 2022 inc2734
+# Copyright (C) 2023 inc2734
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Snow Monkey Forms 4.0.3\n"
+"Project-Id-Version: Snow Monkey Forms 5.0.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-01T05:54:46+00:00\n"
+"POT-Creation-Date: 2023-06-19T14:13:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: snow-monkey-forms\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-forms.php:215
-#: snow-monkey-forms.php:522
+#: snow-monkey-forms.php:216
+#: snow-monkey-forms.php:523
 msgid "Snow Monkey Forms"
 msgstr ""
 
@@ -32,19 +32,19 @@ msgstr ""
 msgid "https://2inc.org"
 msgstr ""
 
-#: App/Control/File.php:73
+#: App/Control/File.php:78
 msgid "Uploaded file"
 msgstr ""
 
-#: App/Control/File.php:108
+#: App/Control/File.php:113
 #: dist/blocks/file/index.js:1
-#: src/blocks/file/edit.js:75
+#: src/blocks/file/edit.js:88
 msgid "Choose file"
 msgstr ""
 
-#: App/Control/File.php:109
+#: App/Control/File.php:114
 #: dist/blocks/file/index.js:1
-#: src/blocks/file/edit.js:78
+#: src/blocks/file/edit.js:91
 msgid "No file chosen"
 msgstr ""
 
@@ -60,31 +60,31 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: App/Rest/Route/View.php:85
+#: App/Rest/Route/View.php:87
 msgid "Invalid access."
 msgstr ""
 
-#: App/Rest/Route/View.php:90
+#: App/Rest/Route/View.php:92
 msgid "There is a possibility of spamming."
 msgstr ""
 
-#: App/Rest/Route/View.php:108
+#: App/Rest/Route/View.php:110
 msgid "Failed to send administrator email."
 msgstr ""
 
-#: App/Rest/Route/View.php:109
-#: App/Rest/Route/View.php:157
+#: App/Rest/Route/View.php:111
+#: App/Rest/Route/View.php:159
 #: dist/blocks/snow-monkey-form/render.php:85
 #: dist/js/blocks/snow-monkey-form/render.php:85
 #: src/blocks/snow-monkey-form/render.php:85
 msgid "Please try again later or contact your administrator by other means."
 msgstr ""
 
-#: App/Rest/Route/View.php:120
+#: App/Rest/Route/View.php:122
 msgid "Failed to send auto reply email."
 msgstr ""
 
-#: App/Rest/Route/View.php:156
+#: App/Rest/Route/View.php:158
 #: dist/blocks/snow-monkey-form/render.php:84
 #: dist/js/blocks/snow-monkey-form/render.php:84
 #: src/blocks/snow-monkey-form/render.php:84
@@ -179,30 +179,30 @@ msgctxt "progress-tracker"
 msgid "Complete"
 msgstr ""
 
-#: snow-monkey-forms.php:233
+#: snow-monkey-forms.php:234
 msgctxt "form-field-label"
 msgid "Name"
 msgstr ""
 
-#: snow-monkey-forms.php:253
+#: snow-monkey-forms.php:254
 msgctxt "form-field-label"
 msgid "Email"
 msgstr ""
 
-#: snow-monkey-forms.php:273
+#: snow-monkey-forms.php:274
 msgctxt "form-field-label"
 msgid "Message"
 msgstr ""
 
-#: snow-monkey-forms.php:303
+#: snow-monkey-forms.php:304
 msgid "Complete !"
 msgstr ""
 
-#: snow-monkey-forms.php:356
+#: snow-monkey-forms.php:357
 msgid "Admin notification"
 msgstr ""
 
-#: snow-monkey-forms.php:421
+#: snow-monkey-forms.php:422
 msgid "Automatic reply notification"
 msgstr ""
 
@@ -211,8 +211,10 @@ msgstr ""
 #: dist/blocks/file/index.js:1
 #: dist/blocks/radio-buttons/index.js:1
 #: dist/blocks/select/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:16
 msgid "name"
 msgstr ""
@@ -222,8 +224,10 @@ msgstr ""
 #: dist/blocks/file/index.js:1
 #: dist/blocks/radio-buttons/index.js:1
 #: dist/blocks/select/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:17
 msgid "Required. Input a unique machine-readable name."
 msgstr ""
@@ -232,8 +236,10 @@ msgstr ""
 #: dist/blocks/email/index.js:1
 #: dist/blocks/radio-buttons/index.js:1
 #: dist/blocks/select/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:34
 #: src/blocks/components.js:45
 msgid "value"
@@ -265,8 +271,10 @@ msgstr ""
 #: dist/blocks/file/index.js:1
 #: dist/blocks/radio-buttons/index.js:3
 #: dist/blocks/select/index.js:3
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: hoc/with-validations.js:23
 msgid "Validation"
 msgstr ""
@@ -276,8 +284,10 @@ msgstr ""
 #: dist/blocks/file/index.js:1
 #: dist/blocks/radio-buttons/index.js:3
 #: dist/blocks/select/index.js:3
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: hoc/with-validations.js:26
 msgid "Required"
 msgstr ""
@@ -287,12 +297,14 @@ msgstr ""
 #: dist/blocks/file/index.js:1
 #: dist/blocks/radio-buttons/index.js:3
 #: dist/blocks/select/index.js:3
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
-#: src/blocks/checkboxes/edit.js:44
-#: src/blocks/email/edit.js:45
+#: dist/blocks/url/index.js:1
+#: src/blocks/checkboxes/edit.js:56
+#: src/blocks/email/edit.js:46
 #: src/blocks/file/edit.js:28
-#: src/blocks/radio-buttons/edit.js:42
+#: src/blocks/radio-buttons/edit.js:54
 #: src/blocks/select/edit.js:52
 #: src/blocks/tel/edit.js:48
 #: src/blocks/text/edit.js:48
@@ -302,12 +314,12 @@ msgid "Attributes"
 msgstr ""
 
 #: dist/blocks/checkboxes/index.js:5
-#: src/blocks/checkboxes/edit.js:67
+#: src/blocks/checkboxes/edit.js:79
 msgid "Delimiter"
 msgstr ""
 
 #: dist/blocks/checkboxes/index.js:5
-#: src/blocks/checkboxes/edit.js:68
+#: src/blocks/checkboxes/edit.js:80
 msgid "Optional. Character that separates each item."
 msgstr ""
 
@@ -317,13 +329,15 @@ msgstr ""
 #: dist/blocks/item/index.js:1
 #: dist/blocks/radio-buttons/index.js:3
 #: dist/blocks/select/index.js:3
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
-#: src/blocks/checkboxes/edit.js:80
-#: src/blocks/email/edit.js:104
+#: dist/blocks/url/index.js:1
+#: src/blocks/checkboxes/edit.js:92
+#: src/blocks/email/edit.js:105
 #: src/blocks/file/edit.js:52
 #: src/blocks/item/edit.js:61
-#: src/blocks/radio-buttons/edit.js:66
+#: src/blocks/radio-buttons/edit.js:78
 #: src/blocks/select/edit.js:97
 #: src/blocks/tel/edit.js:124
 #: src/blocks/text/edit.js:114
@@ -334,31 +348,31 @@ msgstr ""
 
 #: dist/blocks/checkboxes/index.js:5
 #: dist/blocks/radio-buttons/index.js:3
-#: src/blocks/checkboxes/edit.js:83
-#: src/blocks/radio-buttons/edit.js:69
+#: src/blocks/checkboxes/edit.js:95
+#: src/blocks/radio-buttons/edit.js:81
 msgid "Direction"
 msgstr ""
 
 #: dist/blocks/checkboxes/index.js:5
 #: dist/blocks/form/input/index.js:1
 #: dist/blocks/radio-buttons/index.js:3
-#: src/blocks/checkboxes/edit.js:88
+#: src/blocks/checkboxes/edit.js:100
 #: src/blocks/form/input/form-settings-panel.js:41
-#: src/blocks/radio-buttons/edit.js:74
+#: src/blocks/radio-buttons/edit.js:86
 msgid "Default"
 msgstr ""
 
 #: dist/blocks/checkboxes/index.js:5
 #: dist/blocks/radio-buttons/index.js:3
-#: src/blocks/checkboxes/edit.js:92
-#: src/blocks/radio-buttons/edit.js:78
+#: src/blocks/checkboxes/edit.js:104
+#: src/blocks/radio-buttons/edit.js:90
 msgid "Horizontal"
 msgstr ""
 
 #: dist/blocks/checkboxes/index.js:5
 #: dist/blocks/radio-buttons/index.js:3
-#: src/blocks/checkboxes/edit.js:96
-#: src/blocks/radio-buttons/edit.js:82
+#: src/blocks/checkboxes/edit.js:108
+#: src/blocks/radio-buttons/edit.js:94
 msgid "Vertical"
 msgstr ""
 
@@ -368,13 +382,15 @@ msgstr ""
 #: dist/blocks/item/index.js:1
 #: dist/blocks/radio-buttons/index.js:3
 #: dist/blocks/select/index.js:3
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
-#: src/blocks/checkboxes/edit.js:105
-#: src/blocks/email/edit.js:107
+#: dist/blocks/url/index.js:1
+#: src/blocks/checkboxes/edit.js:117
+#: src/blocks/email/edit.js:108
 #: src/blocks/file/edit.js:55
 #: src/blocks/item/edit.js:132
-#: src/blocks/radio-buttons/edit.js:91
+#: src/blocks/radio-buttons/edit.js:103
 #: src/blocks/select/edit.js:100
 #: src/blocks/tel/edit.js:127
 #: src/blocks/text/edit.js:117
@@ -383,44 +399,77 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
+#: dist/blocks/checkboxes/index.js:5
+#: dist/blocks/email/index.js:1
+#: dist/blocks/file/index.js:1
+#: dist/blocks/radio-buttons/index.js:3
+#: dist/blocks/select/index.js:3
+#: dist/blocks/tel/index.js:1
+#: dist/blocks/text/index.js:1
+#: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
+#: src/blocks/checkboxes/edit.js:125
+#: src/blocks/email/edit.js:116
+#: src/blocks/file/edit.js:63
+#: src/blocks/radio-buttons/edit.js:111
+#: src/blocks/select/edit.js:108
+#: src/blocks/tel/edit.js:135
+#: src/blocks/text/edit.js:125
+#: src/blocks/textarea/edit.js:129
+#: src/blocks/url/edit.js:135
+msgid "Description is also displayed on the confirmation screen"
+msgstr ""
+
 #: dist/blocks/email/index.js:1
 #: dist/blocks/radio-buttons/index.js:1
 #: dist/blocks/select/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:35
 msgid "Optional. Initial value."
 msgstr ""
 
 #: dist/blocks/email/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:63
 msgid "placeholder"
 msgstr ""
 
 #: dist/blocks/email/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:73
 msgid "maxlength"
 msgstr ""
 
 #: dist/blocks/email/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:74
 msgid "Optional. Maximum number of characters. If 0, not restricted."
 msgstr ""
 
 #: dist/blocks/email/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:87
 msgid "size"
 msgstr ""
 
 #: dist/blocks/email/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:88
 msgid "Optional. The width of this item. If 0, not restricted."
 msgstr ""
@@ -428,8 +477,10 @@ msgstr ""
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
 #: dist/blocks/select/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:178
 msgid "id"
 msgstr ""
@@ -437,8 +488,10 @@ msgstr ""
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
 #: dist/blocks/select/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:188
 msgid "class"
 msgstr ""
@@ -446,8 +499,10 @@ msgstr ""
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
 #: dist/blocks/select/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:189
 msgid "Separate multiple classes with spaces."
 msgstr ""
@@ -607,15 +662,17 @@ msgid "Label"
 msgstr ""
 
 #: dist/blocks/select/index.js:1
+#: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
+#: dist/blocks/url/index.js:1
 #: src/blocks/components.js:167
 msgid "autocomplete"
 msgstr ""
 
 #: dist/blocks/snow-monkey-form/index.js:1
-#: src/blocks/snow-monkey-form/edit.js:36
-#: src/blocks/snow-monkey-form/edit.js:43
+#: src/blocks/snow-monkey-form/edit.js:37
+#: src/blocks/snow-monkey-form/edit.js:44
 msgid "Select a form"
 msgstr ""
 

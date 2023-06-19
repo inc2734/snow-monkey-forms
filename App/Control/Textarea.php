@@ -42,6 +42,11 @@ class Textarea extends Contract\Control {
 	protected $description = '';
 
 	/**
+	 * @var boolean
+	 */
+	protected $is_display_description_confirm = false;
+
+	/**
 	 * @var array
 	 */
 	protected $validations = array();
@@ -98,9 +103,22 @@ class Textarea extends Contract\Control {
 	 * @return string
 	 */
 	public function confirm() {
+		$description                    = '';
+		$is_display_description_confirm = $this->get_property( 'is_display_description_confirm' );
+		if ( $is_display_description_confirm ) {
+			$description = $this->get_property( 'description' );
+			if ( $description ) {
+				$description = sprintf(
+					'<div class="smf-control-description">%1$s</div>',
+					wp_kses_post( $description )
+				);
+			}
+		}
+
 		return sprintf(
-			'%1$s%2$s',
+			'%1$s%2$s%3$s',
 			nl2br( esc_html( $this->get_property( 'value' ) ) ),
+			$description,
 			Helper::control(
 				'hidden',
 				array(

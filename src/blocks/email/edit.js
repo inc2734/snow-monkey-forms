@@ -1,6 +1,5 @@
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-
-import { PanelBody, TextControl } from '@wordpress/components';
+import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 import { compose } from '@wordpress/compose';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -14,6 +13,7 @@ import {
 	IdControl,
 	ClassControl,
 } from '../components';
+
 import { stringToNumber, uniqId } from '../helper';
 import withValidations from '../../../hoc/with-validations';
 
@@ -27,6 +27,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 		id,
 		controlClass,
 		description,
+		isDisplayDescriptionConfirm,
 	} = attributes;
 
 	useEffect( () => {
@@ -109,6 +110,19 @@ const Edit = ( { attributes, setAttributes } ) => {
 						onChange={ ( attribute ) =>
 							setAttributes( { description: attribute } )
 						}
+					/>
+
+					<ToggleControl
+						label={ __(
+							'Description is also displayed on the confirmation screen',
+							'snow-monkey-forms'
+						) }
+						checked={ isDisplayDescriptionConfirm }
+						onChange={ ( attribute ) => {
+							setAttributes( {
+								isDisplayDescriptionConfirm: attribute,
+							} );
+						} }
 					/>
 				</PanelBody>
 			</InspectorControls>

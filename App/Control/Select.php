@@ -36,6 +36,11 @@ class Select extends Contract\Control {
 	protected $description = '';
 
 	/**
+	 * @var boolean
+	 */
+	protected $is_display_description_confirm = false;
+
+	/**
 	 * @var array
 	 */
 	protected $validations = array();
@@ -143,7 +148,23 @@ class Select extends Contract\Control {
 		}
 		$this->_set_children( $children );
 
-		return $this->_children( 'confirm' );
+		$description                    = '';
+		$is_display_description_confirm = $this->get_property( 'is_display_description_confirm' );
+		if ( $is_display_description_confirm ) {
+			$description = $this->get_property( 'description' );
+			if ( $description ) {
+				$description = sprintf(
+					'<div class="smf-control-description">%1$s</div>',
+					wp_kses_post( $description )
+				);
+			}
+		}
+
+		return sprintf(
+			'%1$s%2$s',
+			$this->_children( 'confirm' ),
+			$description
+		);
 	}
 
 	/**

@@ -47,6 +47,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"isDisplayDescriptionConfirm": {
+			"type": "boolean",
+			"default": false
+		},
 		"validations": {
 			"type": "string",
 			"default": "{}"

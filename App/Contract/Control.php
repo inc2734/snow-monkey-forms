@@ -190,6 +190,7 @@ abstract class Control {
 	 * @return string
 	 */
 	public function get_property( $name ) {
+		$name = strtolower( preg_replace( '/([A-Z])/u', '_$0', $name ) );
 		return isset( $this->$name ) ? $this->$name : null;
 	}
 
@@ -201,6 +202,7 @@ abstract class Control {
 	 * @return boolean
 	 */
 	public function set_property( $name, $value ) {
+		$name = strtolower( preg_replace( '/([A-Z])/u', '_$0', $name ) );
 		if ( isset( $this->$name ) ) {
 			$this->$name = $value;
 			return true;

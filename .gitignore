@@ -10,3 +10,4 @@ snow-monkey-forms.zip
 .wp-env.override.json
 /.export/*
 error_log
+.phpunit.result.cache
