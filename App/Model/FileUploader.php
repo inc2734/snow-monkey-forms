@@ -47,7 +47,9 @@ class FileUploader {
 	 * @return boolean
 	 */
 	public static function has_error_code( $value ) {
-		return preg_match( '|^\d+$|', $value ) && array_key_exists( intval( $value ), static::get_error_codes() );
+		return ! empty( $value )
+			&& preg_match( '|^\d+$|', $value )
+			&& array_key_exists( intval( $value ), static::get_error_codes() );
 	}
 
 	/**

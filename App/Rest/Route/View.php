@@ -147,7 +147,18 @@ class View {
 	protected function _send() {
 		$method = Meta::get_method();
 		if ( 'complete' === $method || 'systemerror' === $method ) {
-			$this->_remove_saved_files();
+			try {
+				$this->_remove_saved_files();
+			} catch ( \Exception $e ) {
+				error_log( $e->getMessage() );
+				$this->setting->set_system_error_message(
+					__( 'An unexpected problem has occurred.', 'snow-monkey-forms' ) .
+					__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
+				);
+				$controller = Dispatcher::dispatch( 'systemerror', $this->responser, $this->setting, $this->validator );
+
+				return $controller->send();
+			}
 		}
 
 		try {
@@ -170,19 +181,30 @@ class View {
 	 * @return void
 	 */
 	protected function _remove_saved_files() {
+		$save_dir = Directory::get();
+
 		foreach ( Meta::get_saved_files() as $name ) {
-			$saved_file = $this->responser->get( $name );
-			if ( ! $saved_file ) {
+			$saved_filename = $this->responser->get( $name );
+			if ( ! $saved_filename ) {
 				continue;
 			}
 
-			$file = path_join( Directory::get(), $saved_file );
-			if ( ! file_exists( $file ) ) {
+			$filepath = path_join( $save_dir, $saved_filename );
+
+			if ( 0 !== strpos( realpath( $filepath ), $save_dir ) ) {
+				throw new \RuntimeException( '[Snow Monkey Forms] Possibly an invalid file deletion request.' );
+			}
+
+			if ( strstr( $filepath, "\0" ) ) {
+				throw new \RuntimeException( '[Snow Monkey Forms] Possibly an invalid file deletion request.' );
+			}
+
+			if ( ! file_exists( $filepath ) ) {
 				continue;
 			}
 
 			try {
-				Directory::remove( $file );
+				Directory::remove( $filepath );
 			} catch ( \Exception $e ) {
 				error_log( $e->getMessage() );
 			}

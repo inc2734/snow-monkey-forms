@@ -51,6 +51,9 @@ Yes! You can use the Snow Monkey Forms with any theme, but we recommend using ou
 
 == Changelog ==
 
+= 5.1.1 =
+* Fixed a directory traversal vulnerability (Fix omitted in v5.0.7). We strongly encourage you to update to it immediately.
+
 = 5.1.0 =
 * Add new setting for each blocks: "Description is also displayed on the confirmation screen"
 
