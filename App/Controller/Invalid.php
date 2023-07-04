@@ -51,8 +51,6 @@ class Invalid extends Contract\Controller {
 			Meta::the_method( 'complete' );
 		}
 
-		Meta::the_saved_files();
-
 		return ob_get_clean();
 	}
 

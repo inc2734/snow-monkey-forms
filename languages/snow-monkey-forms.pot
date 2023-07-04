@@ -2,14 +2,14 @@
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Snow Monkey Forms 5.0.7\n"
+"Project-Id-Version: Snow Monkey Forms 5.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-06-19T14:13:46+00:00\n"
+"POT-Creation-Date: 2023-07-11T15:34:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: snow-monkey-forms\n"
@@ -60,34 +60,42 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: App/Rest/Route/View.php:87
+#: App/Rest/Route/View.php:64
 msgid "Invalid access."
 msgstr ""
 
-#: App/Rest/Route/View.php:92
+#: App/Rest/Route/View.php:69
 msgid "There is a possibility of spamming."
 msgstr ""
 
-#: App/Rest/Route/View.php:110
+#: App/Rest/Route/View.php:86
+msgid "An error occurred during file upload."
+msgstr ""
+
+#: App/Rest/Route/View.php:105
+msgid "Attachment of file failed."
+msgstr ""
+
+#: App/Rest/Route/View.php:123
 msgid "Failed to send administrator email."
 msgstr ""
 
-#: App/Rest/Route/View.php:111
-#: App/Rest/Route/View.php:159
-#: dist/blocks/snow-monkey-form/render.php:85
-#: dist/js/blocks/snow-monkey-form/render.php:85
-#: src/blocks/snow-monkey-form/render.php:85
+#: App/Rest/Route/View.php:124
+#: App/Rest/Route/View.php:169
+#: App/Rest/Route/View.php:183
+#: dist/blocks/snow-monkey-form/render.php:84
+#: src/blocks/snow-monkey-form/render.php:84
 msgid "Please try again later or contact your administrator by other means."
 msgstr ""
 
-#: App/Rest/Route/View.php:122
+#: App/Rest/Route/View.php:135
 msgid "Failed to send auto reply email."
 msgstr ""
 
-#: App/Rest/Route/View.php:158
-#: dist/blocks/snow-monkey-form/render.php:84
-#: dist/js/blocks/snow-monkey-form/render.php:84
-#: src/blocks/snow-monkey-form/render.php:84
+#: App/Rest/Route/View.php:168
+#: App/Rest/Route/View.php:182
+#: dist/blocks/snow-monkey-form/render.php:83
+#: src/blocks/snow-monkey-form/render.php:83
 msgid "An unexpected problem has occurred."
 msgstr ""
 
@@ -134,47 +142,40 @@ msgstr ""
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:43
-#: dist/js/blocks/snow-monkey-form/render.php:43
-#: src/blocks/snow-monkey-form/render.php:43
+#: dist/blocks/snow-monkey-form/render.php:42
+#: src/blocks/snow-monkey-form/render.php:42
 msgctxt "progress-tracker"
 msgid "1"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:46
-#: dist/js/blocks/snow-monkey-form/render.php:46
-#: src/blocks/snow-monkey-form/render.php:46
+#: dist/blocks/snow-monkey-form/render.php:45
+#: src/blocks/snow-monkey-form/render.php:45
 msgctxt "progress-tracker"
 msgid "Input"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:53
-#: dist/blocks/snow-monkey-form/render.php:66
-#: dist/js/blocks/snow-monkey-form/render.php:53
-#: dist/js/blocks/snow-monkey-form/render.php:66
-#: src/blocks/snow-monkey-form/render.php:53
-#: src/blocks/snow-monkey-form/render.php:66
+#: dist/blocks/snow-monkey-form/render.php:52
+#: dist/blocks/snow-monkey-form/render.php:65
+#: src/blocks/snow-monkey-form/render.php:52
+#: src/blocks/snow-monkey-form/render.php:65
 msgctxt "progress-tracker"
 msgid "2"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:56
-#: dist/js/blocks/snow-monkey-form/render.php:56
-#: src/blocks/snow-monkey-form/render.php:56
+#: dist/blocks/snow-monkey-form/render.php:55
+#: src/blocks/snow-monkey-form/render.php:55
 msgctxt "progress-tracker"
 msgid "Confirm"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:64
-#: dist/js/blocks/snow-monkey-form/render.php:64
-#: src/blocks/snow-monkey-form/render.php:64
+#: dist/blocks/snow-monkey-form/render.php:63
+#: src/blocks/snow-monkey-form/render.php:63
 msgctxt "progress-tracker"
 msgid "3"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:70
-#: dist/js/blocks/snow-monkey-form/render.php:70
-#: src/blocks/snow-monkey-form/render.php:70
+#: dist/blocks/snow-monkey-form/render.php:69
+#: src/blocks/snow-monkey-form/render.php:69
 msgctxt "progress-tracker"
 msgid "Complete"
 msgstr ""
@@ -687,91 +688,78 @@ msgid "Number of lines"
 msgstr ""
 
 #: dist/blocks/checkboxes/block.json
-#: dist/js/blocks/checkboxes/block.json
 #: src/blocks/checkboxes/block.json
 msgctxt "block title"
 msgid "Checkboxes"
 msgstr ""
 
 #: dist/blocks/email/block.json
-#: dist/js/blocks/email/block.json
 #: src/blocks/email/block.json
 msgctxt "block title"
 msgid "email"
 msgstr ""
 
 #: dist/blocks/file/block.json
-#: dist/js/blocks/file/block.json
 #: src/blocks/file/block.json
 msgctxt "block title"
 msgid "File"
 msgstr ""
 
 #: dist/blocks/form/complete/block.json
-#: dist/js/blocks/form/complete/block.json
 #: src/blocks/form/complete/block.json
 msgctxt "block title"
 msgid "Complete page"
 msgstr ""
 
 #: dist/blocks/form/input/block.json
-#: dist/js/blocks/form/input/block.json
 #: src/blocks/form/input/block.json
 msgctxt "block title"
 msgid "Form"
 msgstr ""
 
 #: dist/blocks/item/block.json
-#: dist/js/blocks/item/block.json
 #: src/blocks/item/block.json
 msgctxt "block title"
 msgid "Item"
 msgstr ""
 
 #: dist/blocks/radio-buttons/block.json
-#: dist/js/blocks/radio-buttons/block.json
 #: src/blocks/radio-buttons/block.json
 msgctxt "block title"
 msgid "Radio buttons"
 msgstr ""
 
 #: dist/blocks/select/block.json
-#: dist/js/blocks/select/block.json
 #: src/blocks/select/block.json
 msgctxt "block title"
 msgid "Select"
 msgstr ""
 
 #: dist/blocks/snow-monkey-form/block.json
-#: dist/js/blocks/snow-monkey-form/block.json
 #: src/blocks/snow-monkey-form/block.json
 msgctxt "block title"
 msgid "Snow Monkey Form"
 msgstr ""
 
 #: dist/blocks/tel/block.json
-#: dist/js/blocks/tel/block.json
 #: src/blocks/tel/block.json
 msgctxt "block title"
 msgid "Tel"
 msgstr ""
 
 #: dist/blocks/text/block.json
-#: dist/js/blocks/text/block.json
 #: src/blocks/text/block.json
 msgctxt "block title"
 msgid "Text"
 msgstr ""
 
 #: dist/blocks/textarea/block.json
-#: dist/js/blocks/textarea/block.json
 #: src/blocks/textarea/block.json
 msgctxt "block title"
 msgid "Textarea"
 msgstr ""
 
 #: dist/blocks/url/block.json
-#: dist/js/blocks/url/block.json
 #: src/blocks/url/block.json
 msgctxt "block title"
 msgid "URL"

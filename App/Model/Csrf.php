@@ -7,8 +7,6 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
-use Snow_Monkey\Plugin\Forms\App\Helper;
-
 class Csrf {
 
 	const KEY = '_snow-monkey-forms-token';
@@ -25,7 +23,7 @@ class Csrf {
 	 * @return boolean
 	 */
 	public static function validate( $posted_token ) {
-		if ( empty( $posted_token ) ) {
+		if ( ! preg_match( '|^[a-z0-9]+$|', $posted_token ) ) {
 			return false;
 		}
 
@@ -37,8 +35,9 @@ class Csrf {
 	 * Save token to the cookie.
 	 */
 	public static function save_token() {
-		static::$token = ! static::saved_token() ? static::generate_token() : static::saved_token();
-		if ( ! static::saved_token() && ! headers_sent() ) {
+		$saved_token   = static::saved_token();
+		static::$token = ! $saved_token ? static::generate_token() : $saved_token;
+		if ( ! $saved_token && ! headers_sent() ) {
 			setcookie( static::KEY, static::token(), 0, '/' );
 		}
 	}
@@ -63,6 +62,7 @@ class Csrf {
 
 	/**
 	 * Generate token.
+	 * Only alphanumeric values are allowed for token values.
 	 *
 	 * @return string
 	 */
@@ -77,6 +77,6 @@ class Csrf {
 			return bin2hex( openssl_random_pseudo_bytes( 32 ) );
 		}
 
-		return uniqid( mt_rand(), true );
+		return bin2hex( uniqid( mt_rand(), true ) );
 	}
 }

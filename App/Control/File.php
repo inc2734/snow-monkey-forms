@@ -137,7 +137,7 @@ class File extends Contract\Control {
 
 		return sprintf(
 			'%1$s%2$s%3$s',
-			esc_html( basename( $this->get_property( 'value' ) ) ),
+			esc_html( $this->get_property( 'value' ) ? basename( $this->get_property( 'value' ) ) : '' ),
 			$description,
 			Helper::control(
 				'hidden',

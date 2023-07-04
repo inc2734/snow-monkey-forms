@@ -43,7 +43,6 @@ class Confirm extends Contract\Controller {
 		Meta::the_meta_button( 'back', $this->setting->get( 'back_button_label' ) );
 		Meta::the_meta_button( 'complete', $this->setting->get( 'send_button_label' ) );
 		Meta::the_method( 'complete' );
-		Meta::the_saved_files();
 
 		return ob_get_clean();
 	}

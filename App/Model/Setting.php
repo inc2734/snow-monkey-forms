@@ -213,6 +213,28 @@ class Setting {
 	}
 
 	/**
+	 * Return name of file control list.
+	 *
+	 * @return array
+	 */
+	public function get_file_names() {
+		$blocks     = parse_blocks( $this->get( 'input_content' ) );
+		$blocks     = Helper::flatten_blocks( $blocks );
+		$file_names = array();
+
+		foreach ( $blocks as $block ) {
+			if ( 'snow-monkey-forms/control-file' === $block['blockName'] ) {
+				if ( isset( $block['attrs']['name'] ) ) {
+					$name                = $block['attrs']['name'];
+					$file_names[ $name ] = $name;
+				}
+			}
+		}
+
+		return $file_names;
+	}
+
+	/**
 	 * Extract input content.
 	 *
 	 * @param string $post_content The post (post_content of form editing page) content.

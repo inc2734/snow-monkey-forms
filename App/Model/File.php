@@ -8,6 +8,7 @@
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class File {
 
@@ -83,11 +84,12 @@ class File {
 	/**
 	 * Save the file.
 	 *
+	 * @param string $name The name attribute value.
 	 * @param string $filename Posted file name.
-	 * @return string
+	 * @return string The filename.
 	 * @throws \RuntimeException When the file upload fails.
 	 */
-	public function save( $filename ) {
+	public function save( $name, $filename ) {
 		$filename = $this->_sanitized_file_name( $filename );
 		$error    = $this->get_error();
 
@@ -102,35 +104,19 @@ class File {
 			throw new \RuntimeException( '[Snow Monkey Forms] An error occurred during file upload.' );
 		}
 
-		$save_dir = Directory::get();
-		if ( ! $save_dir ) {
+		$new_user_file_dir = Directory::generate_user_file_dirpath( $name );
+		if ( ! wp_mkdir_p( $new_user_file_dir ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
 		}
 
-		$new_save_dir = '';
-		$unique_dir   = '';
-		do {
-			$rand_max     = mt_getrandmax();
-			$rand         = zeroise( mt_rand( 0, $rand_max ), strlen( $rand_max ) );
-			$uniqid       = md5( uniqid( $rand, true ) ) . $rand;
-			$unique_dir   = ! $unique_dir ? $uniqid : path_join( $unique_dir, $uniqid );
-			$new_save_dir = path_join( $save_dir, $unique_dir );
+		Directory::do_empty( $new_user_file_dir, true );
 
-			if ( ! file_exists( $new_save_dir ) ) {
-				break;
-			}
-		} while ( 0 );
+		$filepath = Directory::generate_user_filepath( $name, $filename );
 
-		if ( ! wp_mkdir_p( $new_save_dir ) ) {
-			throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
-		}
-
-		$new_filepath = path_join( $new_save_dir, $filename );
-
-		if ( ! $this->_move_to( $new_filepath ) ) {
+		if ( ! $this->_move_to( $filepath ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] There was an error saving the uploaded file.' );
 		}
 
-		return path_join( $unique_dir, $filename );
+		return $filename;
 	}
 }

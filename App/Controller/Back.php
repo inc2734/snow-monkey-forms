@@ -42,7 +42,6 @@ class Back extends Contract\Controller {
 
 		Meta::the_meta_button( 'confirm', $this->setting->get( 'confirm_button_label' ) );
 		Meta::the_method( 'confirm' );
-		Meta::the_saved_files();
 
 		return ob_get_clean();
 	}

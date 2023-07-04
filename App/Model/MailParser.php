@@ -80,28 +80,18 @@ class MailParser {
 	 * @return array
 	 */
 	public function get_attachments( $body ) {
-		$attachments = array();
+		$file_names       = $this->setting->get_file_names();
+		$saved_files      = Directory::get_saved_files( $file_names );
+		$data             = $this->responser->get_all();
+		$attachment_files = array();
 
-		foreach ( Meta::get_saved_files() as $name ) {
-			$saved_filename = $this->responser->get( $name );
-			if ( ! $saved_filename ) {
-				continue;
+		foreach ( $saved_files as $name => $filepath ) {
+			if ( basename( $filepath ) === $data[ $name ] ) {
+				$attachment_files[ $name ] = $filepath;
 			}
-
-			$save_dir = Directory::get();
-			$filepath = path_join( $save_dir, $saved_filename );
-			if ( 0 !== strpos( realpath( $filepath ), $save_dir ) ) {
-				throw new \RuntimeException( '[Snow Monkey Forms] Attachment of file failed.' );
-			}
-
-			if ( strstr( $filepath, "\0" ) ) {
-				throw new \RuntimeException( '[Snow Monkey Forms] Attachment of file failed.' );
-			}
-
-			$attachments[ $name ] = $filepath;
 		}
 
-		return $this->_sanitize_attachments( $attachments, $body );
+		return $this->_sanitize_attachments( $attachment_files, $body );
 	}
 
 	/**
@@ -134,8 +124,9 @@ class MailParser {
 	 * @return boolean
 	 */
 	protected function _is_file( $name ) {
-		$saved_files = Meta::get_saved_files();
-		return in_array( $name, $saved_files, true );
+		$file_names = $this->setting->get_file_names();
+
+		return in_array( $name, $file_names, true );
 	}
 
 	/**

@@ -20,11 +20,6 @@ class Meta {
 	private static $singleton;
 
 	/**
-	 * @var array
-	 */
-	protected static $saved_files = array();
-
-	/**
 	 * @var int
 	 */
 	protected static $formid;
@@ -138,31 +133,6 @@ class Meta {
 	}
 
 	/**
-	 * Return set saved files data.
-	 *
-	 * @return array
-	 */
-	public static function get_saved_files() {
-		return static::$saved_files;
-	}
-
-	/**
-	 * Set saved files data.
-	 *
-	 * @param array $saved_files Saved files data.
-	 */
-	public static function set_saved_files( $saved_files ) {
-		static::$saved_files = is_array( $saved_files ) ? array_unique( $saved_files ) : array();
-	}
-
-	/**
-	 * Display hidden fields for saved files.
-	 */
-	public static function the_saved_files() {
-		static::_the_meta_multiple( 'saved_files', static::get_saved_files() );
-	}
-
-	/**
 	 * Return set form ID.
 	 *
 	 * @return int
@@ -181,7 +151,7 @@ class Meta {
 	}
 
 	/**
-	 * Return set token.
+	 * Return token.
 	 *
 	 * @return string
 	 */

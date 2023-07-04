@@ -48,30 +48,7 @@ class View {
 			unset( $data[ Meta::get_key() ] );
 		}
 
-		$this->setting = DataStore::get( Meta::get_formid() );
-
-		$files    = $this->_sanitize_files( $_FILES );
-		$uploader = new FileUploader( $files );
-		if ( $uploader->exist_file_controls() ) {
-			$saved_files = $uploader->save_uploaded_files();
-			if ( is_array( $saved_files ) ) {
-				$data = array_merge( $data, $saved_files );
-			}
-		}
-
-		// If a file was removed, post data remove too.
-		foreach ( Meta::get_saved_files() as $name => $value ) {
-			if ( isset( $data[ $name ] ) ) {
-				if ( ! array_key_exists( $value, FileUploader::get_error_codes() ) ) {
-					$saved_filename = $data[ $name ];
-					$saved_filepath = path_join( Directory::get(), $saved_filename );
-					if ( ! file_exists( $saved_filepath ) ) {
-						$data[ $name ] = null;
-					}
-				}
-			}
-		}
-
+		$this->setting   = DataStore::get( Meta::get_formid() );
 		$this->responser = new Responser( $data );
 		$this->validator = new Validator( $this->responser, $this->setting );
 	}
@@ -90,6 +67,43 @@ class View {
 		$spam_validate = apply_filters( 'snow_monkey_forms/spam/validate', true );
 		if ( ! $spam_validate ) {
 			return $this->_send_systemerror( __( 'There is a possibility of spamming.', 'snow-monkey-forms' ) );
+		}
+
+		// File upload.
+		try {
+			$files = $this->_sanitize_files( $_FILES );
+			if ( $files ) {
+				$uploader = new FileUploader( $files );
+				if ( $uploader->exist_file_controls() ) {
+					$saved_files = $uploader->save_uploaded_files();
+					foreach ( $saved_files as $name => $value ) {
+						$this->responser->update( $name, $value );
+					}
+				}
+			}
+		} catch ( \Exception $e ) {
+			error_log( $e->getMessage() );
+			return $this->_send_systemerror( __( 'An error occurred during file upload.', 'snow-monkey-forms' ) );
+		}
+
+		// If a file was removed, post data remove too.
+		try {
+			$file_names = $this->setting->get_file_names();
+			$data       = $this->responser->get_all();
+			foreach ( $file_names as $name ) {
+				$user_file_dir = Directory::generate_user_file_dirpath( $name );
+				if ( is_dir( $user_file_dir ) && ! empty( $data[ $name ] ) ) {
+					$filepath = Directory::generate_user_filepath( $name, $data[ $name ] );
+					if ( ! file_exists( $filepath ) ) {
+						Directory::do_empty( $user_file_dir, true );
+						$this->responser->update( $name, '' );
+						throw new \RuntimeException( '[Snow Monkey Forms] File does not exist.' );
+					}
+				}
+			}
+		} catch ( \Exception $e ) {
+			error_log( $e->getMessage() );
+			return $this->_send_systemerror( __( 'Attachment of file failed.', 'snow-monkey-forms' ) );
 		}
 
 		// Validate check.
@@ -148,7 +162,8 @@ class View {
 		$method = Meta::get_method();
 		if ( 'complete' === $method || 'systemerror' === $method ) {
 			try {
-				$this->_remove_saved_files();
+				$form_id = Meta::get_formid();
+				Directory::do_empty( Directory::generate_user_dirpath( $form_id ), true );
 			} catch ( \Exception $e ) {
 				error_log( $e->getMessage() );
 				$this->setting->set_system_error_message(
@@ -176,63 +191,14 @@ class View {
 	}
 
 	/**
-	 * Remove saved files.
-	 *
-	 * @return void
-	 */
-	protected function _remove_saved_files() {
-		$save_dir = Directory::get();
-
-		foreach ( Meta::get_saved_files() as $name ) {
-			$saved_filename = $this->responser->get( $name );
-			if ( ! $saved_filename ) {
-				continue;
-			}
-
-			$filepath = path_join( $save_dir, $saved_filename );
-
-			if ( 0 !== strpos( realpath( $filepath ), $save_dir ) ) {
-				throw new \RuntimeException( '[Snow Monkey Forms] Possibly an invalid file deletion request.' );
-			}
-
-			if ( strstr( $filepath, "\0" ) ) {
-				throw new \RuntimeException( '[Snow Monkey Forms] Possibly an invalid file deletion request.' );
-			}
-
-			if ( ! file_exists( $filepath ) ) {
-				continue;
-			}
-
-			try {
-				Directory::remove( $filepath );
-			} catch ( \Exception $e ) {
-				error_log( $e->getMessage() );
-			}
-		}
-	}
-
-	/**
 	 * Sanitize $_FILES for FileUploader.
 	 *
 	 * @param array $files $_FILES
 	 * @return array
 	 */
 	protected function _sanitize_files( $files ) {
-		$blocks = parse_blocks( $this->setting->get( 'input_content' ) );
-		$blocks = Helper::flatten_blocks( $blocks );
-
-		$permitted_file_names = array();
-
-		foreach ( $blocks as $block ) {
-			if ( 'snow-monkey-forms/control-file' === $block['blockName'] ) {
-				if ( isset( $block['attrs']['name'] ) ) {
-					$name                          = $block['attrs']['name'];
-					$permitted_file_names[ $name ] = $name;
-				}
-			}
-		}
-
-		$new_files = array();
+		$permitted_file_names = $this->setting->get_file_names();
+		$new_files            = array();
 
 		foreach ( $files as $name => $file ) {
 			if ( in_array( $name, $permitted_file_names, true ) ) {

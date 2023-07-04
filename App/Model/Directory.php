@@ -8,7 +8,9 @@
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
 use SplFileInfo;
-use DirectoryIterator;
+use FilesystemIterator;
+use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Directory {
 
@@ -30,26 +32,58 @@ class Directory {
 	}
 
 	/**
-	 * Return the url to the directory where the files are saved.
+	 * Return the path to the user directory.
 	 *
-	 * @return false|string
+	 * @return string
+	 * @throws \RuntimeException When directory name is not token value.
 	 */
-	public static function get_url() {
-		$upload_dir = wp_get_upload_dir();
+	public static function generate_user_dirpath( $form_id ) {
+		$saved_token = Csrf::saved_token();
 
-		return static::get()
-			? path_join( $upload_dir['baseurl'], 'smf-uploads' )
-			: false;
+		if ( ! preg_match( '|^[a-z0-9]+$|', $saved_token ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Failed to create user directory.' );
+		}
+
+		$user_dir = path_join( static::get(), $saved_token );
+		$user_dir = path_join( $user_dir, (string) $form_id );
+
+		return $user_dir;
+	}
+
+	/**
+	 * Return the path to the user directory where the files are saved.
+	 *
+	 * @param string $name The name attribute value.
+	 * @return string
+	 * @throws \RuntimeException When directory name is not token value.
+	 */
+	public static function generate_user_file_dirpath( $name ) {
+		$form_id       = Meta::get_formid();
+		$user_dir      = static::generate_user_dirpath( $form_id );
+		$user_file_dir = path_join( $user_dir, $name );
+
+		return $user_file_dir;
+	}
+
+	/**
+	 * Returns true if the directory is empty.
+	 *
+	 * @param string $dir Target directory.
+	 * @return boolean
+	 */
+	public static function is_empty( $dir ) {
+		$iterator = new \FilesystemIterator( $dir );
+		return ! $iterator->valid();
 	}
 
 	/**
 	 * Empty the directory.
 	 *
+	 * @param string $dir Target directory.
 	 * @param boolean $force Ignore the survival period.
 	 * @return boolean
 	 */
-	public static function do_empty( $force = false ) {
-		$dir = static::get();
+	public static function do_empty( $dir, $force = false ) {
 		if ( false === $dir ) {
 			return false;
 		}
@@ -71,15 +105,13 @@ class Directory {
 			return false;
 		}
 
-		$iterator = new DirectoryIterator( $dir );
+		$iterator = new FilesystemIterator( $dir );
 
 		try {
 			foreach ( $iterator as $fileinfo ) {
 				$path = $fileinfo->getPathname();
 
-				if ( $fileinfo->isDot() ) {
-					continue;
-				} elseif ( $fileinfo->isDir() ) {
+				if ( $fileinfo->isDir() ) {
 					if ( static::_remove_children( $path, $force ) && ( $force || static::_is_removable( $path ) ) ) {
 						static::remove( $path );
 					}
@@ -95,6 +127,68 @@ class Directory {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Takes a file name and returns the file path.
+	 * If the file name is invalid, the file path is not returned.
+	 * The presence or absence of files is not determined.
+	 *
+	 * @param string $name The name attribute value.
+	 * @param string $filename The filename.
+	 * @return string|false
+	 * @throws \RuntimeException When an invalid file reference is requested.
+	 */
+	public static function generate_user_filepath( $name, $filename ) {
+		if ( ! $filename ) {
+			return false;
+		}
+
+		$user_file_dir = Directory::generate_user_file_dirpath( $name );
+		if ( ! $user_file_dir || ! is_dir( $user_file_dir ) ) {
+			return false;
+		}
+
+		$filepath = path_join( $user_file_dir, $filename );
+
+		if ( str_contains( $filepath, '../' ) || str_contains( $filepath, '..' . DIRECTORY_SEPARATOR ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
+		}
+
+		if ( str_contains( $filepath, './' ) || str_contains( $filepath, '.' . DIRECTORY_SEPARATOR ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
+		}
+
+		if ( strstr( $filepath, "\0" ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
+		}
+
+		return $filepath;
+	}
+
+	/**
+	 * Returns a list of saved file paths.
+	 *
+	 * @param array $file_names The file control names list.
+	 * @return array
+	 */
+	public static function get_saved_files( $file_names ) {
+		$saved_files = array();
+
+		foreach ( $file_names as $name ) {
+			$user_file_dir = static::generate_user_file_dirpath( $name );
+			if ( ! $user_file_dir || ! is_dir( $user_file_dir ) ) {
+				continue;
+			}
+
+			$iterator = new FilesystemIterator( $user_file_dir );
+
+			foreach ( $iterator as $file ) {
+				$saved_files[ $name ] = $file->getPathname();
+			}
+		}
+
+		return $saved_files;
 	}
 
 	/**
@@ -131,8 +225,14 @@ class Directory {
 			return false;
 		}
 
+		if ( is_dir( $file ) ) {
+			if ( ! static::is_empty( $file ) ) {
+				return false;
+			}
+		}
+
 		$mtime         = filemtime( $file );
-		$survival_time = apply_filters( 'snow_monkey_forms/saved_files/survival_time', 60 * 5 );
+		$survival_time = apply_filters( 'snow_monkey_forms/saved_files/survival_time', 60 * 15 );
 		return ! $mtime || time() > $mtime + $survival_time;
 	}
 

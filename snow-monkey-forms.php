@@ -531,7 +531,7 @@ class Bootstrap {
 	 */
 	public function _do_empty_save_dir() {
 		try {
-			Directory::do_empty();
+			Directory::do_empty( Directory::get() );
 		} catch ( \Exception $e ) {
 			error_log( $e->getMessage() );
 		}
@@ -557,7 +557,7 @@ function snow_monkey_forms_uninstall() {
 	}
 
 	try {
-		Directory::do_empty( true );
+		Directory::do_empty( Directory::get(), true );
 	} catch ( \Exception $e ) {
 		error_log( $e->getMessage() );
 	}

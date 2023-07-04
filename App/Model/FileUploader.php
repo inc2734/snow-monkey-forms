@@ -85,39 +85,26 @@ class FileUploader {
 	}
 
 	/**
-	 * Save uploaded files.
+	 * Save uploaded filenames.
 	 *
-	 * @return false|array Array of file url.
+	 * @return array Array of file url.
 	 */
 	public function save_uploaded_files() {
 		$files = $this->_get_uploaded_files();
 		if ( ! $files ) {
-			return false;
+			return array();
 		}
 
 		$failed_saved_files = $this->set_error_code( array() );
 
-		$save_dir    = Directory::get();
 		$saved_files = array();
 		foreach ( $files as $name => $file ) {
 			if ( array_key_exists( $name, $failed_saved_files ) ) {
 				continue;
 			}
 
-			$filename = $file->save( sprintf( '%1$s-%2$s', $name, $file->get_filename() ) );
-			if ( file_exists( path_join( $save_dir, $filename ) ) ) {
-				$saved_files[ $name ] = $filename;
-			}
+			$saved_files[ $name ] = $file->save( $name, sprintf( '%1$s-%2$s', $name, $file->get_filename() ) );
 		}
-
-		Meta::set_saved_files(
-			array_unique(
-				array_merge(
-					Meta::get_saved_files(),
-					array_keys( $saved_files )
-				)
-			)
-		);
 
 		return array_merge( $saved_files, $failed_saved_files );
 	}

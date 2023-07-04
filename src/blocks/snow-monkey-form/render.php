@@ -6,12 +6,12 @@
  */
 
 use Snow_Monkey\Plugin\Forms\App\Helper;
-use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
-use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 use Snow_Monkey\Plugin\Forms\App\DataStore;
+use Snow_Monkey\Plugin\Forms\App\Model\Directory;
+use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Validator;
-use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
 
 if ( empty( $attributes['formId'] ) ) {
 	return;
@@ -26,6 +26,8 @@ if ( ! $setting->get( 'input_content' ) ) {
 $responser  = new Responser( array() );
 $validator  = new Validator( $responser, $setting );
 $controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
+
+Directory::do_empty( Directory::generate_user_dirpath( $form_id ), true );
 
 // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 // The $response is used in views.

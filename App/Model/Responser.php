@@ -79,4 +79,14 @@ class Responser {
 	public function get_all() {
 		return $this->data;
 	}
+
+	/**
+	 * Update data.
+	 *
+	 * @param string $name The form field name.
+	 * @param string $value The value.
+	 */
+	public function update( $name, $value ) {
+		$this->data[ $name ] = $value;
+	}
 }
