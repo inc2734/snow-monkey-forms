@@ -54,6 +54,11 @@ class Setting {
 	/**
 	 * @var string
 	 */
+	protected $administrator_email_replyto;
+
+	/**
+	 * @var string
+	 */
 	protected $administrator_email_from;
 
 	/**
@@ -75,6 +80,11 @@ class Setting {
 	 * @var string
 	 */
 	protected $auto_reply_email_body;
+
+	/**
+	 * @var string
+	 */
+	protected $auto_reply_email_replyto;
 
 	/**
 	 * @var string
@@ -140,12 +150,14 @@ class Setting {
 		$this->administrator_email_to      = get_post_meta( $this->form_id, 'administrator_email_to', true );
 		$this->administrator_email_subject = get_post_meta( $this->form_id, 'administrator_email_subject', true );
 		$this->administrator_email_body    = get_post_meta( $this->form_id, 'administrator_email_body', true );
+		$this->administrator_email_replyto = get_post_meta( $this->form_id, 'administrator_email_replyto', true );
 		$this->administrator_email_from    = get_post_meta( $this->form_id, 'administrator_email_from', true );
 		$this->administrator_email_sender  = get_post_meta( $this->form_id, 'administrator_email_sender', true );
 
 		$this->auto_reply_email_to      = get_post_meta( $this->form_id, 'auto_reply_email_to', true );
 		$this->auto_reply_email_subject = get_post_meta( $this->form_id, 'auto_reply_email_subject', true );
 		$this->auto_reply_email_body    = get_post_meta( $this->form_id, 'auto_reply_email_body', true );
+		$this->auto_reply_email_replyto = get_post_meta( $this->form_id, 'auto_reply_email_replyto', true );
 		$this->auto_reply_email_from    = get_post_meta( $this->form_id, 'auto_reply_email_from', true );
 		$this->auto_reply_email_sender  = get_post_meta( $this->form_id, 'auto_reply_email_sender', true );
 

@@ -327,6 +327,16 @@ class Bootstrap {
 
 		register_post_meta(
 			'snow-monkey-forms',
+			'administrator_email_replyto',
+			array(
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			)
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
 			'administrator_email_from',
 			array(
 				'show_in_rest' => true,
@@ -387,6 +397,16 @@ class Bootstrap {
 						'default' => '{email}',
 					),
 				),
+			)
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'auto_reply_email_replyto',
+			array(
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
 			)
 		);
 

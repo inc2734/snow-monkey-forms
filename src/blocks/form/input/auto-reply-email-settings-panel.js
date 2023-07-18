@@ -64,6 +64,15 @@ export default function () {
 			/>
 
 			<TextControl
+				label={ __( 'Reply-To (Email address)', 'snow-monkey-forms' ) }
+				help={ __( 'Optional', 'snow-monkey-forms' ) }
+				value={ meta.auto_reply_email_replyto }
+				onChange={ ( value ) =>
+					setMeta( { auto_reply_email_replyto: value } )
+				}
+			/>
+
+			<TextControl
 				label={ __( 'From (Email address)', 'snow-monkey-forms' ) }
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
 				value={ meta.auto_reply_email_from }

@@ -29,6 +29,11 @@ class Mailer {
 	/**
 	 * @var string
 	 */
+	protected $replyto = '';
+
+	/**
+	 * @var string
+	 */
 	protected $from = '';
 
 	/**
@@ -101,6 +106,10 @@ class Mailer {
 	 * @return array
 	 */
 	public function _get_headers() {
+		if ( $this->replyto ) {
+			$this->headers[] = 'Reply-To: ' . $this->replyto;
+		}
+
 		return apply_filters( 'snow_monkey_forms/mailer/headers', $this->headers );
 	}
 

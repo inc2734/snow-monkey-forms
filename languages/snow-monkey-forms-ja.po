@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
 "forms\n"
-"POT-Creation-Date: 2023-07-11T15:34:33+00:00\n"
-"PO-Revision-Date: 2023-07-12 00:35+0900\n"
+"POT-Creation-Date: 2023-07-18T01:41:38+00:00\n"
+"PO-Revision-Date: 2023-07-18 10:45+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -27,7 +27,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-forms.php:216 snow-monkey-forms.php:523
+#: snow-monkey-forms.php:216 snow-monkey-forms.php:543
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
@@ -58,15 +58,15 @@ msgstr "ファイルを選択"
 msgid "No file chosen"
 msgstr "選択されていません"
 
-#: App/Model/Setting.php:161
+#: App/Model/Setting.php:173
 msgid "Confirm"
 msgstr "確認画面へ"
 
-#: App/Model/Setting.php:166
+#: App/Model/Setting.php:178
 msgid "Back"
 msgstr "戻る"
 
-#: App/Model/Setting.php:171
+#: App/Model/Setting.php:183
 msgid "Send"
 msgstr "送信する"
 
@@ -82,27 +82,27 @@ msgstr "スパム送信の可能性があります。"
 msgid "An error occurred during file upload."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
-#: App/Rest/Route/View.php:105
+#: App/Rest/Route/View.php:106
 msgid "Attachment of file failed."
 msgstr "ファイルの添付に失敗しました。"
 
-#: App/Rest/Route/View.php:123
+#: App/Rest/Route/View.php:124
 msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:124 App/Rest/Route/View.php:169
-#: App/Rest/Route/View.php:183 dist/blocks/snow-monkey-form/render.php:84
-#: src/blocks/snow-monkey-form/render.php:84
+#: App/Rest/Route/View.php:125 App/Rest/Route/View.php:171
+#: App/Rest/Route/View.php:185 dist/blocks/snow-monkey-form/render.php:87
+#: src/blocks/snow-monkey-form/render.php:87
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
-#: App/Rest/Route/View.php:135
+#: App/Rest/Route/View.php:136
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:168 App/Rest/Route/View.php:182
-#: dist/blocks/snow-monkey-form/render.php:83
-#: src/blocks/snow-monkey-form/render.php:83
+#: App/Rest/Route/View.php:170 App/Rest/Route/View.php:184
+#: dist/blocks/snow-monkey-form/render.php:86
+#: src/blocks/snow-monkey-form/render.php:86
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
@@ -149,40 +149,40 @@ msgstr "アップロードに失敗しました。"
 msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
 
-#: dist/blocks/snow-monkey-form/render.php:42
-#: src/blocks/snow-monkey-form/render.php:42
+#: dist/blocks/snow-monkey-form/render.php:45
+#: src/blocks/snow-monkey-form/render.php:45
 msgctxt "progress-tracker"
 msgid "1"
 msgstr "1"
 
-#: dist/blocks/snow-monkey-form/render.php:45
-#: src/blocks/snow-monkey-form/render.php:45
+#: dist/blocks/snow-monkey-form/render.php:48
+#: src/blocks/snow-monkey-form/render.php:48
 msgctxt "progress-tracker"
 msgid "Input"
 msgstr "入力"
 
-#: dist/blocks/snow-monkey-form/render.php:52
-#: dist/blocks/snow-monkey-form/render.php:65
-#: src/blocks/snow-monkey-form/render.php:52
-#: src/blocks/snow-monkey-form/render.php:65
+#: dist/blocks/snow-monkey-form/render.php:55
+#: dist/blocks/snow-monkey-form/render.php:68
+#: src/blocks/snow-monkey-form/render.php:55
+#: src/blocks/snow-monkey-form/render.php:68
 msgctxt "progress-tracker"
 msgid "2"
 msgstr "2"
 
-#: dist/blocks/snow-monkey-form/render.php:55
-#: src/blocks/snow-monkey-form/render.php:55
+#: dist/blocks/snow-monkey-form/render.php:58
+#: src/blocks/snow-monkey-form/render.php:58
 msgctxt "progress-tracker"
 msgid "Confirm"
 msgstr "確認"
 
-#: dist/blocks/snow-monkey-form/render.php:63
-#: src/blocks/snow-monkey-form/render.php:63
+#: dist/blocks/snow-monkey-form/render.php:66
+#: src/blocks/snow-monkey-form/render.php:66
 msgctxt "progress-tracker"
 msgid "3"
 msgstr "3"
 
-#: dist/blocks/snow-monkey-form/render.php:69
-#: src/blocks/snow-monkey-form/render.php:69
+#: dist/blocks/snow-monkey-form/render.php:72
+#: src/blocks/snow-monkey-form/render.php:72
 msgctxt "progress-tracker"
 msgid "Complete"
 msgstr "完了"
@@ -206,11 +206,11 @@ msgstr "メッセージ"
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: snow-monkey-forms.php:357
+#: snow-monkey-forms.php:367
 msgid "Admin notification"
 msgstr "管理者通知"
 
-#: snow-monkey-forms.php:422
+#: snow-monkey-forms.php:442
 msgid "Automatic reply notification"
 msgstr "自動返信通知"
 
@@ -502,20 +502,28 @@ msgstr "Body"
 #: dist/blocks/form/input/index.js:1
 #: src/blocks/form/input/administrator-email-settings-panel.js:60
 #: src/blocks/form/input/auto-reply-email-settings-panel.js:67
-msgid "From (Email address)"
-msgstr "From（メールアドレス）"
+msgid "Reply-To (Email address)"
+msgstr "Reply-To（メールアドレス）"
 
 #: dist/blocks/form/input/index.js:1
 #: src/blocks/form/input/administrator-email-settings-panel.js:61
 #: src/blocks/form/input/administrator-email-settings-panel.js:70
+#: src/blocks/form/input/administrator-email-settings-panel.js:79
 #: src/blocks/form/input/auto-reply-email-settings-panel.js:68
 #: src/blocks/form/input/auto-reply-email-settings-panel.js:77
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:86
 msgid "Optional"
 msgstr "任意"
 
 #: dist/blocks/form/input/index.js:1
 #: src/blocks/form/input/administrator-email-settings-panel.js:69
 #: src/blocks/form/input/auto-reply-email-settings-panel.js:76
+msgid "From (Email address)"
+msgstr "From（メールアドレス）"
+
+#: dist/blocks/form/input/index.js:1
+#: src/blocks/form/input/administrator-email-settings-panel.js:78
+#: src/blocks/form/input/auto-reply-email-settings-panel.js:85
 msgid "Sender"
 msgstr "送信者"
 

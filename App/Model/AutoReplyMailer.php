@@ -123,6 +123,7 @@ class AutoReplyMailer {
 			'subject'     => $mail_parser->parse( $this->setting->get( 'auto_reply_email_subject' ) ),
 			'body'        => $mail_parser->parse( $this->setting->get( 'auto_reply_email_body' ) ),
 			'attachments' => array_values( $mail_parser->get_attachments( $this->setting->get( 'auto_reply_email_body' ) ) ),
+			'replyto'     => $this->setting->get( 'auto_reply_email_replyto' ),
 			'from'        => $this->setting->get( 'auto_reply_email_from' ),
 			'sender'      => $this->setting->get( 'auto_reply_email_sender' ),
 			'headers'     => $this->_get_headers(),
