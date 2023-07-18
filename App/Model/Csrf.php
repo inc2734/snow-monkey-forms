@@ -38,7 +38,7 @@ class Csrf {
 		$saved_token   = static::saved_token();
 		static::$token = ! $saved_token ? static::generate_token() : $saved_token;
 		if ( ! $saved_token && ! headers_sent() ) {
-			setcookie( static::KEY, static::token(), 0, '/' );
+			setcookie( static::KEY, static::$token, 0, '/' );
 		}
 	}
 

@@ -39,6 +39,7 @@ class Directory {
 	 */
 	public static function generate_user_dirpath( $form_id ) {
 		$saved_token = Csrf::saved_token();
+		$saved_token = $saved_token ? $saved_token : Csrf::token();
 
 		if ( ! preg_match( '|^[a-z0-9]+$|', $saved_token ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] Failed to create user directory.' );
