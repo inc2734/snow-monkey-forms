@@ -1,4 +1,4 @@
 .smf-error-messages {
-  @include _margin-top(.25);
-  color: #cc3033;
+	margin-top: var(--_margin-2);
+	color: #cc3033;
 }

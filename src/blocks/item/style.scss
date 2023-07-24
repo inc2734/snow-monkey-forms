@@ -2,13 +2,13 @@
 @import '../../../node_modules/sass-basis/src/css/basis-core';
 
 .smf-item {
-  label {
-    cursor: pointer;
-  }
+	label {
+		cursor: pointer;
+	}
 
-  &__description {
-    @include _margin-top(.125);
-    color: _dark($_color-gray);
-    @include _font-size-line-height($_base-font-size-px - 2px);
-  }
+	&__description {
+		margin-top: var(--_margin-2);
+		color: var(--_dark-color-gray);
+		@include _set-font-size-level(-1);
+	}
 }

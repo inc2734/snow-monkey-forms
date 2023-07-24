@@ -1,46 +1,46 @@
 .smf-form--simple-table {
-  & + .smf-action {
-    @include _margin(1, 0);
-    text-align: center;
-  }
+	& + .smf-action {
+		margin: var(--_margin1) 0;
+		text-align: center;
+	}
 
-  .smf-item {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 1rem 0;
+	.smf-item {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 1rem 0;
 
-    &--divider {
-      .smf-item__col {
-        max-width: none;
-        flex: 1 1 auto;
-      }
-    }
+		&--divider {
+			.smf-item__col {
+				max-width: none;
+				flex: 1 1 auto;
+			}
+		}
 
-    &__col {
-      &--label {
-        @include _padding-bottom(.5);
-      }
-    }
+		&__col {
+			&--label {
+				padding-bottom: var(--_padding-1);
+			}
+		}
 
-    @include _media-min(md) {
-      display: flex;
+		@include _media-min(md) {
+			display: flex;
 
-      &__col {
-        $label-col-width: 14em;
-        flex: 1 1 auto;
+			&__col {
+				$label-col-width: 14em;
+				flex: 1 1 auto;
 
-        &--label {
-          flex: 0 0 $label-col-width;
-          @include _padding-right(1);
-          @include _padding-bottom(0);
-          max-width: $label-col-width;
-        }
+				&--label {
+					flex: 0 0 $label-col-width;
+					padding-right: var(--_padding1);
+					padding-bottom: 0;
+					max-width: $label-col-width;
+				}
 
-        &--controls {
-          flex: 1 1 calc(100% - #{$label-col-width});
-          max-width: calc(100% - #{$label-col-width});
-        }
-      }
-    }
-  }
+				&--controls {
+					flex: 1 1 calc(100% - #{ $label-col-width });
+					max-width: calc(100% - #{ $label-col-width });
+				}
+			}
+		}
+	}
 }

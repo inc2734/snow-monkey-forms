@@ -1,21 +1,21 @@
 .smf-form--letter {
-  & + .smf-action {
-    @include _margin(1, 0);
-    text-align: center;
-  }
+	& + .smf-action {
+		margin: var(--_margin1) 0;
+		text-align: center;
+	}
 
-  .smf-item {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 1rem 0;
+	.smf-item {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding: 1rem 0;
 
-    &__col--label {
-      @include _padding-bottom(.5);
-    }
-  }
+		&__col--label {
+			padding-bottom: var(--_padding-1);
+		}
+	}
 
-  .smf-text-control__control {
-    width: 100%;
-    max-width: 100%;
-  }
+	.smf-text-control__control {
+		width: 100%;
+		max-width: 100%;
+	}
 }

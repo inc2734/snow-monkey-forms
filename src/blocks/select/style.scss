@@ -2,7 +2,7 @@
 @import '../../../node_modules/sass-basis/src/css/basis-core';
 
 .smf-form .smf-item {
-  .smf-select-control {
-    @include _select();
-  }
+	.smf-select-control {
+		@include _select();
+	}
 }

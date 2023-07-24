@@ -1,21 +1,21 @@
 .smf-action {
-  .smf-button-control__control {
-    @include _padding-right(1.5);
-    @include _padding-left(1.5);
-  }
+	.smf-button-control__control {
+		padding-right: var(--_padding1);
+		padding-left: var(--_padding1);
+	}
 
-  .smf-button-control + .smf-button-control {
-    @include _margin-left(.5);
-  }
+	.smf-button-control + .smf-button-control {
+		margin-left: var(--_margin-1);
+	}
 
-  .smf-button-control__control {
-    position: relative;
+	.smf-button-control__control {
+		position: relative;
 
-    .smf-sending {
-      position: absolute;
-      right: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
+		.smf-sending {
+			position: absolute;
+			right: 5px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+	}
 }

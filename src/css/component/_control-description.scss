@@ -1,5 +1,5 @@
 .smf-control-description {
-  @include _margin-top(.125);
-  color: _dark($_color-gray);
-  @include _font-size-line-height($_base-font-size-px - 2px);
+	margin-top: var(--_margin-2);
+	color: var(--_dark-color-gray);
+	@include _set-font-size-level(-1);
 }

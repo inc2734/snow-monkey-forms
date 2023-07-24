@@ -2,49 +2,49 @@
 @import '../../../node_modules/sass-basis/src/css/basis-core';
 
 .smf-form .smf-item {
-  .smf-radio-buttons-control {
-    &__control {
-      > .smf-label {
-        @include _media-min(md) {
-          display: inline-block;
-          @include _margin-right(.5);
-        }
-      }
-    }
-  }
+	.smf-radio-buttons-control {
+		&__control {
+			> .smf-label {
+				@include _media-min(md) {
+					display: inline-block;
+					margin-right: var(--_margin-1);
+				}
+			}
+		}
+	}
 
-  .smf-radio-buttons-control {
-    &--horizontal {
-      .smf-radio-buttons-control {
-        &__control {
-          > .smf-label {
-            display: inline-block;
-          }
-        }
-      }
-    }
+	.smf-radio-buttons-control {
+		&--horizontal {
+			.smf-radio-buttons-control {
+				&__control {
+					> .smf-label {
+						display: inline-block;
+					}
+				}
+			}
+		}
 
-    &--vertical {
-      .smf-radio-buttons-control {
-        &__control {
-          > .smf-label {
-            display: block;
-          }
-        }
-      }
-    }
-  }
+		&--vertical {
+			.smf-radio-buttons-control {
+				&__control {
+					> .smf-label {
+						display: block;
+					}
+				}
+			}
+		}
+	}
 
-  .smf-radio-button-control {
-    @include _radio();
-  }
+	.smf-radio-button-control {
+		@include _radio();
+	}
 
-  .smf-radio-button-control {
-    align-items: flex-start;
+	.smf-radio-button-control {
+		align-items: flex-start;
 
-    &__control {
-      margin-top: $_between-lines;
-      @include _margin-right(.25);
-    }
-  }
+		&__control {
+			margin-top: calc(var(--_half-leading) * 1em);
+			margin-right: var(--_margin-2);
+		}
+	}
 }
