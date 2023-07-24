@@ -104,7 +104,10 @@ class Bootstrap {
 			SNOW_MONKEY_FORMS_URL . '/dist/js/app.js',
 			$asset['dependencies'],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.js' ),
-			true
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => false,
+			)
 		);
 
 		wp_add_inline_script(

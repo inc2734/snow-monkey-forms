@@ -92,7 +92,10 @@ class ReCaptcha {
 			SNOW_MONKEY_FORMS_URL . '/dist/js/recaptcha.js',
 			array_merge( $asset['dependencies'], array( 'google-recaptcha' ) ),
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/recaptcha.js' ),
-			true
+			array(
+				'strategy'  => 'defer',
+				'in_footer' => false,
+			)
 		);
 
 		wp_add_inline_script(
