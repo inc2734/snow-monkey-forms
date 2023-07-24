@@ -214,7 +214,7 @@ class Bootstrap {
 			'snow-monkey-forms',
 			array(
 				'label'        => __( 'Snow Monkey Forms', 'snow-monkey-forms' ),
-				'public'       => false,
+				'public'       => false, // @todo 本当は false にしたいけど、true にしないとフォーム編集画面に制限幅が適用されない
 				'show_ui'      => true,
 				'show_in_rest' => true,
 				'supports'     => array( 'title', 'editor', 'custom-fields' ),

@@ -22,16 +22,30 @@ export default function ( {
 } ) {
 	const { label, description, labelFor, isDisplayLabelColumn } = attributes;
 
+	const blacklist = [
+		'snow-monkey-forms/snow-monkey-form',
+		'snow-monkey-forms/item',
+	];
+
 	const allowedBlocks = useMemo( () => {
 		const blocks = getBlockTypes();
-		const blacklist = [
-			'snow-monkey-forms/snow-monkey-form',
-			'snow-monkey-forms/item',
-		];
 
 		return compact(
 			blocks.map( ( block ) => {
 				return ! blacklist.includes( block.name ) ? block.name : null;
+			} )
+		);
+	}, [] );
+
+	const prioritizedInserterBlocks = useMemo( () => {
+		const blocks = getBlockTypes();
+
+		return compact(
+			blocks.map( ( block ) => {
+				return ! blacklist.includes( block.name ) &&
+					0 === block.name.indexOf( 'snow-monkey-forms/' )
+					? block.name
+					: null;
 			} )
 		);
 	}, [] );
@@ -50,6 +64,7 @@ export default function ( {
 		},
 		{
 			allowedBlocks,
+			prioritizedInserterBlocks,
 			templateLock: false,
 		}
 	);
