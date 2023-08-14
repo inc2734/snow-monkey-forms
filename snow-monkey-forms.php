@@ -105,8 +105,7 @@ class Bootstrap {
 			$asset['dependencies'],
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.js' ),
 			array(
-				'strategy'  => 'defer',
-				'in_footer' => false,
+				'in_footer' => true,
 			)
 		);
 

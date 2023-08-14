@@ -93,8 +93,7 @@ class ReCaptcha {
 			array_merge( $asset['dependencies'], array( 'google-recaptcha' ) ),
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/recaptcha.js' ),
 			array(
-				'strategy'  => 'defer',
-				'in_footer' => false,
+				'in_footer' => true,
 			)
 		);
 
