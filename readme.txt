@@ -2,7 +2,7 @@
 Contributors: inc2734, mimitips
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
-Stable tag: 6.0.0
+Stable tag: 6.0.1
 Requires at least: 6.3
 Tested up to: 6.3
 Requires PHP: 7.4
@@ -50,6 +50,9 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 6.0.1 =
+* Fixed a bug that `smf.submit` did not fire.
 
 = 6.0.0 =
 * Update `apiVersion` of block.json is 2 to 3.
