@@ -119,7 +119,7 @@ class RadioButtons extends Contract\Control {
 
 		$direction = $this->get_property( 'direction' );
 		$classes   = array();
-		$classes[] = 'smf-radio-cuttons-control';
+		$classes[] = 'smf-radio-buttons-control';
 		if ( $direction ) {
 			$classes[] = 'smf-radio-buttons-control--' . $direction;
 		}
