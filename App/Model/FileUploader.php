@@ -149,70 +149,72 @@ class FileUploader {
 			return false;
 		}
 
-		switch ( $wp_check_filetype['ext'] ) {
-			case 'avi':
-				$wp_check_filetype['type'] = array(
-					'application/x-troff-msvideo',
-					'video/avi',
-					'video/msvideo',
-					'video/x-msvideo',
-				);
-				break;
-			case 'mp3':
-				$wp_check_filetype['type'] = array(
-					'audio/mpeg3',
-					'audio/x-mpeg3',
-					'video/mpeg',
-					'video/x-mpeg',
-					'audio/mpeg',
-				);
-				break;
-			case 'mpg':
-				$wp_check_filetype['type'] = array(
-					'audio/mpeg',
-					'video/mpeg',
-				);
-				break;
-			case 'docx':
-				$wp_check_filetype['type'] = array(
-					$wp_check_filetype['type'],
-					'application/zip',
-					'application/msword',
-				);
-				break;
-			case 'xlsx':
-				$wp_check_filetype['type'] = array(
-					$wp_check_filetype['type'],
-					'application/zip',
-					'application/excel',
-					'application/msexcel',
-					'application/vnd.ms-excel',
-				);
-				break;
-			case 'pptx':
-				$wp_check_filetype['type'] = array(
-					$wp_check_filetype['type'],
-					'application/zip',
-					'application/mspowerpoint',
-					'application/powerpoint',
-					'application/ppt',
-				);
-				break;
-		}
+		if ( class_exists( '\finfo' ) ) {
+			switch ( $wp_check_filetype['ext'] ) {
+				case 'avi':
+					$wp_check_filetype['type'] = array(
+						'application/x-troff-msvideo',
+						'video/avi',
+						'video/msvideo',
+						'video/x-msvideo',
+					);
+					break;
+				case 'mp3':
+					$wp_check_filetype['type'] = array(
+						'audio/mpeg3',
+						'audio/x-mpeg3',
+						'video/mpeg',
+						'video/x-mpeg',
+						'audio/mpeg',
+					);
+					break;
+				case 'mpg':
+					$wp_check_filetype['type'] = array(
+						'audio/mpeg',
+						'video/mpeg',
+					);
+					break;
+				case 'docx':
+					$wp_check_filetype['type'] = array(
+						$wp_check_filetype['type'],
+						'application/zip',
+						'application/msword',
+					);
+					break;
+				case 'xlsx':
+					$wp_check_filetype['type'] = array(
+						$wp_check_filetype['type'],
+						'application/zip',
+						'application/excel',
+						'application/msexcel',
+						'application/vnd.ms-excel',
+					);
+					break;
+				case 'pptx':
+					$wp_check_filetype['type'] = array(
+						$wp_check_filetype['type'],
+						'application/zip',
+						'application/mspowerpoint',
+						'application/powerpoint',
+						'application/ppt',
+					);
+					break;
+			}
 
-		$finfo = new \finfo( FILEINFO_MIME_TYPE );
-		$type  = $finfo->file( $filepath );
-		if ( false === $finfo ) {
-			return false;
-		}
-
-		if ( is_array( $wp_check_filetype['type'] ) ) {
-			if ( ! in_array( $type, $wp_check_filetype['type'], true ) ) {
+			$finfo = new \finfo( FILEINFO_MIME_TYPE );
+			$type  = $finfo->file( $filepath );
+			if ( false === $finfo ) {
 				return false;
 			}
-		} else {
-			if ( $type !== $wp_check_filetype['type'] ) {
-				return false;
+
+			if ( is_array( $wp_check_filetype['type'] ) ) {
+				if ( ! in_array( $type, $wp_check_filetype['type'], true ) ) {
+					return false;
+				}
+			} else {
+				if ( $type !== $wp_check_filetype['type'] ) {
+					return false;
+				}
 			}
 		}
 
