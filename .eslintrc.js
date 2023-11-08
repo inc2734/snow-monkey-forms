@@ -15,5 +15,6 @@ module.exports = {
 		'import/no-extraneous-dependencies': 'off',
 		'import/no-unresolved': 'off',
 		'@wordpress/no-unsafe-wp-apis': 'off',
+		'jsx-a11y/label-has-associated-control': 'off',
 	},
 };
