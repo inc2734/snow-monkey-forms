@@ -68,5 +68,8 @@
 		"make-pot": "npm run wp i18n -- make-pot . ./languages/snow-monkey-forms.pot",
 		"make-json": "rimraf languages/*.json && npm run wp -- i18n make-json ./languages/snow-monkey-forms-ja.po --no-purge",
 		"browsersync": "browser-sync start -p 'localhost:8888' -f '**/*' 'dist/**'"
+	},
+	"volta": {
+		"node": "16.20.2"
 	}
 }
