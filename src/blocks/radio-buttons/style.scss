@@ -37,12 +37,10 @@
 
 	.smf-radio-button-control {
 		@include _radio();
-	}
-
-	.smf-radio-button-control {
 		align-items: flex-start;
 
 		&__control {
+			flex: none;
 			margin-top: calc(var(--_half-leading) * 1em);
 			margin-right: var(--_margin-2);
 		}

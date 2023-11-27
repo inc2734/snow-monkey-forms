@@ -40,6 +40,7 @@
 		align-items: flex-start;
 
 		&__control {
+			flex: none;
 			margin-top: calc(var(--_half-leading) * 1em);
 			margin-right: var(--_margin-2);
 		}
