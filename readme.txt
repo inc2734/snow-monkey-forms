@@ -2,7 +2,7 @@
 Contributors: inc2734, mimitips, imawc
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
-Stable tag: 6.0.3
+Stable tag: 6.0.4
 Requires at least: 6.3
 Tested up to: 6.4
 Requires PHP: 7.4
@@ -50,6 +50,10 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 6.0.4 =
+* Fixed a bug that when typing in a text field, a slight margin is sometimes added to the bottom of the fieldon iOS.
+* Fixed a bug that the text color turns blue when selecting an item in the selectbox on iOS.
 
 = 6.0.2 =
 * Fix typo. `smf-radio-cuttons-control` to `smf-radio-button-control`.
