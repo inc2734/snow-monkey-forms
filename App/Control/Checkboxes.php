@@ -46,6 +46,21 @@ class Checkboxes extends Contract\Control {
 	protected $name = '';
 
 	/**
+	 * @var boolean
+	 */
+	protected $grouping = false;
+
+	/**
+	 * @var string
+	 */
+	protected $legend = '';
+
+	/**
+	 * @var boolean
+	 */
+	protected $legend_invisible = false;
+
+	/**
 	 * @var array
 	 */
 	protected $values = array();
@@ -144,16 +159,40 @@ class Checkboxes extends Contract\Control {
 			);
 		}
 
-		return sprintf(
-			'<div class="%1$s" %2$s>
-				<div class="smf-checkboxes-control__control">%3$s</div>
-			</div>
-			%4$s',
-			esc_attr( implode( ' ', $classes ) ),
-			$this->_generate_attributes_string( $attributes ),
-			$this->_children( 'input' ),
-			$description
-		);
+		$grouping = $this->get_property( 'grouping' );
+		if ( $grouping ) {
+			$legend           = $this->get_property( 'legend' );
+			$legend_invisible = $this->get_property( 'legend_invisible' );
+
+			$html = sprintf(
+				'<div class="%1$s" %2$s>
+					<fieldset class="smf-control-fieldset">
+						<legend class="smf-control-legend %3$s">%4$s</legend>
+						<div class="smf-checkboxes-control__control">%5$s</div>
+					</fieldset>
+				</div>
+				%6$s',
+				esc_attr( implode( ' ', $classes ) ),
+				$this->_generate_attributes_string( $attributes ),
+				$legend_invisible ? 'screen-reader-text' : '',
+				wp_kses_post( $legend ),
+				$this->_children( 'input' ),
+				$description
+			);
+		} else {
+			$html = sprintf(
+				'<div class="%1$s" %2$s>
+					<div class="smf-checkboxes-control__control">%3$s</div>
+				</div>
+				%4$s',
+				esc_attr( implode( ' ', $classes ) ),
+				$this->_generate_attributes_string( $attributes ),
+				$this->_children( 'input' ),
+				$description
+			);
+		}
+
+		return $html;
 	}
 
 	/**

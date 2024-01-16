@@ -3,22 +3,12 @@
 
 .smf-form .smf-item {
 	.smf-radio-buttons-control {
-		&__control {
-			> .smf-label {
-				@include _media-min(md) {
-					display: inline-block;
-					margin-right: var(--_margin-1);
-				}
-			}
-		}
-	}
-
-	.smf-radio-buttons-control {
 		&--horizontal {
 			.smf-radio-buttons-control {
 				&__control {
 					> .smf-label {
 						display: inline-block;
+						margin-right: var(--_margin-1);
 					}
 				}
 			}

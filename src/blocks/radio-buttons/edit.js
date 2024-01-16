@@ -1,9 +1,10 @@
 import classnames from 'classnames';
 
-import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
-import { compose } from '@wordpress/compose';
-import { useEffect } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
+import {
+	InspectorControls,
+	useBlockProps,
+	RichText,
+} from '@wordpress/block-editor';
 
 import {
 	PanelBody,
@@ -12,6 +13,10 @@ import {
 	ToggleControl,
 } from '@wordpress/components';
 
+import { compose } from '@wordpress/compose';
+import { useEffect } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
+
 import { NameControl, OptionsControl, ValueControl } from '../components';
 import { uniqId, optionsToJsonArray } from '../helper';
 import withValidations from '../../../hoc/with-validations';
@@ -19,6 +24,9 @@ import withValidations from '../../../hoc/with-validations';
 const Edit = ( { attributes, setAttributes } ) => {
 	const {
 		name,
+		grouping,
+		legend,
+		legendInvisible,
 		value,
 		options,
 		direction,
@@ -48,6 +56,36 @@ const Edit = ( { attributes, setAttributes } ) => {
 		className: 'smf-placeholder',
 	} );
 
+	const RadioButtons = () => (
+		<div className="smf-radio-buttons-control__control">
+			{ arrayedOptions.map( ( option ) => {
+				const optionValue = Object.keys( option )[ 0 ];
+				const optionLabel = Object.values( option )[ 0 ];
+
+				return (
+					<div className="smf-label" key={ optionValue }>
+						<label htmlFor={ `${ name }-${ optionValue }` }>
+							<span className="smf-radio-button-control">
+								<input
+									type="radio"
+									name={ name }
+									value={ optionValue }
+									checked={ optionValue === value }
+									disabled="disabled"
+									className="smf-radio-button-control__control"
+									id={ `${ name }-${ optionValue }` }
+								/>
+								<span className="smf-radio-button-control__label">
+									{ optionLabel }
+								</span>
+							</span>
+						</label>
+					</div>
+				);
+			} ) }
+		</div>
+	);
+
 	return (
 		<>
 			<InspectorControls>
@@ -58,6 +96,39 @@ const Edit = ( { attributes, setAttributes } ) => {
 							setAttributes( { name: attribute } )
 						}
 					/>
+
+					<ToggleControl
+						label={ __( 'Grouping', 'snow-monkey-forms' ) }
+						help={ __(
+							'Enable if you want to group by fieldset and label by legend.',
+							'snow-monkey-forms'
+						) }
+						checked={ grouping }
+						onChange={ ( attribute ) => {
+							setAttributes( {
+								grouping: attribute,
+							} );
+						} }
+					/>
+
+					{ grouping && (
+						<ToggleControl
+							label={ __(
+								'Make legend invisible',
+								'snow-monkey-forms'
+							) }
+							help={ __(
+								'When activated, the legend will not appear on the screen, but will be read by screen readers.',
+								'snow-monkey-forms'
+							) }
+							checked={ legendInvisible }
+							onChange={ ( attribute ) => {
+								setAttributes( {
+									legendInvisible: attribute,
+								} );
+							} }
+						/>
+					) }
 
 					<OptionsControl
 						value={ options }
@@ -124,37 +195,28 @@ const Edit = ( { attributes, setAttributes } ) => {
 
 			<div { ...blockProps } data-name={ name }>
 				<div className={ classes }>
-					<div className="smf-radio-buttons-control__control">
-						{ arrayedOptions.map( ( option ) => {
-							const optionValue = Object.keys( option )[ 0 ];
-							const optionLabel = Object.values( option )[ 0 ];
+					{ grouping ? (
+						<fieldset className="smf-control-fieldset">
+							<RichText
+								tagName="legend"
+								value={ legend }
+								onChange={ ( attribute ) =>
+									setAttributes( { legend: attribute } )
+								}
+								placeholder={ __(
+									'Label',
+									'snow-monkey-forms'
+								) }
+								className={ classnames( 'smf-control-legend', {
+									'screen-reader-text': legendInvisible,
+								} ) }
+							/>
 
-							return (
-								<div className="smf-label" key={ optionValue }>
-									<label
-										htmlFor={ `${ name }-${ optionValue }` }
-									>
-										<span className="smf-radio-button-control">
-											<input
-												type="radio"
-												name={ name }
-												value={ optionValue }
-												checked={
-													optionValue === value
-												}
-												disabled="disabled"
-												className="smf-radio-button-control__control"
-												id={ `${ name }-${ optionValue }` }
-											/>
-											<span className="smf-radio-button-control__label">
-												{ optionLabel }
-											</span>
-										</span>
-									</label>
-								</div>
-							);
-						} ) }
-					</div>
+							<RadioButtons />
+						</fieldset>
+					) : (
+						<RadioButtons />
+					) }
 				</div>
 				{ description && (
 					<div className="smf-control-description">

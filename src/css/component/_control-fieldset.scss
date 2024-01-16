@@ -1,0 +1,7 @@
+.smf-control-fieldset {
+	display: contents;
+
+	> * + * {
+		margin-top: var(--_margin-2);
+	}
+}

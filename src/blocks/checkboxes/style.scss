@@ -3,22 +3,12 @@
 
 .smf-form .smf-item {
 	.smf-checkboxes-control {
-		&__control {
-			> .smf-label {
-				@include _media-min(md) {
-					display: inline-block;
-					margin-right: var(--_margin-1);
-				}
-			}
-		}
-	}
-
-	.smf-checkboxes-control {
 		&--horizontal {
 			.smf-checkboxes-control {
 				&__control {
 					> .smf-label {
 						display: inline-block;
+						margin-right: var(--_margin-1);
 					}
 				}
 			}

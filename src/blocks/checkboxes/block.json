@@ -12,6 +12,18 @@
 			"type": "string",
 			"default": ""
 		},
+		"grouping": {
+			"type": "boolean",
+			"default": false
+		},
+		"legend": {
+			"type": "string",
+			"default": ""
+		},
+		"legendInvisible": {
+			"type": "boolean",
+			"default": false
+		},
 		"values": {
 			"type": "string",
 			"default": ""
