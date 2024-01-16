@@ -2,10 +2,11 @@
 @import '../../node_modules/sass-basis/src/css/basis-core';
 
 .snow-monkey-forms-setting-panel {
-	.components-panel__header {
+	.snow-monkey-forms-setting-panel__header {
 		color: #555d66;
 		font-size: 13px;
 		font-weight: bold;
+		padding: 0 16px;
 	}
 }
 

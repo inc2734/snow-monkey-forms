@@ -24,10 +24,10 @@ export default function () {
 
 	return (
 		<div { ...blockProps }>
-			<div className="components-panel__header edit-post-sidebar-header">
+			<div className="components-panel__header edit-post-sidebar-header snow-monkey-forms-setting-panel__header">
 				{ __( 'Complete', 'snow-monkey-forms' ) }
 			</div>
-			<div className="components-panel__body is-opened">
+			<div className="components-panel__body is-opened snow-monkey-forms-setting-panel__body">
 				<InnerBlocks
 					allowedBlocks={ ALLOWED_BLOCKS }
 					templateLock={ false }

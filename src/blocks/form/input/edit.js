@@ -53,7 +53,7 @@ export default function ( props ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				<div className="components-panel__header edit-post-sidebar-header">
+				<div className="components-panel__header edit-post-sidebar-header snow-monkey-forms-setting-panel__header">
 					{ __( 'Input', 'snow-monkey-forms' ) }
 
 					<Button
@@ -67,7 +67,7 @@ export default function ( props ) {
 						{ __( 'Open the form settings', 'snow-monkey-forms' ) }
 					</Button>
 				</div>
-				<div className="components-panel__body is-opened">
+				<div className="components-panel__body is-opened snow-monkey-forms-setting-panel__body">
 					<div { ...innerBlocksProps } />
 				</div>
 			</div>
