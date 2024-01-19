@@ -44,8 +44,7 @@ class View {
 	public function __construct( array $data ) {
 		// Set form meta data and remove from post data.
 		if ( isset( $data[ Meta::get_key() ] ) ) {
-			Meta::init( $data[ Meta::get_key() ] );
-			unset( $data[ Meta::get_key() ] );
+			$data[ Meta::get_key() ] = Meta::init( $data[ Meta::get_key() ] );
 		}
 
 		$this->setting   = DataStore::get( Meta::get_formid() );

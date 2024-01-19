@@ -7,6 +7,8 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
+
 class Responser {
 
 	/**
@@ -88,5 +90,14 @@ class Responser {
 	 */
 	public function update( $name, $value ) {
 		$this->data[ $name ] = $value;
+	}
+
+	/**
+	 * Return form meta data.
+	 *
+	 * @return Snow_Monkey\Plugin\Forms\App\Model\Meta|null
+	 */
+	public function get_meta() {
+		return $this->get( Meta::get_key() ) ? $this->get( Meta::get_key() ) : null;
 	}
 }

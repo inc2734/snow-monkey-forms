@@ -35,6 +35,11 @@ class Meta {
 	protected static $method;
 
 	/**
+	 * @var WP_User
+	 */
+	protected static $sender;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param array $data Posted meta data.
@@ -133,7 +138,7 @@ class Meta {
 	}
 
 	/**
-	 * Return set form ID.
+	 * Return form ID.
 	 *
 	 * @return int
 	 */
@@ -167,7 +172,7 @@ class Meta {
 	}
 
 	/**
-	 * Return set method.
+	 * Return method.
 	 *
 	 * @return string
 	 */
@@ -193,5 +198,14 @@ class Meta {
 	 */
 	public static function the_method( $value ) {
 		static::_the_meta( 'method', $value );
+	}
+
+	/**
+	 * Return sender.
+	 *
+	 * @return WP_User
+	 */
+	public static function get_sender() {
+		return static::$sender;
 	}
 }

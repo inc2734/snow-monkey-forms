@@ -18,6 +18,7 @@ namespace Snow_Monkey\Plugin\Forms;
 
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 use Snow_Monkey\Plugin\Forms\App\Rest;
 use Snow_Monkey\Plugin\Forms\App\Service\Admin\Admin;
 use Snow_Monkey\Plugin\Forms\App\Service\ReCaptcha\ReCaptcha;
@@ -164,12 +165,14 @@ class Bootstrap {
 	 * Register endpoint. This endpoint returns the form view.
 	 */
 	public function _endpoint() {
+		$user = wp_get_current_user();
+
 		register_rest_route(
 			'snow-monkey-form/v1',
 			'/view',
 			array(
 				'methods'             => 'POST',
-				'callback'            => function() {
+				'callback'            => function() use ( $user ) {
 					$referer = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : false;
 					$homeurl = untrailingslashit( home_url( '/' ) );
 					if ( 0 !== strpos( $referer, $homeurl ) ) {
@@ -178,6 +181,10 @@ class Bootstrap {
 
 					$data = filter_input_array( INPUT_POST );
 					$data = $data ? $data : array();
+
+					if ( isset( $data[ Meta::get_key() ] ) ) {
+						$data[ Meta::get_key() ]['sender'] = $user;
+					}
 
 					$route = new Rest\Route\View( $data );
 					return $route->send();
