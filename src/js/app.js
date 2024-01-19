@@ -6,15 +6,43 @@ document.addEventListener(
 	( event ) => {
 		const control = event.target;
 		if ( control.classList.contains( 'smf-file-control__control' ) ) {
-			const filename = control.parentNode.querySelector(
-				'.smf-file-control__filename'
+			const controlWrapper = control.closest( '.smf-file-control' );
+			const filename = controlWrapper.querySelector(
+				'.smf-file-control__filename--has-file'
 			);
 			const files = control.files;
 			if ( 0 < files.length && !! filename ) {
 				const file = files[ 0 ];
 				if ( 'undefined' !== typeof file.name ) {
 					filename.textContent = file.name;
+					controlWrapper.classList.add( 'smf-file-control--set' );
 				}
+			}
+		}
+	},
+	false
+);
+
+document.addEventListener(
+	'click',
+	( event ) => {
+		const clear = event.target;
+		if ( clear.classList.contains( 'smf-file-control__clear' ) ) {
+			const controlWrapper = clear.closest( '.smf-file-control' );
+			controlWrapper.classList.remove( 'smf-file-control--set' );
+			controlWrapper.classList.remove( 'smf-file-control--uploaded' );
+
+			const control = controlWrapper.querySelector(
+				'.smf-file-control__control'
+			);
+			control.value = '';
+
+			const placeholder = clear.closest( '.smf-placeholder' );
+			const value = placeholder.querySelector(
+				'.smf-file-control__value'
+			);
+			if ( !! value ) {
+				value.remove();
 			}
 		}
 	},

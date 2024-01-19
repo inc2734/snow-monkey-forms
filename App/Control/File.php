@@ -100,18 +100,22 @@ class File extends Contract\Control {
 		}
 
 		return sprintf(
-			'<div class="smf-file-control" tabindex="0">
-				<label>
-					<input type="file" %1$s>
-					<span class="smf-file-control__label">%2$s</span>
-					<span class="smf-file-control__filename">%3$s</span>
+			'<div class="smf-file-control %1$s">
+				<label tabindex="0">
+					<input type="file" %2$s>
+					<span class="smf-file-control__label">%3$s</span>
+					<span class="smf-file-control__filename smf-file-control__filename--no-file">%4$s</span>
+					<span class="smf-file-control__filename smf-file-control__filename--has-file"></span>
 				</label>
-				%4$s
+				<span class="smf-file-control__clear">%5$s</span>
 			</div>
-			%5$s',
+			%6$s
+			%7$s',
+			$value ? 'smf-file-control--uploaded' : '',
 			$this->_generate_attributes_string( $attributes ),
 			__( 'Choose file', 'snow-monkey-forms' ),
 			__( 'No file chosen', 'snow-monkey-forms' ),
+			__( 'Clear', 'snow-monkey-forms' ),
 			$value,
 			$description
 		);

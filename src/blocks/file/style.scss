@@ -4,6 +4,10 @@
 .smf-form .smf-item {
 	.smf-file-control {
 		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1em;
 
 		&__label,
 		&__filename {
@@ -15,27 +19,29 @@
 		}
 
 		@supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
-			&::before {
-				content: '';
-				display: block;
-				position: absolute;
-				top: -3px;
-				right: -3px;
-				bottom: -3px;
-				left: -3px;
-			}
-
-			&:active,
-			&:focus,
-			&:focus-within {
-				&::before {
-					border: 1px solid _var-form-control-border-color-focus();
-					border-radius: _var-border-radius();
-				}
-			}
-
 			> label {
-				display: inline-flex;
+				outline: none;
+
+				&::before {
+					content: '';
+					display: block;
+					position: absolute;
+					top: -3px;
+					right: -3px;
+					bottom: -3px;
+					left: -3px;
+				}
+
+				&:active,
+				&:focus,
+				&:focus-within {
+					&::before {
+						border: 1px solid _var-form-control-border-color-focus();
+						border-radius: _var-border-radius();
+					}
+				}
+
+				display: flex;
 				flex-wrap: nowrap;
 				align-items: center;
 
@@ -54,11 +60,45 @@
 
 			&__filename {
 				margin-left: 1em;
-				display: inline-block;
+
+				&--no-file {
+					display: inline-block;
+				}
+
+				&--has-file {
+					display: none;
+				}
+			}
+
+			&__clear {
+				margin-left: .5em;
+				display: none;
+				text-decoration: underline;
+				cursor: pointer;
 			}
 
 			&__value {
 				margin-top: .25em;
+			}
+
+			&--set {
+				.smf-file-control__filename--no-file {
+					display: none;
+				}
+
+				.smf-file-control__filename--has-file {
+					display: inline-block;
+				}
+
+				.smf-file-control__clear {
+					display: inline-block;
+				}
+			}
+
+			&--uploaded {
+				.smf-file-control__clear {
+					display: inline-block;
+				}
 			}
 		}
 	}

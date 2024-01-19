@@ -2,21 +2,21 @@
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Snow Monkey Forms 6.0.5\n"
+"Project-Id-Version: Snow Monkey Forms 6.1.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-01-16T05:41:02+00:00\n"
+"POT-Creation-Date: 2024-01-19T05:26:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: snow-monkey-forms\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-forms.php:218
-#: snow-monkey-forms.php:545
+#: snow-monkey-forms.php:225
+#: snow-monkey-forms.php:552
 msgid "Snow Monkey Forms"
 msgstr ""
 
@@ -36,16 +36,20 @@ msgstr ""
 msgid "Uploaded file"
 msgstr ""
 
-#: App/Control/File.php:113
+#: App/Control/File.php:116
 #: dist/blocks/file/index.js:1
 #: src/blocks/file/edit.js:88
 msgid "Choose file"
 msgstr ""
 
-#: App/Control/File.php:114
+#: App/Control/File.php:117
 #: dist/blocks/file/index.js:1
 #: src/blocks/file/edit.js:91
 msgid "No file chosen"
+msgstr ""
+
+#: App/Control/File.php:118
+msgid "Clear"
 msgstr ""
 
 #: App/Model/Setting.php:173
@@ -60,40 +64,40 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: App/Rest/Route/View.php:64
+#: App/Rest/Route/View.php:63
 msgid "Invalid access."
 msgstr ""
 
-#: App/Rest/Route/View.php:69
+#: App/Rest/Route/View.php:68
 msgid "There is a possibility of spamming."
 msgstr ""
 
-#: App/Rest/Route/View.php:86
+#: App/Rest/Route/View.php:85
 msgid "An error occurred during file upload."
 msgstr ""
 
-#: App/Rest/Route/View.php:106
+#: App/Rest/Route/View.php:105
 msgid "Attachment of file failed."
 msgstr ""
 
-#: App/Rest/Route/View.php:124
+#: App/Rest/Route/View.php:123
 msgid "Failed to send administrator email."
 msgstr ""
 
-#: App/Rest/Route/View.php:125
-#: App/Rest/Route/View.php:171
-#: App/Rest/Route/View.php:185
+#: App/Rest/Route/View.php:124
+#: App/Rest/Route/View.php:170
+#: App/Rest/Route/View.php:184
 #: dist/blocks/snow-monkey-form/render.php:87
 #: src/blocks/snow-monkey-form/render.php:87
 msgid "Please try again later or contact your administrator by other means."
 msgstr ""
 
-#: App/Rest/Route/View.php:136
+#: App/Rest/Route/View.php:135
 msgid "Failed to send auto reply email."
 msgstr ""
 
-#: App/Rest/Route/View.php:170
-#: App/Rest/Route/View.php:184
+#: App/Rest/Route/View.php:169
+#: App/Rest/Route/View.php:183
 #: dist/blocks/snow-monkey-form/render.php:86
 #: src/blocks/snow-monkey-form/render.php:86
 msgid "An unexpected problem has occurred."
@@ -180,30 +184,30 @@ msgctxt "progress-tracker"
 msgid "Complete"
 msgstr ""
 
-#: snow-monkey-forms.php:236
+#: snow-monkey-forms.php:243
 msgctxt "form-field-label"
 msgid "Name"
 msgstr ""
 
-#: snow-monkey-forms.php:256
+#: snow-monkey-forms.php:263
 msgctxt "form-field-label"
 msgid "Email"
 msgstr ""
 
-#: snow-monkey-forms.php:276
+#: snow-monkey-forms.php:283
 msgctxt "form-field-label"
 msgid "Message"
 msgstr ""
 
-#: snow-monkey-forms.php:306
+#: snow-monkey-forms.php:313
 msgid "Complete !"
 msgstr ""
 
-#: snow-monkey-forms.php:369
+#: snow-monkey-forms.php:376
 msgid "Admin notification"
 msgstr ""
 
-#: snow-monkey-forms.php:444
+#: snow-monkey-forms.php:451
 msgid "Automatic reply notification"
 msgstr ""
 
