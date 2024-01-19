@@ -2,7 +2,7 @@
 Contributors: inc2734, mimitips, imawc
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
-Stable tag: 6.1.0
+Stable tag: 6.2.0
 Requires at least: 6.3
 Tested up to: 6.4
 Requires PHP: 7.4
@@ -50,6 +50,10 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 6.2.0 =
+* Added a release button to the file field.
+* Added a method to the Responser class to retrieve form metadata and sender data. `$responser->get_meta()`
 
 = 6.1.0 =
 * Added legend setting to checkboxes and radio buttons.
