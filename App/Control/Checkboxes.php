@@ -89,10 +89,15 @@ class Checkboxes extends Contract\Control {
 	 * Initialized.
 	 */
 	protected function _init() {
+		/**
+		 * Set up a filter to which you can add any option
+		*/
+		$set_options = apply_filters('snow_monkey_forms/checkboxes/addchoise',$this->get_property( 'options' ),$this->get_property( 'name' ));
+
 		$this->set_property( 'name', $this->get_property( 'name' ) . '[]' );
 
 		$children = array();
-		foreach ( $this->get_property( 'options' ) as $option ) {
+		foreach ( $set_options as $option ) {
 			$value = array_keys( $option )[0];
 			$label = array_values( $option )[0];
 
