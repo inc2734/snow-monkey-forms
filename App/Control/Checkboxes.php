@@ -89,18 +89,10 @@ class Checkboxes extends Contract\Control {
 	 * Initialized.
 	 */
 	protected function _init() {
-		/**
-		 * Set up a filter to which you can add any option
-		*/
-		$set_options = apply_filters('snow_monkey_forms/checkboxes/addchoise',$this->get_property( 'options' ),$this->get_property( 'name' ));
-
 		$this->set_property( 'name', $this->get_property( 'name' ) . '[]' );
 
 		$children = array();
-		foreach ( $set_options as $option ) {
-			$value = array_keys( $option )[0];
-			$label = array_values( $option )[0];
-
+		foreach ( $this->get_property( 'options' ) as $value => $label ) {
 			$children[] = Helper::control(
 				'checkbox',
 				array(
@@ -108,7 +100,7 @@ class Checkboxes extends Contract\Control {
 						'name'         => $this->get_property( 'name' ),
 						'value'        => $value,
 						'disabled'     => $this->get_property( 'disabled' ),
-						'checked'      => (string) $this->get_property( 'value' ) === (string) $value,
+						'checked'      => in_array( (string) $value, array_map( 'strval', $this->get_property( 'values' ) ), true ),
 						'data-invalid' => $this->get_attribute( 'data-invalid' ),
 					),
 					'label'      => $label,

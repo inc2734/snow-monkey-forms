@@ -297,8 +297,31 @@ class Setting {
 
 				$type       = $matches[1];
 				$attributes = json_decode( $matches[2], true );
-				$name       = ! empty( $attributes['name'] ) ? $attributes['name'] : null;
-				$control    = Helper::control( $type, Helper::block_meta_normalization( $attributes ) );
+				$attributes = apply_filters( 'snow_monkey_forms/control/attributes', Helper::block_meta_normalization( $attributes ), $this );
+
+				if ( isset( $attributes['options'] ) && isset( $attributes['name'] ) ) {
+					$hook_name = false;
+
+					if ( 'checkboxes' === $type ) {
+						$hook_name = 'snow_monkey_forms/checkboxes/options';
+					} elseif ( 'select' === $type ) {
+						$hook_name = 'snow_monkey_forms/select/options';
+					} elseif ( 'radio-buttons' === $type ) {
+						$hook_name = 'snow_monkey_forms/radio_buttons/options';
+					}
+
+					if ( $hook_name ) {
+						$attributes['options'] = apply_filters(
+							$hook_name,
+							$attributes['options'],
+							$attributes['name'],
+							$this
+						);
+					}
+				}
+
+				$name    = ! empty( $attributes['name'] ) ? $attributes['name'] : null;
+				$control = Helper::control( $type, $attributes );
 
 				if ( $control && $name ) {
 					$this->controls[ $name ] = $control;

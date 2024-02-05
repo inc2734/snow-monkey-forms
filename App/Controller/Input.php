@@ -19,7 +19,14 @@ class Input extends Contract\Controller {
 	 * @return array
 	 */
 	protected function set_controls() {
-		return $this->controls;
+		$controls         = array();
+		$setting_controls = $this->setting->get( 'controls' );
+
+		foreach ( $setting_controls as $name => $control ) {
+			$controls[ $name ] = $control->input();
+		}
+
+		return $controls;
 	}
 
 	/**

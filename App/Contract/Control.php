@@ -94,16 +94,6 @@ abstract class Control {
 	abstract public function invalid( $message = '' );
 
 	/**
-	 * Filtering attributes.
-	 */
-	public function filtering_attributes() {
-		$this->set_property(
-			'attributes',
-			apply_filters( 'snow_monkey_forms/control/attributes', $this->get_property( 'attributes' ) )
-		);
-	}
-
-	/**
 	 * Normalize attributes array.
 	 *
 	 * @param array $_attributes Array of attribute.

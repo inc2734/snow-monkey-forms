@@ -64,16 +64,8 @@ class Select extends Contract\Control {
 	 * Initialize.
 	 */
 	protected function _init() {
-		/**
-		 * Set up a filter to which you can add any option
-		*/
-		$set_options = apply_filters('snow_monkey_forms/select/addchoise',$this->get_property( 'options' ),$this->get_attribute( 'name' ));
-
 		$children = array();
-		foreach ( $set_options as $option ) {
-			$value = array_keys( $option )[0];
-			$label = array_values( $option )[0];
-
+		foreach ( $this->get_property( 'options' ) as $value => $label ) {
 			$children[] = Helper::control(
 				'option',
 				array(

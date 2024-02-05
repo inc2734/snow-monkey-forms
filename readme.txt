@@ -1,5 +1,5 @@
 === Snow Monkey Forms ===
-Contributors: inc2734, mimitips, imawc
+Contributors: inc2734, mimitips, imawc, sonic
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
 Stable tag: 6.2.0

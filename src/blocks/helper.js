@@ -40,7 +40,7 @@ export function optionsToJsonArray( text ) {
 
 	return optionsMapArray.map( ( element ) => {
 		const o = {};
-		o[ element.value ] = element.label;
+		o[ element.value ?? '' ] = element.label;
 		return o;
 	} );
 }
@@ -49,6 +49,7 @@ export function valuesToJsonArray( text ) {
 	const preValuesArray = optionsToJsonArray( text );
 
 	return preValuesArray.map( ( element ) => {
-		return Object.keys( element )[ 0 ];
+		const value = Object.keys( element )[ 0 ];
+		return 'undefined' !== value ? value : '';
 	} );
 }

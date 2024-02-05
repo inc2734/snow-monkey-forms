@@ -57,7 +57,6 @@ class Helper {
 	 */
 	public static function the_control( $type, $properties ) {
 		$control = static::control( $type, $properties );
-		$control->filtering_attributes();
 		echo $control->input(); // xss ok.
 	}
 
@@ -86,7 +85,7 @@ class Helper {
 					$decoded                    = json_decode( sprintf( '{%1$s}', $value ), true );
 					$decoded                    = is_array( $decoded ) ? $decoded : array( $value => $value );
 					$decoded                    = is_array( $decoded ) && ! $decoded ? array( '' => '' ) : $decoded;
-					$options[ key( $decoded ) ] = $decoded;
+					$options[ key( $decoded ) ] = current( $decoded );
 				}
 			}
 			$attributes['options'] = $options ? $options : array();

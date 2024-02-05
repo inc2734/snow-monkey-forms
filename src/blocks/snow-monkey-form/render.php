@@ -33,6 +33,15 @@ Directory::do_empty( Directory::generate_user_dirpath( $form_id ), true );
 // The $response is used in views.
 $response = json_decode( $controller->send() );
 // phpcs:enable
+
+$input_content = apply_filters( 'the_content', $setting->get( 'input_content' ) );
+foreach ( $response->controls as $name => $control ) {
+	$input_content = preg_replace(
+		'|(<div class="smf-placeholder" data-name="' . $name . '">)(</div>)|ms',
+		'$1' . $control . '$2',
+		$input_content
+	);
+}
 ?>
 
 <form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action=""  enctype="multipart/form-data" data-screen="input">
@@ -75,7 +84,7 @@ $response = json_decode( $controller->send() );
 		</ol>
 	<?php endif; ?>
 
-	<?php echo apply_filters( 'the_content', $setting->get( 'input_content' ) ); // xss ok. ?>
+	<?php echo $input_content; // xss ok. ?>
 
 	<div class="smf-action">
 		<?php echo $response->action; // xss ok. ?>
