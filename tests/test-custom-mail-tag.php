@@ -1,10 +1,14 @@
 <?php
+use Snow_Monkey\Plugin\Forms\App\DataStore;
+use Snow_Monkey\Plugin\Forms\App\Model\Responser;
+use Snow_Monkey\Plugin\Forms\App\Model\MailParser;
+
 class CustomMailTagTest extends WP_UnitTestCase {
 
 	protected function _create_form() {
 		return $this->factory->post->create(
 			array(
-				'post_type' => 'snow-monkey-form',
+				'post_type' => 'snow-monkey-forms',
 			)
 		);
 	}
@@ -33,9 +37,9 @@ class CustomMailTagTest extends WP_UnitTestCase {
 		);
 
 		$form_id     = $this->_create_form();
-		$responser   = new \Snow_Monkey\Plugin\Forms\App\Model\Responser();
-		$setting     = new \Snow_Monkey\Plugin\Forms\App\Model\Setting( $form_id );
-		$mail_parser = new \Snow_Monkey\Plugin\Forms\App\Model\MailParser( $responser, $setting );
+		$responser   = new Responser();
+		$setting     = DataStore::get( $form_id );
+		$mail_parser = new MailParser( $responser, $setting );
 
 		$this->assertEquals( $expected, $mail_parser->parse( '{test}' ) );
 	}
@@ -45,9 +49,9 @@ class CustomMailTagTest extends WP_UnitTestCase {
 	 */
 	public function no_exist_custom_mail_tag() {
 		$form_id     = $this->_create_form();
-		$responser   = new \Snow_Monkey\Plugin\Forms\App\Model\Responser();
-		$setting     = new \Snow_Monkey\Plugin\Forms\App\Model\Setting( $form_id );
-		$mail_parser = new \Snow_Monkey\Plugin\Forms\App\Model\MailParser( $responser, $setting );
+		$responser   = new Responser();
+		$setting     = DataStore::get( $form_id );
+		$mail_parser = new MailParser( $responser, $setting );
 
 		$this->assertEquals( '', $mail_parser->parse( '{test}' ) );
 	}
