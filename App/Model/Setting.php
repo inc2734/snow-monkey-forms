@@ -102,6 +102,11 @@ class Setting {
 	protected $use_confirm_page = true;
 
 	/**
+	 * @var boolean
+	 */
+	protected $use_progress_tracker = false;
+
+	/**
 	 * @var string
 	 */
 	protected $confirm_button_label = null;
