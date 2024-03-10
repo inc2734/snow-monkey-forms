@@ -13,6 +13,20 @@ use Snow_Monkey\Plugin\Forms\App\Helper;
 class ReCaptcha {
 
 	/**
+	 * Site key.
+	 *
+	 * @var string
+	 */
+	protected $site_key = null;
+
+	/**
+	 * Secret key.
+	 *
+	 * @var string
+	 */
+	protected $secret_key = null;
+
+	/**
 	 * Constructor.
 	 */
 	public function __construct() {
