@@ -1,25 +1,28 @@
 {
 	"engines": {
-		"node": ">=16.0.0",
-		"npm": ">=8 <9"
+		"node": ">=20.10.0",
+		"npm": ">=10.2.3"
+	},
+	"volta": {
+		"node": "20.11.1"
 	},
 	"author": "inc2734",
 	"license": "GPL-2.0+",
 	"dependencies": {},
 	"devDependencies": {
 		"@inc2734/add-custom-event": "^0.5.0",
-		"@wordpress/browserslist-config": "^5.29.0",
-		"@wordpress/env": "^8.12.0",
-		"@wordpress/scripts": "^26.17.0",
-		"autoprefixer": "^10.4.16",
-		"browser-sync": "^2.29.3",
-		"classnames": "^2.3.2",
-		"cssnano": "^6.0.1",
-		"eslint-plugin-import": "^2.29.0",
+		"@wordpress/browserslist-config": "^5.36.0",
+		"@wordpress/env": "^9.5.0",
+		"@wordpress/scripts": "^27.4.0",
+		"autoprefixer": "^10.4.18",
+		"browser-sync": "^3.0.2",
+		"classnames": "^2.5.1",
+		"cssnano": "^6.1.0",
+		"eslint-plugin-import": "^2.29.1",
 		"node-sass": "^9.0.0",
 		"npm-run-all": "^4.1.5",
-		"postcss": "^8.4.31",
-		"postcss-cli": "^10.1.0",
+		"postcss": "^8.4.35",
+		"postcss-cli": "^11.0.0",
 		"prettier": "npm:wp-prettier@3.0.3",
 		"rimraf": "^5.0.5",
 		"sass-basis": "^18.2.2"
@@ -68,8 +71,5 @@
 		"make-pot": "npm run wp i18n -- make-pot . ./languages/snow-monkey-forms.pot",
 		"make-json": "rimraf languages/*.json && npm run wp -- i18n make-json ./languages/snow-monkey-forms-ja.po --no-purge",
 		"browsersync": "browser-sync start -p 'localhost:8888' -f '**/*' 'dist/**'"
-	},
-	"volta": {
-		"node": "16.20.2"
 	}
 }
