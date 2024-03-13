@@ -20,7 +20,8 @@ export default function ( {
 	isSelected,
 	className,
 } ) {
-	const { label, description, labelFor, isDisplayLabelColumn } = attributes;
+	const { label, description, labelFor, isDisplayLabelColumn, templateLock } =
+		attributes;
 
 	const blacklist = [
 		'snow-monkey-forms/snow-monkey-form',
@@ -65,7 +66,7 @@ export default function ( {
 		{
 			allowedBlocks,
 			prioritizedInserterBlocks,
-			templateLock: false,
+			templateLock,
 		}
 	);
 

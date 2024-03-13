@@ -1,12 +1,14 @@
 import { getBlockTypes } from '@wordpress/blocks';
 
-import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, useInnerBlocksProps } from '@wordpress/block-editor';
 
 import { useMemo } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-export default function () {
-	const ALLOWED_BLOCKS = useMemo( () => {
+export default function ( { attributes } ) {
+	const { templateLock } = attributes;
+
+	const allowedBlocks = useMemo( () => {
 		const blocks = getBlockTypes();
 		return blocks
 			.map( ( block ) => {
@@ -22,16 +24,21 @@ export default function () {
 		className: [ 'components-panel', 'snow-monkey-forms-setting-panel' ],
 	} );
 
+	const innerBlocksProps = useInnerBlocksProps(
+		{},
+		{
+			allowedBlocks,
+			templateLock,
+		}
+	);
+
 	return (
 		<div { ...blockProps }>
 			<div className="components-panel__header edit-post-sidebar-header snow-monkey-forms-setting-panel__header">
 				{ __( 'Complete', 'snow-monkey-forms' ) }
 			</div>
 			<div className="components-panel__body is-opened snow-monkey-forms-setting-panel__body">
-				<InnerBlocks
-					allowedBlocks={ ALLOWED_BLOCKS }
-					templateLock={ false }
-				/>
+				<div { ...innerBlocksProps } />
 			</div>
 		</div>
 	);

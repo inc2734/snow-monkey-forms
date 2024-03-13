@@ -12,6 +12,10 @@
 				"move": true,
 				"remove": true
 			}
+		},
+		"templateLock": {
+			"type": [ "string", "boolean" ],
+			"enum": [ "all", "insert", "contentOnly", false ]
 		}
 	},
 	"supports": {

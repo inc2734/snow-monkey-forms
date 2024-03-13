@@ -303,6 +303,7 @@ class Bootstrap {
 						'snow-monkey-forms/form--complete',
 						array(
 							'lock' => array(
+								'move'   => true,
 								'remove' => true,
 							),
 						),

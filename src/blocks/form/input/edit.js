@@ -16,7 +16,7 @@ import AutoReplyEmailSettingsPanel from './auto-reply-email-settings-panel';
 
 export default function ( props ) {
 	const { attributes, setAttributes, className } = props;
-	const { formStyle } = attributes;
+	const { formStyle, templateLock } = attributes;
 
 	const allowedBlocks = [ 'snow-monkey-forms/item' ];
 
@@ -34,7 +34,7 @@ export default function ( props ) {
 		},
 		{
 			allowedBlocks,
-			templateLock: false,
+			templateLock,
 		}
 	);
 
