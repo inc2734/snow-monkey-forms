@@ -2,9 +2,9 @@
 Contributors: inc2734, mimitips, imawc, sonic
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
-Stable tag: 6.3.0
+Stable tag: 6.4.0
 Requires at least: 6.3
-Tested up to: 6.4
+Tested up to: 6.5
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -50,6 +50,11 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 6.4.0 =
+* WordPress 6.5 compatibility support.
+* Support "Apply to all blocks inside".
+* Fixed a bug that caused the wording of file blocks to extend beyond the screen without wrapping.
 
 = 6.3.0 =
 * Add filter hook `snow_monkey_forms/checkboxes/options`.
