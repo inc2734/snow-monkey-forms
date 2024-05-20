@@ -133,7 +133,7 @@ class Validator {
 		$class_name = '\Snow_Monkey\Plugin\Forms\App\Validation\\' . static::_generate_class_name( $validation_name );
 
 		if ( ! class_exists( $class_name ) ) {
-			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
+			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', esc_html( $class_name ) ) );
 		}
 
 		return $class_name;

@@ -51,7 +51,7 @@ class Responser {
 	 * @return json
 	 */
 	public function send( $method, array $controls = array(), $action = '', $message = '' ) {
-		return json_encode(
+		return wp_json_encode(
 			array(
 				'method'   => $method,
 				'data'     => $this->data,

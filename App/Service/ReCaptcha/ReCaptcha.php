@@ -100,7 +100,7 @@ class ReCaptcha {
 			true
 		);
 
-		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/recaptcha.asset.php' );
+		$asset = include SNOW_MONKEY_FORMS_PATH . '/dist/js/recaptcha.asset.php';
 		wp_enqueue_script(
 			'snow-monkey-forms@recaptcha',
 			SNOW_MONKEY_FORMS_URL . '/dist/js/recaptcha.js',
@@ -113,7 +113,7 @@ class ReCaptcha {
 
 		wp_add_inline_script(
 			'snow-monkey-forms@recaptcha',
-			'var snowmonkeyforms_recaptcha = ' . json_encode(
+			'var snowmonkeyforms_recaptcha = ' . wp_json_encode(
 				array(
 					'siteKey' => $this->site_key,
 				)

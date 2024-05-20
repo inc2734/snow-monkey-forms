@@ -84,10 +84,10 @@ foreach ( $response->controls as $name => $control ) {
 		</ol>
 	<?php endif; ?>
 
-	<?php echo $input_content; // xss ok. ?>
+	<?php echo $input_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 	<div class="smf-action">
-		<?php echo $response->action; // xss ok. ?>
+		<?php echo $response->action; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</div>
 
 	<div class="smf-system-error-content-ready">

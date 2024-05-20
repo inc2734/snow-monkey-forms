@@ -26,7 +26,7 @@ class CustomMailTagTest extends WP_UnitTestCase {
 
 		add_filter(
 			'snow_monkey_forms/custom_mail_tag',
-			function( $value, $name ) use ( $expected ) {
+			function ( $value, $name ) use ( $expected ) {
 				if ( 'test' === $name ) {
 					return $expected;
 				}

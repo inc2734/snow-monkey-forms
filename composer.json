@@ -10,16 +10,17 @@
 		}
 	],
 	"require-dev": {
-		"dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-		"wp-coding-standards/wpcs": "^2.3",
-		"yoast/phpunit-polyfills": "^1.0"
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"wp-coding-standards/wpcs": "^3.1",
+		"phpcompatibility/phpcompatibility-wp": "*",
+		"yoast/phpunit-polyfills": "^2.0"
 	},
 	"require": {
 		"php": ">=7.4"
 	},
 	"scripts" :{
-		"lint": "./vendor/squizlabs/php_codesniffer/bin/phpcs",
-		"format": "./vendor/squizlabs/php_codesniffer/bin/phpcbf"
+		"format": "phpcbf --standard=.phpcs.xml.dist --report-summary --report-source",
+		"lint": "phpcs --standard=.phpcs.xml.dist"
 	},
 	"autoload": {
 		"psr-4": {

@@ -55,6 +55,8 @@ class View {
 	/**
 	 * Return json for a form rendering.
 	 *
+	 * @throws \RuntimeException When a file could not be saved.
+
 	 * @return json
 	 */
 	public function send() {
@@ -70,7 +72,10 @@ class View {
 
 		// File upload.
 		try {
+			// Since CSRF validation has already been performed, disable the nonce verification.
+			// phpcs:disable WordPress.Security.NonceVerification.Missing
 			$files = $this->_sanitize_files( $_FILES );
+			// phpcs:enable
 			if ( $files ) {
 				$uploader = new FileUploader( $files );
 				if ( $uploader->exist_file_controls() ) {
@@ -192,7 +197,7 @@ class View {
 	/**
 	 * Sanitize $_FILES for FileUploader.
 	 *
-	 * @param array $files $_FILES
+	 * @param array $files $_FILES.
 	 * @return array
 	 */
 	protected function _sanitize_files( $files ) {

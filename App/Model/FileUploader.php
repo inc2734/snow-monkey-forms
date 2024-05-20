@@ -14,7 +14,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 class FileUploader {
 
 	/**
-	 * $_FILES
+	 * $_FILES.
 	 *
 	 * @var array
 	 */
@@ -23,7 +23,7 @@ class FileUploader {
 	/**
 	 * Constructor.
 	 *
-	 * @params array $_FILES
+	 * @param array $files $_FILES.
 	 */
 	public function __construct( $files ) {
 		$this->files = $files;
@@ -81,7 +81,7 @@ class FileUploader {
 	 * @return boolean
 	 */
 	public function exist_file_controls() {
-		return ! ! array_keys( $this->files );
+		return (bool) array_keys( $this->files );
 	}
 
 	/**
@@ -211,10 +211,8 @@ class FileUploader {
 				if ( ! in_array( $type, $wp_check_filetype['type'], true ) ) {
 					return false;
 				}
-			} else {
-				if ( $type !== $wp_check_filetype['type'] ) {
+			} elseif ( $type !== $wp_check_filetype['type'] ) {
 					return false;
-				}
 			}
 		}
 

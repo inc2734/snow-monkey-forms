@@ -25,7 +25,7 @@ class Dispatcher {
 		$class_name = '\Snow_Monkey\Plugin\Forms\App\Controller\\' . static::_generate_class_name( $method );
 
 		if ( ! class_exists( $class_name ) ) {
-			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
+			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', esc_html( $class_name ) ) );
 		}
 
 		return new $class_name( $responser, $setting, $validator );
@@ -34,18 +34,18 @@ class Dispatcher {
 	/**
 	 * Generate class name.
 	 *
-	 * @param string $string Controller name. input|confirm|complete|invalid|systemerror.
+	 * @param string $value Controller name. input|confirm|complete|invalid|systemerror.
 	 * @return string|false
 	 */
-	protected static function _generate_class_name( $string ) {
+	protected static function _generate_class_name( $value ) {
 		$classes = array();
 		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/App/Controller/*.php' ) as $file ) {
 			$slug             = strtolower( basename( $file, '.php' ) );
 			$classes[ $slug ] = $file;
 		}
 
-		return isset( $classes[ strtolower( $string ) ] )
-			? basename( $classes[ strtolower( $string ) ], '.php' )
+		return isset( $classes[ strtolower( $value ) ] )
+			? basename( $classes[ strtolower( $value ) ], '.php' )
 			: false;
 	}
 }

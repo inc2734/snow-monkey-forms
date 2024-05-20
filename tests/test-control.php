@@ -32,7 +32,7 @@ class ControlTest extends WP_UnitTestCase {
 	public function should_set_default_value() {
 		add_filter(
 			'snow_monkey_forms/control/attributes',
-			function( $attributes ) {
+			function ( $attributes ) {
 				if ( isset( $attributes['name'] ) && 'text' === $attributes['name'] ) {
 					$attributes['value'] = 'foo';
 				}
@@ -55,7 +55,7 @@ class ControlTest extends WP_UnitTestCase {
 	public function should_not_be_set_default_value() {
 		add_filter(
 			'snow_monkey_forms/control/attributes',
-			function( $attributes ) {
+			function ( $attributes ) {
 				if ( isset( $attributes['name'] ) && 'text' === $attributes['name'] ) {
 					$attributes['value'] = 'foo';
 				}
@@ -79,7 +79,7 @@ class ControlTest extends WP_UnitTestCase {
 	public function set_selectbox_options() {
 		add_filter(
 			'snow_monkey_forms/select/options',
-			function( $options, $name ) {
+			function ( $options, $name ) {
 				if ( 'select' === $name ) {
 					return array(
 						'custom1' => 'custom1',
@@ -109,7 +109,7 @@ class ControlTest extends WP_UnitTestCase {
 	public function set_checkboxes_options() {
 		add_filter(
 			'snow_monkey_forms/checkboxes/options',
-			function( $options, $name ) {
+			function ( $options, $name ) {
 				if ( 'checkboxes' === $name ) {
 					return array(
 						'custom1' => 'custom1',
@@ -139,7 +139,7 @@ class ControlTest extends WP_UnitTestCase {
 	public function set_radio_buttons_options() {
 		add_filter(
 			'snow_monkey_forms/radio_buttons/options',
-			function( $options, $name ) {
+			function ( $options, $name ) {
 				if ( 'radio-buttons' === $name ) {
 					return array(
 						'custom1' => 'custom1',

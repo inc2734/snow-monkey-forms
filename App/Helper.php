@@ -23,7 +23,7 @@ class Helper {
 		$class_name = '\Snow_Monkey\Plugin\Forms\App\Control\\' . static::_generate_control_class_name( $type );
 
 		if ( ! class_exists( $class_name ) ) {
-			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', $class_name ) );
+			throw new \LogicException( sprintf( '[Snow Monkey Forms] Not found the class: %1$s.', esc_html( $class_name ) ) );
 		}
 
 		return new $class_name( $properties );
@@ -35,15 +35,15 @@ class Helper {
 	 *  - foo_bar => FooBar
 	 *  - FooBar  => Foobar
 	 *
-	 * @param string $string Control class name.
+	 * @param string $value Control class name.
 	 * @return string
 	 */
-	protected static function _generate_control_class_name( $string ) {
+	protected static function _generate_control_class_name( $value ) {
 		$class_name_array = array_map(
-			function( $string ) {
-				return ucfirst( strtolower( $string ) );
+			function ( $value ) {
+				return ucfirst( strtolower( $value ) );
 			},
-			explode( '-', $string )
+			explode( '-', $value )
 		);
 
 		return implode( '', $class_name_array );
@@ -57,7 +57,7 @@ class Helper {
 	 */
 	public static function the_control( $type, $properties ) {
 		$control = static::control( $type, $properties );
-		echo $control->input(); // xss ok.
+		echo $control->input(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -116,7 +116,7 @@ class Helper {
 	public static function flatten_blocks( $blocks ) {
 		return array_reduce(
 			$blocks,
-			function( $carry, $block ) {
+			function ( $carry, $block ) {
 				array_push( $carry, array_diff_key( $block, array_flip( array( 'innerBlocks' ) ) ) );
 				if ( isset( $block['innerBlocks'] ) ) {
 					$inner_blocks = static::flatten_blocks( $block['innerBlocks'] );

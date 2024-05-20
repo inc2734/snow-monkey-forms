@@ -104,7 +104,7 @@ abstract class Control {
 
 		foreach ( $_attributes as $key => $value ) {
 			if (
-				'' === $value && 'value' !== $key
+				( '' === $value && 'value' !== $key )
 				|| false === $value
 				|| is_null( $value )
 				|| is_array( $value )
@@ -261,7 +261,7 @@ abstract class Control {
 			$delimiter,
 			array_filter(
 				array_map(
-					function( $control ) use ( $method ) {
+					function ( $control ) use ( $method ) {
 						if ( method_exists( $control, $method ) ) {
 							return $control->$method();
 						}

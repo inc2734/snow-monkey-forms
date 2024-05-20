@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'SNOW_MONKEY_FORMS_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SNOW_MONKEY_FORMS_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
-require_once( SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php' );
+require_once SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php';
 
 /**
  * Whether pro edition.
@@ -99,7 +99,7 @@ class Bootstrap {
 	 * Enqueue assets.
 	 */
 	public function _enqueue_assets() {
-		$asset = include( SNOW_MONKEY_FORMS_PATH . '/dist/js/app.asset.php' );
+		$asset = include SNOW_MONKEY_FORMS_PATH . '/dist/js/app.asset.php';
 		wp_enqueue_script(
 			'snow-monkey-forms',
 			SNOW_MONKEY_FORMS_URL . '/dist/js/app.js',
@@ -112,7 +112,7 @@ class Bootstrap {
 
 		wp_add_inline_script(
 			'snow-monkey-forms',
-			'var snowmonkeyforms = ' . json_encode(
+			'var snowmonkeyforms = ' . wp_json_encode(
 				array(
 					'view_json_url' => rest_url( '/snow-monkey-form/v1/view' ),
 				)
@@ -172,8 +172,8 @@ class Bootstrap {
 			'/view',
 			array(
 				'methods'             => 'POST',
-				'callback'            => function() use ( $user ) {
-					$referer = isset( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : false;
+				'callback'            => function () use ( $user ) {
+					$referer = filter_input( INPUT_SERVER, 'HTTP_REFERER' ) ?? false;
 					$homeurl = untrailingslashit( home_url( '/' ) );
 					if ( 0 !== strpos( $referer, $homeurl ) ) {
 						exit;
@@ -189,7 +189,7 @@ class Bootstrap {
 					$route = new Rest\Route\View( $data );
 					return $route->send();
 				},
-				'permission_callback' => function() {
+				'permission_callback' => function () {
 					return true;
 				},
 			)
@@ -247,7 +247,7 @@ class Bootstrap {
 										'snow-monkey-forms/control-text',
 										array(
 											'name'        => 'fullname',
-											'validations' => json_encode(
+											'validations' => wp_json_encode(
 												array(
 													'required' => true,
 												),
@@ -267,7 +267,7 @@ class Bootstrap {
 										'snow-monkey-forms/control-email',
 										array(
 											'name'        => 'email',
-											'validations' => json_encode(
+											'validations' => wp_json_encode(
 												array(
 													'required' => true,
 												),
@@ -287,7 +287,7 @@ class Bootstrap {
 										'snow-monkey-forms/control-textarea',
 										array(
 											'name'        => 'message',
-											'validations' => json_encode(
+											'validations' => wp_json_encode(
 												array(
 													'required' => true,
 												),
@@ -568,7 +568,7 @@ class Bootstrap {
 	}
 }
 
-require_once( SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php' );
+require_once SNOW_MONKEY_FORMS_PATH . '/vendor/autoload.php';
 new Bootstrap();
 
 /**

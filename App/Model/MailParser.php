@@ -36,13 +36,13 @@ class MailParser {
 	/**
 	 * Convert {...} to string.
 	 *
-	 * @param string $string Text.
+	 * @param string $value Text.
 	 * @return string
 	 */
-	public function parse( $string ) {
+	public function parse( $value ) {
 		return preg_replace_callback(
 			'@{([^}]*?)}@',
-			function( $matches ) {
+			function ( $matches ) {
 				if ( ! isset( $matches[1] ) ) {
 					return $matches[0];
 				}
@@ -69,7 +69,7 @@ class MailParser {
 
 				return $this->_stringfy( $matches[1], $value );
 			},
-			$string
+			$value
 		);
 	}
 

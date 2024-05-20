@@ -70,7 +70,7 @@ class Controller {
 		register_setting(
 			self::OPTION_GROUP,
 			self::OPTION_NAME,
-			function( $option ) {
+			function ( $option ) {
 				$default_option = array(
 					'site-key'   => '',
 					'secret-key' => '',
@@ -86,8 +86,9 @@ class Controller {
 		add_settings_section(
 			self::OPTION_NAME,
 			'',
-			function() {
-				if ( ! empty( $_GET['settings-updated'] ) ) {
+			function () {
+				$settings_updated = filter_input( INPUT_GET, 'settings-updated' );
+				if ( $settings_updated ) {
 					?>
 					<div class="updated settings-error notice is-dismissible">
 						<p>
@@ -123,7 +124,7 @@ class Controller {
 		add_settings_field(
 			'site-key',
 			'<label for="site-key">' . esc_html__( 'Site Key', 'snow-monkey-forms' ) . '</label>',
-			function() {
+			function () {
 				?>
 				<input
 					type="text"
@@ -141,7 +142,7 @@ class Controller {
 		add_settings_field(
 			'secret-key',
 			'<label for="secret-key">' . esc_html__( 'Secret Key', 'snow-monkey-forms' ) . '</label>',
-			function() {
+			function () {
 				?>
 				<input
 					type="text"

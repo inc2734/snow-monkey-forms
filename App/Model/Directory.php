@@ -34,6 +34,7 @@ class Directory {
 	/**
 	 * Return the path to the user directory.
 	 *
+	 * @param int $form_id Form ID.
 	 * @return string
 	 * @throws \RuntimeException When directory name is not token value.
 	 */
@@ -145,7 +146,7 @@ class Directory {
 			return false;
 		}
 
-		$user_file_dir = Directory::generate_user_file_dirpath( $name );
+		$user_file_dir = self::generate_user_file_dirpath( $name );
 		if ( ! $user_file_dir || ! is_dir( $user_file_dir ) ) {
 			return false;
 		}
@@ -204,11 +205,11 @@ class Directory {
 
 		if ( $fileinfo->isFile() && is_writable( $file ) ) {
 			if ( ! unlink( $file ) ) {
-				throw new \RuntimeException( sprintf( '[Snow Monkey Forms] Can\'t remove file: %1$s.', $file ) );
+				throw new \RuntimeException( sprintf( '[Snow Monkey Forms] Can\'t remove file: %1$s.', esc_html( $file ) ) );
 			}
 		} elseif ( $fileinfo->isDir() && is_writable( $file ) ) {
 			if ( ! rmdir( $file ) ) {
-				throw new \RuntimeException( sprintf( '[Snow Monkey Forms] Can\'t remove directory: %1$s.', $file ) );
+				throw new \RuntimeException( sprintf( '[Snow Monkey Forms] Can\'t remove directory: %1$s.', esc_html( $file ) ) );
 			}
 		}
 

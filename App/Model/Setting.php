@@ -295,7 +295,7 @@ class Setting {
 	private function _set_controls( $input_content ) {
 		preg_replace_callback(
 			'|<!-- wp:snow-monkey-forms/control-([^ ]+?) ({.+?}) /-->|ms',
-			function( $matches ) {
+			function ( $matches ) {
 				if ( ! isset( $matches[1] ) || ! isset( $matches[2] ) ) {
 					return;
 				}
