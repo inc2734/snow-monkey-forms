@@ -146,7 +146,7 @@ class Directory {
 			return false;
 		}
 
-		$user_file_dir = self::generate_user_file_dirpath( $name );
+		$user_file_dir = static::generate_user_file_dirpath( $name );
 		if ( ! $user_file_dir || ! is_dir( $user_file_dir ) ) {
 			return false;
 		}

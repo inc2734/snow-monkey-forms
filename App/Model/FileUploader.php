@@ -212,7 +212,7 @@ class FileUploader {
 					return false;
 				}
 			} elseif ( $type !== $wp_check_filetype['type'] ) {
-					return false;
+				return false;
 			}
 		}
 

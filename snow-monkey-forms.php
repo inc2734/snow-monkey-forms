@@ -173,7 +173,9 @@ class Bootstrap {
 			array(
 				'methods'             => 'POST',
 				'callback'            => function () use ( $user ) {
-					$referer = filter_input( INPUT_SERVER, 'HTTP_REFERER' ) ?? false;
+					// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					$referer = isset( $_SERVER['HTTP_REFERER'] ) ? wp_unslash( $_SERVER['HTTP_REFERER'] ) : false;
+					// phpcs:enable
 					$homeurl = untrailingslashit( home_url( '/' ) );
 					if ( 0 !== strpos( $referer, $homeurl ) ) {
 						exit;
