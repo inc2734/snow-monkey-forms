@@ -62,7 +62,6 @@ class Bootstrap {
 
 		add_action( 'wp_enqueue_scripts', array( $this, '_enqueue_assets' ) );
 		add_action( 'enqueue_block_assets', array( $this, '_enqueue_block_assets' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, '_enqueue_block_editor_assets' ) );
 		add_action( 'rest_api_init', array( $this, '_endpoint' ) );
 		add_action( 'init', array( $this, '_register_blocks' ) );
 		add_action( 'init', array( $this, '_register_post_type' ) );
@@ -140,25 +139,22 @@ class Bootstrap {
 			array(),
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/app.css' )
 		);
-	}
 
-	/**
-	 * Enqueue block editor assets.
-	 */
-	public function _enqueue_block_editor_assets() {
-		foreach ( \WP_Block_Type_Registry::get_instance()->get_all_registered() as $block_type => $block ) {
-			if ( 0 === strpos( $block_type, 'snow-monkey-forms/' ) ) {
-				$handle = str_replace( '/', '-', $block_type ) . '-editor-script';
-				wp_set_script_translations( $handle, 'snow-monkey-forms', SNOW_MONKEY_FORMS_PATH . '/languages' );
+		if ( is_admin() ) {
+			foreach ( \WP_Block_Type_Registry::get_instance()->get_all_registered() as $block_type => $block ) {
+				if ( 0 === strpos( $block_type, 'snow-monkey-forms/' ) ) {
+					$handle = str_replace( '/', '-', $block_type ) . '-editor-script';
+					wp_set_script_translations( $handle, 'snow-monkey-forms', SNOW_MONKEY_FORMS_PATH . '/languages' );
+				}
 			}
-		}
 
-		wp_enqueue_style(
-			'snow-monkey-forms@editor',
-			SNOW_MONKEY_FORMS_URL . '/dist/css/editor.css',
-			array( 'snow-monkey-forms' ),
-			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.css' )
-		);
+			wp_enqueue_style(
+				'snow-monkey-forms@editor',
+				SNOW_MONKEY_FORMS_URL . '/dist/css/editor.css',
+				array( 'snow-monkey-forms' ),
+				filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/editor.css' )
+			);
+		}
 	}
 
 	/**

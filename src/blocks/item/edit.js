@@ -36,7 +36,7 @@ export default function ( {
 				return ! blacklist.includes( block.name ) ? block.name : null;
 			} )
 		);
-	}, [] );
+	}, [ JSON.stringify( blacklist ) ] );
 
 	const prioritizedInserterBlocks = useMemo( () => {
 		const blocks = getBlockTypes();
@@ -49,7 +49,7 @@ export default function ( {
 					: null;
 			} )
 		);
-	}, [] );
+	}, [ JSON.stringify( blacklist ) ] );
 
 	const classes = classnames( 'smf-item', className, {
 		'smf-item--divider': ! isDisplayLabelColumn,
