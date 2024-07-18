@@ -125,12 +125,14 @@ class Bootstrap {
 	 */
 	public function _enqueue_block_assets() {
 		if ( apply_filters( 'snow_monkey_forms/enqueue/fallback_style', ! is_pro() ) ) {
-			wp_enqueue_style(
-				'snow-monkey-forms@fallback',
-				SNOW_MONKEY_FORMS_URL . '/dist/css/fallback.css',
-				array(),
-				filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/fallback.css' )
-			);
+			if ( ! wp_style_is( 'sass-basis-core' ) && ! wp_style_is( 'sass-basis' ) ) {
+				wp_enqueue_style(
+					'sass-basis-core',
+					SNOW_MONKEY_FORMS_URL . '/dist/css/fallback.css',
+					array(),
+					filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/css/fallback.css' )
+				);
+			}
 		}
 
 		wp_enqueue_style(
