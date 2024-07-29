@@ -201,6 +201,7 @@ class Bootstrap {
 	 */
 	public function _register_blocks() {
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/checkboxes' );
+		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/date' );
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/email' );
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/file' );
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/form/input' );

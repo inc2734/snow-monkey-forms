@@ -1,0 +1,57 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "snow-monkey-forms",
+	"name": "snow-monkey-forms/control-date",
+	"title": "Date",
+	"category": "snow-monkey-forms",
+	"ancestor": [ "snow-monkey-forms/item" ],
+	"attributes": {
+		"name": {
+			"type": "string",
+			"default": ""
+		},
+		"value": {
+			"type": "string",
+			"default": ""
+		},
+		"min": {
+			"type": "string",
+			"default": ""
+		},
+		"max": {
+			"type": "string",
+			"default": ""
+		},
+		"disabled": {
+			"type": "boolean",
+			"default": false
+		},
+		"id": {
+			"type": "string",
+			"default": ""
+		},
+		"controlClass": {
+			"type": "string",
+			"default": ""
+		},
+		"description": {
+			"type": "string",
+			"default": ""
+		},
+		"isDisplayDescriptionConfirm": {
+			"type": "boolean",
+			"default": false
+		},
+		"validations": {
+			"type": "string",
+			"default": "{}"
+		}
+	},
+	"supports": {
+		"customClassName": false
+	},
+	"style": "file:../text/style.css",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
+}
