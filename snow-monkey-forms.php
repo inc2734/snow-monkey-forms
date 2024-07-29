@@ -207,6 +207,7 @@ class Bootstrap {
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/form/input' );
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/form/complete' );
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/item' );
+		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/month' );
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/radio-buttons' );
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/select' );
 		register_block_type( SNOW_MONKEY_FORMS_PATH . '/dist/blocks/snow-monkey-form' );

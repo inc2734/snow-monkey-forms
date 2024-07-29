@@ -9,14 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-07-29T01:09:36+00:00\n"
+"POT-Creation-Date: 2024-07-29T04:10:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.9.0\n"
 "X-Domain: snow-monkey-forms\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-forms.php:226
-#: snow-monkey-forms.php:554
+#: snow-monkey-forms.php:227
+#: snow-monkey-forms.php:555
 msgid "Snow Monkey Forms"
 msgstr ""
 
@@ -134,6 +134,10 @@ msgstr ""
 msgid "Please enter a valid email address."
 msgstr ""
 
+#: App/Validation/Month.php:42
+msgid "Please enter a valid month."
+msgstr ""
+
 #: App/Validation/Required.php:34
 msgid "Please enter."
 msgstr ""
@@ -177,30 +181,30 @@ msgctxt "progress-tracker"
 msgid "Complete"
 msgstr ""
 
-#: snow-monkey-forms.php:244
+#: snow-monkey-forms.php:245
 msgctxt "form-field-label"
 msgid "Name"
 msgstr ""
 
-#: snow-monkey-forms.php:264
+#: snow-monkey-forms.php:265
 msgctxt "form-field-label"
 msgid "Email"
 msgstr ""
 
-#: snow-monkey-forms.php:284
+#: snow-monkey-forms.php:285
 msgctxt "form-field-label"
 msgid "Message"
 msgstr ""
 
-#: snow-monkey-forms.php:315
+#: snow-monkey-forms.php:316
 msgid "Complete !"
 msgstr ""
 
-#: snow-monkey-forms.php:378
+#: snow-monkey-forms.php:379
 msgid "Admin notification"
 msgstr ""
 
-#: snow-monkey-forms.php:453
+#: snow-monkey-forms.php:454
 msgid "Automatic reply notification"
 msgstr ""
 
@@ -208,6 +212,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:1
 #: dist/blocks/select/index.js:1
 #: dist/blocks/tel/index.js:1
@@ -221,6 +226,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:1
 #: dist/blocks/select/index.js:1
 #: dist/blocks/tel/index.js:1
@@ -233,6 +239,7 @@ msgstr ""
 #: dist/blocks/checkboxes/index.js:1
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:1
 #: dist/blocks/select/index.js:1
 #: dist/blocks/tel/index.js:1
@@ -264,6 +271,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:4
 #: dist/blocks/select/index.js:4
 #: dist/blocks/tel/index.js:1
@@ -278,6 +286,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:4
 #: dist/blocks/select/index.js:4
 #: dist/blocks/tel/index.js:1
@@ -292,6 +301,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:4
 #: dist/blocks/select/index.js:4
 #: dist/blocks/tel/index.js:1
@@ -334,6 +344,7 @@ msgstr ""
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
 #: dist/blocks/item/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:4
 #: dist/blocks/select/index.js:4
 #: dist/blocks/tel/index.js:1
@@ -369,6 +380,7 @@ msgstr ""
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
 #: dist/blocks/item/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:4
 #: dist/blocks/select/index.js:4
 #: dist/blocks/tel/index.js:1
@@ -382,6 +394,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:4
 #: dist/blocks/select/index.js:4
 #: dist/blocks/tel/index.js:1
@@ -399,6 +412,7 @@ msgstr ""
 
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/radio-buttons/index.js:1
 #: dist/blocks/select/index.js:1
 #: dist/blocks/tel/index.js:1
@@ -411,6 +425,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/select/index.js:1
 #: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
@@ -422,6 +437,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/select/index.js:1
 #: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
@@ -433,6 +449,7 @@ msgstr ""
 #: dist/blocks/date/index.js:1
 #: dist/blocks/email/index.js:1
 #: dist/blocks/file/index.js:1
+#: dist/blocks/month/index.js:1
 #: dist/blocks/select/index.js:1
 #: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
@@ -603,6 +620,14 @@ msgstr ""
 msgid "Add a label element and link it with a form field of your choice. Enter the id of the form field you want to link to."
 msgstr ""
 
+#: dist/blocks/month/index.js:1
+msgid "Minimum month"
+msgstr ""
+
+#: dist/blocks/month/index.js:1
+msgid "Maximum month"
+msgstr ""
+
 #: dist/blocks/select/index.js:1
 #: dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1
@@ -656,6 +681,11 @@ msgstr ""
 #: dist/blocks/item/block.json
 msgctxt "block title"
 msgid "Item"
+msgstr ""
+
+#: dist/blocks/month/block.json
+msgctxt "block title"
+msgid "Month"
 msgstr ""
 
 #: dist/blocks/radio-buttons/block.json
