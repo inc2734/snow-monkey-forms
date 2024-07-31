@@ -1,5 +1,4 @@
-@import '../../../src/css/core/core';
-@import '../../../node_modules/sass-basis/src/css/basis-core';
+@use '../../../node_modules/sass-basis/src/css/core';
 
 .smf-form .smf-item {
 	.smf-radio-buttons-control {
@@ -26,13 +25,12 @@
 	}
 
 	.smf-radio-button-control {
-		@include _radio();
 		align-items: flex-start;
+		@include core.radio();
 
 		&__control {
 			flex: none;
 			margin-top: calc(var(--_half-leading) * 1em);
-			margin-right: var(--_margin-2);
 		}
 	}
 }

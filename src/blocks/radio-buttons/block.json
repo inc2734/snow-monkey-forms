@@ -1,8 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
+	"version": "7.1.0",
 	"textdomain": "snow-monkey-forms",
-	"version": "6.0.5",
 	"name": "snow-monkey-forms/control-radio-buttons",
 	"title": "Radio buttons",
 	"category": "snow-monkey-forms",
@@ -56,7 +56,7 @@
 	"supports": {
 		"customClassName": false
 	},
-	"style": "file:./style.css",
+	"style": "file:./style-index.css",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 }

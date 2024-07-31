@@ -1,6 +1,7 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
+	"version": "7.1.0",
 	"textdomain": "snow-monkey-forms",
 	"name": "snow-monkey-forms/control-file",
 	"title": "File",
@@ -35,7 +36,7 @@
 	"supports": {
 		"customClassName": false
 	},
-	"style": "file:./style.css",
+	"style": "file:./style-index.css",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 }

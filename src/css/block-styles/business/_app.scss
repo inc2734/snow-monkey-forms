@@ -1,3 +1,5 @@
+@use '../../../../node_modules/sass-basis/src/css/core';
+
 .smf-form--business {
 	& + .smf-action {
 		margin: var(--_margin1) 0;
@@ -34,7 +36,7 @@
 			}
 		}
 
-		@include _media-min(md) {
+		@include core.media-min(md) {
 			display: flex;
 
 			&__col {

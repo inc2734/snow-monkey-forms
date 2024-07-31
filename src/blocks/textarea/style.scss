@@ -1,12 +1,11 @@
-@import '../../../src/css/core/core';
-@import '../../../node_modules/sass-basis/src/css/basis-core';
+@use '../../../node_modules/sass-basis/src/css/core';
 
 .smf-form .smf-item {
 	.smf-textarea-control {
 		&__control {
-			@include _form-control();
 			display: block;
 			width: 100%;
+			@include core.form-control();
 		}
 	}
 }

@@ -1,11 +1,13 @@
+@use '../../../node_modules/sass-basis/src/css/core';
+
 @mixin smf-button {
 	cursor: pointer;
 	display: inline-block;
-	@include _form-control-base-border();
 	background-color: var(--_lighter-color-gray);
 	background-image: linear-gradient(180deg, #fff, var(--_lighter-color-gray));
 	border-radius: var(--_global--border-radius);
 	color: var(--_color-text);
 	padding: var(--_padding-2) var(--_padding-1);
 	text-decoration: none;
+	@include core.form-control-base-border();
 }

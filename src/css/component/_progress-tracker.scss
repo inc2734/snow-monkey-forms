@@ -1,5 +1,7 @@
+@use '../../../node_modules/sass-basis/src/css/core';
+
 .smf-progress-tracker {
-	@include _list-unstyled();
+	@include core.list-unstyled();
 	margin-bottom: var(--_margin1);
 	display: flex;
 	flex-wrap: nowrap;
@@ -49,7 +51,7 @@
 	&__item__number {
 		position: relative;
 		z-index: 1;
-		@include _circle(24px);
+		@include core.circle(24px);
 		display: flex;
 		align-items: center;
 		justify-content: center;

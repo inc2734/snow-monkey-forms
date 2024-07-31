@@ -1,5 +1,4 @@
-@import '../../../src/css/core/core';
-@import '../../../node_modules/sass-basis/src/css/basis-core';
+@use '../../../src/css/core/core' as *;
 
 .smf-form .smf-item {
 	.smf-file-control {
@@ -17,88 +16,79 @@
 
 		> label {
 			position: relative;
+			outline: none;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 1em;
+
+			&::before {
+				content: '';
+				display: block;
+				position: absolute;
+				inset: -3px;
+			}
+
+			&:active,
+			&:focus,
+			&:focus-within {
+				&::before {
+					border: 1px solid var(--_form-control-border-color-focus);
+					border-radius: var(--_global--border-radius);
+				}
+			}
+
+			> * {
+				flex: 0 0 auto;
+			}
 		}
 
-		@supports (appearance: none) or (-webkit-appearance: none) or (-moz-appearance: none) {
-			> label {
-				outline: none;
+		&__control {
+			display: none;
+		}
 
-				&::before {
-					content: '';
-					display: block;
-					position: absolute;
-					top: -3px;
-					right: -3px;
-					bottom: -3px;
-					left: -3px;
-				}
+		&__label {
+			@include smf-button();
+		}
 
-				&:active,
-				&:focus,
-				&:focus-within {
-					&::before {
-						border: 1px solid _var-form-control-border-color-focus();
-						border-radius: _var-border-radius();
-					}
-				}
-
-				display: flex;
-				flex-wrap: wrap;
-				align-items: center;
-				gap: 1em;
-
-				> * {
-					flex: 0 0 auto;
-				}
+		&__filename {
+			&--no-file {
+				display: inline-block;
 			}
 
-			&__control {
+			&--has-file {
+				display: none;
+			}
+		}
+
+		&__clear {
+			margin-left: .5em;
+			display: none;
+			text-decoration: underline;
+			cursor: pointer;
+		}
+
+		&__value {
+			margin-top: .25em;
+		}
+
+		&--set {
+			.smf-file-control__filename--no-file {
 				display: none;
 			}
 
-			&__label {
-				@include smf-button();
+			.smf-file-control__filename--has-file {
+				display: inline-block;
 			}
 
-			&__filename {
-				&--no-file {
-					display: inline-block;
-				}
-
-				&--has-file {
-					display: none;
-				}
+			.smf-file-control__clear {
+				display: inline-block;
 			}
+		}
 
-			&__clear {
-				margin-left: .5em;
-				display: none;
-				text-decoration: underline;
-				cursor: pointer;
-			}
-
-			&__value {
-				margin-top: .25em;
-			}
-
-			&--set {
-				.smf-file-control__filename--no-file {
-					display: none;
-				}
-
-				.smf-file-control__filename--has-file {
-					display: inline-block;
-				}
-
-				.smf-file-control__clear {
-					display: inline-block;
-				}
-			}
-
-			&--uploaded {
-				.smf-file-control__clear {
-					display: inline-block;
-				}
+		&--uploaded {
+			.smf-file-control__clear {
+				display: inline-block;
 			}
 		}
 	}

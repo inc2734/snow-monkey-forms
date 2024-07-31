@@ -1,8 +1,8 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
+	"version": "7.1.0",
 	"textdomain": "snow-monkey-forms",
-	"version": "6.0.5",
 	"name": "snow-monkey-forms/control-select",
 	"title": "Select",
 	"category": "snow-monkey-forms",
@@ -52,7 +52,7 @@
 	"supports": {
 		"customClassName": false
 	},
-	"style": "file:./style.css",
+	"style": "file:./style-index.css",
 	"editorStyle": "file:./index.css",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"

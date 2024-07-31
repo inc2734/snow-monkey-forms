@@ -1,5 +1,4 @@
-@import '../../../src/css/core/core';
-@import '../../../node_modules/sass-basis/src/css/basis-core';
+@use '../../../node_modules/sass-basis/src/css/core';
 
 .smf-item {
 	label {
@@ -9,6 +8,6 @@
 	&__description {
 		margin-top: var(--_margin-2);
 		color: var(--_dark-color-gray);
-		@include _set-font-size-level(-1);
+		@include core.set-font-size-level(-1);
 	}
 }
