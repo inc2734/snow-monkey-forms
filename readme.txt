@@ -2,7 +2,7 @@
 Contributors: inc2734, mimitips, imawc, sonic
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
-Stable tag: 7.0.0
+Stable tag: 7.1.0
 Requires at least: 6.6
 Tested up to: 6.6
 Requires PHP: 7.4
@@ -28,6 +28,8 @@ GitHub: https://github.com/inc2734/snow-monkey-forms/
 * Select
 * Radio buttons
 * Checkboxes
+* Date
+* Month
 
 == Installation ==
 
@@ -50,6 +52,11 @@ This plugin can be installed directly from your site.
 Yes! You can use the Snow Monkey Forms with any theme, but we recommend using our <a href="https://snow-monkey.2inc.org/" target="_blank">Snow Monkey</a> theme for the best presentation.
 
 == Changelog ==
+
+= 7.1.0 =
+* Add new field: Date.
+* Add new field: Month.
+* Replace node-sass to sass.
 
 = 7.0.0 =
 * WordPress 6.6 compatible.
