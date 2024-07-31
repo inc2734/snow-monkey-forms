@@ -23,7 +23,7 @@
 		"postcss-cli": "^11.0.0",
 		"prettier": "npm:wp-prettier@3.0.3",
 		"rimraf": "^6.0.1",
-		"sass-basis": "^19.0.0"
+		"sass-basis": "^19.0.1"
 	},
 	"scripts": {
 		"export:wp-content:themes": "npm run cli cp -- -r ../../themes .export/wp-content",
