@@ -1,6 +1,6 @@
 @use '../../../node_modules/sass-basis/src/css/core';
 
-.smf-form .smf-item {
+.smf-form {
 	.smf-select-control {
 		@include core.select();
 	}

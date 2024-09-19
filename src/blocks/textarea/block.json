@@ -6,7 +6,7 @@
 	"name": "snow-monkey-forms/control-textarea",
 	"title": "Textarea",
 	"category": "snow-monkey-forms",
-	"ancestor": [ "snow-monkey-forms/item" ],
+	"ancestor": [ "snow-monkey-forms/form--input" ],
 	"attributes": {
 		"name": {
 			"type": "string",

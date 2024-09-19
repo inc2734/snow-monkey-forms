@@ -6,7 +6,7 @@
 	"name": "snow-monkey-forms/control-select",
 	"title": "Select",
 	"category": "snow-monkey-forms",
-	"ancestor": [ "snow-monkey-forms/item" ],
+	"ancestor": [ "snow-monkey-forms/form--input" ],
 	"attributes": {
 		"name": {
 			"type": "string",

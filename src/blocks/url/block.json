@@ -5,7 +5,7 @@
 	"name": "snow-monkey-forms/control-url",
 	"title": "URL",
 	"category": "snow-monkey-forms",
-	"ancestor": [ "snow-monkey-forms/item" ],
+	"ancestor": [ "snow-monkey-forms/form--input" ],
 	"attributes": {
 		"name": {
 			"type": "string",

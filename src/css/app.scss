@@ -2,7 +2,7 @@
 @use 'block-styles/app';
 @use 'component/component';
 
-.smf-form .smf-item {
+.smf-form {
 	[data-invalid="1"] {
 		border-color: #d98585;
 	}

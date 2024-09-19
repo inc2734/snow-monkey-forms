@@ -18,8 +18,6 @@ export default function ( props ) {
 	const { attributes, setAttributes, className } = props;
 	const { formStyle, templateLock } = attributes;
 
-	const allowedBlocks = [ 'snow-monkey-forms/item' ];
-
 	const classes = classnames( 'smf-form', className, {
 		[ formStyle ]: !! formStyle,
 	} );
@@ -33,8 +31,8 @@ export default function ( props ) {
 			className: classes,
 		},
 		{
-			allowedBlocks,
 			templateLock,
+			prioritizedInserterBlocks: [ 'snow-monkey-forms/item' ],
 		}
 	);
 
