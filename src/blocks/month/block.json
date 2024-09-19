@@ -45,7 +45,7 @@
 		},
 		"validations": {
 			"type": "string",
-			"default": "{}"
+			"default": "{\"month\":true}"
 		}
 	},
 	"supports": {

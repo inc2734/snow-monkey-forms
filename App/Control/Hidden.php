@@ -15,12 +15,14 @@ class Hidden extends Contract\Control {
 	 * @var array
 	 *  - string  name
 	 *  - string  value
+	 *  - string  data-validations
 	 *  - boolean disabled
 	 */
 	protected $attributes = array(
-		'name'     => '',
-		'value'    => '',
-		'disabled' => false,
+		'name'             => '',
+		'value'            => '',
+		'data-validations' => '',
+		'disabled'         => false,
 	);
 
 	/**

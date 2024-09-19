@@ -21,16 +21,19 @@ class Date extends Contract\Control {
 	 *  - string  max
 	 *  - string  id
 	 *  - string  class
+	 *  - string  data-validations
+	 *  - boolean data-invalid
 	 */
 	protected $attributes = array(
-		'name'         => '',
-		'value'        => '',
-		'disabled'     => false,
-		'min'          => '',
-		'max'          => '',
-		'id'           => '',
-		'class'        => 'smf-text-control__control',
-		'data-invalid' => false,
+		'name'             => '',
+		'value'            => '',
+		'disabled'         => false,
+		'min'              => '',
+		'max'              => '',
+		'id'               => '',
+		'class'            => 'smf-text-control__control',
+		'data-validations' => '',
+		'data-invalid'     => false,
 	);
 
 	/**
@@ -111,10 +114,11 @@ class Date extends Contract\Control {
 			Helper::control(
 				'hidden',
 				array(
-					'attributes' => array(
+					'attributes'  => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_attribute( 'value' ),
 					),
+					'validations' => $this->get_property( 'validations' ),
 				)
 			)->confirm()
 		);

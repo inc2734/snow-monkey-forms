@@ -23,19 +23,21 @@ class Url extends Contract\Control {
 	 *  - string  url
 	 *  - string  id
 	 *  - string  class
+	 *  - string  data-validations
 	 *  - boolean data-invalid
 	 */
 	protected $attributes = array(
-		'name'         => '',
-		'value'        => '',
-		'placeholder'  => '',
-		'disabled'     => false,
-		'maxlength'    => 0,
-		'size'         => 0,
-		'autocomplete' => 'url',
-		'id'           => '',
-		'class'        => 'smf-text-control__control',
-		'data-invalid' => false,
+		'name'             => '',
+		'value'            => '',
+		'placeholder'      => '',
+		'disabled'         => false,
+		'maxlength'        => 0,
+		'size'             => 0,
+		'autocomplete'     => 'url',
+		'id'               => '',
+		'class'            => 'smf-text-control__control',
+		'data-validations' => '',
+		'data-invalid'     => false,
 	);
 
 	/**
@@ -116,10 +118,11 @@ class Url extends Contract\Control {
 			Helper::control(
 				'hidden',
 				array(
-					'attributes' => array(
+					'attributes'  => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_attribute( 'value' ),
 					),
+					'validations' => $this->get_property( 'validations' ),
 				)
 			)->confirm()
 		);

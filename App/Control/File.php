@@ -19,14 +19,16 @@ class File extends Contract\Control {
 	 *  - boolean disabled
 	 *  - string  id
 	 *  - string  class
+	 *  - string  data-validations
 	 *  - boolean data-invalid
 	 */
 	protected $attributes = array(
-		'name'         => '',
-		'disabled'     => false,
-		'id'           => '',
-		'class'        => 'smf-file-control__control',
-		'data-invalid' => false,
+		'name'             => '',
+		'disabled'         => false,
+		'id'               => '',
+		'class'            => 'smf-file-control__control',
+		'data-validations' => '',
+		'data-invalid'     => false,
 	);
 
 	/**
@@ -146,10 +148,11 @@ class File extends Contract\Control {
 			Helper::control(
 				'hidden',
 				array(
-					'attributes' => array(
+					'attributes'  => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_property( 'value' ),
 					),
+					'validations' => $this->get_property( 'validations' ),
 				)
 			)->confirm()
 		);

@@ -30,7 +30,7 @@
 		},
 		"validations": {
 			"type": "string",
-			"default": "{}"
+			"default": "{\"uploaded\":true}"
 		}
 	},
 	"supports": {

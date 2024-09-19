@@ -45,7 +45,7 @@
 		"clean:js": "rimraf dist/js",
 		"clean:css": "rimraf dist/css",
 		"build": "npm-run-all -p js blocks css",
-		"blocks:format": "wp-scripts format src/blocks",
+		"blocks:format": "wp-scripts format src/blocks hoc",
 		"blocks:build": "rimraf dist/blocks && wp-scripts build --output-path=dist",
 		"blocks": "run-s blocks:format blocks:build",
 		"js": "npm run clean:js && wp-scripts build src/js/app src/js/blocks src/js/recaptcha --output-path=dist/js --webpack-src-dir=src/js",

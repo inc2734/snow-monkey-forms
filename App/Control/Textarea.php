@@ -22,18 +22,20 @@ class Textarea extends Contract\Control {
 	 *  - string  autocomplete
 	 *  - string  id
 	 *  - string  class
+	 *  - string  data-validations
 	 *  - boolean data-invalid
 	 */
 	protected $attributes = array(
-		'name'         => '',
-		'rows'         => 5,
-		'placeholder'  => '',
-		'disabled'     => false,
-		'maxlength'    => 0,
-		'autocomplete' => '',
-		'id'           => '',
-		'class'        => 'smf-textarea-control__control',
-		'data-invalid' => false,
+		'name'             => '',
+		'rows'             => 5,
+		'placeholder'      => '',
+		'disabled'         => false,
+		'maxlength'        => 0,
+		'autocomplete'     => '',
+		'id'               => '',
+		'class'            => 'smf-textarea-control__control',
+		'data-validations' => '',
+		'data-invalid'     => false,
 	);
 
 	/**
@@ -122,10 +124,11 @@ class Textarea extends Contract\Control {
 			Helper::control(
 				'hidden',
 				array(
-					'attributes' => array(
+					'attributes'  => array(
 						'name'  => $this->get_attribute( 'name' ),
 						'value' => $this->get_property( 'value' ),
 					),
+					'validations' => $this->get_property( 'validations' ),
 				)
 			)->confirm()
 		);

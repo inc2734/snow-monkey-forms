@@ -19,15 +19,17 @@ class Select extends Contract\Control {
 	 *  - string  autocomplete
 	 *  - string  id
 	 *  - string  class
+	 *  - string  data-validations
 	 *  - boolean data-invalid
 	 */
 	protected $attributes = array(
-		'name'         => '',
-		'disabled'     => false,
-		'autocomplete' => '',
-		'id'           => '',
-		'class'        => 'smf-select-control__control',
-		'data-invalid' => false,
+		'name'             => '',
+		'disabled'         => false,
+		'autocomplete'     => '',
+		'id'               => '',
+		'class'            => 'smf-select-control__control',
+		'data-validations' => '',
+		'data-invalid'     => false,
 	);
 
 	/**
@@ -158,7 +160,10 @@ class Select extends Contract\Control {
 		}
 
 		return sprintf(
-			'%1$s%2$s',
+			'<div data-validations="%1$s">
+				%2$s%3$s
+			</div>',
+			$this->get_attribute( 'data-validations' ),
 			$this->_children( 'confirm' ),
 			$description
 		);

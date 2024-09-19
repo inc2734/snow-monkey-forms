@@ -1,5 +1,3 @@
-import { merge } from 'lodash';
-
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { createHigherOrderComponent } from '@wordpress/compose';
@@ -27,11 +25,10 @@ const withValidations = createHigherOrderComponent(
 							checked={ !! parsedValidations.required }
 							onChange={ ( value ) => {
 								setAttributes( {
-									validations: JSON.stringify(
-										merge( parsedValidations, {
-											required: value,
-										} )
-									),
+									validations: JSON.stringify( {
+										...parsedValidations,
+										required: value,
+									} ),
 								} );
 							} }
 						/>

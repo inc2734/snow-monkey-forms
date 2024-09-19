@@ -53,7 +53,7 @@
 		},
 		"validations": {
 			"type": "string",
-			"default": "{}"
+			"default": "{\"url\":true}"
 		}
 	},
 	"supports": {

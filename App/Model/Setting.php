@@ -300,8 +300,19 @@ class Setting {
 					return;
 				}
 
-				$type       = $matches[1];
+				$type               = $matches[1];
+				$registry           = \WP_Block_Type_Registry::get_instance();
+				$metadata           = $registry->get_registered( 'snow-monkey-forms/control-' . $type );
+				$default_attributes = array();
+
+				foreach ( $metadata->attributes as $attribute_name => $attribute ) {
+					if ( isset( $attribute['default'] ) ) {
+						$default_attributes[ $attribute_name ] = $attribute['default'];
+					}
+				}
+
 				$attributes = json_decode( $matches[2], true );
+				$attributes = array_replace_recursive( $default_attributes, $attributes );
 				$attributes = apply_filters( 'snow_monkey_forms/control/attributes', Helper::block_meta_normalization( $attributes ), $this );
 
 				if ( isset( $attributes['options'] ) && isset( $attributes['name'] ) ) {

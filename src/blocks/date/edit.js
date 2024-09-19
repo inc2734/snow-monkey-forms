@@ -14,6 +14,8 @@ import {
 import { uniqId } from '../helper';
 import withValidations from '../../../hoc/with-validations';
 
+import metadata from './block.json';
+
 const Edit = ( { attributes, setAttributes } ) => {
 	const {
 		name,
@@ -24,13 +26,23 @@ const Edit = ( { attributes, setAttributes } ) => {
 		controlClass,
 		description,
 		isDisplayDescriptionConfirm,
+		validations,
 	} = attributes;
+
+	useEffect( () => {
+		setAttributes( {
+			validations: JSON.stringify( {
+				...JSON.parse( metadata.attributes.validations.default ),
+				...JSON.parse( validations ),
+			} ),
+		} );
+	}, [] );
 
 	useEffect( () => {
 		if ( '' === name ) {
 			setAttributes( { name: `date-${ uniqId() }` } );
 		}
-	} );
+	}, [ name ] );
 
 	const blockProps = useBlockProps( {
 		className: 'smf-placeholder',
@@ -125,6 +137,15 @@ const Edit = ( { attributes, setAttributes } ) => {
 						id={ id || undefined }
 						pattern="\d{4}-\d{2}-\d{2}"
 						className={ `smf-text-control__control ${ controlClass }` }
+						data-validations={
+							Object.keys(
+								Object.fromEntries(
+									Object.entries(
+										JSON.parse( validations )
+									).filter( ( [ , v ] ) => !! v )
+								)
+							).join( ' ' ) || undefined
+						}
 					/>
 				</div>
 				{ description && (

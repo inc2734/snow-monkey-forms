@@ -35,7 +35,7 @@ abstract class Control {
 				if ( $is_array_both || $is_string_both ) {
 					// If "validations" and "attributes", merge. Otherwise, overwrite.
 					if ( 'validations' === $key || 'attributes' === $key ) {
-						$this->set_property( $key, array_merge( $property, $value ) );
+						$this->set_property( $key, array_replace_recursive( $property, $value ) );
 					} else {
 						$this->set_property( $key, $value );
 					}
@@ -54,6 +54,22 @@ abstract class Control {
 				}
 			}
 		}
+
+		$validations = $this->get_property( 'validations' );
+		$this->set_attribute(
+			'data-validations',
+			implode(
+				' ',
+				array_keys(
+					array_filter(
+						$validations,
+						function ( $value ) {
+							return $value;
+						}
+					)
+				)
+			)
+		);
 
 		$this->_init();
 	}

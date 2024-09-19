@@ -49,7 +49,7 @@
 		},
 		"validations": {
 			"type": "string",
-			"default": "{}"
+			"default": "{\"email\":true}"
 		}
 	},
 	"supports": {

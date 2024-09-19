@@ -8,15 +8,32 @@ import { NameControl, IdControl, ClassControl } from '../components';
 import { uniqId } from '../helper';
 import withValidations from '../../../hoc/with-validations';
 
+import metadata from './block.json';
+
 const Edit = ( { attributes, setAttributes } ) => {
-	const { name, id, controlClass, description, isDisplayDescriptionConfirm } =
-		attributes;
+	const {
+		name,
+		id,
+		controlClass,
+		description,
+		isDisplayDescriptionConfirm,
+		validations,
+	} = attributes;
+
+	useEffect( () => {
+		setAttributes( {
+			validations: JSON.stringify( {
+				...JSON.parse( metadata.attributes.validations.default ),
+				...JSON.parse( validations ),
+			} ),
+		} );
+	}, [] );
 
 	useEffect( () => {
 		if ( '' === name ) {
 			setAttributes( { name: `file-${ uniqId() }` } );
 		}
-	} );
+	}, [ name ] );
 
 	const blockProps = useBlockProps( {
 		className: 'smf-placeholder',
@@ -83,6 +100,15 @@ const Edit = ( { attributes, setAttributes } ) => {
 							disabled="disabled"
 							id={ id || undefined }
 							className={ `smf-file-control__control ${ controlClass }` }
+							data-validations={
+								Object.keys(
+									Object.fromEntries(
+										Object.entries(
+											JSON.parse( validations )
+										).filter( ( [ , v ] ) => !! v )
+									)
+								).join( ' ' ) || undefined
+							}
 						/>
 						<span className="smf-file-control__label">
 							{ __( 'Choose file', 'snow-monkey-forms' ) }

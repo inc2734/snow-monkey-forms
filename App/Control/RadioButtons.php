@@ -14,10 +14,12 @@ class RadioButtons extends Contract\Control {
 
 	/**
 	 * @var array
+	 *  - string  data-validations
 	 *  - boolean data-invalid
 	 */
 	protected $attributes = array(
-		'data-invalid' => false,
+		'data-validations' => '',
+		'data-invalid'     => false,
 	);
 
 	/**
@@ -150,10 +152,10 @@ class RadioButtons extends Contract\Control {
 			$legend_invisible = $this->get_property( 'legend_invisible' );
 
 			$html = sprintf(
-				'<div class="%1$s" %2$s>
+				'<div class="%1$s">
 					<fieldset class="smf-control-fieldset">
 						<legend class="smf-control-legend %3$s">%4$s</legend>
-						<div class="smf-radio-buttons-control__control">%5$s</div>
+						<div class="smf-radio-buttons-control__control" %2$s>%5$s</div>
 					</fieldset>
 				</div>
 				%6$s',
@@ -166,8 +168,8 @@ class RadioButtons extends Contract\Control {
 			);
 		} else {
 			$html = sprintf(
-				'<div class="%1$s" %2$s>
-					<div class="smf-radio-buttons-control__control">%3$s</div>
+				'<div class="%1$s">
+					<div class="smf-radio-buttons-control__control" %2$s>%3$s</div>
 				</div>
 				%4$s',
 				esc_attr( implode( ' ', $classes ) ),
@@ -207,7 +209,10 @@ class RadioButtons extends Contract\Control {
 		}
 
 		return sprintf(
-			'%1$s%2$s',
+			'<div data-validations="%1$s">
+				%2$s%3$s
+			</div>',
+			$this->get_attribute( 'data-validations' ),
 			$this->_children( 'confirm' ),
 			$description
 		);

@@ -21,6 +21,8 @@ import { NameControl, OptionsControl, ValueControl } from '../components';
 import { uniqId, optionsToJsonArray } from '../helper';
 import withValidations from '../../../hoc/with-validations';
 
+import metadata from './block.json';
+
 const Edit = ( { attributes, setAttributes } ) => {
 	const {
 		name,
@@ -32,7 +34,17 @@ const Edit = ( { attributes, setAttributes } ) => {
 		direction,
 		description,
 		isDisplayDescriptionConfirm,
+		validations,
 	} = attributes;
+
+	useEffect( () => {
+		setAttributes( {
+			validations: JSON.stringify( {
+				...JSON.parse( metadata.attributes.validations.default ),
+				...JSON.parse( validations ),
+			} ),
+		} );
+	}, [] );
 
 	useEffect( () => {
 		if ( '' === name ) {
@@ -44,7 +56,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 				options: 'value1\n"value2" : "label2"\n"value3" : "label3"',
 			} );
 		}
-	} );
+	}, [ name, options ] );
 
 	const arrayedOptions = optionsToJsonArray( options );
 
@@ -57,7 +69,18 @@ const Edit = ( { attributes, setAttributes } ) => {
 	} );
 
 	const RadioButtons = () => (
-		<div className="smf-radio-buttons-control__control">
+		<div
+			className="smf-radio-buttons-control__control"
+			data-validations={
+				Object.keys(
+					Object.fromEntries(
+						Object.entries( JSON.parse( validations ) ).filter(
+							( [ , v ] ) => !! v
+						)
+					)
+				).join( ' ' ) || undefined
+			}
+		>
 			{ arrayedOptions.map( ( option ) => {
 				const optionValue = Object.keys( option )[ 0 ];
 				const optionLabel = Object.values( option )[ 0 ];
