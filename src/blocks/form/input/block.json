@@ -19,7 +19,8 @@
 		},
 		"templateLock": {
 			"type": [ "string", "boolean" ],
-			"enum": [ "all", "insert", "contentOnly", false ]
+			"enum": [ "all", "insert", "contentOnly", false ],
+			"default": false
 		}
 	},
 	"supports": {

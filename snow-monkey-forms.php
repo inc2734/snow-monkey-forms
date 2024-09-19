@@ -224,19 +224,17 @@ class Bootstrap {
 		register_post_type(
 			'snow-monkey-forms',
 			array(
-				'label'        => __( 'Snow Monkey Forms', 'snow-monkey-forms' ),
-				'public'       => false, // @todo 本当は false にしたいけど、true にしないとフォーム編集画面に制限幅が適用されない
-				'show_ui'      => true,
-				'show_in_rest' => true,
-				'supports'     => array( 'title', 'editor', 'custom-fields' ),
-				'template'     => array(
+				'label'         => __( 'Snow Monkey Forms', 'snow-monkey-forms' ),
+				'public'        => false,
+				'show_ui'       => true,
+				'show_in_rest'  => true,
+				'supports'      => array( 'title', 'editor', 'custom-fields' ),
+				'template_lock' => 'insert',
+				'template'      => array(
 					array(
 						'snow-monkey-forms/form--input',
 						array(
-							'lock' => array(
-								'move'   => true,
-								'remove' => true,
-							),
+							'templateLock' => false,
 						),
 						array(
 							array(
@@ -304,10 +302,7 @@ class Bootstrap {
 					array(
 						'snow-monkey-forms/form--complete',
 						array(
-							'lock' => array(
-								'move'   => true,
-								'remove' => true,
-							),
+							'templateLock' => false,
 						),
 						array(
 							array(
