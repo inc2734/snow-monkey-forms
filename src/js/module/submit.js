@@ -134,6 +134,10 @@ export default function submit( event ) {
 		form.setAttribute( 'data-screen', method );
 
 		replaceAction( response.action );
+		if ( method === 'input' ) {
+			return;
+		}
+
 		[].slice
 			.call( form.querySelectorAll( '.smf-placeholder' ) )
 			.forEach( ( element ) => {

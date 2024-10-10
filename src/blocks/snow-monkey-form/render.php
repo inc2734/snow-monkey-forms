@@ -5,7 +5,6 @@
  * @license GPL-2.0+
  */
 
-use Snow_Monkey\Plugin\Forms\App\Helper;
 use Snow_Monkey\Plugin\Forms\App\DataStore;
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
@@ -86,9 +85,7 @@ foreach ( $response->controls as $name => $control ) {
 
 	<?php echo $input_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-	<div class="smf-action">
-		<?php echo $response->action; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-	</div>
+	<div class="smf-action"></div>
 
 	<div class="smf-system-error-content-ready">
 		<?php
@@ -98,6 +95,5 @@ foreach ( $response->controls as $name => $control ) {
 	</div>
 
 	<?php Meta::the_formid( $form_id ); ?>
-	<?php Meta::the_token(); ?>
 	<?php do_action( 'snow_monkey_forms/form/append' ); ?>
 </form>

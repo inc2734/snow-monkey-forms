@@ -38,6 +38,10 @@ class Dispatcher {
 	 * @return string|false
 	 */
 	protected static function _generate_class_name( $value ) {
+		if ( ! $value ) {
+			return false;
+		}
+
 		$classes = array();
 		foreach ( glob( SNOW_MONKEY_FORMS_PATH . '/App/Controller/*.php' ) as $file ) {
 			$slug             = strtolower( basename( $file, '.php' ) );

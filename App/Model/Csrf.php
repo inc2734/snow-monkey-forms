@@ -23,6 +23,10 @@ class Csrf {
 	 * @return boolean
 	 */
 	public static function validate( $posted_token ) {
+		if ( ! $posted_token ) {
+			return false;
+		}
+
 		if ( ! preg_match( '|^[a-z0-9]+$|', $posted_token ) ) {
 			return false;
 		}

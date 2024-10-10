@@ -42,6 +42,8 @@ class Invalid extends Contract\Controller {
 	protected function set_action() {
 		ob_start();
 
+		Meta::the_token();
+
 		if ( true === $this->setting->get( 'use_confirm_page' ) ) {
 			Meta::the_meta_button( 'confirm', $this->setting->get( 'confirm_button_label' ) );
 			Meta::the_method( 'confirm' );

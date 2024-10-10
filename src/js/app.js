@@ -83,6 +83,8 @@ document.addEventListener(
 const forms = [].slice.call( document.querySelectorAll( '.snow-monkey-form' ) );
 forms.forEach( ( form ) => {
 	form.addEventListener( 'submit', submit, false );
+
+	form.requestSubmit();
 } );
 
 [ 'change', 'keyup' ].forEach( ( eventName ) => {

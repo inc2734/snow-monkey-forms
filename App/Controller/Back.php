@@ -39,6 +39,8 @@ class Back extends Contract\Controller {
 	protected function set_action() {
 		ob_start();
 
+		Meta::the_token();
+
 		Meta::the_meta_button( 'confirm', $this->setting->get( 'confirm_button_label' ) );
 		Meta::the_method( 'confirm' );
 

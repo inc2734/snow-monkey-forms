@@ -60,6 +60,11 @@ class View {
 	 * @return json
 	 */
 	public function send() {
+		if ( ! Meta::get_method() ) {
+			Meta::set_method( 'input' );
+			return $this->_send();
+		}
+
 		// CSRF token check.
 		if ( ! Csrf::validate( Meta::get_token() ) ) {
 			return $this->_send_systemerror( __( 'Invalid access.', 'snow-monkey-forms' ) );

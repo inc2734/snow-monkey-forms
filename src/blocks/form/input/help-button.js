@@ -16,18 +16,20 @@ export default function () {
 					<ul style={ { margin: 0, padding: '13px' } }>
 						<li>
 							{ __(
-								'You can embed a submitted value in the following formats: ',
+								'You can embed a submitted value in the following formats:',
 								'snow-monkey-forms'
 							) }
+							&nbsp;
 							<b style={ { color: '#ca4a1f' } }>{ `{` }</b>
 							name
 							<b style={ { color: '#ca4a1f' } }>{ `}` }</b>
 						</li>
 						<li>
 							{ __(
-								'You can embed all submitted values ​​in the following format: ',
+								'You can embed all submitted values ​​in the following format:',
 								'snow-monkey-forms'
 							) }
+							&nbsp;
 							<b
 								style={ { color: '#ca4a1f' } }
 							>{ `{all-fields}` }</b>
