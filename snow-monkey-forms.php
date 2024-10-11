@@ -166,23 +166,51 @@ class Bootstrap {
 	 * Register endpoint. This endpoint returns the form view.
 	 */
 	public function _endpoint() {
-		$user = wp_get_current_user();
+		if ( ! Csrf::validate_referer() ) {
+			exit;
+		}
+
+		register_rest_route(
+			'snow-monkey-form/v1',
+			'/view',
+			array(
+				'methods'             => 'GET',
+				'callback'            => function () {
+					// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					$form_id = isset( $_SERVER['HTTP_X_SMF_FORMID'] ) ? wp_unslash( $_SERVER['HTTP_X_SMF_FORMID'] ) : false;
+					// phpcs:enable
+
+					if ( ! $form_id ) {
+						exit;
+					}
+
+					$route = new Rest\Route\View(
+						array(
+							Meta::get_key() => array(
+								'method' => 'input',
+								'formid' => $form_id,
+							),
+						)
+					);
+					return $route->send();
+				},
+				'permission_callback' => function () {
+					return true;
+				},
+			)
+		);
 
 		register_rest_route(
 			'snow-monkey-form/v1',
 			'/view',
 			array(
 				'methods'             => 'POST',
-				'callback'            => function () use ( $user ) {
-					if ( ! Csrf::validate_referer() ) {
-						exit;
-					}
-
+				'callback'            => function () {
 					$data = filter_input_array( INPUT_POST );
 					$data = $data ? $data : array();
 
 					if ( isset( $data[ Meta::get_key() ] ) ) {
-						$data[ Meta::get_key() ]['sender'] = $user;
+						$data[ Meta::get_key() ]['sender'] = wp_get_current_user();
 					}
 
 					$route = new Rest\Route\View( $data );

@@ -60,8 +60,7 @@ class View {
 	 * @return json
 	 */
 	public function send() {
-		if ( ! Meta::get_method() ) {
-			Meta::set_method( 'input' );
+		if ( 'input' === Meta::get_method() ) {
 			return $this->_send();
 		}
 

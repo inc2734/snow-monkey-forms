@@ -48,7 +48,7 @@
 		"blocks:format": "wp-scripts format src/blocks hoc",
 		"blocks:build": "rimraf dist/blocks && wp-scripts build --output-path=dist",
 		"blocks": "run-s blocks:format blocks:build",
-		"js": "npm run clean:js && wp-scripts build src/js/app src/js/blocks src/js/recaptcha --output-path=dist/js --webpack-src-dir=src/js",
+		"js": "npm run clean:js && npm run format:js && wp-scripts build src/js/app src/js/blocks src/js/recaptcha --output-path=dist/js --webpack-src-dir=src/js",
 		"css:build": "sass --no-source-map src/css:dist/css && postcss dist/css/*.css -r",
 		"css": "npm run clean:css && npm-run-all -p css:*",
 		"pretest": "wp-env start && npm run composer install -- --no-interaction",

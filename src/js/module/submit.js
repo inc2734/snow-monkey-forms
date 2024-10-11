@@ -9,28 +9,21 @@ const closest = ( el, targetClass ) => {
 };
 
 const maybeHasControls = ( method ) => {
-	return (
-		'' === method ||
-		'back' === method ||
-		'invalid' === method ||
-		'confirm' === method
-	);
+	return 'back' === method || 'invalid' === method || 'confirm' === method;
 };
 
 const maybeComplete = ( method ) => {
 	return 'complete' === method || 'systemerror' === method;
 };
 
-export default function submit( event ) {
-	event.preventDefault();
-
-	const form = event.target;
+async function fetchView( form, options ) {
 	const focusPoint = form.querySelector( '.smf-focus-point' );
 	const contents = form.querySelector( '.smf-form' );
 	const actionArea = form.querySelector( '.smf-action' );
 	const formData = new FormData( form );
 	const clickedButton = actionArea.querySelector( '[data-clicked="true"]' );
-	const submitter = event.submitter || clickedButton;
+	const submitter =
+		actionArea.querySelector( '[type="submit"]' ) || clickedButton;
 	const icon = !! submitter
 		? submitter.querySelector( '.smf-sending' )
 		: undefined;
@@ -123,13 +116,12 @@ export default function submit( event ) {
 			icon.setAttribute( 'aria-hidden', 'true' );
 		}
 
-		response = JSON.parse( response );
-		if ( 'undefined' === typeof response.method ) {
+		const method = response?.method;
+
+		if ( ! method ) {
 			failCallback();
 			return;
 		}
-
-		const method = response.method;
 
 		form.setAttribute( 'data-screen', method );
 
@@ -167,23 +159,23 @@ export default function submit( event ) {
 		detail.status = method;
 		switch ( detail.status ) {
 			case 'back':
-				addCustomEvent( event.target, 'smf.back', detail );
+				addCustomEvent( form, 'smf.back', detail );
 				break;
 			case 'confirm':
-				addCustomEvent( event.target, 'smf.confirm', detail );
+				addCustomEvent( form, 'smf.confirm', detail );
 				break;
 			case 'complete':
-				addCustomEvent( event.target, 'smf.complete', detail );
+				addCustomEvent( form, 'smf.complete', detail );
 				break;
 			case 'invalid':
-				addCustomEvent( event.target, 'smf.invalid', detail );
+				addCustomEvent( form, 'smf.invalid', detail );
 				break;
 			case 'systemerror':
-				addCustomEvent( event.target, 'smf.systemerror', detail );
+				addCustomEvent( form, 'smf.systemerror', detail );
 				break;
 		}
 
-		addCustomEvent( event.target, 'smf.submit', detail );
+		addCustomEvent( form, 'smf.submit', detail );
 	};
 
 	const failCallback = ( statusText = null ) => {
@@ -210,22 +202,38 @@ export default function submit( event ) {
 		focusFocusPoint();
 
 		detail.status = 'systemerror';
-		addCustomEvent( event.target, 'smf.systemerror', detail );
+		addCustomEvent( form, 'smf.systemerror', detail );
 	};
 
-	addCustomEvent( event.target, 'smf.beforesubmit', detail );
+	addCustomEvent( form, 'smf.beforesubmit', detail );
 
-	const xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = () => {
-		if ( 4 === xhr.readyState ) {
-			if ( 200 === xhr.status && !! xhr.status ) {
-				doneCallback( JSON.parse( xhr.response ) );
-			} else {
-				failCallback( xhr?.statusText );
-			}
+	try {
+		const response = await fetch( snowmonkeyforms.view_json_url, options );
+		if ( response.ok ) {
+			const json = await response.json();
+			doneCallback( JSON.parse( json ) );
+		} else {
+			throw new Error( response.statusText );
 		}
-	};
-	xhr.open( 'POST', snowmonkeyforms.view_json_url, true );
+	} catch ( error ) {
+		failCallback( error );
+	}
+}
 
-	xhr.send( formData );
+export function init( form ) {
+	fetchView( form, {
+		method: 'GET',
+		headers: {
+			'x-smf-formid':
+				form.querySelector( '[name="snow-monkey-forms-meta[formid]"]' )
+					?.value ?? false,
+		},
+	} );
+}
+
+export function submit( form ) {
+	fetchView( form, {
+		method: 'POST',
+		body: new FormData( form ),
+	} );
 }
