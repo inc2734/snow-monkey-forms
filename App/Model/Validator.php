@@ -92,7 +92,9 @@ class Validator {
 					'snow_monkey_forms/validator/error_message',
 					$validation_class::get_message(),
 					$validation_name,
-					$name
+					$name,
+					$this->responser,
+					$this->setting
 				);
 			}
 		}
