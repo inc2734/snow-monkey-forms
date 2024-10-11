@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin name: Snow Monkey Forms
- * Version: 8.0.0
+ * Version: 8.0.1-beta1
  * Description: The Snow Monkey Forms is a mail form plugin for the block editor.
  * Author: inc2734
  * Author URI: https://2inc.org
@@ -58,7 +58,10 @@ class Bootstrap {
 		add_filter( 'load_textdomain_mofile', array( $this, '_load_textdomain_mofile' ), 10, 2 );
 		load_plugin_textdomain( 'snow-monkey-forms', false, basename( SNOW_MONKEY_FORMS_PATH ) . '/languages' );
 
-		Csrf::save_token();
+		if ( Csrf::validate_referer() ) {
+			Csrf::save_token();
+			$this->_do_empty_save_dir();
+		}
 
 		add_action( 'wp_enqueue_scripts', array( $this, '_enqueue_assets' ) );
 		add_action( 'enqueue_block_assets', array( $this, '_enqueue_block_assets' ) );
@@ -171,11 +174,7 @@ class Bootstrap {
 			array(
 				'methods'             => 'POST',
 				'callback'            => function () use ( $user ) {
-					// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-					$referer = isset( $_SERVER['HTTP_REFERER'] ) ? wp_unslash( $_SERVER['HTTP_REFERER'] ) : false;
-					// phpcs:enable
-					$homeurl = untrailingslashit( home_url( '/' ) );
-					if ( 0 !== strpos( $referer, $homeurl ) ) {
+					if ( ! Csrf::validate_referer() ) {
 						exit;
 					}
 

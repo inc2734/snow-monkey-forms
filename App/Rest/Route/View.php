@@ -169,7 +169,7 @@ class View {
 	 */
 	protected function _send() {
 		$method = Meta::get_method();
-		if ( 'complete' === $method || 'systemerror' === $method ) {
+		if ( 'input' === $method || 'complete' === $method || 'systemerror' === $method ) {
 			try {
 				$form_id = Meta::get_formid();
 				Directory::do_empty( Directory::generate_user_dirpath( $form_id ), true );

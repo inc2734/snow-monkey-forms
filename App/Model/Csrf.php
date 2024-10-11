@@ -14,7 +14,7 @@ class Csrf {
 	/**
 	 * @var string
 	 */
-	private static $token;
+	private static $token = false;
 
 	/**
 	 * Validate.
@@ -42,7 +42,7 @@ class Csrf {
 		$saved_token   = static::saved_token();
 		static::$token = ! $saved_token ? static::generate_token() : $saved_token;
 		if ( ! $saved_token && ! headers_sent() ) {
-			setcookie( static::KEY, static::$token, 0, '/' );
+			setcookie( static::KEY, static::$token, 0, '/', parse_url( home_url(), PHP_URL_HOST ), false, true );
 		}
 	}
 
@@ -82,5 +82,19 @@ class Csrf {
 		}
 
 		return bin2hex( uniqid( mt_rand(), true ) );
+	}
+
+	/**
+	 * If valid referer (Same origin), return true.
+	 *
+	 * @return boolean
+	 */
+	public static function validate_referer() {
+		// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$referer = isset( $_SERVER['HTTP_REFERER'] ) ? wp_unslash( $_SERVER['HTTP_REFERER'] ) : false;
+		// phpcs:enable
+		$homeurl = untrailingslashit( home_url( '/' ) );
+
+		return 0 === strpos( $referer, $homeurl );
 	}
 }
