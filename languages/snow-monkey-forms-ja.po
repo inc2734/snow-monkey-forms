@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
 "forms\n"
 "POT-Creation-Date: 2024-10-10T02:52:27+00:00\n"
-"PO-Revision-Date: 2024-10-10 11:52+0900\n"
+"PO-Revision-Date: 2024-10-16 20:27+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -293,19 +293,20 @@ msgstr "グループ化"
 #: dist/blocks/checkboxes/index.js:7 dist/blocks/radio-buttons/index.js:4
 msgid "Enable if you want to group by fieldset and label by legend."
 msgstr ""
-"fieldset でグループ化し legend でラベルを付けたい場合は有効化してください。"
+"fieldset でグループ化し凡例（legend）でラベルを付けたい場合は有効化してくだ"
+"さい。"
 
 #: dist/blocks/checkboxes/index.js:7 dist/blocks/radio-buttons/index.js:4
 msgid "Make legend invisible"
-msgstr "legend を不可視化"
+msgstr "凡例（legend）を不可視化"
 
 #: dist/blocks/checkboxes/index.js:7 dist/blocks/radio-buttons/index.js:4
 msgid ""
 "When activated, the legend will not appear on the screen, but will be read "
 "by screen readers."
 msgstr ""
-"有効にすると、legend は画面には表示されなくなりますがスクリーンリーダーには"
-"読まれます。"
+"有効にすると、凡例（legend）は画面には表示されなくなりますがスクリーンリー"
+"ダーには読まれます。"
 
 #: dist/blocks/checkboxes/index.js:7
 msgid "Delimiter"
