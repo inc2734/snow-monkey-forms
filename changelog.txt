@@ -1,5 +1,10 @@
 *** Changelog ***
 
+= 9.0.0 =
+* Refactoring CSRF checking proccess.
+* The input screen is also changed to be obtained via REST API.
+* Add `Responser` and `Setting` to `snow_monkey_forms/validator/error_message` hook arguments.
+
 = 8.0.0 =
 * Add `data-varidations` attribute to each form fields.
 * Changed so that all blocks can be placed directly below the input screen area.
