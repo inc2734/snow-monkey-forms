@@ -104,14 +104,9 @@ class File {
 			throw new \RuntimeException( '[Snow Monkey Forms] An error occurred during file upload.' );
 		}
 
-		$new_user_file_dir = Directory::generate_user_file_dirpath( $name );
-		if ( ! wp_mkdir_p( $new_user_file_dir ) ) {
-			throw new \RuntimeException( '[Snow Monkey Forms] Creation of a temporary directory for file upload failed.' );
-		}
-
-		Directory::do_empty( $new_user_file_dir, true );
-
 		$filepath = Directory::generate_user_filepath( $name, $filename );
+
+		Directory::do_empty( dirname( $filepath ), true );
 
 		if ( ! $this->_move_to( $filepath ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] There was an error saving the uploaded file.' );

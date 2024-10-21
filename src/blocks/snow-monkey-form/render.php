@@ -6,6 +6,7 @@
  */
 
 use Snow_Monkey\Plugin\Forms\App\DataStore;
+use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
 use Snow_Monkey\Plugin\Forms\App\Model\Meta;
@@ -17,6 +18,7 @@ if ( empty( $attributes['formId'] ) ) {
 }
 
 $form_id = $attributes['formId'];
+
 $setting = DataStore::get( $form_id );
 if ( ! $setting->get( 'input_content' ) ) {
 	return;
@@ -25,8 +27,6 @@ if ( ! $setting->get( 'input_content' ) ) {
 $responser  = new Responser( array() );
 $validator  = new Validator( $responser, $setting );
 $controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
-
-Directory::do_empty( Directory::generate_user_dirpath( $form_id ), true );
 
 // phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 // The $response is used in views.
@@ -43,7 +43,7 @@ foreach ( $response->controls as $name => $control ) {
 }
 ?>
 
-<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action=""  enctype="multipart/form-data" data-screen="input">
+<form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action=""  enctype="multipart/form-data" data-screen="loading">
 	<div class="smf-focus-point" aria-hidden="true"></div>
 
 	<?php if ( $setting->get( 'use_progress_tracker' ) ) : ?>
@@ -90,6 +90,7 @@ foreach ( $response->controls as $name => $control ) {
 	<div class="smf-system-error-content-ready">
 		<?php
 		esc_html_e( 'An unexpected problem has occurred.', 'snow-monkey-forms' );
+		echo ' ';
 		esc_html_e( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' );
 		?>
 	</div>

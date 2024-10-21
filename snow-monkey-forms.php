@@ -16,6 +16,7 @@
 
 namespace Snow_Monkey\Plugin\Forms;
 
+use WP_REST_Response;
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 use Snow_Monkey\Plugin\Forms\App\Model\Meta;
@@ -57,11 +58,6 @@ class Bootstrap {
 	public function _plugins_loaded() {
 		add_filter( 'load_textdomain_mofile', array( $this, '_load_textdomain_mofile' ), 10, 2 );
 		load_plugin_textdomain( 'snow-monkey-forms', false, basename( SNOW_MONKEY_FORMS_PATH ) . '/languages' );
-
-		if ( Csrf::validate_referer() ) {
-			Csrf::save_token();
-			$this->_do_empty_save_dir();
-		}
 
 		add_action( 'wp_enqueue_scripts', array( $this, '_enqueue_assets' ) );
 		add_action( 'enqueue_block_assets', array( $this, '_enqueue_block_assets' ) );
@@ -166,22 +162,22 @@ class Bootstrap {
 	 * Register endpoint. This endpoint returns the form view.
 	 */
 	public function _endpoint() {
-		if ( ! Csrf::validate_referer() ) {
-			exit;
-		}
-
 		register_rest_route(
 			'snow-monkey-form/v1',
 			'/view',
 			array(
 				'methods'             => 'GET',
 				'callback'            => function () {
+					if ( ! Csrf::validate_referer() ) {
+						return new WP_REST_Response( 'Invalid access.', 403 );
+					}
+
 					// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					$form_id = isset( $_SERVER['HTTP_X_SMF_FORMID'] ) ? wp_unslash( $_SERVER['HTTP_X_SMF_FORMID'] ) : false;
 					// phpcs:enable
 
 					if ( ! $form_id ) {
-						exit;
+						return new WP_REST_Response( 'Bad request.', 400 );
 					}
 
 					$route = new Rest\Route\View(
@@ -206,6 +202,10 @@ class Bootstrap {
 			array(
 				'methods'             => 'POST',
 				'callback'            => function () {
+					if ( ! Csrf::validate_referer() ) {
+						return new WP_REST_Response( 'Invalid access.', 403 );
+					}
+
 					$data = filter_input_array( INPUT_POST );
 					$data = $data ? $data : array();
 

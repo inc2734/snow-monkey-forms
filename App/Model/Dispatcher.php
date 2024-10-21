@@ -19,6 +19,7 @@ class Dispatcher {
 	 * @param Responser $responser Responser object.
 	 * @param Setting   $setting   Setting object.
 	 * @param Validator $validator Validator object.
+	 * @return Snow_Monkey\Plugin\Forms\App\Controller
 	 * @throws \LogicException If the Controller Class was not found.
 	 */
 	public static function dispatch( $method, Responser $responser, Setting $setting, Validator $validator ) {

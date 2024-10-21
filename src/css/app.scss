@@ -2,6 +2,10 @@
 @use 'block-styles/app';
 @use 'component/component';
 
+.snow-monkey-form[data-screen=loading] {
+	visibility: hidden;
+}
+
 .smf-form {
 	[data-invalid="1"] {
 		border-color: #d98585;

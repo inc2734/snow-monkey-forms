@@ -11,3 +11,4 @@ snow-monkey-forms.zip
 /.export/*
 error_log
 .phpunit.result.cache
+/.uploads/

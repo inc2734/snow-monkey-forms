@@ -168,7 +168,7 @@ class Meta {
 	 * Display hidden field for token.
 	 */
 	public static function the_token() {
-		static::_the_meta( 'token', Csrf::token() );
+		static::_the_meta( 'token', Csrf::saved_token() );
 	}
 
 	/**

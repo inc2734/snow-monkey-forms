@@ -14,7 +14,7 @@ class Csrf {
 	/**
 	 * @var string
 	 */
-	private static $token = false;
+	private static $token = '';
 
 	/**
 	 * Validate.
@@ -40,28 +40,49 @@ class Csrf {
 	 */
 	public static function save_token() {
 		$saved_token   = static::saved_token();
-		static::$token = ! $saved_token ? static::generate_token() : $saved_token;
+		static::$token = $saved_token ? $saved_token : static::generate_token();
+
 		if ( ! $saved_token && ! headers_sent() ) {
-			setcookie( static::KEY, static::$token, 0, '/', parse_url( home_url(), PHP_URL_HOST ), false, true );
+			static::_setcookie( static::$token, 0 );
 		}
 	}
 
 	/**
-	 * Return set token.
-	 *
-	 * @return string
+	 * Remove token.
 	 */
-	public static function token() {
-		return static::$token;
+	public static function remove_token() {
+		static::$token = '';
+
+		if ( ! headers_sent() ) {
+			static::_setcookie( static::$token, time() - 3600 );
+		}
+	}
+
+	/**
+	 * Set cookie.
+	 *
+	 * Once the cookies have been set, they can be accessed on the next page load with the $_COOKIE array.
+	 *
+	 * @param string $value The value.
+	 * @param int $expires_or_options The time the cookie expires.
+	 */
+	protected static function _setcookie( $value, $expires_or_options ) {
+		setcookie( static::KEY, $value, $expires_or_options, '/', parse_url( home_url(), PHP_URL_HOST ), false, true );
 	}
 
 	/**
 	 * Return token saved in the cookie.
 	 *
+	 * Once the cookies have been set, they can be accessed on the next page load with the $_COOKIE array.
+	 *
 	 * @return string
 	 */
 	public static function saved_token() {
-		return filter_input( INPUT_COOKIE, static::KEY );
+		$token_in_cookie = filter_input( INPUT_COOKIE, static::KEY );
+
+		return $token_in_cookie
+			? $token_in_cookie
+			: static::$token;
 	}
 
 	/**

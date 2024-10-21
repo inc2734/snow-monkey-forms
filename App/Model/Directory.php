@@ -17,37 +17,49 @@ class Directory {
 	/**
 	 * Return the path to the directory where the files are saved.
 	 *
-	 * @return false|string
+	 * @return string
+	 * @throws \RuntimeException When can't create upload base directory.
 	 */
 	public static function get() {
 		$upload_dir = wp_get_upload_dir();
 		$save_dir   = path_join( $upload_dir['basedir'], 'smf-uploads' );
 
 		$is_created = wp_mkdir_p( $save_dir ) ? $save_dir : false;
-		if ( $is_created ) {
-			static::_create_htaccess( $save_dir );
+		$is_created = $is_created ? static::_create_htaccess( $save_dir ) : false;
+
+		if ( ! $is_created ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Can\'t create upload base directory.' );
 		}
 
-		return $is_created;
+		return $save_dir;
 	}
 
 	/**
 	 * Return the path to the user directory.
 	 *
 	 * @param int $form_id Form ID.
+	 * @param boolean $do_create_directory Create user directory if true.
 	 * @return string
 	 * @throws \RuntimeException When directory name is not token value.
 	 */
-	public static function generate_user_dirpath( $form_id ) {
+	public static function generate_user_dirpath( $form_id, $do_create_directory = true ) {
 		$saved_token = Csrf::saved_token();
-		$saved_token = $saved_token ? $saved_token : Csrf::token();
 
 		if ( ! preg_match( '|^[a-z0-9]+$|', $saved_token ) ) {
-			throw new \RuntimeException( '[Snow Monkey Forms] Failed to create user directory.' );
+			throw new \RuntimeException(
+				sprintf(
+					'[Snow Monkey Forms] Failed to generate user directory path. The directory name is "%1$s"',
+					esc_html( $saved_token )
+				)
+			);
 		}
 
 		$user_dir = path_join( static::get(), $saved_token );
 		$user_dir = path_join( $user_dir, (string) $form_id );
+
+		if ( $do_create_directory && ! wp_mkdir_p( $user_dir ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Can\'t create user directory.' );
+		}
 
 		return $user_dir;
 	}
@@ -63,6 +75,15 @@ class Directory {
 		$form_id       = Meta::get_formid();
 		$user_dir      = static::generate_user_dirpath( $form_id );
 		$user_file_dir = path_join( $user_dir, $name );
+
+		if ( ! wp_mkdir_p( $user_file_dir ) ) {
+			throw new \RuntimeException(
+				sprintf(
+					'[Snow Monkey Forms] Can\'t create user directory for %1$s.',
+					esc_html( $name )
+				)
+			);
+		}
 
 		return $user_file_dir;
 	}
@@ -94,7 +115,7 @@ class Directory {
 	}
 
 	/**
-	 * Remove child directories.
+	 * Remove child directories and files.
 	 *
 	 * @param string  $dir   Target directory.
 	 * @param boolean $force Ignore the survival period.
@@ -109,23 +130,18 @@ class Directory {
 
 		$iterator = new FilesystemIterator( $dir );
 
-		try {
-			foreach ( $iterator as $fileinfo ) {
-				$path = $fileinfo->getPathname();
+		foreach ( $iterator as $fileinfo ) {
+			$path = $fileinfo->getPathname();
 
-				if ( $fileinfo->isDir() ) {
-					if ( static::_remove_children( $path, $force ) && ( $force || static::_is_removable( $path ) ) ) {
-						static::remove( $path );
-					}
-				} elseif ( $fileinfo->isFile() ) {
-					if ( $force || static::_is_removable( $path ) ) {
-						static::remove( $path );
-					}
+			if ( $fileinfo->isDir() ) {
+				if ( static::_remove_children( $path, $force ) && ( $force || static::_is_removable( $path ) ) ) {
+					static::remove( $path );
+				}
+			} elseif ( $fileinfo->isFile() ) {
+				if ( $force || static::_is_removable( $path ) ) {
+					static::remove( $path );
 				}
 			}
-		} catch ( \Exception $e ) {
-			error_log( $e->getMessage() );
-			return false;
 		}
 
 		return true;
@@ -138,7 +154,7 @@ class Directory {
 	 *
 	 * @param string $name The name attribute value.
 	 * @param string $filename The filename.
-	 * @return string|false
+	 * @return string
 	 * @throws \RuntimeException When an invalid file reference is requested.
 	 */
 	public static function generate_user_filepath( $name, $filename ) {
@@ -146,12 +162,7 @@ class Directory {
 			return false;
 		}
 
-		$user_file_dir = static::generate_user_file_dirpath( $name );
-		if ( ! $user_file_dir || ! is_dir( $user_file_dir ) ) {
-			return false;
-		}
-
-		$filepath = path_join( $user_file_dir, $filename );
+		$filepath = path_join( static::generate_user_file_dirpath( $name ), $filename );
 
 		if ( str_contains( $filepath, '../' ) || str_contains( $filepath, '..' . DIRECTORY_SEPARATOR ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
@@ -178,12 +189,7 @@ class Directory {
 		$saved_files = array();
 
 		foreach ( $file_names as $name ) {
-			$user_file_dir = static::generate_user_file_dirpath( $name );
-			if ( ! $user_file_dir || ! is_dir( $user_file_dir ) ) {
-				continue;
-			}
-
-			$iterator = new FilesystemIterator( $user_file_dir );
+			$iterator = new FilesystemIterator( static::generate_user_file_dirpath( $name ) );
 
 			foreach ( $iterator as $file ) {
 				$saved_files[ $name ] = $file->getPathname();
@@ -242,7 +248,7 @@ class Directory {
 	 * Create .htaccess.
 	 *
 	 * @param string $save_dir The directory where .htaccess is created.
-	 * @return boolean
+	 * @return true
 	 * @throws \RuntimeException If the creation of .htaccess fails.
 	 */
 	protected static function _create_htaccess( $save_dir ) {

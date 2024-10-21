@@ -60,7 +60,11 @@ class View {
 	 * @return json
 	 */
 	public function send() {
-		if ( 'input' === Meta::get_method() ) {
+		Csrf::save_token();
+
+		$method = Meta::get_method();
+
+		if ( 'input' === $method ) {
 			return $this->_send();
 		}
 
@@ -99,14 +103,14 @@ class View {
 			$file_names = $this->setting->get_file_names();
 			$data       = $this->responser->get_all();
 			foreach ( $file_names as $name ) {
-				$user_file_dir = Directory::generate_user_file_dirpath( $name );
-				if ( is_dir( $user_file_dir ) && ! empty( $data[ $name ] ) ) {
-					$filepath = Directory::generate_user_filepath( $name, $data[ $name ] );
-					if ( ! file_exists( $filepath ) ) {
-						Directory::do_empty( $user_file_dir, true );
-						$this->responser->update( $name, '' );
-						throw new \RuntimeException( '[Snow Monkey Forms] File does not exist.' );
-					}
+				if ( empty( $data[ $name ] ) ) {
+					continue;
+				}
+
+				$filepath = Directory::generate_user_filepath( $name, $data[ $name ] );
+				if ( ! file_exists( $filepath ) ) {
+					$this->responser->update( $name, '' );
+					throw new \RuntimeException( '[Snow Monkey Forms] File does not exist.' );
 				}
 			}
 		} catch ( \Exception $e ) {
@@ -121,7 +125,7 @@ class View {
 		}
 
 		// Complete process.
-		if ( 'complete' === Meta::get_method() ) {
+		if ( 'complete' === $method ) {
 			// Administrator email sending.
 			$administrator_mailer = new AdministratorMailer( $this->responser, $this->setting );
 			try {
@@ -130,6 +134,7 @@ class View {
 				error_log( $e->getMessage() );
 				return $this->_send_systemerror(
 					__( 'Failed to send administrator email.', 'snow-monkey-forms' ) .
+					' ' .
 					__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
 				);
 			}
@@ -168,21 +173,6 @@ class View {
 	 */
 	protected function _send() {
 		$method = Meta::get_method();
-		if ( 'input' === $method || 'complete' === $method || 'systemerror' === $method ) {
-			try {
-				$form_id = Meta::get_formid();
-				Directory::do_empty( Directory::generate_user_dirpath( $form_id ), true );
-			} catch ( \Exception $e ) {
-				error_log( $e->getMessage() );
-				$this->setting->set_system_error_message(
-					__( 'An unexpected problem has occurred.', 'snow-monkey-forms' ) .
-					__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
-				);
-				$controller = Dispatcher::dispatch( 'systemerror', $this->responser, $this->setting, $this->validator );
-
-				return $controller->send();
-			}
-		}
 
 		try {
 			$controller = Dispatcher::dispatch( $method, $this->responser, $this->setting, $this->validator );
@@ -190,9 +180,21 @@ class View {
 			error_log( $e->getMessage() );
 			$this->setting->set_system_error_message(
 				__( 'An unexpected problem has occurred.', 'snow-monkey-forms' ) .
+					' ' .
 				__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' )
 			);
 			$controller = Dispatcher::dispatch( 'systemerror', $this->responser, $this->setting, $this->validator );
+		}
+
+		if ( 'input' === $method || 'complete' === $method || 'systemerror' === $method ) {
+			$user_dirpath = Directory::generate_user_dirpath( $this->setting->get( 'form_id' ), false );
+
+			Directory::do_empty( $user_dirpath, true );
+			Directory::remove( $user_dirpath );
+		}
+
+		if ( 'complete' === $method || 'systemerror' === $method ) {
+			Csrf::remove_token();
 		}
 
 		return $controller->send();
