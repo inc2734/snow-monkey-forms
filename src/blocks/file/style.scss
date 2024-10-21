@@ -86,6 +86,10 @@
 		}
 
 		&--uploaded {
+			label {
+				display: none;
+			}
+
 			.smf-file-control__clear {
 				display: inline-block;
 			}
