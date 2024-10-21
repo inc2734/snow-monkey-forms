@@ -23,7 +23,7 @@ async function fetchView( form, options ) {
 	const formData = new FormData( form );
 	const clickedButton = actionArea.querySelector( '[data-clicked="true"]' );
 	const submitter =
-		actionArea.querySelector( '[type="submit"]' ) || clickedButton;
+		clickedButton || actionArea.querySelector( '[type="submit"]' );
 	const icon = !! submitter
 		? submitter.querySelector( '.smf-sending' )
 		: undefined;
