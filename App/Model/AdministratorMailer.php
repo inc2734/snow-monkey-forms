@@ -39,7 +39,6 @@ class AdministratorMailer {
 	 * Send e-mail.
 	 *
 	 * @return boolean
-	 * @throws \RuntimeException When sending an e-mail fails.
 	 */
 	public function send() {
 		$mail_parser = new MailParser( $this->responser, $this->setting );
@@ -61,10 +60,6 @@ class AdministratorMailer {
 			$this->responser,
 			$this->setting
 		);
-
-		if ( ! $is_sended ) {
-			throw new \RuntimeException( '[Snow Monkey Forms] Failed to send administrator email.' );
-		}
 
 		do_action(
 			'snow_monkey_forms/administrator_mailer/after_send',
@@ -104,7 +99,8 @@ class AdministratorMailer {
 	 * Send e-mail.
 	 *
 	 * @param MailParser $mail_parser MailParser object.
-	 * @return boolean
+	 * @return true
+	 * @throws \RuntimeException When sending an e-mail fails.
 	 */
 	protected function _process_sending( MailParser $mail_parser ) {
 		$args = array(
@@ -127,6 +123,11 @@ class AdministratorMailer {
 
 		$mailer = new Mailer( $args );
 
-		return $mailer->send();
+		$is_sended = $mailer->send();
+		if ( ! $is_sended ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Failed to send administrator email.' );
+		}
+
+		return $is_sended;
 	}
 }
