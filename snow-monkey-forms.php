@@ -611,7 +611,10 @@ function snow_monkey_forms_uninstall() {
 	}
 
 	try {
-		Directory::do_empty( Directory::get(), true );
+		$base_direcotry = Directory::get();
+
+		Directory::do_empty( $base_direcotry, true );
+		Directory::remove( $base_direcotry );
 	} catch ( \Exception $e ) {
 		error_log( $e->getMessage() );
 	}
