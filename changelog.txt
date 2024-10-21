@@ -3,6 +3,10 @@
 = 9.0.0 =
 * Refactoring CSRF checking proccess.
 * The input screen is also changed to be obtained via REST API.
+* At the file block, if a file has already been uploaded, the upload button will not be displayed until the file is released.
+* Fixed error always going through when false in `snow_monkey_forms/administrator_mailer/is_sended` hook.
+* Fixed error always going through when false in `snow_monkey_forms/auto_reply_mailer/is_sended` hook.
+* Fix to also delete `wp-content/uploads/smf-uploads` when uninstalling.
 * Add `Responser` and `Setting` to `snow_monkey_forms/validator/error_message` hook arguments.
 
 = 8.0.0 =
