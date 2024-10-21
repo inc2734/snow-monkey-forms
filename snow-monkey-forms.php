@@ -116,7 +116,7 @@ class Bootstrap {
 			'snow-monkey-forms',
 			'var snowmonkeyforms = ' . wp_json_encode(
 				array(
-					'view_json_url' => rest_url( '/snow-monkey-form/v1/view' ),
+					'view_json_url' => rest_url( '/snow-monkey-form/v1/view?ver=' . time() ), // Static URLs may return browser cache when browsing back.
 				)
 			),
 			'before'
