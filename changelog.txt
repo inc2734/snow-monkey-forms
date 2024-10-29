@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 9.0.1 =
+* Fixed a bug in the “Snow Monkey Form” block on the page edit screen that prevented the form from being displayed after selecting the form in the “Snow Monkey Form” block.
+
 = 9.0.0 =
 * Refactoring CSRF checking proccess.
 * The input screen is also changed to be obtained via REST API.
