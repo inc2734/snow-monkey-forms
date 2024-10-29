@@ -85,7 +85,15 @@ foreach ( $response->controls as $name => $control ) {
 
 	<?php echo $input_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-	<div class="smf-action"></div>
+	<div class="smf-action">
+		<?php
+		// For ServerSideRender.
+		$request_uri = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( $request_uri && false !== strpos( $request_uri, 'block-renderer/snow-monkey-forms/snow-monkey-form' ) ) {
+			echo $response->action; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+		?>
+	</div>
 
 	<div class="smf-system-error-content-ready">
 		<?php

@@ -12,6 +12,7 @@
 			"default": 0
 		}
 	},
+	"editorStyle": "file:./index.css",
 	"editorScript": "file:./index.js",
 	"render": "file:./render.php"
 }
