@@ -37,6 +37,7 @@ export default function ( { attributes, setAttributes, isSelected } ) {
 					label={ __( 'Select a form', 'snow-monkey-forms' ) }
 				>
 					<SelectControl
+						__nextHasNoMarginBottom
 						value={ formId }
 						options={ [
 							{

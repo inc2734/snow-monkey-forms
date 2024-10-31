@@ -77,6 +77,7 @@ export default function ( {
 					title={ __( 'Block settings', 'snow-monkey-forms' ) }
 				>
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={ __(
 							'Display label column',
 							'snow-monkey-forms'
@@ -89,6 +90,7 @@ export default function ( {
 
 					{ !! isDisplayLabelColumn && (
 						<TextControl
+							__nextHasNoMarginBottom
 							label={ __( 'label for', 'snow-monkey-forms' ) }
 							help={ __(
 								'Add a label element and link it with a form field of your choice. Enter the id of the form field you want to link to.',

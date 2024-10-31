@@ -67,6 +67,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<TextControl
+						__nextHasNoMarginBottom
 						label={ __( 'Minimum date', 'snow-monkey-forms' ) }
 						type="date"
 						value={ min }
@@ -76,6 +77,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<TextControl
+						__nextHasNoMarginBottom
 						label={ __( 'Maximum date', 'snow-monkey-forms' ) }
 						type="date"
 						value={ max }
@@ -103,6 +105,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					title={ __( 'Block settings', 'snow-monkey-forms' ) }
 				>
 					<TextControl
+						__nextHasNoMarginBottom
 						label={ __( 'Description', 'snow-monkey-forms' ) }
 						value={ description }
 						onChange={ ( attribute ) =>
@@ -111,6 +114,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={ __(
 							'Description is also displayed on the confirmation screen',
 							'snow-monkey-forms'

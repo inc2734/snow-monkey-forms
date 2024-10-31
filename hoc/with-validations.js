@@ -21,6 +21,7 @@ const withValidations = createHigherOrderComponent(
 						title={ __( 'Validation', 'snow-monkey-forms' ) }
 					>
 						<ToggleControl
+							__nextHasNoMarginBottom
 							label={ __( 'Required', 'snow-monkey-forms' ) }
 							checked={ !! parsedValidations.required }
 							onChange={ ( value ) => {

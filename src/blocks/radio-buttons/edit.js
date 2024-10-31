@@ -121,6 +121,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={ __( 'Grouping', 'snow-monkey-forms' ) }
 						help={ __(
 							'Enable if you want to group by fieldset and label by legend.',
@@ -136,6 +137,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 
 					{ grouping && (
 						<ToggleControl
+							__nextHasNoMarginBottom
 							label={ __(
 								'Make legend invisible',
 								'snow-monkey-forms'
@@ -172,6 +174,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					title={ __( 'Block settings', 'snow-monkey-forms' ) }
 				>
 					<SelectControl
+						__nextHasNoMarginBottom
 						label={ __( 'Direction', 'snow-monkey-forms' ) }
 						value={ direction }
 						options={ [
@@ -194,6 +197,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<TextControl
+						__nextHasNoMarginBottom
 						label={ __( 'Description', 'snow-monkey-forms' ) }
 						value={ description }
 						onChange={ ( attribute ) =>
@@ -202,6 +206,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<ToggleControl
+						__nextHasNoMarginBottom
 						label={ __(
 							'Description is also displayed on the confirmation screen',
 							'snow-monkey-forms'
