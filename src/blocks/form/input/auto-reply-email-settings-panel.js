@@ -66,7 +66,8 @@ export default function () {
 				}
 			/>
 
-			<TextControl__nextHasNoMarginBottom
+			<TextControl
+				__nextHasNoMarginBottom
 				label={ __( 'Reply-To (Email address)', 'snow-monkey-forms' ) }
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
 				value={ meta.auto_reply_email_replyto }
