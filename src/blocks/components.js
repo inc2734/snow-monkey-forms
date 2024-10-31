@@ -32,6 +32,7 @@ export const ValueControl = ( { value, onChange, multiple = false } ) => {
 
 	return (
 		<Control
+			__nextHasNoMarginBottom
 			label={ __( 'value', 'snow-monkey-forms' ) }
 			help={ __( 'Optional. Initial value.', 'snow-monkey-forms' ) }
 			value={ value }
