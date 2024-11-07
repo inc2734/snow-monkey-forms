@@ -57,14 +57,14 @@ class Bootstrap {
 	 */
 	public function _plugins_loaded() {
 		add_filter( 'load_textdomain_mofile', array( $this, '_load_textdomain_mofile' ), 10, 2 );
-		load_plugin_textdomain( 'snow-monkey-forms', false, basename( SNOW_MONKEY_FORMS_PATH ) . '/languages' );
 
-		add_action( 'wp_enqueue_scripts', array( $this, '_enqueue_assets' ) );
-		add_action( 'enqueue_block_assets', array( $this, '_enqueue_block_assets' ) );
 		add_action( 'rest_api_init', array( $this, '_endpoint' ) );
+		add_action( 'init', array( $this, '_load_textdomain' ) );
 		add_action( 'init', array( $this, '_register_blocks' ) );
 		add_action( 'init', array( $this, '_register_post_type' ) );
 		add_action( 'init', array( $this, '_register_meta' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, '_enqueue_assets' ) );
+		add_action( 'enqueue_block_assets', array( $this, '_enqueue_block_assets' ) );
 		add_filter( 'block_categories_all', array( $this, '_block_categories' ) );
 
 		add_action( 'template_redirect', array( $this, '_do_empty_save_dir' ) );
@@ -91,6 +91,13 @@ class Bootstrap {
 		}
 
 		return $local_mofile;
+	}
+
+	/**
+	 * Load textdomain.
+	 */
+	public function _load_textdomain() {
+		load_plugin_textdomain( 'snow-monkey-forms', false, basename( SNOW_MONKEY_FORMS_PATH ) . '/languages' );
 	}
 
 	/**
