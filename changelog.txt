@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 9.0.3 =
+* WordPress 6.7 compatible.
+
 = 9.0.2 =
 * Fixed a bug in the “Snow Monkey Form” block on the page edit screen that prevented the form from being displayed after selecting the form in the “Snow Monkey Form” block.
 
