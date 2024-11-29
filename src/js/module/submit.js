@@ -235,5 +235,8 @@ export function submit( form ) {
 	fetchView( form, {
 		method: 'POST',
 		body: new FormData( form ),
+		headers: {
+			'X-WP-Nonce': snowmonkeyforms?.nonce,
+		},
 	} );
 }
