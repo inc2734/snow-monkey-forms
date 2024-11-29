@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 9.0.4 =
+* Fixed a bug in `snow_monkey_forms/custom_mail_tag` that user information could not be retrieved.
+
 = 9.0.3 =
 * WordPress 6.7 compatible.
 
