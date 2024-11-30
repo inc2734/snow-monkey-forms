@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 9.1.0 =
+* Add new filter hook `snow_monkey_forms/recaptcha/threshold`.
+
 = 9.0.4 =
 * Fixed a bug in `snow_monkey_forms/custom_mail_tag` that user information could not be retrieved.
 
