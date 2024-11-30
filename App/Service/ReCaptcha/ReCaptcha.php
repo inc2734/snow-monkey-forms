@@ -79,7 +79,8 @@ class ReCaptcha {
 			? $response_body['score']
 			: 0;
 
-		$threshold = 0.50;
+		$threshold = apply_filters( 'snow_monkey_forms/recaptcha/threshold', 0.5 );
+
 		return $threshold < $score;
 	}
 
