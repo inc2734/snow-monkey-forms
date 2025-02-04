@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 9.1.1 =
+* Adjusted implementation of form control display.
+
 = 9.1.0 =
 * Add new filter hook `snow_monkey_forms/recaptcha/threshold`.
 
