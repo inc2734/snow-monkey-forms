@@ -36,7 +36,7 @@ $response = json_decode( $controller->send() );
 $input_content = apply_filters( 'the_content', $setting->get( 'input_content' ) );
 foreach ( $response->controls as $name => $control ) {
 	$input_content = preg_replace(
-		'|(<div class="smf-placeholder" data-name="' . $name . '">)(</div>)|ms',
+		'|(<div[^>]*? class="smf-placeholder"[^>]*? data-name="' . $name . '"[^>]*?>)(</div>)|ms',
 		'$1' . $control . '$2',
 		$input_content
 	);

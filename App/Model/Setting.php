@@ -300,9 +300,13 @@ class Setting {
 					return;
 				}
 
-				$type               = $matches[1];
-				$registry           = \WP_Block_Type_Registry::get_instance();
-				$metadata           = $registry->get_registered( 'snow-monkey-forms/control-' . $type );
+				$type     = $matches[1];
+				$registry = \WP_Block_Type_Registry::get_instance();
+				$metadata = $registry->get_registered( 'snow-monkey-forms/control-' . $type );
+				if ( ! $metadata ) {
+					return;
+				}
+
 				$default_attributes = array();
 
 				foreach ( $metadata->attributes as $attribute_name => $attribute ) {
