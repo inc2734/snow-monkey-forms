@@ -44,19 +44,21 @@ class Validator {
 	 * @return boolean.
 	 */
 	public function validate() {
-		foreach ( $this->validation_map as $name => $validations ) {
-			foreach ( $validations as $validation_name => $validation ) {
-				if ( ! $validation ) {
-					continue;
-				}
+		foreach ( $this->validation_map as $name => $_validations ) {
+			foreach ( $_validations as $validations ) {
+				foreach ( $validations as $validation_name => $validation ) {
+					if ( ! $validation ) {
+						continue;
+					}
 
-				$validation_class = $this->_get_validation_class( $validation_name );
-				if ( ! $validation_class ) {
-					continue;
-				}
+					$validation_class = $this->_get_validation_class( $validation_name );
+					if ( ! $validation_class ) {
+						continue;
+					}
 
-				if ( false === $validation_class::validate( $this->responser->get( $name ) ) ) {
-					return false;
+					if ( false === $validation_class::validate( $this->responser->get( $name ) ) ) {
+						return false;
+					}
 				}
 			}
 		}
@@ -77,25 +79,27 @@ class Validator {
 			return;
 		}
 
-		foreach ( $this->validation_map[ $name ] as $validation_name => $validation ) {
-			if ( ! $validation ) {
-				continue;
-			}
+		foreach ( $this->validation_map[ $name ] as $i => $_validations ) {
+			foreach ( $_validations as $validation_name => $validation ) {
+				if ( ! $validation ) {
+					continue;
+				}
 
-			$validation_class = $this->_get_validation_class( $validation_name );
-			if ( ! $validation_class ) {
-				continue;
-			}
+				$validation_class = $this->_get_validation_class( $validation_name );
+				if ( ! $validation_class ) {
+					continue;
+				}
 
-			if ( false === $validation_class::validate( $this->responser->get( $name ) ) ) {
-				$error_messages[ $validation_name ] = apply_filters(
-					'snow_monkey_forms/validator/error_message',
-					$validation_class::get_message(),
-					$validation_name,
-					$name,
-					$this->responser,
-					$this->setting
-				);
+				if ( false === $validation_class::validate( $this->responser->get( $name ) ) ) {
+					$error_messages[ $i ][ $validation_name ] = apply_filters(
+						'snow_monkey_forms/validator/error_message',
+						$validation_class::get_message(),
+						$validation_name,
+						$name,
+						$this->responser,
+						$this->setting
+					);
+				}
 			}
 		}
 
@@ -111,7 +115,26 @@ class Validator {
 	protected function _set_validation_map( Setting $setting ) {
 		$validation_map = array();
 
-		foreach ( $setting->get( 'controls' ) as $name => $control ) {
+		foreach ( $setting->get_controls( false ) as $name => $_controls ) {
+			foreach ( $_controls as $control ) {
+				$validations = $control->get_property( 'validations' );
+
+				if ( ! $validations ) {
+					continue;
+				}
+
+				$validation_map[ $name ][] = (array) $validations;
+			}
+		}
+
+		return $validation_map;
+
+
+
+
+		$validation_map = array();
+
+		foreach ( $setting->get_controls() as $name => $control ) {
 			$validations = $control->get_property( 'validations' );
 
 			if ( ! $validations ) {

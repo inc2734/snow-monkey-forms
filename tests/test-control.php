@@ -46,7 +46,7 @@ class ControlTest extends WP_UnitTestCase {
 		$validator  = new Validator( $responser, $setting );
 		$controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
 
-		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['text'], 'value="foo"' ) );
+		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['text'][0], 'value="foo"' ) );
 	}
 
 	/**
@@ -70,7 +70,7 @@ class ControlTest extends WP_UnitTestCase {
 		$controller = Dispatcher::dispatch( 'confirm', $responser, $setting, $validator );
 
 		// When data is posted (when the Responder has the data), it is used.
-		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['text'], 'value="bar"' ) );
+		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['text'][0], 'value="bar"' ) );
 	}
 
 	/**
@@ -99,8 +99,8 @@ class ControlTest extends WP_UnitTestCase {
 		$validator  = new Validator( $responser, $setting );
 		$controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
 
-		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['select'], 'value="custom1"' ) );
-		$this->assertTrue( false === strpos( json_decode( $controller->send(), true )['controls']['select'], 'value="value1"' ) );
+		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['select'][0], 'value="custom1"' ) );
+		$this->assertTrue( false === strpos( json_decode( $controller->send(), true )['controls']['select'][0], 'value="value1"' ) );
 	}
 
 	/**
@@ -129,8 +129,8 @@ class ControlTest extends WP_UnitTestCase {
 		$validator  = new Validator( $responser, $setting );
 		$controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
 
-		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['checkboxes'], 'value="custom1"' ) );
-		$this->assertTrue( false === strpos( json_decode( $controller->send(), true )['controls']['checkboxes'], 'value="value1"' ) );
+		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['checkboxes'][0], 'value="custom1"' ) );
+		$this->assertTrue( false === strpos( json_decode( $controller->send(), true )['controls']['checkboxes'][0], 'value="value1"' ) );
 	}
 
 	/**
@@ -159,7 +159,7 @@ class ControlTest extends WP_UnitTestCase {
 		$validator  = new Validator( $responser, $setting );
 		$controller = Dispatcher::dispatch( 'input', $responser, $setting, $validator );
 
-		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['radio-buttons'], 'value="custom1"' ) );
-		$this->assertTrue( false === strpos( json_decode( $controller->send(), true )['controls']['radio-buttons'], 'value="value1"' ) );
+		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['radio-buttons'][0], 'value="custom1"' ) );
+		$this->assertTrue( false === strpos( json_decode( $controller->send(), true )['controls']['radio-buttons'][0], 'value="value1"' ) );
 	}
 }

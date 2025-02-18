@@ -74,10 +74,20 @@ async function fetchView( form, options ) {
 	const replaceControls = ( controls ) => {
 		for ( const key in controls ) {
 			const control = controls[ key ];
-			const placeholder = form.querySelector(
-				`.smf-placeholder[data-name="${ key }"]`
-			);
-			placeholder.innerHTML = control;
+
+			if ( Array.isArray( control ) ) {
+				const placeholders = form.querySelectorAll(
+					`.smf-placeholder[data-name="${ key }"]`
+				);
+				placeholders.forEach( ( placeholder, i ) => {
+					placeholder.innerHTML = control[ i ];
+				} );
+			} else {
+				const placeholder = form.querySelector(
+					`.smf-placeholder[data-name="${ key }"]`
+				);
+				placeholder.innerHTML = control;
+			}
 		}
 	};
 

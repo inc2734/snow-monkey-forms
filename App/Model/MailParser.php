@@ -107,7 +107,7 @@ class MailParser {
 		if ( is_array( $value ) ) {
 			$control   = $this->setting->get_control( $name );
 			$delimiter = $control->get_property( 'delimiter' );
-			return implode( $delimiter, $value );
+			return implode( $delimiter, array_unique( $value ) );
 		}
 
 		if ( $this->_is_file( $name ) ) {

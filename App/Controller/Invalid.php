@@ -20,15 +20,18 @@ class Invalid extends Contract\Controller {
 	 */
 	protected function set_controls() {
 		$controls         = array();
-		$setting_controls = $this->setting->get( 'controls' );
+		$setting_controls = $this->setting->get_controls( false );
 
-		foreach ( $setting_controls as $name => $control ) {
-			$value = $this->responser->get( $name );
-			$control->save( $value );
-			$error_messages    = $this->validator->get_error_messages( $name );
-			$controls[ $name ] = $error_messages
-				? $control->invalid( implode( ' ', $error_messages ) )
-				: $control->input();
+		foreach ( $setting_controls as $name => $_controls ) {
+			$value          = $this->responser->get( $name );
+			$error_messages = $this->validator->get_error_messages( $name );
+
+			foreach ( $_controls as $i => $control ) {
+				$control->save( $value );
+				$controls[ $name ][ $i ] = $error_messages[ $i ]
+					? $control->invalid( implode( ' ', $error_messages[ $i ] ) )
+					: $control->input();
+			}
 		}
 
 		return $controls;

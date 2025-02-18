@@ -217,16 +217,30 @@ class Setting {
 	 * @return \Snow_Monkey\Plugin\Forms\App\Contract\Control
 	 */
 	public function get_control( $name ) {
-		return isset( $this->controls[ $name ] ) ? $this->controls[ $name ] : false;
+		$controls = $this->get_controls();
+
+		return isset( $controls[ $name ] ) ? $controls[ $name ] : false;
 	}
 
 	/**
 	 * Return controls.
 	 *
+	 * @param boolean $merge Whether to merge data.
 	 * @return array
 	 */
-	public function get_controls() {
-		return $this->controls;
+	public function get_controls( $merge = true ) {
+		if ( ! $merge ) {
+			return $this->controls;
+		}
+
+		$new_controls = array();
+		foreach ( $this->controls as $name => $controls ) {
+			foreach ( $controls as $control ) {
+				$new_controls[ $name ] = $control;
+			}
+		}
+
+		return $new_controls;
 	}
 
 	/**
@@ -344,7 +358,7 @@ class Setting {
 				$control = Helper::control( $type, $attributes );
 
 				if ( $control && $name ) {
-					$this->controls[ $name ] = $control;
+					$this->controls[ $name ][] = $control;
 				}
 			},
 			$input_content
