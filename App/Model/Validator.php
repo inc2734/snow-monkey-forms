@@ -128,23 +128,6 @@ class Validator {
 		}
 
 		return $validation_map;
-
-
-
-
-		$validation_map = array();
-
-		foreach ( $setting->get_controls() as $name => $control ) {
-			$validations = $control->get_property( 'validations' );
-
-			if ( ! $validations ) {
-				continue;
-			}
-
-			$validation_map[ $name ] = (array) $validations;
-		}
-
-		return $validation_map;
 	}
 
 	/**
