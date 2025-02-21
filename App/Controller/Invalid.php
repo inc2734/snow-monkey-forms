@@ -28,8 +28,11 @@ class Invalid extends Contract\Controller {
 
 			foreach ( $_controls as $i => $control ) {
 				$control->save( $value );
-				$controls[ $name ][ $i ] = $error_messages[ $i ]
-					? $control->invalid( implode( ' ', $error_messages[ $i ] ) )
+
+				$error_message = $error_messages[ $i ] ?? false;
+
+				$controls[ $name ][ $i ] = $error_message
+					? $control->invalid( implode( ' ', $error_message ) )
 					: $control->input();
 			}
 		}

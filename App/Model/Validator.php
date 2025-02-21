@@ -116,14 +116,14 @@ class Validator {
 		$validation_map = array();
 
 		foreach ( $setting->get_controls( false ) as $name => $_controls ) {
-			foreach ( $_controls as $control ) {
+			foreach ( $_controls as $i => $control ) {
 				$validations = $control->get_property( 'validations' );
 
 				if ( ! $validations ) {
 					continue;
 				}
 
-				$validation_map[ $name ][] = (array) $validations;
+				$validation_map[ $name ][ $i ] = (array) $validations;
 			}
 		}
 
