@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 10.0.2 =
+* The `aria-descriptedby` attribute has been changed so that the input field and "description" are automatically linked.
+
 = 10.0.1 =
 * Screen transition may fail when required items are not entered.
 
