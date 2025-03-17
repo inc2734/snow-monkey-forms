@@ -138,12 +138,23 @@ class RadioButtons extends Contract\Control {
 			$classes[] = 'smf-radio-buttons-control--' . $direction;
 		}
 
+		$aria_describedby = array();
+
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
+			$item_description_id = $this->get_property( 'name' ) . '--input-description';
+
 			$description = sprintf(
-				'<div class="smf-control-description">%1$s</div>',
+				'<div class="smf-control-description" id="%1$s">%2$s</div>',
+				esc_attr( $item_description_id ),
 				wp_kses_post( $description )
 			);
+
+			$aria_describedby[] = $item_description_id;
+		}
+
+		if ( $aria_describedby ) {
+			$attributes['aria-describedby'] = join( ' ', $aria_describedby );
 		}
 
 		$grouping = $this->get_property( 'grouping' );
@@ -155,7 +166,7 @@ class RadioButtons extends Contract\Control {
 				'<div class="%1$s">
 					<fieldset class="smf-control-fieldset">
 						<legend class="smf-control-legend %3$s">%4$s</legend>
-						<div class="smf-radio-buttons-control__control" %2$s>%5$s</div>
+						<div class="smf-radio-buttons-control__control" role="radiogroup" %2$s>%5$s</div>
 					</fieldset>
 				</div>
 				%6$s',
@@ -169,7 +180,7 @@ class RadioButtons extends Contract\Control {
 		} else {
 			$html = sprintf(
 				'<div class="%1$s">
-					<div class="smf-radio-buttons-control__control" %2$s>%3$s</div>
+					<div class="smf-radio-buttons-control__control" role="radiogroup" %2$s>%3$s</div>
 				</div>
 				%4$s',
 				esc_attr( implode( ' ', $classes ) ),

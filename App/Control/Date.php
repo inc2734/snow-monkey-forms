@@ -71,12 +71,28 @@ class Date extends Contract\Control {
 		$attributes = $this->get_property( 'attributes' );
 		$attributes = $this->_normalize_attributes( $attributes );
 
+		$aria_describedby = array();
+
+		$id = $this->get_attribute( 'id' );
+		if ( $id ) {
+			$aria_describedby[] = $id . '--description';
+		}
+
 		$description = $this->get_property( 'description' );
 		if ( $description ) {
+			$item_description_id = $this->get_attribute( 'name' ) . '--input-description';
+
 			$description = sprintf(
-				'<div class="smf-control-description">%1$s</div>',
+				'<div class="smf-control-description" id="%1$s">%2$s</div>',
+				esc_attr( $item_description_id ),
 				wp_kses_post( $description )
 			);
+
+			$aria_describedby[] = $item_description_id;
+		}
+
+		if ( $aria_describedby ) {
+			$attributes['aria-describedby'] = join( ' ', $aria_describedby );
 		}
 
 		return sprintf(

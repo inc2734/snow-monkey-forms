@@ -141,7 +141,10 @@ export default function ( {
 						</div>
 						{ ( ! RichText.isEmpty( description ) ||
 							isSelected ) && (
-							<div className="smf-item__description">
+							<div
+								className="smf-item__description"
+								id={ `${ labelFor }--description` }
+							>
 								<RichText
 									value={ description }
 									onChange={ ( value ) =>

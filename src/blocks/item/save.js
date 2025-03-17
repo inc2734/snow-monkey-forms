@@ -35,7 +35,10 @@ export default function ( { attributes, className } ) {
 						) }
 					</div>
 					{ ! RichText.isEmpty( description ) && (
-						<div className="smf-item__description">
+						<div
+							className="smf-item__description"
+							id={ `${ labelFor }--description` }
+						>
 							<RichText.Content value={ description } />
 						</div>
 					) }
