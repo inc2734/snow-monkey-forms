@@ -13,6 +13,7 @@ export const NameControl = ( { value, onChange } ) => {
 
 	return (
 		<TextControl
+			__next40pxDefaultSize
 			__nextHasNoMarginBottom
 			label={ __( 'name', 'snow-monkey-forms' ) }
 			help={ __(
@@ -32,6 +33,7 @@ export const ValueControl = ( { value, onChange, multiple = false } ) => {
 
 	return (
 		<Control
+			__next40pxDefaultSize
 			__nextHasNoMarginBottom
 			label={ __( 'value', 'snow-monkey-forms' ) }
 			help={ __( 'Optional. Initial value.', 'snow-monkey-forms' ) }
@@ -63,6 +65,7 @@ export const ValuesControl = ( { value, onChange } ) => {
 export const PlaceholderControl = ( { value, onChange } ) => {
 	return (
 		<TextControl
+			__next40pxDefaultSize
 			__nextHasNoMarginBottom
 			label={ __( 'placeholder', 'snow-monkey-forms' ) }
 			value={ value }
@@ -74,6 +77,7 @@ export const PlaceholderControl = ( { value, onChange } ) => {
 export const MaxLengthControl = ( { value, onChange } ) => {
 	return (
 		<TextControl
+			__next40pxDefaultSize
 			__nextHasNoMarginBottom
 			label={ __( 'maxlength', 'snow-monkey-forms' ) }
 			help={ __(
@@ -89,6 +93,7 @@ export const MaxLengthControl = ( { value, onChange } ) => {
 export const SizeControl = ( { value, onChange } ) => {
 	return (
 		<TextControl
+			__next40pxDefaultSize
 			__nextHasNoMarginBottom
 			label={ __( 'size', 'snow-monkey-forms' ) }
 			help={ __(
@@ -170,6 +175,7 @@ export const AutocompleteControl = ( { value, onChange, options = [] } ) => {
 
 	return (
 		<SelectControl
+			__next40pxDefaultSize
 			__nextHasNoMarginBottom
 			label={ __( 'autocomplete', 'snow-monkey-forms' ) }
 			value={ value }
@@ -182,6 +188,7 @@ export const AutocompleteControl = ( { value, onChange, options = [] } ) => {
 export const IdControl = ( { value, onChange } ) => {
 	return (
 		<TextControl
+			__next40pxDefaultSize
 			__nextHasNoMarginBottom
 			label={ __( 'id', 'snow-monkey-forms' ) }
 			value={ value }
@@ -193,6 +200,7 @@ export const IdControl = ( { value, onChange } ) => {
 export const ClassControl = ( { value, onChange } ) => {
 	return (
 		<TextControl
+			__next40pxDefaultSize
 			__nextHasNoMarginBottom
 			label={ __( 'class', 'snow-monkey-forms' ) }
 			help={ __(

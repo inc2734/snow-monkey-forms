@@ -67,6 +67,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<TextControl
+						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'Minimum month', 'snow-monkey-forms' ) }
 						type="month"
@@ -77,6 +78,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<TextControl
+						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'Maximum month', 'snow-monkey-forms' ) }
 						type="month"
@@ -105,6 +107,7 @@ const Edit = ( { attributes, setAttributes } ) => {
 					title={ __( 'Block settings', 'snow-monkey-forms' ) }
 				>
 					<TextControl
+						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'Description', 'snow-monkey-forms' ) }
 						value={ description }
