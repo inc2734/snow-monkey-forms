@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
 "forms\n"
-"POT-Creation-Date: 2024-10-10T02:52:27+00:00\n"
-"PO-Revision-Date: 2024-10-16 20:27+0900\n"
+"POT-Creation-Date: 2025-04-11T01:01:49+00:00\n"
+"PO-Revision-Date: 2025-04-11 10:02+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -12,14 +12,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.6\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: snow-monkey-forms.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: node_modules\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
@@ -27,20 +26,23 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-forms.php:227 snow-monkey-forms.php:550
+#: snow-monkey-forms.php snow-monkey-forms.php:262 snow-monkey-forms.php:585
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
 #. Description of the plugin
+#: snow-monkey-forms.php
 msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
 msgstr ""
 "Snow Monkey Forms はブロックエディターのためのメールフォームプラグインです。"
 
 #. Author of the plugin
+#: snow-monkey-forms.php
 msgid "inc2734"
 msgstr "inc2734"
 
 #. Author URI of the plugin
+#: snow-monkey-forms.php
 msgid "https://2inc.org"
 msgstr "https://2inc.org"
 
@@ -48,15 +50,15 @@ msgstr "https://2inc.org"
 msgid "Uploaded file"
 msgstr "アップロード済みのファイル"
 
-#: App/Control/File.php:118 dist/blocks/file/index.js:1
+#: App/Control/File.php:134 dist/blocks/file/index.js:1
 msgid "Choose file"
 msgstr "ファイルを選択"
 
-#: App/Control/File.php:119 dist/blocks/file/index.js:1
+#: App/Control/File.php:135 dist/blocks/file/index.js:1
 msgid "No file chosen"
 msgstr "選択されていません"
 
-#: App/Control/File.php:120
+#: App/Control/File.php:136
 msgid "Clear"
 msgstr "解除"
 
@@ -72,37 +74,36 @@ msgstr "戻る"
 msgid "Send"
 msgstr "送信する"
 
-#: App/Rest/Route/View.php:71
+#: App/Rest/Route/View.php:73
 msgid "Invalid access."
 msgstr "無効なアクセスです。"
 
-#: App/Rest/Route/View.php:76
+#: App/Rest/Route/View.php:78
 msgid "There is a possibility of spamming."
 msgstr "スパム送信の可能性があります。"
 
-#: App/Rest/Route/View.php:96
+#: App/Rest/Route/View.php:98
 msgid "An error occurred during file upload."
 msgstr "ファイルのアップロード中にエラーが発生しました。"
 
-#: App/Rest/Route/View.php:116
+#: App/Rest/Route/View.php:118
 msgid "Attachment of file failed."
 msgstr "ファイルの添付に失敗しました。"
 
-#: App/Rest/Route/View.php:134
+#: App/Rest/Route/View.php:136
 msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:135 App/Rest/Route/View.php:181
-#: App/Rest/Route/View.php:195 dist/blocks/snow-monkey-form/render.php:93
+#: App/Rest/Route/View.php:138 App/Rest/Route/View.php:184
+#: dist/blocks/snow-monkey-form/render.php:108
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
-#: App/Rest/Route/View.php:146
+#: App/Rest/Route/View.php:149
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:180 App/Rest/Route/View.php:194
-#: dist/blocks/snow-monkey-form/render.php:92
+#: App/Rest/Route/View.php:182 dist/blocks/snow-monkey-form/render.php:106
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
@@ -158,60 +159,70 @@ msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
 
 #: dist/blocks/snow-monkey-form/render.php:53
+msgid "Progress tracker"
+msgstr "プログレストラッカー"
+
+#: dist/blocks/snow-monkey-form/render.php:56
 msgctxt "progress-tracker"
 msgid "1"
 msgstr "1"
 
-#: dist/blocks/snow-monkey-form/render.php:56
+#: dist/blocks/snow-monkey-form/render.php:59
 msgctxt "progress-tracker"
-msgid "Input"
-msgstr "入力"
+msgid "Input screen"
+msgstr "入力画面"
 
-#: dist/blocks/snow-monkey-form/render.php:63
-#: dist/blocks/snow-monkey-form/render.php:76
+#: dist/blocks/snow-monkey-form/render.php:60
+#: dist/blocks/snow-monkey-form/render.php:71
+#: dist/blocks/snow-monkey-form/render.php:86
+msgid "This is the screen you are currently viewing."
+msgstr "現在表示されている画面です。"
+
+#: dist/blocks/snow-monkey-form/render.php:67
+#: dist/blocks/snow-monkey-form/render.php:81
 msgctxt "progress-tracker"
 msgid "2"
 msgstr "2"
 
-#: dist/blocks/snow-monkey-form/render.php:66
+#: dist/blocks/snow-monkey-form/render.php:70
 msgctxt "progress-tracker"
-msgid "Confirm"
-msgstr "確認"
+msgid "Confirm screen"
+msgstr "確認画面"
 
-#: dist/blocks/snow-monkey-form/render.php:74
+#: dist/blocks/snow-monkey-form/render.php:79
 msgctxt "progress-tracker"
 msgid "3"
 msgstr "3"
 
-#: dist/blocks/snow-monkey-form/render.php:80
+#: dist/blocks/snow-monkey-form/render.php:85
 msgctxt "progress-tracker"
-msgid "Complete"
-msgstr "完了"
+msgid "Complete screen"
+msgstr "完了画面"
 
-#: snow-monkey-forms.php:243
+#: snow-monkey-forms.php:278
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:263
+#: snow-monkey-forms.php:298
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:283
+#: snow-monkey-forms.php:318
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:311
+#: snow-monkey-forms.php:346
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: snow-monkey-forms.php:374
+#: snow-monkey-forms.php:409
 msgid "Admin notification"
 msgstr "管理者通知"
 
-#: snow-monkey-forms.php:449
+#: snow-monkey-forms.php:484
 msgid "Automatic reply notification"
 msgstr "自動返信通知"
 
@@ -273,7 +284,7 @@ msgstr "バリデーション"
 #: dist/blocks/month/index.js:1 dist/blocks/radio-buttons/index.js:4
 #: dist/blocks/select/index.js:4 dist/blocks/tel/index.js:1
 #: dist/blocks/text/index.js:1 dist/blocks/textarea/index.js:1
-#: dist/blocks/url/index.js:1 hoc/with-validations.js:24
+#: dist/blocks/url/index.js:1 hoc/with-validations.js:25
 msgid "Required"
 msgstr "必須"
 
@@ -658,8 +669,17 @@ msgctxt "block title"
 msgid "URL"
 msgstr "URL"
 
-#~ msgid "Input page"
-#~ msgstr "入力画面"
+#~ msgctxt "progress-tracker"
+#~ msgid "Input"
+#~ msgstr "入力"
+
+#~ msgctxt "progress-tracker"
+#~ msgid "Confirm"
+#~ msgstr "確認"
+
+#~ msgctxt "progress-tracker"
+#~ msgid "Complete"
+#~ msgstr "完了"
 
 #~ msgid "To"
 #~ msgstr "To"

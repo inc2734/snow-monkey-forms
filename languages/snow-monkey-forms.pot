@@ -1,34 +1,38 @@
-# Copyright (C) 2024 inc2734
+# Copyright (C) 2025 inc2734
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Snow Monkey Forms 8.0.0\n"
+"Project-Id-Version: Snow Monkey Forms 10.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-10T02:52:27+00:00\n"
+"POT-Creation-Date: 2025-04-11T01:01:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.9.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: snow-monkey-forms\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-forms.php:227
-#: snow-monkey-forms.php:550
+#: snow-monkey-forms.php
+#: snow-monkey-forms.php:262
+#: snow-monkey-forms.php:585
 msgid "Snow Monkey Forms"
 msgstr ""
 
 #. Description of the plugin
+#: snow-monkey-forms.php
 msgid "The Snow Monkey Forms is a mail form plugin for the block editor."
 msgstr ""
 
 #. Author of the plugin
+#: snow-monkey-forms.php
 msgid "inc2734"
 msgstr ""
 
 #. Author URI of the plugin
+#: snow-monkey-forms.php
 msgid "https://2inc.org"
 msgstr ""
 
@@ -36,17 +40,17 @@ msgstr ""
 msgid "Uploaded file"
 msgstr ""
 
-#: App/Control/File.php:118
+#: App/Control/File.php:134
 #: dist/blocks/file/index.js:1
 msgid "Choose file"
 msgstr ""
 
-#: App/Control/File.php:119
+#: App/Control/File.php:135
 #: dist/blocks/file/index.js:1
 msgid "No file chosen"
 msgstr ""
 
-#: App/Control/File.php:120
+#: App/Control/File.php:136
 msgid "Clear"
 msgstr ""
 
@@ -62,40 +66,38 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: App/Rest/Route/View.php:71
+#: App/Rest/Route/View.php:73
 msgid "Invalid access."
 msgstr ""
 
-#: App/Rest/Route/View.php:76
+#: App/Rest/Route/View.php:78
 msgid "There is a possibility of spamming."
 msgstr ""
 
-#: App/Rest/Route/View.php:96
+#: App/Rest/Route/View.php:98
 msgid "An error occurred during file upload."
 msgstr ""
 
-#: App/Rest/Route/View.php:116
+#: App/Rest/Route/View.php:118
 msgid "Attachment of file failed."
 msgstr ""
 
-#: App/Rest/Route/View.php:134
+#: App/Rest/Route/View.php:136
 msgid "Failed to send administrator email."
 msgstr ""
 
-#: App/Rest/Route/View.php:135
-#: App/Rest/Route/View.php:181
-#: App/Rest/Route/View.php:195
-#: dist/blocks/snow-monkey-form/render.php:93
+#: App/Rest/Route/View.php:138
+#: App/Rest/Route/View.php:184
+#: dist/blocks/snow-monkey-form/render.php:108
 msgid "Please try again later or contact your administrator by other means."
 msgstr ""
 
-#: App/Rest/Route/View.php:146
+#: App/Rest/Route/View.php:149
 msgid "Failed to send auto reply email."
 msgstr ""
 
-#: App/Rest/Route/View.php:180
-#: App/Rest/Route/View.php:194
-#: dist/blocks/snow-monkey-form/render.php:92
+#: App/Rest/Route/View.php:182
+#: dist/blocks/snow-monkey-form/render.php:106
 msgid "An unexpected problem has occurred."
 msgstr ""
 
@@ -151,60 +153,70 @@ msgid "Please enter a valid URL."
 msgstr ""
 
 #: dist/blocks/snow-monkey-form/render.php:53
-msgctxt "progress-tracker"
-msgid "1"
+msgid "Progress tracker"
 msgstr ""
 
 #: dist/blocks/snow-monkey-form/render.php:56
 msgctxt "progress-tracker"
-msgid "Input"
+msgid "1"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:63
-#: dist/blocks/snow-monkey-form/render.php:76
+#: dist/blocks/snow-monkey-form/render.php:59
+msgctxt "progress-tracker"
+msgid "Input screen"
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/render.php:60
+#: dist/blocks/snow-monkey-form/render.php:71
+#: dist/blocks/snow-monkey-form/render.php:86
+msgid "This is the screen you are currently viewing."
+msgstr ""
+
+#: dist/blocks/snow-monkey-form/render.php:67
+#: dist/blocks/snow-monkey-form/render.php:81
 msgctxt "progress-tracker"
 msgid "2"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:66
+#: dist/blocks/snow-monkey-form/render.php:70
 msgctxt "progress-tracker"
-msgid "Confirm"
+msgid "Confirm screen"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:74
+#: dist/blocks/snow-monkey-form/render.php:79
 msgctxt "progress-tracker"
 msgid "3"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:80
+#: dist/blocks/snow-monkey-form/render.php:85
 msgctxt "progress-tracker"
-msgid "Complete"
+msgid "Complete screen"
 msgstr ""
 
-#: snow-monkey-forms.php:243
+#: snow-monkey-forms.php:278
 msgctxt "form-field-label"
 msgid "Name"
 msgstr ""
 
-#: snow-monkey-forms.php:263
+#: snow-monkey-forms.php:298
 msgctxt "form-field-label"
 msgid "Email"
 msgstr ""
 
-#: snow-monkey-forms.php:283
+#: snow-monkey-forms.php:318
 msgctxt "form-field-label"
 msgid "Message"
 msgstr ""
 
-#: snow-monkey-forms.php:311
+#: snow-monkey-forms.php:346
 msgid "Complete !"
 msgstr ""
 
-#: snow-monkey-forms.php:374
+#: snow-monkey-forms.php:409
 msgid "Admin notification"
 msgstr ""
 
-#: snow-monkey-forms.php:449
+#: snow-monkey-forms.php:484
 msgid "Automatic reply notification"
 msgstr ""
 
@@ -293,7 +305,7 @@ msgstr ""
 #: dist/blocks/text/index.js:1
 #: dist/blocks/textarea/index.js:1
 #: dist/blocks/url/index.js:1
-#: hoc/with-validations.js:24
+#: hoc/with-validations.js:25
 msgid "Required"
 msgstr ""
 

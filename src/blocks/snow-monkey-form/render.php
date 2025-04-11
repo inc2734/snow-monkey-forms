@@ -50,28 +50,30 @@ foreach ( $response->controls as $name => $_controls ) {
 	<div class="smf-focus-point" aria-hidden="true"></div>
 
 	<?php if ( $setting->get( 'use_progress_tracker' ) ) : ?>
-		<ol class="smf-progress-tracker">
-			<li class="smf-progress-tracker__item smf-progress-tracker__item--input">
+		<ol class="smf-progress-tracker" aria-label="<?php esc_attr_e( 'Progress tracker', 'snow-monkey-forms' ); ?>">
+			<li class="smf-progress-tracker__item smf-progress-tracker__item--input" aria-current="false">
 				<div class="smf-progress-tracker__item__number">
 					<?php echo esc_html_x( '1', 'progress-tracker', 'snow-monkey-forms' ); ?>
 				</div>
 				<div class="smf-progress-tracker__item__text">
-					<?php echo esc_html_x( 'Input', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					<?php echo esc_html_x( 'Input screen', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					<span class="screen-reader-text" aria-hidden="true"><?php esc_html_e( 'This is the screen you are currently viewing.', 'snow-monkey-forms' ); ?></span>
 				</div>
 			</li>
 
 			<?php if ( $setting->get( 'use_confirm_page' ) ) : ?>
-				<li class="smf-progress-tracker__item smf-progress-tracker__item--confirm">
+				<li class="smf-progress-tracker__item smf-progress-tracker__item--confirm" aria-current="false">
 					<div class="smf-progress-tracker__item__number">
 						<?php echo esc_html_x( '2', 'progress-tracker', 'snow-monkey-forms' ); ?>
 					</div>
 					<div class="smf-progress-tracker__item__text">
-						<?php echo esc_html_x( 'Confirm', 'progress-tracker', 'snow-monkey-forms' ); ?>
+						<?php echo esc_html_x( 'Confirm screen', 'progress-tracker', 'snow-monkey-forms' ); ?>
+						<span class="screen-reader-text" aria-hidden="true"><?php esc_html_e( 'This is the screen you are currently viewing.', 'snow-monkey-forms' ); ?></span>
 					</div>
 				</li>
 			<?php endif; ?>
 
-			<li class="smf-progress-tracker__item smf-progress-tracker__item--complete">
+			<li class="smf-progress-tracker__item smf-progress-tracker__item--complete" aria-current="false">
 				<div class="smf-progress-tracker__item__number">
 					<?php if ( $setting->get( 'use_confirm_page' ) ) : ?>
 						<?php echo esc_html_x( '3', 'progress-tracker', 'snow-monkey-forms' ); ?>
@@ -80,7 +82,8 @@ foreach ( $response->controls as $name => $_controls ) {
 					<?php endif; ?>
 				</div>
 				<div class="smf-progress-tracker__item__text">
-					<?php echo esc_html_x( 'Complete', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					<?php echo esc_html_x( 'Complete screen', 'progress-tracker', 'snow-monkey-forms' ); ?>
+					<span class="screen-reader-text" aria-hidden="true"><?php esc_html_e( 'This is the screen you are currently viewing.', 'snow-monkey-forms' ); ?></span>
 				</div>
 			</li>
 		</ol>

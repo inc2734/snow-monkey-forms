@@ -46,6 +46,18 @@
 				display: none;
 			}
 		}
+
+		&[aria-current=true] {
+			.smf-progress-tracker__item__number {
+				background-color: var(--_color-text);
+				font-weight: bold;
+			}
+
+			.smf-progress-tracker__item__text {
+				color: var(--_color-text);
+				font-weight: bold;
+			}
+		}
 	}
 
 	&__item__number {
@@ -63,21 +75,5 @@
 	&__item__text {
 		margin-top: .5em;
 		color: var(--_light-color-gray);
-	}
-}
-
-[data-screen="input"] .smf-progress-tracker__item--input,
-[data-screen="invalid"] .smf-progress-tracker__item--input,
-[data-screen="back"] .smf-progress-tracker__item--input,
-[data-screen="confirm"] .smf-progress-tracker__item--confirm,
-[data-screen="complete"] .smf-progress-tracker__item--complete {
-	.smf-progress-tracker__item__number {
-		background-color: var(--_color-text);
-		font-weight: bold;
-	}
-
-	.smf-progress-tracker__item__text {
-		color: var(--_color-text);
-		font-weight: bold;
 	}
 }

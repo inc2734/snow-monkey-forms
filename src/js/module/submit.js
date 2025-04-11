@@ -135,6 +135,31 @@ async function fetchView( form, options ) {
 
 		form.setAttribute( 'data-screen', method );
 
+		const progressTracker = form.querySelector( '.smf-progress-tracker' );
+		if ( !! progressTracker ) {
+			const progressTrackerItems = [].slice.call(
+				progressTracker.querySelectorAll(
+					'.smf-progress-tracker__item'
+				)
+			);
+			progressTrackerItems.forEach( ( item ) => {
+				item.setAttribute( 'aria-current', 'false' );
+				item.querySelector(
+					'.smf-progress-tracker__item__text [aria-hidden]'
+				).setAttribute( 'aria-hidden', 'true' );
+			} );
+
+			const targetItem =
+				'confirm' === method || 'complete' === method
+					? progressTracker.querySelector(
+							`.smf-progress-tracker__item--${ method }`
+					  )
+					: progressTracker.querySelector(
+							`.smf-progress-tracker__item--input`
+					  );
+			targetItem.setAttribute( 'aria-current', 'true' );
+		}
+
 		replaceAction( response.action );
 		if ( method === 'input' ) {
 			return;
