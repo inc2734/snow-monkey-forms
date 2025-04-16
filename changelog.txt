@@ -1,5 +1,10 @@
 *** Changelog ***
 
+= 11.0.0 =
+* WordPress 6.8 compatible.
+* Requires WordPress 6.8 or higher.
+* Progress tracker accessibility.
+
 = 10.0.2 =
 * The `aria-descriptedby` attribute has been changed so that the input field and "description" are automatically linked.
 
