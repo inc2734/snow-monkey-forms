@@ -45,7 +45,13 @@ class Turnstile {
 			// Auto-add Turnstile widget if enabled.
 			$auto_add = Controller::get_option( 'auto-add' );
 			if ( $auto_add ) {
-				add_action( 'snow_monkey_forms/form/append', array( $this, '_add_token_field' ) );
+				$position = Controller::get_option( 'position' );
+
+				if ( 'before' === $position ) {
+					add_action( 'snow_monkey_forms/form/prepend', array( $this, '_add_token_field' ) );
+				} else {
+					add_action( 'snow_monkey_forms/form/append', array( $this, '_add_token_field' ) );
+				}
 			}
 		}
 	}

@@ -48,6 +48,7 @@ foreach ( $response->controls as $name => $_controls ) {
 
 <form class="snow-monkey-form" id="snow-monkey-form-<?php echo esc_attr( $form_id ); ?>" method="post" action=""  enctype="multipart/form-data" data-screen="loading">
 	<div class="smf-focus-point" aria-hidden="true"></div>
+	<?php do_action( 'snow_monkey_forms/form/prepend' ); ?>
 
 	<?php if ( $setting->get( 'use_progress_tracker' ) ) : ?>
 		<ol class="smf-progress-tracker" aria-label="<?php esc_attr_e( 'Progress tracker', 'snow-monkey-forms' ); ?>">

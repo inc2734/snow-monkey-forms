@@ -81,6 +81,7 @@ class Controller {
 					'site-key'   => '',
 					'secret-key' => '',
 					'auto-add'   => false,
+					'position'   => 'after',
 				);
 
 				// チェックボックスの値を適切に処理.
@@ -192,6 +193,29 @@ class Controller {
 			self::OPTION_GROUP,
 			self::OPTION_NAME
 		);
+
+		add_settings_field(
+			'position',
+			'<label for="turnstile-position">' . esc_html__( 'Widget Position', 'snow-monkey-forms' ) . '</label>',
+			function () {
+				$current_value = static::get_option( 'position' );
+				?>
+				<select id="turnstile-position" name="<?php echo esc_attr( self::OPTION_NAME ); ?>[position]">
+					<option value="before" <?php selected( $current_value, 'before' ); ?>>
+						<?php esc_html_e( 'Before form', 'snow-monkey-forms' ); ?>
+					</option>
+					<option value="after" <?php selected( $current_value, 'after' ); ?>>
+						<?php esc_html_e( 'After form', 'snow-monkey-forms' ); ?>
+					</option>
+				</select>
+				<p class="description">
+					<?php esc_html_e( 'Choose where to display the Turnstile widget relative to the form.', 'snow-monkey-forms' ); ?>
+				</p>
+				<?php
+			},
+			self::OPTION_GROUP,
+			self::OPTION_NAME
+		);
 	}
 
 	/**
@@ -208,6 +232,7 @@ class Controller {
 				'site-key'   => '',
 				'secret-key' => '',
 				'auto-add'   => false,
+				'position'   => 'after',
 			);
 			return isset( $defaults[ $key ] ) ? $defaults[ $key ] : false;
 		}
