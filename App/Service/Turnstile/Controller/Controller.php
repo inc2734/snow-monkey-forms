@@ -7,6 +7,12 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Service\Turnstile\Controller;
 
+/**
+ * Controller class for Cloudflare Turnstile settings.
+ *
+ * This class handles the admin interface for configuring Cloudflare Turnstile
+ * integration, including site key, secret key, and auto-add options.
+ */
 class Controller {
 
 	/**
@@ -72,10 +78,16 @@ class Controller {
 			self::OPTION_NAME,
 			function ( $option ) {
 				$default_option = array(
-					'site-key'      => '',
-					'secret-key'    => '',
-					'auto-add'      => true,
+					'site-key'   => '',
+					'secret-key' => '',
+					'auto-add'   => false,
 				);
+
+				// チェックボックスの値を適切に処理.
+				if ( isset( $option ) && is_array( $option ) ) {
+					// auto-addは1か0で来るので、booleanに変換.
+					$option['auto-add'] = isset( $option['auto-add'] ) && '1' === $option['auto-add'];
+				}
 
 				return shortcode_atts(
 					$default_option,
@@ -162,14 +174,16 @@ class Controller {
 			'auto-add',
 			'<label for="turnstile-auto-add">' . esc_html__( 'Auto add to forms', 'snow-monkey-forms' ) . '</label>',
 			function () {
+				$current_value = static::get_option( 'auto-add' );
 				?>
 				<label>
+					<input type="hidden" name="<?php echo esc_attr( self::OPTION_NAME ); ?>[auto-add]" value="0" />
 					<input
 						type="checkbox"
 						id="turnstile-auto-add"
 						name="<?php echo esc_attr( self::OPTION_NAME ); ?>[auto-add]"
 						value="1"
-						<?php checked( static::get_option( 'auto-add' ), true ); ?>
+						<?php checked( $current_value, true ); ?>
 					/>
 					<?php esc_html_e( 'Automatically add Turnstile widget to all forms', 'snow-monkey-forms' ); ?>
 				</label>
@@ -189,7 +203,13 @@ class Controller {
 	public static function get_option( $key ) {
 		$option = get_option( self::OPTION_NAME );
 		if ( ! $option ) {
-			return false;
+			// デフォルト値を返す.
+			$defaults = array(
+				'site-key'   => '',
+				'secret-key' => '',
+				'auto-add'   => false,
+			);
+			return isset( $defaults[ $key ] ) ? $defaults[ $key ] : false;
 		}
 
 		return isset( $option[ $key ] ) ? $option[ $key ] : false;

@@ -30,22 +30,22 @@ class Turnstile {
 	 * Constructor.
 	 */
 	public function __construct() {
+		// Always initialize the controller for admin interface.
 		new Controller();
 
 		$this->site_key   = Controller::get_option( 'site-key' );
 		$this->secret_key = Controller::get_option( 'secret-key' );
 
-		if ( ! $this->site_key || ! $this->secret_key ) {
-			return;
-		}
+		// Only add frontend functionality if keys are configured.
+		if ( $this->site_key && $this->secret_key ) {
+			add_action( 'wp_enqueue_scripts', array( $this, '_wp_enqueue_scripts' ) );
+			add_filter( 'snow_monkey_forms/spam/validate', array( $this, '_validate' ) );
 
-		add_action( 'wp_enqueue_scripts', array( $this, '_wp_enqueue_scripts' ) );
-		add_filter( 'snow_monkey_forms/spam/validate', array( $this, '_validate' ) );
-
-		// Auto-add Turnstile widget if enabled
-		$auto_add = Controller::get_option( 'auto-add' );
-		if ( $auto_add ) {
-			add_action( 'snow_monkey_forms/form/append', array( $this, '_add_token_field' ) );
+			// Auto-add Turnstile widget if enabled.
+			$auto_add = Controller::get_option( 'auto-add' );
+			if ( $auto_add ) {
+				add_action( 'snow_monkey_forms/form/append', array( $this, '_add_token_field' ) );
+			}
 		}
 	}
 
@@ -97,11 +97,15 @@ class Turnstile {
 	 * Enqueue Turnstile assets.
 	 */
 	public function _wp_enqueue_scripts() {
+		// Get plugin version.
+		$plugin_data = get_file_data( SNOW_MONKEY_FORMS_PATH . '/snow-monkey-forms.php', array( 'Version' => 'Version' ) );
+		$version     = isset( $plugin_data['Version'] ) ? $plugin_data['Version'] : '1.0.0';
+
 		wp_enqueue_script(
 			'cloudflare-turnstile',
 			'https://challenges.cloudflare.com/turnstile/v0/api.js',
 			array(),
-			null,
+			$version,
 			array(
 				'in_footer' => true,
 				'strategy'  => 'async',
@@ -146,7 +150,10 @@ class Turnstile {
 			)
 		);
 
-		// Add the Turnstile widget div
-		echo '<div class="cf-turnstile" data-sitekey="' . esc_attr( $this->site_key ) . '"></div>';
+		// Add the Turnstile widget div safely.
+		printf(
+			'<div class="cf-turnstile" data-sitekey="%s"></div>',
+			esc_attr( $this->site_key )
+		);
 	}
 }
