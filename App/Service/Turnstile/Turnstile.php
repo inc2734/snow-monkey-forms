@@ -9,6 +9,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Service\Turnstile;
 
 use Snow_Monkey\Plugin\Forms\App\Service\Turnstile\Controller\Controller;
 use Snow_Monkey\Plugin\Forms\App\Helper;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 
 class Turnstile {
 
@@ -61,6 +62,7 @@ class Turnstile {
 		}
 
 		$token = filter_input( INPUT_POST, 'cf-turnstile-response' );
+
 		if ( ! $token ) {
 			return false;
 		}
@@ -77,6 +79,7 @@ class Turnstile {
 		$response = wp_remote_post( esc_url_raw( $endpoint ), $request_args );
 
 		$response_code = (int) wp_remote_retrieve_response_code( $response );
+
 		if ( 200 !== $response_code ) {
 			return false;
 		}
@@ -105,7 +108,7 @@ class Turnstile {
 			'cloudflare-turnstile',
 			'https://challenges.cloudflare.com/turnstile/v0/api.js',
 			array(),
-			$version,
+			null, // No version parameter for external API.
 			array(
 				'in_footer' => true,
 				'strategy'  => 'async',
@@ -140,6 +143,13 @@ class Turnstile {
 	 * Add hidden field for Turnstile response token into forms.
 	 */
 	public function _add_token_field() {
+		// Prevent duplicate Turnstile widgets by checking if already added globally.
+		static $turnstile_added = false;
+		if ( $turnstile_added ) {
+			return;
+		}
+		$turnstile_added = true;
+
 		Helper::the_control(
 			'hidden',
 			array(
