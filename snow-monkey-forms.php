@@ -23,6 +23,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 use Snow_Monkey\Plugin\Forms\App\Rest;
 use Snow_Monkey\Plugin\Forms\App\Service\Admin\Admin;
 use Snow_Monkey\Plugin\Forms\App\Service\ReCaptcha\ReCaptcha;
+use Snow_Monkey\Plugin\Forms\App\Service\Turnstile\Turnstile;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -70,6 +71,7 @@ class Bootstrap {
 		add_action( 'template_redirect', array( $this, '_do_empty_save_dir' ) );
 
 		new ReCaptcha();
+		new Turnstile();
 	}
 
 	/**
