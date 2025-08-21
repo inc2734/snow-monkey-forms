@@ -116,7 +116,6 @@ class Turnstile {
 			array(),
 			null, // No version parameter for external API.
 			array(
-				'in_footer' => true,
 				'strategy'  => 'async',
 			)
 		);
@@ -128,21 +127,21 @@ class Turnstile {
 			array_merge( $asset['dependencies'], array( 'cloudflare-turnstile' ) ),
 			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/turnstile.js' ),
 			array(
-				'in_footer' => true,
+				'strategy'  => 'defer',
 			)
 		);
 
-		wp_add_inline_script(
-			'snow-monkey-forms@turnstile',
-			'var snowmonkeyforms_turnstile = ' . wp_json_encode(
-				array(
-					'siteKey' => $this->site_key,
-					'theme'   => apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ),
-					'size'    => apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ),
-				)
-			),
-			'after'
-		);
+		// wp_add_inline_script(
+		// 	'snow-monkey-forms@turnstile',
+		// 	'var snowmonkeyforms_turnstile = ' . wp_json_encode(
+		// 		array(
+		// 			'siteKey' => $this->site_key,
+		// 			'theme'   => apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ),
+		// 			'size'    => apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ),
+		// 		)
+		// 	),
+		// 	'after'
+		// );
 	}
 
 	/**
@@ -168,8 +167,10 @@ class Turnstile {
 
 		// Add the Turnstile widget div safely.
 		printf(
-			'<div class="cf-turnstile" data-sitekey="%s"></div>',
-			esc_attr( $this->site_key )
+			'<div class="cf-turnstile" data-sitekey="%s" theme="%s" size="%s"></div>',
+			esc_attr( $this->site_key ),
+			apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ),
+			apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' )
 		);
 	}
 }

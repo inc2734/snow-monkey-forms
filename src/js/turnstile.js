@@ -2,10 +2,11 @@ import '@wordpress/i18n';
 
 document.addEventListener( 'DOMContentLoaded', () => {
 	// Global Turnstile configuration
-	window.snowmonkeyforms_turnstile = {
-		...( window.snowmonkeyforms_turnstile ?? {} ),
-	};
+	// window.snowmonkeyforms_turnstile = {
+	// 	...( window.snowmonkeyforms_turnstile ?? {} ),
+	// };
 
+	/*
 	// Turnstile callback function
 	window.turnstileCallback = function ( token ) {
 		const field = document.querySelector(
@@ -32,7 +33,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				try {
 					turnstile.reset( existingWidgetId );
 				} catch ( error ) {
-					// Ignore reset errors, clear container manually
+					console.warn( error );
 				}
 			}
 
@@ -63,7 +64,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 				widget.setAttribute( 'data-rendered', 'true' );
 				widget.setAttribute( 'data-widget-id', widgetId );
 			} catch ( error ) {
-				// Ignore render errors
+				console.warn( error );
 			}
 		} );
 	};
@@ -85,6 +86,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 	};
 
 	checkTurnstile();
+	*/
 
 	// Reset Turnstile on form submission (for cases where form doesn't redirect)
 	const forms = document.querySelectorAll( '.snow-monkey-form' );
