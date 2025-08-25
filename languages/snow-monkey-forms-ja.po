@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Snow Monkey Forms\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-"
 "forms\n"
-"POT-Creation-Date: 2025-04-11T01:01:49+00:00\n"
-"PO-Revision-Date: 2025-04-11 10:02+0900\n"
+"POT-Creation-Date: 2025-08-25T13:32:07+00:00\n"
+"PO-Revision-Date: 2025-08-25 22:33+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: snow-monkey-forms.php\n"
@@ -26,7 +26,7 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: dist\n"
 
 #. Plugin Name of the plugin
-#: snow-monkey-forms.php snow-monkey-forms.php:262 snow-monkey-forms.php:585
+#: snow-monkey-forms.php snow-monkey-forms.php:264 snow-monkey-forms.php:587
 msgid "Snow Monkey Forms"
 msgstr "Snow Monkey Forms"
 
@@ -95,7 +95,7 @@ msgid "Failed to send administrator email."
 msgstr "管理者メールの送信に失敗しました。"
 
 #: App/Rest/Route/View.php:138 App/Rest/Route/View.php:184
-#: dist/blocks/snow-monkey-form/render.php:108
+#: dist/blocks/snow-monkey-form/render.php:109
 msgid "Please try again later or contact your administrator by other means."
 msgstr "後でもう一度やり直すか、他の方法で管理者に連絡してください。"
 
@@ -103,7 +103,7 @@ msgstr "後でもう一度やり直すか、他の方法で管理者に連絡し
 msgid "Failed to send auto reply email."
 msgstr "自動返信メールの送信に失敗しました。"
 
-#: App/Rest/Route/View.php:182 dist/blocks/snow-monkey-form/render.php:106
+#: App/Rest/Route/View.php:182 dist/blocks/snow-monkey-form/render.php:107
 msgid "An unexpected problem has occurred."
 msgstr "予期しない問題が発生しました。"
 
@@ -114,6 +114,7 @@ msgid "reCAPTCHA"
 msgstr "reCAPTCHA"
 
 #: App/Service/ReCaptcha/Controller/Controller.php:95
+#: App/Service/Turnstile/Controller/Controller.php:102
 msgid "Settings saved."
 msgstr "設定を保存しました。"
 
@@ -123,16 +124,55 @@ msgstr "reCAPTCHA は問い合わせフォームを詐欺や悪用から保護�
 
 #. translators: %1$s: <a> open tag, %2$s: </a> close tag.
 #: App/Service/ReCaptcha/Controller/Controller.php:112
+#, php-format
 msgid "For detail see %1$sreCAPTCHA%2$s."
 msgstr "詳細については、%1$sreCAPTCHA%2$sを参照してください。"
 
 #: App/Service/ReCaptcha/Controller/Controller.php:126
+#: App/Service/Turnstile/Controller/Controller.php:133
 msgid "Site Key"
 msgstr "Site Key"
 
 #: App/Service/ReCaptcha/Controller/Controller.php:144
+#: App/Service/Turnstile/Controller/Controller.php:151
 msgid "Secret Key"
 msgstr "Secret Key"
+
+#: App/Service/Turnstile/Controller/Controller.php:46
+#: App/Service/Turnstile/Controller/Controller.php:47
+#: App/Service/Turnstile/Controller/Controller.php:60
+msgid "Cloudflare Turnstile"
+msgstr "Cloudflare Turnstile"
+
+#: App/Service/Turnstile/Controller/Controller.php:110
+msgid ""
+"Cloudflare Turnstile protects your contact form from fraud and abuse without "
+"slowing down web experiences for real users."
+msgstr ""
+"Cloudflare Turnstileは、実際のユーザーのウェブ体験を低下させることなく、お問"
+"い合わせフォームを詐欺や不正行為から保護します。"
+
+#. translators: %1$s: <a> open tag, %2$s: </a> close tag.
+#: App/Service/Turnstile/Controller/Controller.php:119
+#, php-format
+msgid "For detail see %1$sCloudflare Turnstile%2$s."
+msgstr "詳細については、%1$sCloudflare Turnstile%2$sを参照してください。"
+
+#: App/Service/Turnstile/Controller/Controller.php:169
+msgid "Widget Position"
+msgstr "ウィジェットの位置"
+
+#: App/Service/Turnstile/Controller/Controller.php:175
+msgid "Before form"
+msgstr "フォームの前"
+
+#: App/Service/Turnstile/Controller/Controller.php:178
+msgid "After form"
+msgstr "フォームの後"
+
+#: App/Service/Turnstile/Controller/Controller.php:182
+msgid "Choose where to display the Turnstile widget relative to the form."
+msgstr "Turnstileウィジェットをフォームのどこに表示するかを選択してください。"
 
 #: App/Validation/Date.php:42
 msgid "Please enter a valid date."
@@ -158,71 +198,71 @@ msgstr "アップロードに失敗しました。"
 msgid "Please enter a valid URL."
 msgstr "有効な URL を入力してください。"
 
-#: dist/blocks/snow-monkey-form/render.php:53
+#: dist/blocks/snow-monkey-form/render.php:54
 msgid "Progress tracker"
 msgstr "プログレストラッカー"
 
-#: dist/blocks/snow-monkey-form/render.php:56
+#: dist/blocks/snow-monkey-form/render.php:57
 msgctxt "progress-tracker"
 msgid "1"
 msgstr "1"
 
-#: dist/blocks/snow-monkey-form/render.php:59
+#: dist/blocks/snow-monkey-form/render.php:60
 msgctxt "progress-tracker"
 msgid "Input screen"
 msgstr "入力画面"
 
-#: dist/blocks/snow-monkey-form/render.php:60
-#: dist/blocks/snow-monkey-form/render.php:71
-#: dist/blocks/snow-monkey-form/render.php:86
+#: dist/blocks/snow-monkey-form/render.php:61
+#: dist/blocks/snow-monkey-form/render.php:72
+#: dist/blocks/snow-monkey-form/render.php:87
 msgid "This is the screen you are currently viewing."
 msgstr "現在表示されている画面です。"
 
-#: dist/blocks/snow-monkey-form/render.php:67
-#: dist/blocks/snow-monkey-form/render.php:81
+#: dist/blocks/snow-monkey-form/render.php:68
+#: dist/blocks/snow-monkey-form/render.php:82
 msgctxt "progress-tracker"
 msgid "2"
 msgstr "2"
 
-#: dist/blocks/snow-monkey-form/render.php:70
+#: dist/blocks/snow-monkey-form/render.php:71
 msgctxt "progress-tracker"
 msgid "Confirm screen"
 msgstr "確認画面"
 
-#: dist/blocks/snow-monkey-form/render.php:79
+#: dist/blocks/snow-monkey-form/render.php:80
 msgctxt "progress-tracker"
 msgid "3"
 msgstr "3"
 
-#: dist/blocks/snow-monkey-form/render.php:85
+#: dist/blocks/snow-monkey-form/render.php:86
 msgctxt "progress-tracker"
 msgid "Complete screen"
 msgstr "完了画面"
 
-#: snow-monkey-forms.php:278
+#: snow-monkey-forms.php:280
 msgctxt "form-field-label"
 msgid "Name"
 msgstr "お名前"
 
-#: snow-monkey-forms.php:298
+#: snow-monkey-forms.php:300
 msgctxt "form-field-label"
 msgid "Email"
 msgstr "Eメール"
 
-#: snow-monkey-forms.php:318
+#: snow-monkey-forms.php:320
 msgctxt "form-field-label"
 msgid "Message"
 msgstr "メッセージ"
 
-#: snow-monkey-forms.php:346
+#: snow-monkey-forms.php:348
 msgid "Complete !"
 msgstr "完了しました。"
 
-#: snow-monkey-forms.php:409
+#: snow-monkey-forms.php:411
 msgid "Admin notification"
 msgstr "管理者通知"
 
-#: snow-monkey-forms.php:484
+#: snow-monkey-forms.php:486
 msgid "Automatic reply notification"
 msgstr "自動返信通知"
 
@@ -304,8 +344,8 @@ msgstr "グループ化"
 #: dist/blocks/checkboxes/index.js:7 dist/blocks/radio-buttons/index.js:4
 msgid "Enable if you want to group by fieldset and label by legend."
 msgstr ""
-"fieldset でグループ化し凡例（legend）でラベルを付けたい場合は有効化してくだ"
-"さい。"
+"fieldset でグループ化し凡例（legend）でラベルを付けたい場合は有効化してくださ"
+"い。"
 
 #: dist/blocks/checkboxes/index.js:7 dist/blocks/radio-buttons/index.js:4
 msgid "Make legend invisible"
@@ -565,8 +605,8 @@ msgid ""
 "Add a label element and link it with a form field of your choice. Enter the "
 "id of the form field you want to link to."
 msgstr ""
-"label 要素を追加し、任意のフォーム項目に紐付けます。紐付け先のフォーム項目"
-"の id を入力します。"
+"label 要素を追加し、任意のフォーム項目に紐付けます。紐付け先のフォーム項目の "
+"id を入力します。"
 
 #: dist/blocks/month/index.js:1
 msgid "Minimum month"

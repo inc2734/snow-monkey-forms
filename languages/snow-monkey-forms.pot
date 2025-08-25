@@ -2,22 +2,22 @@
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Snow Monkey Forms 10.0.2\n"
+"Project-Id-Version: Snow Monkey Forms 11.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-11T01:01:49+00:00\n"
+"POT-Creation-Date: 2025-08-25T13:32:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.11.0\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: snow-monkey-forms\n"
 
 #. Plugin Name of the plugin
 #: snow-monkey-forms.php
-#: snow-monkey-forms.php:262
-#: snow-monkey-forms.php:585
+#: snow-monkey-forms.php:264
+#: snow-monkey-forms.php:587
 msgid "Snow Monkey Forms"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgstr ""
 
 #: App/Rest/Route/View.php:138
 #: App/Rest/Route/View.php:184
-#: dist/blocks/snow-monkey-form/render.php:108
+#: dist/blocks/snow-monkey-form/render.php:109
 msgid "Please try again later or contact your administrator by other means."
 msgstr ""
 
@@ -97,7 +97,7 @@ msgid "Failed to send auto reply email."
 msgstr ""
 
 #: App/Rest/Route/View.php:182
-#: dist/blocks/snow-monkey-form/render.php:106
+#: dist/blocks/snow-monkey-form/render.php:107
 msgid "An unexpected problem has occurred."
 msgstr ""
 
@@ -108,6 +108,7 @@ msgid "reCAPTCHA"
 msgstr ""
 
 #: App/Service/ReCaptcha/Controller/Controller.php:95
+#: App/Service/Turnstile/Controller/Controller.php:102
 msgid "Settings saved."
 msgstr ""
 
@@ -117,15 +118,50 @@ msgstr ""
 
 #. translators: %1$s: <a> open tag, %2$s: </a> close tag.
 #: App/Service/ReCaptcha/Controller/Controller.php:112
+#, php-format
 msgid "For detail see %1$sreCAPTCHA%2$s."
 msgstr ""
 
 #: App/Service/ReCaptcha/Controller/Controller.php:126
+#: App/Service/Turnstile/Controller/Controller.php:133
 msgid "Site Key"
 msgstr ""
 
 #: App/Service/ReCaptcha/Controller/Controller.php:144
+#: App/Service/Turnstile/Controller/Controller.php:151
 msgid "Secret Key"
+msgstr ""
+
+#: App/Service/Turnstile/Controller/Controller.php:46
+#: App/Service/Turnstile/Controller/Controller.php:47
+#: App/Service/Turnstile/Controller/Controller.php:60
+msgid "Cloudflare Turnstile"
+msgstr ""
+
+#: App/Service/Turnstile/Controller/Controller.php:110
+msgid "Cloudflare Turnstile protects your contact form from fraud and abuse without slowing down web experiences for real users."
+msgstr ""
+
+#. translators: %1$s: <a> open tag, %2$s: </a> close tag.
+#: App/Service/Turnstile/Controller/Controller.php:119
+#, php-format
+msgid "For detail see %1$sCloudflare Turnstile%2$s."
+msgstr ""
+
+#: App/Service/Turnstile/Controller/Controller.php:169
+msgid "Widget Position"
+msgstr ""
+
+#: App/Service/Turnstile/Controller/Controller.php:175
+msgid "Before form"
+msgstr ""
+
+#: App/Service/Turnstile/Controller/Controller.php:178
+msgid "After form"
+msgstr ""
+
+#: App/Service/Turnstile/Controller/Controller.php:182
+msgid "Choose where to display the Turnstile widget relative to the form."
 msgstr ""
 
 #: App/Validation/Date.php:42
@@ -152,71 +188,71 @@ msgstr ""
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:53
+#: dist/blocks/snow-monkey-form/render.php:54
 msgid "Progress tracker"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:56
+#: dist/blocks/snow-monkey-form/render.php:57
 msgctxt "progress-tracker"
 msgid "1"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:59
+#: dist/blocks/snow-monkey-form/render.php:60
 msgctxt "progress-tracker"
 msgid "Input screen"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:60
-#: dist/blocks/snow-monkey-form/render.php:71
-#: dist/blocks/snow-monkey-form/render.php:86
+#: dist/blocks/snow-monkey-form/render.php:61
+#: dist/blocks/snow-monkey-form/render.php:72
+#: dist/blocks/snow-monkey-form/render.php:87
 msgid "This is the screen you are currently viewing."
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:67
-#: dist/blocks/snow-monkey-form/render.php:81
+#: dist/blocks/snow-monkey-form/render.php:68
+#: dist/blocks/snow-monkey-form/render.php:82
 msgctxt "progress-tracker"
 msgid "2"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:70
+#: dist/blocks/snow-monkey-form/render.php:71
 msgctxt "progress-tracker"
 msgid "Confirm screen"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:79
+#: dist/blocks/snow-monkey-form/render.php:80
 msgctxt "progress-tracker"
 msgid "3"
 msgstr ""
 
-#: dist/blocks/snow-monkey-form/render.php:85
+#: dist/blocks/snow-monkey-form/render.php:86
 msgctxt "progress-tracker"
 msgid "Complete screen"
 msgstr ""
 
-#: snow-monkey-forms.php:278
+#: snow-monkey-forms.php:280
 msgctxt "form-field-label"
 msgid "Name"
 msgstr ""
 
-#: snow-monkey-forms.php:298
+#: snow-monkey-forms.php:300
 msgctxt "form-field-label"
 msgid "Email"
 msgstr ""
 
-#: snow-monkey-forms.php:318
+#: snow-monkey-forms.php:320
 msgctxt "form-field-label"
 msgid "Message"
 msgstr ""
 
-#: snow-monkey-forms.php:346
+#: snow-monkey-forms.php:348
 msgid "Complete !"
 msgstr ""
 
-#: snow-monkey-forms.php:409
+#: snow-monkey-forms.php:411
 msgid "Admin notification"
 msgstr ""
 
-#: snow-monkey-forms.php:484
+#: snow-monkey-forms.php:486
 msgid "Automatic reply notification"
 msgstr ""
 
@@ -263,6 +299,7 @@ msgstr ""
 
 #. translators: %1$s: line-break-char
 #: dist/blocks/checkboxes/index.js:4
+#, js-format
 msgid "Optional. Initial value. Enter in the following format: value%1$s"
 msgstr ""
 
@@ -276,6 +313,7 @@ msgstr ""
 #: dist/blocks/checkboxes/index.js:7
 #: dist/blocks/radio-buttons/index.js:4
 #: dist/blocks/select/index.js:4
+#, js-format
 msgid "Required. Enter in the following format: \"value\" : \"label\"%1$s or value%1$s"
 msgstr ""
 

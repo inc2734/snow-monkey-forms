@@ -31,7 +31,6 @@ class Turnstile {
 	 * Constructor.
 	 */
 	public function __construct() {
-		// Always initialize the controller for admin interface.
 		new Controller();
 
 		$this->site_key   = Controller::get_option( 'site-key' );
@@ -42,16 +41,12 @@ class Turnstile {
 			add_action( 'wp_enqueue_scripts', array( $this, '_wp_enqueue_scripts' ) );
 			add_filter( 'snow_monkey_forms/spam/validate', array( $this, '_validate' ) );
 
-			// Auto-add Turnstile widget if enabled.
-			$auto_add = Controller::get_option( 'auto-add' );
-			if ( $auto_add ) {
-				$position = Controller::get_option( 'position' );
+			$position = Controller::get_option( 'position' );
 
-				if ( 'before' === $position ) {
-					add_action( 'snow_monkey_forms/form/prepend', array( $this, '_add_token_field' ) );
-				} else {
-					add_action( 'snow_monkey_forms/form/append', array( $this, '_add_token_field' ) );
-				}
+			if ( 'before' === $position ) {
+				add_action( 'snow_monkey_forms/form/prepend', array( $this, '_add_token_field' ) );
+			} else {
+				add_action( 'snow_monkey_forms/form/append', array( $this, '_add_token_field' ) );
 			}
 		}
 	}
@@ -106,55 +101,41 @@ class Turnstile {
 	 * Enqueue Turnstile assets.
 	 */
 	public function _wp_enqueue_scripts() {
-		// Get plugin version.
-		$plugin_data = get_file_data( SNOW_MONKEY_FORMS_PATH . '/snow-monkey-forms.php', array( 'Version' => 'Version' ) );
-		$version     = isset( $plugin_data['Version'] ) ? $plugin_data['Version'] : '1.0.0';
-
 		wp_enqueue_script(
 			'cloudflare-turnstile',
-			'https://challenges.cloudflare.com/turnstile/v0/api.js',
+			'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback',
 			array(),
-			null, // No version parameter for external API.
+			1,
 			array(
-				'strategy'  => 'async',
+				'strategy' => 'async',
 			)
 		);
 
-		$asset = include SNOW_MONKEY_FORMS_PATH . '/dist/js/turnstile.asset.php';
-		wp_enqueue_script(
-			'snow-monkey-forms@turnstile',
-			SNOW_MONKEY_FORMS_URL . '/dist/js/turnstile.js',
-			array_merge( $asset['dependencies'], array( 'cloudflare-turnstile' ) ),
-			filemtime( SNOW_MONKEY_FORMS_PATH . '/dist/js/turnstile.js' ),
-			array(
-				'strategy'  => 'defer',
-			)
-		);
+		wp_add_inline_script(
+			'cloudflare-turnstile',
+			'function onloadTurnstileCallback() {
+				const forms = document.querySelectorAll( ".snow-monkey-form" );
+				[].slice.call( forms ).forEach( ( form ) => {
+					const turnstileWidgetId = turnstile.render( form.querySelector( ".snow-monkey-forms-turnstile" ), {
+						sitekey: "' . esc_js( $this->site_key ) . '",
+						theme: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ) ) . '",
+						size: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ) ) . '",
+						callback: function( token ) {
+							// Silence is golden.
+						},
+					} );
 
-		// wp_add_inline_script(
-		// 	'snow-monkey-forms@turnstile',
-		// 	'var snowmonkeyforms_turnstile = ' . wp_json_encode(
-		// 		array(
-		// 			'siteKey' => $this->site_key,
-		// 			'theme'   => apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ),
-		// 			'size'    => apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ),
-		// 		)
-		// 	),
-		// 	'after'
-		// );
+					form.addEventListener( "smf.submit", () => turnstile.reset( turnstileWidgetId ) );
+				} );
+			}',
+			'after'
+		);
 	}
 
 	/**
 	 * Add hidden field for Turnstile response token into forms.
 	 */
 	public function _add_token_field() {
-		// Prevent duplicate Turnstile widgets by checking if already added globally.
-		static $turnstile_added = false;
-		if ( $turnstile_added ) {
-			return;
-		}
-		$turnstile_added = true;
-
 		Helper::the_control(
 			'hidden',
 			array(
@@ -165,12 +146,8 @@ class Turnstile {
 			)
 		);
 
-		// Add the Turnstile widget div safely.
-		printf(
-			'<div class="cf-turnstile" data-sitekey="%s" theme="%s" size="%s"></div>',
-			esc_attr( $this->site_key ),
-			apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ),
-			apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' )
-		);
+		$position = Controller::get_option( 'position' );
+
+		echo '<div class="snow-monkey-forms-turnstile snow-monkey-forms-turnstile--position:' . esc_attr( $position ) . '"></div>';
 	}
 }

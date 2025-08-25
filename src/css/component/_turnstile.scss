@@ -1,0 +1,13 @@
+.snow-monkey-forms-turnstile {
+	> div {
+		display: grid;
+	}
+}
+
+.snow-monkey-forms-turnstile--position\:before {
+	margin-bottom: var(--_s1);
+}
+
+.snow-monkey-forms-turnstile--position\:after {
+	margin-top: var(--_s1);
+}

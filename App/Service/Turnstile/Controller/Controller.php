@@ -11,7 +11,7 @@ namespace Snow_Monkey\Plugin\Forms\App\Service\Turnstile\Controller;
  * Controller class for Cloudflare Turnstile settings.
  *
  * This class handles the admin interface for configuring Cloudflare Turnstile
- * integration, including site key, secret key, and auto-add options.
+ * integration, including site key adn secret key options.
  */
 class Controller {
 
@@ -44,7 +44,7 @@ class Controller {
 		add_submenu_page(
 			'edit.php?post_type=snow-monkey-forms',
 			__( 'Cloudflare Turnstile', 'snow-monkey-forms' ),
-			__( 'Turnstile', 'snow-monkey-forms' ),
+			__( 'Cloudflare Turnstile', 'snow-monkey-forms' ),
 			'manage_options',
 			self::OPTION_GROUP,
 			array( $this, '_content' )
@@ -80,15 +80,8 @@ class Controller {
 				$default_option = array(
 					'site-key'   => '',
 					'secret-key' => '',
-					'auto-add'   => false,
 					'position'   => 'after',
 				);
-
-				// チェックボックスの値を適切に処理.
-				if ( isset( $option ) && is_array( $option ) ) {
-					// auto-addは1か0で来るので、booleanに変換.
-					$option['auto-add'] = isset( $option['auto-add'] ) && '1' === $option['auto-add'];
-				}
 
 				return shortcode_atts(
 					$default_option,
@@ -124,7 +117,7 @@ class Controller {
 						sprintf(
 							// translators: %1$s: <a> open tag, %2$s: </a> close tag.
 							__( 'For detail see %1$sCloudflare Turnstile%2$s.', 'snow-monkey-forms' ),
-							'<a href="https://developers.cloudflare.com/turnstile/" target="_blank" rel="noopener">',
+							'<a href="https://www.cloudflare.com/application-services/products/turnstile/" target="_blank" rel="noopener">',
 							'</a>'
 						)
 					);
@@ -172,29 +165,6 @@ class Controller {
 		);
 
 		add_settings_field(
-			'auto-add',
-			'<label for="turnstile-auto-add">' . esc_html__( 'Auto add to forms', 'snow-monkey-forms' ) . '</label>',
-			function () {
-				$current_value = static::get_option( 'auto-add' );
-				?>
-				<label>
-					<input type="hidden" name="<?php echo esc_attr( self::OPTION_NAME ); ?>[auto-add]" value="0" />
-					<input
-						type="checkbox"
-						id="turnstile-auto-add"
-						name="<?php echo esc_attr( self::OPTION_NAME ); ?>[auto-add]"
-						value="1"
-						<?php checked( $current_value, true ); ?>
-					/>
-					<?php esc_html_e( 'Automatically add Turnstile widget to all forms', 'snow-monkey-forms' ); ?>
-				</label>
-				<?php
-			},
-			self::OPTION_GROUP,
-			self::OPTION_NAME
-		);
-
-		add_settings_field(
 			'position',
 			'<label for="turnstile-position">' . esc_html__( 'Widget Position', 'snow-monkey-forms' ) . '</label>',
 			function () {
@@ -227,11 +197,9 @@ class Controller {
 	public static function get_option( $key ) {
 		$option = get_option( self::OPTION_NAME );
 		if ( ! $option ) {
-			// デフォルト値を返す.
 			$defaults = array(
 				'site-key'   => '',
 				'secret-key' => '',
-				'auto-add'   => false,
 				'position'   => 'after',
 			);
 			return isset( $defaults[ $key ] ) ? $defaults[ $key ] : false;
