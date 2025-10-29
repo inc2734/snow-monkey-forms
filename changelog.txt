@@ -1,5 +1,10 @@
 *** Changelog ***
 
+= 12.0.1 =
+* Fixed issue where Cloudflare Turnstile could not be sent before validation.
+* Fixed a bug where repeatedly pressing the send button would result in spam being detected.
+* Fixed so that the send button cannot be pressed repeatedly.
+
 = 12.0.0 =
 * Add Cloudflare Turnstile settings.
 
