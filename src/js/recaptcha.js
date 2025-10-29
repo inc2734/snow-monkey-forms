@@ -5,6 +5,9 @@ let preventDefault = false;
 document.addEventListener( 'DOMContentLoaded', () => {
 	const onClick = ( event, form ) => {
 		if ( preventDefault ) {
+			if ( event.isTrusted ) {
+				event.preventDefault();
+			}
 			return;
 		}
 
