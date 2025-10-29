@@ -116,16 +116,38 @@ class Turnstile {
 			'function onloadTurnstileCallback() {
 				const forms = document.querySelectorAll( ".snow-monkey-form" );
 				[].slice.call( forms ).forEach( ( form ) => {
-					const turnstileWidgetId = turnstile.render( form.querySelector( ".snow-monkey-forms-turnstile" ), {
+					const container = form.querySelector( ".snow-monkey-forms-turnstile" );
+					const tokenField = form.querySelector( "input[name=\"cf-turnstile-response\"]" );
+
+					if ( ! container || ! tokenField ) {
+						return;
+					}
+
+					const turnstileWidgetId = turnstile.render( container, {
 						sitekey: "' . esc_js( $this->site_key ) . '",
 						theme: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ) ) . '",
 						size: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ) ) . '",
-						callback: function( token ) {
-							// Silence is golden.
+						callback: function() {
+							const actionArea = form.querySelector( \'.smf-action\' );
+							const submitter = actionArea.querySelector( \'[type="submit"]\' );
+							submitter?.removeAttribute( "disabled" );
 						},
 					} );
 
-					form.addEventListener( "smf.submit", () => turnstile.reset( turnstileWidgetId ) );
+					form.addEventListener( "smf.input", () => {
+						const actionArea = form.querySelector( \'.smf-action\' );
+						const submitter = actionArea.querySelector( \'[type="submit"]\' );
+						submitter?.setAttribute( "disabled", "disabled" );
+					} );
+					form.addEventListener( "smf.submit", () => {
+						const actionArea = form.querySelector( \'.smf-action\' );
+						const submitter = actionArea.querySelector( \'[type="submit"]\' );
+						submitter?.setAttribute( "disabled", "disabled" );
+						turnstile.reset( turnstileWidgetId );
+					} );
+					form.addEventListener( "smf.systemerror", () => {
+						turnstile.reset( turnstileWidgetId );
+					} );
 				} );
 			}',
 			'after'

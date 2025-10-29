@@ -27,6 +27,9 @@ async function fetchView( form, options ) {
 	const icon = !! submitter
 		? submitter.querySelector( '.smf-sending' )
 		: undefined;
+	if ( !! submitter ) {
+		submitter.setAttribute( 'disabled', 'disabled' );
+	}
 	if ( !! icon ) {
 		icon.setAttribute( 'aria-hidden', 'false' );
 	}
@@ -122,6 +125,9 @@ async function fetchView( form, options ) {
 	};
 
 	const doneCallback = ( response ) => {
+		if ( !! submitter ) {
+			submitter.removeAttribute( 'disabled' );
+		}
 		if ( !! icon ) {
 			icon.setAttribute( 'aria-hidden', 'true' );
 		}
@@ -162,6 +168,7 @@ async function fetchView( form, options ) {
 
 		replaceAction( response.action );
 		if ( method === 'input' ) {
+			addCustomEvent( form, 'smf.input', detail );
 			return;
 		}
 

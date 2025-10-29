@@ -16,6 +16,10 @@
 	.smf-button-control {
 		&__control {
 			@include smf-button();
+
+			&[disabled] {
+				color: var(--_color-gray);
+			}
 		}
 	}
 }
