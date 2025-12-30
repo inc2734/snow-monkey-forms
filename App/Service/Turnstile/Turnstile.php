@@ -101,12 +101,11 @@ class Turnstile {
 	 * Enqueue Turnstile assets.
 	 */
 	public function _wp_enqueue_scripts() {
-		// phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 		wp_enqueue_script(
 			'cloudflare-turnstile',
 			'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback',
 			array(),
-			null,
+			null, // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
 			array(
 				'strategy' => 'async',
 			)
