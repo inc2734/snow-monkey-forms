@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 12.0.3 =
+* Fix the Cloudflare Turnstile warning message
+
 = 12.0.1 =
 * Fixed issue where Cloudflare Turnstile could not be sent before validation.
 * Fixed a bug where repeatedly pressing the send button would result in spam being detected.
