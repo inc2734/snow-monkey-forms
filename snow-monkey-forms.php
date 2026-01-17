@@ -20,6 +20,7 @@ use WP_REST_Response;
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Model\Directory;
 use Snow_Monkey\Plugin\Forms\App\Model\Meta;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 use Snow_Monkey\Plugin\Forms\App\Rest;
 use Snow_Monkey\Plugin\Forms\App\Service\Admin\Admin;
 use Snow_Monkey\Plugin\Forms\App\Service\ReCaptcha\ReCaptcha;
@@ -183,10 +184,13 @@ class Bootstrap {
 					}
 
 					// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-					$form_id = isset( $_SERVER['HTTP_X_SMF_FORMID'] ) ? wp_unslash( $_SERVER['HTTP_X_SMF_FORMID'] ) : false;
+					$form_id = isset( $_SERVER['HTTP_X_SMF_FORMID'] )
+						? wp_unslash( $_SERVER['HTTP_X_SMF_FORMID'] )
+						: '';
 					// phpcs:enable
 
-					if ( ! $form_id ) {
+					$form_id = Helper::sanitize_form_id( $form_id );
+					if ( false === $form_id ) {
 						return new WP_REST_Response( 'Bad request.', 400 );
 					}
 
@@ -220,6 +224,16 @@ class Bootstrap {
 					$data = $data ? $data : array();
 
 					if ( isset( $data[ Meta::get_key() ] ) ) {
+						$raw_form_id = isset( $data[ Meta::get_key() ]['formid'] )
+							? $data[ Meta::get_key() ]['formid']
+							: '';
+
+						$raw_form_id = Helper::sanitize_form_id( $raw_form_id );
+						if ( false === $raw_form_id ) {
+							return new WP_REST_Response( 'Bad request.', 400 );
+						}
+
+						$data[ Meta::get_key() ]['formid'] = $raw_form_id;
 						$data[ Meta::get_key() ]['sender'] = wp_get_current_user();
 					}
 

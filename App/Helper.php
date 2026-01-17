@@ -128,4 +128,61 @@ class Helper {
 			array()
 		);
 	}
+
+	/**
+	 * Return true when form ID format is valid.
+	 *
+	 * @param mixed $form_id Form ID.
+	 * @return boolean
+	 */
+	protected static function _is_valid_form_id_format( $form_id ) {
+		if ( ! is_scalar( $form_id ) ) {
+			return false;
+		}
+
+		$form_id = (string) $form_id;
+		if ( '' === $form_id || ! preg_match( '/^[0-9]+$/', $form_id ) ) {
+			return false;
+		}
+
+		$form_id = absint( $form_id );
+		if ( 0 === $form_id ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Validate and sanitize form ID.
+	 *
+	 * @param mixed $form_id Form ID.
+	 * @return int|false
+	 */
+	public static function sanitize_form_id( $form_id ) {
+		if ( false === static::_is_valid_form_id_format( $form_id ) ) {
+			return false;
+		}
+
+		return absint( $form_id );
+	}
+
+	/**
+	 * Return true when token format is valid.
+	 *
+	 * @param mixed $token Token value.
+	 * @return boolean
+	 */
+	public static function is_valid_token_format( $token ) {
+		if ( ! is_scalar( $token ) ) {
+			return false;
+		}
+
+		$token = (string) $token;
+		if ( '' === $token ) {
+			return false;
+		}
+
+		return (bool) preg_match( '|^[a-z0-9]+$|', $token );
+	}
 }

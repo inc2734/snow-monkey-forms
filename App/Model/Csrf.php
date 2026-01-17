@@ -7,6 +7,8 @@
 
 namespace Snow_Monkey\Plugin\Forms\App\Model;
 
+use Snow_Monkey\Plugin\Forms\App\Helper;
+
 class Csrf {
 
 	const KEY = '_snow-monkey-forms-token';
@@ -27,7 +29,7 @@ class Csrf {
 			return false;
 		}
 
-		if ( ! preg_match( '|^[a-z0-9]+$|', $posted_token ) ) {
+		if ( ! Helper::is_valid_token_format( $posted_token ) ) {
 			return false;
 		}
 

@@ -187,6 +187,12 @@ class View {
 		}
 
 		if ( 'input' === $method || 'complete' === $method || 'systemerror' === $method ) {
+			// If the token cannot be verified,
+			// the file deletion process will not be performed.
+			if ( ! Csrf::validate( Meta::get_token() ) ) {
+				return $controller->send();
+			}
+
 			$user_dirpath = Directory::generate_user_dirpath( $this->setting->get( 'form_id' ), false );
 
 			Directory::do_empty( $user_dirpath, true );

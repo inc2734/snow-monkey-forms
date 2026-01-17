@@ -11,6 +11,7 @@ use SplFileInfo;
 use FilesystemIterator;
 use Snow_Monkey\Plugin\Forms\App\Model\Csrf;
 use Snow_Monkey\Plugin\Forms\App\Model\Meta;
+use Snow_Monkey\Plugin\Forms\App\Helper;
 
 class Directory {
 
@@ -45,13 +46,18 @@ class Directory {
 	public static function generate_user_dirpath( $form_id, $do_create_directory = true ) {
 		$saved_token = Csrf::saved_token();
 
-		if ( ! preg_match( '|^[a-z0-9]+$|', $saved_token ) ) {
+		if ( ! Helper::is_valid_token_format( $saved_token ) ) {
 			throw new \RuntimeException(
 				sprintf(
 					'[Snow Monkey Forms] Failed to generate user directory path. The directory name is "%1$s"',
 					esc_html( $saved_token )
 				)
 			);
+		}
+
+		$form_id = Helper::sanitize_form_id( $form_id );
+		if ( false === $form_id ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Invalid form ID.' );
 		}
 
 		$user_dir = path_join( static::get(), $saved_token );
@@ -111,11 +117,16 @@ class Directory {
 			return false;
 		}
 
+		if ( ! static::_is_within_expected_dir( $dir ) ) {
+			return false;
+		}
+
 		return static::_remove_children( $dir, $force );
 	}
 
 	/**
 	 * Remove child directories and files.
+	 * Callers should ensure the path is within the upload base directory.
 	 *
 	 * @param string  $dir   Target directory.
 	 * @param boolean $force Ignore the survival period.
@@ -207,6 +218,10 @@ class Directory {
 	 * @throws \RuntimeException If the deletion of a file fails.
 	 */
 	public static function remove( $file ) {
+		if ( ! static::_is_within_expected_dir( $file ) ) {
+			return false;
+		}
+
 		$fileinfo = new SplFileInfo( $file );
 
 		if ( $fileinfo->isFile() && is_writable( $file ) ) {
@@ -242,6 +257,45 @@ class Directory {
 		$mtime         = filemtime( $file );
 		$survival_time = apply_filters( 'snow_monkey_forms/saved_files/survival_time', 60 * 15 );
 		return ! $mtime || time() > $mtime + $survival_time;
+	}
+
+	/**
+	 * Return true when path is inside upload base directory.
+	 *
+	 * @param string $path Target path.
+	 * @return boolean
+	 */
+	protected static function _is_within_expected_dir( $path ) {
+		$base_dir = realpath( static::get() );
+		$realpath = realpath( $path );
+
+		if ( false === $base_dir || false === $realpath ) {
+			return false;
+		}
+
+		$token = Csrf::saved_token();
+		if ( ! Helper::is_valid_token_format( $token ) ) {
+			return false;
+		}
+
+		$form_id = Helper::sanitize_form_id( Meta::get_formid() );
+		if ( false === $form_id ) {
+			return false;
+		}
+
+		$base_dir = wp_normalize_path( $base_dir );
+		$realpath = wp_normalize_path( $realpath );
+
+		$user_dir       = wp_normalize_path(
+			path_join(
+				path_join( $base_dir, $token ),
+				(string) $form_id
+			)
+		);
+		$user_dir       = untrailingslashit( $user_dir );
+		$user_dir_slash = trailingslashit( $user_dir );
+
+		return $realpath === $user_dir || 0 === strpos( $realpath, $user_dir_slash );
 	}
 
 	/**
