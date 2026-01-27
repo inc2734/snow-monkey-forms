@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 12.0.4 =
+* Fixed a path traversal vulnerability. We strongly encourage you to update to it immediately.
+
 = 12.0.3 =
 * Fix the Cloudflare Turnstile warning message
 
