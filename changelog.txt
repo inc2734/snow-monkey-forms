@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 12.0.5 =
+* Fixed an issue where item blocks within a group could not be duplicated when grouping item blocks.
+
 = 12.0.4 =
 * Fixed a path traversal vulnerability. We strongly encourage you to update to it immediately.
 
