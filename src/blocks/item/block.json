@@ -1,12 +1,12 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"version": "7.1.0",
+	"version": "12.0.5",
 	"textdomain": "snow-monkey-forms",
 	"name": "snow-monkey-forms/item",
 	"title": "Item",
 	"category": "snow-monkey-forms",
-	"parent": [ "snow-monkey-forms/form--input" ],
+	"ancestor": [ "snow-monkey-forms/form--input" ],
 	"attributes": {
 		"label": {
 			"type": "string",
