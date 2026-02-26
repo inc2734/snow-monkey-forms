@@ -1,5 +1,8 @@
 *** Changelog ***
 
+= 12.0.6 =
+* Fixed an issue where the send button was not properly reflected when Cloudflare Turnstile was enabled.
+
 = 12.0.5 =
 * Fixed an issue where item blocks within a group could not be duplicated when grouping item blocks.
 

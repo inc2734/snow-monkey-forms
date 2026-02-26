@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin name: Snow Monkey Forms
- * Version: 12.0.5
+ * Version: 12.0.6
  * Description: The Snow Monkey Forms is a mail form plugin for the block editor.
  * Author: inc2734
  * Author URI: https://2inc.org
