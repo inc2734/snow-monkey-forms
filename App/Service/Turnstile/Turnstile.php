@@ -115,36 +115,45 @@ class Turnstile {
 			'cloudflare-turnstile',
 			'function onloadTurnstileCallback() {
 				const forms = document.querySelectorAll( ".snow-monkey-form" );
-				[].slice.call( forms ).forEach( ( form ) => {
-					const container = form.querySelector( ".snow-monkey-forms-turnstile" );
-					const tokenField = form.querySelector( "input[name=\"cf-turnstile-response\"]" );
+					[].slice.call( forms ).forEach( ( form ) => {
+						const container = form.querySelector( ".snow-monkey-forms-turnstile" );
+						const tokenField = form.querySelector( "input[name=\"cf-turnstile-response\"]" );
+						const toggleSubmittersDisabled = ( disabled ) => {
+							const actionArea = form.querySelector( ".smf-action" );
+							if ( ! actionArea ) {
+								return;
+							}
+
+							const submitters = actionArea.querySelectorAll( \'[type="submit"]\' );
+							submitters.forEach( ( submitter ) => {
+								if ( disabled ) {
+									submitter.setAttribute( "disabled", "disabled" );
+								} else {
+									submitter.removeAttribute( "disabled" );
+								}
+							} );
+						};
 
 					if ( ! container || ! tokenField ) {
 						return;
 					}
 
-					const turnstileWidgetId = turnstile.render( container, {
-						sitekey: "' . esc_js( $this->site_key ) . '",
-						theme: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ) ) . '",
-						size: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ) ) . '",
-						callback: function() {
-							const actionArea = form.querySelector( \'.smf-action\' );
-							const submitter = actionArea.querySelector( \'[type="submit"]\' );
-							submitter?.removeAttribute( "disabled" );
-						},
-					} );
+						const turnstileWidgetId = turnstile.render( container, {
+							sitekey: "' . esc_js( $this->site_key ) . '",
+							theme: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ) ) . '",
+							size: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ) ) . '",
+							callback: function() {
+								toggleSubmittersDisabled( false );
+							},
+						} );
 
-					form.addEventListener( "smf.input", () => {
-						const actionArea = form.querySelector( \'.smf-action\' );
-						const submitter = actionArea.querySelector( \'[type="submit"]\' );
-						submitter?.setAttribute( "disabled", "disabled" );
-					} );
-					form.addEventListener( "smf.submit", () => {
-						const actionArea = form.querySelector( \'.smf-action\' );
-						const submitter = actionArea.querySelector( \'[type="submit"]\' );
-						submitter?.setAttribute( "disabled", "disabled" );
-						turnstile.reset( turnstileWidgetId );
-					} );
+						form.addEventListener( "smf.input", () => {
+							toggleSubmittersDisabled( true );
+						} );
+						form.addEventListener( "smf.submit", () => {
+							toggleSubmittersDisabled( true );
+							turnstile.reset( turnstileWidgetId );
+						} );
 					form.addEventListener( "smf.systemerror", () => {
 						turnstile.reset( turnstileWidgetId );
 					} );
