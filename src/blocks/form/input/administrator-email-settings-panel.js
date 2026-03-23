@@ -23,7 +23,7 @@ export default function () {
 				label={ __( 'To (Email address)', 'snow-monkey-forms' ) }
 				value={ meta.administrator_email_to }
 				onChange={ ( value ) =>
-					setMeta( { administrator_email_to: value } )
+					setMeta( { ...meta, administrator_email_to: value } )
 				}
 				style={
 					! meta.administrator_email_to ? inputErrorStyles : undefined
@@ -37,6 +37,7 @@ export default function () {
 				value={ meta.administrator_email_subject }
 				onChange={ ( value ) =>
 					setMeta( {
+						...meta,
 						administrator_email_subject: value,
 					} )
 				}
@@ -52,7 +53,7 @@ export default function () {
 				label={ __( 'Body', 'snow-monkey-forms' ) }
 				value={ meta.administrator_email_body }
 				onChange={ ( value ) =>
-					setMeta( { administrator_email_body: value } )
+					setMeta( { ...meta, administrator_email_body: value } )
 				}
 				style={
 					! meta.administrator_email_body
@@ -68,7 +69,7 @@ export default function () {
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
 				value={ meta.administrator_email_replyto }
 				onChange={ ( value ) =>
-					setMeta( { administrator_email_replyto: value } )
+					setMeta( { ...meta, administrator_email_replyto: value } )
 				}
 			/>
 
@@ -79,7 +80,7 @@ export default function () {
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
 				value={ meta.administrator_email_from }
 				onChange={ ( value ) =>
-					setMeta( { administrator_email_from: value } )
+					setMeta( { ...meta, administrator_email_from: value } )
 				}
 			/>
 
@@ -90,7 +91,7 @@ export default function () {
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
 				value={ meta.administrator_email_sender }
 				onChange={ ( value ) =>
-					setMeta( { administrator_email_sender: value } )
+					setMeta( { ...meta, administrator_email_sender: value } )
 				}
 			/>
 

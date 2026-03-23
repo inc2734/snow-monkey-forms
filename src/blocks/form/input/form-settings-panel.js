@@ -22,7 +22,9 @@ export default function ( { attributes, onChangeFormStyle } ) {
 				__nextHasNoMarginBottom
 				label={ __( 'Use confirm page', 'snow-monkey-forms' ) }
 				checked={ meta.use_confirm_page }
-				onChange={ ( value ) => setMeta( { use_confirm_page: value } ) }
+				onChange={ ( value ) =>
+					setMeta( { ...meta, use_confirm_page: value } )
+				}
 			/>
 
 			<ToggleControl
@@ -30,7 +32,7 @@ export default function ( { attributes, onChangeFormStyle } ) {
 				label={ __( 'Use progress tracker', 'snow-monkey-forms' ) }
 				checked={ meta.use_progress_tracker }
 				onChange={ ( value ) =>
-					setMeta( { use_progress_tracker: value } )
+					setMeta( { ...meta, use_progress_tracker: value } )
 				}
 			/>
 
@@ -71,7 +73,7 @@ export default function ( { attributes, onChangeFormStyle } ) {
 						) }
 						value={ meta.confirm_button_label }
 						onChange={ ( value ) =>
-							setMeta( { confirm_button_label: value } )
+							setMeta( { ...meta, confirm_button_label: value } )
 						}
 					/>
 
@@ -81,7 +83,7 @@ export default function ( { attributes, onChangeFormStyle } ) {
 						label={ __( 'Back button label', 'snow-monkey-forms' ) }
 						value={ meta.back_button_label }
 						onChange={ ( value ) =>
-							setMeta( { back_button_label: value } )
+							setMeta( { ...meta, back_button_label: value } )
 						}
 					/>
 				</>
@@ -93,7 +95,7 @@ export default function ( { attributes, onChangeFormStyle } ) {
 				label={ __( 'Send button label', 'snow-monkey-forms' ) }
 				value={ meta.send_button_label }
 				onChange={ ( value ) =>
-					setMeta( { send_button_label: value } )
+					setMeta( { ...meta, send_button_label: value } )
 				}
 			/>
 		</PanelBody>

@@ -58,6 +58,7 @@ export default function () {
 		}
 
 		setMeta( {
+			...meta,
 			blocked_sender_list: JSON.stringify( [
 				...blockedSenders,
 				normalizedblockedSenderSource,
@@ -74,6 +75,7 @@ export default function () {
 		);
 
 		setMeta( {
+			...meta,
 			blocked_sender_list: JSON.stringify( filteredBlockedSenders ),
 		} );
 	};
@@ -93,7 +95,7 @@ export default function () {
 				) }
 				value={ meta.blocked_sender_source || '' }
 				onChange={ ( value ) =>
-					setMeta( { blocked_sender_source: value } )
+					setMeta( { ...meta, blocked_sender_source: value } )
 				}
 			/>
 

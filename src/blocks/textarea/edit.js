@@ -35,13 +35,17 @@ const Edit = ( { attributes, setAttributes } ) => {
 	} = attributes;
 
 	useEffect( () => {
-		setAttributes( {
-			validations: JSON.stringify( {
-				...JSON.parse( metadata.attributes.validations.default ),
-				...JSON.parse( validations ),
-			} ),
+		const mergedValidations = JSON.stringify( {
+			...JSON.parse( metadata.attributes.validations.default ),
+			...JSON.parse( validations ),
 		} );
-	}, [] );
+
+		if ( mergedValidations !== validations ) {
+			setAttributes( {
+				validations: mergedValidations,
+			} );
+		}
+	}, [ setAttributes, validations ] );
 
 	useEffect( () => {
 		if ( '' === name ) {

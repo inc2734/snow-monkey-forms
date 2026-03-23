@@ -27,7 +27,7 @@ export default function () {
 				) }
 				value={ meta.auto_reply_email_to }
 				onChange={ ( value ) =>
-					setMeta( { auto_reply_email_to: value } )
+					setMeta( { ...meta, auto_reply_email_to: value } )
 				}
 				style={
 					! meta.auto_reply_email_to &&
@@ -44,7 +44,7 @@ export default function () {
 				label={ __( 'Subject', 'snow-monkey-forms' ) }
 				value={ meta.auto_reply_email_subject }
 				onChange={ ( value ) =>
-					setMeta( { auto_reply_email_subject: value } )
+					setMeta( { ...meta, auto_reply_email_subject: value } )
 				}
 				style={
 					!! meta.auto_reply_email_to &&
@@ -59,7 +59,7 @@ export default function () {
 				label={ __( 'Body', 'snow-monkey-forms' ) }
 				value={ meta.auto_reply_email_body }
 				onChange={ ( value ) =>
-					setMeta( { auto_reply_email_body: value } )
+					setMeta( { ...meta, auto_reply_email_body: value } )
 				}
 				style={
 					!! meta.auto_reply_email_to && ! meta.auto_reply_email_body
@@ -75,7 +75,7 @@ export default function () {
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
 				value={ meta.auto_reply_email_replyto }
 				onChange={ ( value ) =>
-					setMeta( { auto_reply_email_replyto: value } )
+					setMeta( { ...meta, auto_reply_email_replyto: value } )
 				}
 			/>
 
@@ -86,7 +86,7 @@ export default function () {
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
 				value={ meta.auto_reply_email_from }
 				onChange={ ( value ) =>
-					setMeta( { auto_reply_email_from: value } )
+					setMeta( { ...meta, auto_reply_email_from: value } )
 				}
 			/>
 
@@ -97,7 +97,7 @@ export default function () {
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
 				value={ meta.auto_reply_email_sender }
 				onChange={ ( value ) =>
-					setMeta( { auto_reply_email_sender: value } )
+					setMeta( { ...meta, auto_reply_email_sender: value } )
 				}
 			/>
 
