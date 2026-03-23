@@ -3,16 +3,6 @@
 .smf-form {
 	.smf-select-control {
 		@include core.select();
-
-		&__toggle {
-			z-index: 1;
-			background-color: transparent;
-			pointer-events: none;
-		}
-
-		&__control {
-			background-color: var(--_color-white);
-		}
 	}
 }
 
