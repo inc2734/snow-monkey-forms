@@ -122,6 +122,16 @@ class Setting {
 	protected $send_button_label = null;
 
 	/**
+	 * @var string
+	 */
+	protected $blocked_sender_source;
+
+	/**
+	 * @var string
+	 */
+	protected $blocked_sender_list;
+
+	/**
 	 * Construct.
 	 *
 	 * @param int $form_id The post ID (ID of form editing page).
@@ -186,6 +196,12 @@ class Setting {
 		$this->send_button_label = $send_button_label
 			? $send_button_label
 			: __( 'Send', 'snow-monkey-forms' );
+
+		$this->blocked_sender_source = get_post_meta( $this->form_id, 'blocked_sender_source', true );
+		$blocked_sender_list         = get_post_meta( $this->form_id, 'blocked_sender_list', true );
+		$this->blocked_sender_list   = is_string( $blocked_sender_list ) && '' !== $blocked_sender_list
+			? $blocked_sender_list
+			: '[]';
 	}
 
 	/**

@@ -1,23 +1,23 @@
-# Copyright (C) 2025 inc2734
+# Copyright (C) 2026 inc2734
 # This file is distributed under the GPL2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Snow Monkey Forms 11.0.0\n"
+"Project-Id-Version: Snow Monkey Forms 12.0.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-forms\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-08-25T13:32:07+00:00\n"
+"POT-Creation-Date: 2026-03-23T02:36:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: snow-monkey-forms\n"
 
 #. Plugin Name of the plugin
 #: snow-monkey-forms.php
-#: snow-monkey-forms.php:264
-#: snow-monkey-forms.php:587
+#: snow-monkey-forms.php:280
+#: snow-monkey-forms.php:628
 msgid "Snow Monkey Forms"
 msgstr ""
 
@@ -54,15 +54,15 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: App/Model/Setting.php:178
+#: App/Model/Setting.php:188
 msgid "Confirm"
 msgstr ""
 
-#: App/Model/Setting.php:183
+#: App/Model/Setting.php:193
 msgid "Back"
 msgstr ""
 
-#: App/Model/Setting.php:188
+#: App/Model/Setting.php:198
 msgid "Send"
 msgstr ""
 
@@ -70,33 +70,33 @@ msgstr ""
 msgid "Invalid access."
 msgstr ""
 
-#: App/Rest/Route/View.php:78
+#: App/Rest/Route/View.php:82
 msgid "There is a possibility of spamming."
 msgstr ""
 
-#: App/Rest/Route/View.php:98
+#: App/Rest/Route/View.php:102
 msgid "An error occurred during file upload."
 msgstr ""
 
-#: App/Rest/Route/View.php:118
+#: App/Rest/Route/View.php:122
 msgid "Attachment of file failed."
 msgstr ""
 
-#: App/Rest/Route/View.php:136
+#: App/Rest/Route/View.php:140
 msgid "Failed to send administrator email."
 msgstr ""
 
-#: App/Rest/Route/View.php:138
-#: App/Rest/Route/View.php:184
+#: App/Rest/Route/View.php:142
+#: App/Rest/Route/View.php:188
 #: dist/blocks/snow-monkey-form/render.php:109
 msgid "Please try again later or contact your administrator by other means."
 msgstr ""
 
-#: App/Rest/Route/View.php:149
+#: App/Rest/Route/View.php:153
 msgid "Failed to send auto reply email."
 msgstr ""
 
-#: App/Rest/Route/View.php:182
+#: App/Rest/Route/View.php:186
 #: dist/blocks/snow-monkey-form/render.php:107
 msgid "An unexpected problem has occurred."
 msgstr ""
@@ -229,30 +229,30 @@ msgctxt "progress-tracker"
 msgid "Complete screen"
 msgstr ""
 
-#: snow-monkey-forms.php:280
+#: snow-monkey-forms.php:296
 msgctxt "form-field-label"
 msgid "Name"
 msgstr ""
 
-#: snow-monkey-forms.php:300
+#: snow-monkey-forms.php:316
 msgctxt "form-field-label"
 msgid "Email"
 msgstr ""
 
-#: snow-monkey-forms.php:320
+#: snow-monkey-forms.php:336
 msgctxt "form-field-label"
 msgid "Message"
 msgstr ""
 
-#: snow-monkey-forms.php:348
+#: snow-monkey-forms.php:364
 msgid "Complete !"
 msgstr ""
 
-#: snow-monkey-forms.php:411
+#: snow-monkey-forms.php:452
 msgid "Admin notification"
 msgstr ""
 
-#: snow-monkey-forms.php:486
+#: snow-monkey-forms.php:527
 msgid "Automatic reply notification"
 msgstr ""
 
@@ -599,6 +599,34 @@ msgid "Send button label"
 msgstr ""
 
 #: dist/blocks/form/input/index.js:1
+msgid "Blocked senders"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+msgid "Target email"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+msgid "Enter the name attribute value of the installed email form field in the following format: {name}"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+msgid "Blocked email address or domain"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+msgid "If no \"@\" is included, the value is treated as a domain."
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+msgid "Add"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
+msgid "Delete"
+msgstr ""
+
+#: dist/blocks/form/input/index.js:1
 msgid "Help"
 msgstr ""
 
@@ -644,10 +672,6 @@ msgstr ""
 
 #: dist/blocks/form/input/index.js:1
 msgid "Auto reply email"
-msgstr ""
-
-#: dist/blocks/form/input/index.js:1
-msgid "Enter the name attribute value of the installed email form field in the following format: {name}"
 msgstr ""
 
 #: dist/blocks/form/input/index.js:1

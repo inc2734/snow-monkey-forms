@@ -23,6 +23,7 @@ use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 use Snow_Monkey\Plugin\Forms\App\Helper;
 use Snow_Monkey\Plugin\Forms\App\Rest;
 use Snow_Monkey\Plugin\Forms\App\Service\Admin\Admin;
+use Snow_Monkey\Plugin\Forms\App\Service\BlockedSender\BlockedSender;
 use Snow_Monkey\Plugin\Forms\App\Service\ReCaptcha\ReCaptcha;
 use Snow_Monkey\Plugin\Forms\App\Service\Turnstile\Turnstile;
 
@@ -71,6 +72,7 @@ class Bootstrap {
 
 		add_action( 'template_redirect', array( $this, '_do_empty_save_dir' ) );
 
+		new BlockedSender();
 		new ReCaptcha();
 		new Turnstile();
 	}
@@ -373,6 +375,31 @@ class Bootstrap {
 	 * Register meta.
 	 */
 	public function _register_meta() {
+		register_post_meta(
+			'snow-monkey-forms',
+			'blocked_sender_source',
+			array(
+				'show_in_rest' => true,
+				'single'       => true,
+				'type'         => 'string',
+			)
+		);
+
+		register_post_meta(
+			'snow-monkey-forms',
+			'blocked_sender_list',
+			array(
+				'single'       => true,
+				'type'         => 'string',
+				'show_in_rest' => array(
+					'schema' => array(
+						'type'    => 'string',
+						'default' => '[]',
+					),
+				),
+			)
+		);
+
 		register_post_meta(
 			'snow-monkey-forms',
 			'administrator_email_to',

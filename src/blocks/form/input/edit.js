@@ -11,6 +11,7 @@ import { Button } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 import FormSettingsPanel from './form-settings-panel';
+import EmailBlockSettingsPanel from './email-block-settings-panel';
 import AdministratorEmailSettingsPanel from './administrator-email-settings-panel';
 import AutoReplyEmailSettingsPanel from './auto-reply-email-settings-panel';
 
@@ -48,6 +49,7 @@ export default function ( props ) {
 
 				<AdministratorEmailSettingsPanel />
 				<AutoReplyEmailSettingsPanel />
+				<EmailBlockSettingsPanel />
 			</InspectorControls>
 
 			<div { ...blockProps }>
