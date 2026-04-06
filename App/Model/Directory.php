@@ -79,8 +79,15 @@ class Directory {
 	 */
 	public static function generate_user_file_dirpath( $name ) {
 		$form_id       = Meta::get_formid();
+		if ( ! static::_is_valid_path_segment( $name ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
+		}
 		$user_dir      = static::generate_user_dirpath( $form_id );
 		$user_file_dir = path_join( $user_dir, $name );
+
+		if ( ! static::_is_within_expected_dir_candidate( $user_file_dir ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
+		}
 
 		if ( ! wp_mkdir_p( $user_file_dir ) ) {
 			throw new \RuntimeException(
@@ -173,7 +180,15 @@ class Directory {
 			return false;
 		}
 
+		if ( ! static::_is_valid_path_segment( $filename ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
+		}
+
 		$filepath = path_join( static::generate_user_file_dirpath( $name ), $filename );
+
+		if ( ! static::_is_within_expected_dir_candidate( $filepath ) ) {
+			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
+		}
 
 		if ( str_contains( $filepath, '../' ) || str_contains( $filepath, '..' . DIRECTORY_SEPARATOR ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
@@ -260,6 +275,38 @@ class Directory {
 	}
 
 	/**
+	 * Return true when path segment is valid.
+	 *
+	 * @param string $value Path segment.
+	 * @return boolean
+	 */
+	protected static function _is_valid_path_segment( $value ) {
+		if ( ! is_string( $value ) || '' === $value ) {
+			return false;
+		}
+
+		$value = wp_normalize_path( $value );
+
+		if ( strstr( $value, "\0" ) ) {
+			return false;
+		}
+
+		if ( '.' === $value || '..' === $value ) {
+			return false;
+		}
+
+		if ( path_is_absolute( $value ) ) {
+			return false;
+		}
+
+		if ( wp_basename( $value ) !== $value ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Return true when path is inside upload base directory.
 	 *
 	 * @param string $path Target path.
@@ -273,6 +320,45 @@ class Directory {
 			return false;
 		}
 
+		$realpath = wp_normalize_path( $realpath );
+		$user_dir = static::_get_expected_user_dir( $base_dir );
+		if ( false === $user_dir ) {
+			return false;
+		}
+		$user_dir       = untrailingslashit( $user_dir );
+		$user_dir_slash = trailingslashit( $user_dir );
+
+		return $realpath === $user_dir || 0 === strpos( $realpath, $user_dir_slash );
+	}
+
+	/**
+	 * Return true when candidate path is inside upload base directory.
+	 *
+	 * @param string $path Target path.
+	 * @return boolean
+	 */
+	protected static function _is_within_expected_dir_candidate( $path ) {
+		$path = wp_normalize_path( $path );
+
+		$user_dir = static::_get_expected_user_dir( static::get() );
+		if ( false === $user_dir ) {
+			return false;
+		}
+
+		$path            = untrailingslashit( $path );
+		$user_dir        = untrailingslashit( $user_dir );
+		$user_dir_slash  = trailingslashit( $user_dir );
+
+		return $path === $user_dir || 0 === strpos( $path, $user_dir_slash );
+	}
+
+	/**
+	 * Return the expected user directory path.
+	 *
+	 * @param string $base_dir Base directory path.
+	 * @return string|false
+	 */
+	protected static function _get_expected_user_dir( $base_dir ) {
 		$token = Csrf::saved_token();
 		if ( ! Helper::is_valid_token_format( $token ) ) {
 			return false;
@@ -284,18 +370,13 @@ class Directory {
 		}
 
 		$base_dir = wp_normalize_path( $base_dir );
-		$realpath = wp_normalize_path( $realpath );
 
-		$user_dir       = wp_normalize_path(
+		return wp_normalize_path(
 			path_join(
 				path_join( $base_dir, $token ),
 				(string) $form_id
 			)
 		);
-		$user_dir       = untrailingslashit( $user_dir );
-		$user_dir_slash = trailingslashit( $user_dir );
-
-		return $realpath === $user_dir || 0 === strpos( $realpath, $user_dir_slash );
 	}
 
 	/**
