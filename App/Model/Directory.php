@@ -78,13 +78,13 @@ class Directory {
 	 * @throws \RuntimeException When directory name is not token value.
 	 */
 	public static function generate_user_file_dirpath( $name ) {
-		$form_id       = Meta::get_formid();
+		$form_id = Meta::get_formid();
 		if ( ! static::_is_valid_path_segment( $name ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
 		}
+
 		$user_dir      = static::generate_user_dirpath( $form_id );
 		$user_file_dir = path_join( $user_dir, $name );
-
 		if ( ! static::_is_within_expected_dir_candidate( $user_file_dir ) ) {
 			throw new \RuntimeException( '[Snow Monkey Forms] Invalid file reference requested.' );
 		}
@@ -345,9 +345,9 @@ class Directory {
 			return false;
 		}
 
-		$path            = untrailingslashit( $path );
-		$user_dir        = untrailingslashit( $user_dir );
-		$user_dir_slash  = trailingslashit( $user_dir );
+		$path           = untrailingslashit( $path );
+		$user_dir       = untrailingslashit( $user_dir );
+		$user_dir_slash = trailingslashit( $user_dir );
 
 		return $path === $user_dir || 0 === strpos( $path, $user_dir_slash );
 	}
