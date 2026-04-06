@@ -1,5 +1,9 @@
 *** Changelog ***
 
+= 12.1.1 =
+* Enhanced security for file upload processes.
+* Fix select control style bug.
+
 = 12.1.0 =
 * Add new feature: Blocked senders
 * Fix select control style bug.
