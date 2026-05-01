@@ -44,7 +44,19 @@
 		}
 
 		&__control {
-			display: none;
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			opacity: 0;
+			cursor: pointer;
+
+			&:disabled {
+				pointer-events: none;
+				cursor: default;
+			}
 		}
 
 		&__label {

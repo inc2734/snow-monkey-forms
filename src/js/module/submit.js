@@ -113,11 +113,15 @@ async function fetchView( form, options ) {
 		if ( 0 < errorMessages.length ) {
 			const firstErrorMessage = errorMessages[ 0 ];
 			const placeholder = closest( firstErrorMessage, 'smf-placeholder' );
+			const focusableControlSelector = [
+				'input:not([type="hidden"]):not([disabled])',
+				'select:not([disabled])',
+				'textarea:not([disabled])',
+				'button:not([disabled])',
+			].join( ', ' );
 			const firstErrorControl =
 				!! placeholder &&
-				placeholder.querySelector(
-					'input, select, textarea, button, .smf-file-control'
-				);
+				placeholder.querySelector( focusableControlSelector );
 			if ( !! firstErrorControl ) {
 				firstErrorControl.focus();
 			}
