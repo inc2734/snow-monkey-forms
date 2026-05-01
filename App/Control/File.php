@@ -125,7 +125,7 @@ class File extends Contract\Control {
 					<span class="smf-file-control__filename smf-file-control__filename--no-file">%4$s</span>
 					<span class="smf-file-control__filename smf-file-control__filename--has-file"></span>
 				</label>
-				<span class="smf-file-control__clear">%5$s</span>
+				<button type="button" class="smf-file-control__clear">%5$s</button>
 			</div>
 			%6$s
 			%7$s',

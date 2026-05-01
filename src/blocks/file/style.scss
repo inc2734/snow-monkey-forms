@@ -74,7 +74,13 @@
 		}
 
 		&__clear {
+			appearance: none;
 			display: none;
+			padding: 0;
+			border: none;
+			background-color: transparent;
+			color: inherit;
+			font: inherit;
 			text-decoration: underline;
 			cursor: pointer;
 		}
