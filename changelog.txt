@@ -1,5 +1,9 @@
 *** Changelog ***
 
+= 12.1.2 =
+* Fixed a bug where the file field was not properly focused.
+* Accessibility support for the clear button in the file field.
+
 = 12.1.1 =
 * Enhanced security for file upload processes.
 * Fix select control style bug.
