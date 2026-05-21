@@ -47,9 +47,31 @@ class View {
 			$data[ Meta::get_key() ] = Meta::init( $data[ Meta::get_key() ] );
 		}
 
+		$this->_setup_source_post();
+
 		$this->setting   = DataStore::get( Meta::get_formid() );
 		$this->responser = new Responser( $data );
 		$this->validator = new Validator( $this->responser, $this->setting );
+	}
+
+	/**
+	 * Setup source post context.
+	 */
+	protected function _setup_source_post() {
+		$source_post_id = Meta::get_source_post_id();
+		if ( ! $source_post_id ) {
+			return;
+		}
+
+		$source_post = get_post( $source_post_id );
+		if ( ! $source_post ) {
+			return;
+		}
+
+		global $post;
+
+		$post = $source_post;
+		setup_postdata( $post );
 	}
 
 	/**

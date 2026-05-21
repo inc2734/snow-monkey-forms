@@ -1,8 +1,10 @@
 <?php
 use Snow_Monkey\Plugin\Forms\App\DataStore;
 use Snow_Monkey\Plugin\Forms\App\Model\Dispatcher;
+use Snow_Monkey\Plugin\Forms\App\Model\Meta;
 use Snow_Monkey\Plugin\Forms\App\Model\Responser;
 use Snow_Monkey\Plugin\Forms\App\Model\Validator;
+use Snow_Monkey\Plugin\Forms\App\Rest\Route\View;
 
 class ControlTest extends WP_UnitTestCase {
 
@@ -23,7 +25,20 @@ class ControlTest extends WP_UnitTestCase {
 
 	public function tear_down() {
 		parent::tear_down();
+		remove_all_filters( 'snow_monkey_forms/control/attributes' );
+		remove_all_filters( 'snow_monkey_forms/select/options' );
+		remove_all_filters( 'snow_monkey_forms/checkboxes/options' );
+		remove_all_filters( 'snow_monkey_forms/radio_buttons/options' );
+		$this->_reset_meta();
 		_delete_all_data();
+	}
+
+	protected function _reset_meta() {
+		foreach ( array( 'singleton', 'formid', 'source_post_id', 'token', 'method', 'sender' ) as $property_name ) {
+			$property = new ReflectionProperty( Meta::class, $property_name );
+			$property->setAccessible( true );
+			$property->setValue( null, null );
+		}
 	}
 
 	/**
@@ -161,5 +176,41 @@ class ControlTest extends WP_UnitTestCase {
 
 		$this->assertTrue( false !== strpos( json_decode( $controller->send(), true )['controls']['radio-buttons'][0], 'value="custom1"' ) );
 		$this->assertTrue( false === strpos( json_decode( $controller->send(), true )['controls']['radio-buttons'][0], 'value="value1"' ) );
+	}
+
+	/**
+	 * @test
+	 */
+	public function should_restore_source_post_context_in_rest_request() {
+		$source_post_id = $this->factory->post->create();
+
+		add_filter(
+			'snow_monkey_forms/select/options',
+			function ( $options, $name ) {
+				if ( 'select' === $name ) {
+					return array(
+						get_the_ID() => get_the_ID(),
+					);
+				}
+				return $options;
+			},
+			10,
+			2
+		);
+
+		$form_id = $this->_create_form();
+		$route   = new View(
+			array(
+				Meta::get_key() => array(
+					'method'         => 'input',
+					'formid'         => $form_id,
+					'source_post_id' => $source_post_id,
+				),
+			)
+		);
+
+		$response = json_decode( $route->send(), true );
+
+		$this->assertTrue( false !== strpos( $response['controls']['select'][0], 'value="' . $source_post_id . '"' ) );
 	}
 }

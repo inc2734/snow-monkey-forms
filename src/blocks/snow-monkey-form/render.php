@@ -111,5 +111,6 @@ foreach ( $response->controls as $name => $_controls ) {
 	</div>
 
 	<?php Meta::the_formid( $form_id ); ?>
+	<?php Meta::the_source_post_id( get_the_ID() ); ?>
 	<?php do_action( 'snow_monkey_forms/form/append' ); ?>
 </form>

@@ -25,6 +25,11 @@ class Meta {
 	protected static $formid;
 
 	/**
+	 * @var int
+	 */
+	protected static $source_post_id;
+
+	/**
 	 * @var string
 	 */
 	protected static $token;
@@ -57,6 +62,9 @@ class Meta {
 				static::$$key = $value;
 			}
 		}
+
+		static::$formid         = absint( static::$formid );
+		static::$source_post_id = absint( static::$source_post_id );
 	}
 
 	/**
@@ -153,6 +161,24 @@ class Meta {
 	 */
 	public static function the_formid( $form_id ) {
 		static::_the_meta( 'formid', $form_id );
+	}
+
+	/**
+	 * Return the source post ID.
+	 *
+	 * @return int
+	 */
+	public static function get_source_post_id() {
+		return static::$source_post_id;
+	}
+
+	/**
+	 * Display hidden field for source post ID.
+	 *
+	 * @param int $source_post_id The source post ID.
+	 */
+	public static function the_source_post_id( $source_post_id ) {
+		static::_the_meta( 'source_post_id', $source_post_id );
 	}
 
 	/**
