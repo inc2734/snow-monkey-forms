@@ -30,11 +30,22 @@ class ControlTest extends WP_UnitTestCase {
 		remove_all_filters( 'snow_monkey_forms/checkboxes/options' );
 		remove_all_filters( 'snow_monkey_forms/radio_buttons/options' );
 		$this->_reset_meta();
+		wp_reset_postdata();
 		_delete_all_data();
 	}
 
 	protected function _reset_meta() {
-		foreach ( array( 'singleton', 'formid', 'source_post_id', 'token', 'method', 'sender' ) as $property_name ) {
+		$property_names = array(
+			'singleton',
+			'formid',
+			'form_hash',
+			'source_post_id',
+			'token',
+			'method',
+			'sender',
+		);
+
+		foreach ( $property_names as $property_name ) {
 			$property = new ReflectionProperty( Meta::class, $property_name );
 			$property->setAccessible( true );
 			$property->setValue( null, null );
@@ -183,6 +194,12 @@ class ControlTest extends WP_UnitTestCase {
 	 */
 	public function should_restore_source_post_context_in_rest_request() {
 		$source_post_id = $this->factory->post->create();
+		$original_post_id = $this->factory->post->create();
+
+		global $post;
+
+		$post = get_post( $original_post_id );
+		setup_postdata( $post );
 
 		add_filter(
 			'snow_monkey_forms/select/options',
@@ -202,9 +219,10 @@ class ControlTest extends WP_UnitTestCase {
 		$route   = new View(
 			array(
 				Meta::get_key() => array(
-					'method'         => 'input',
-					'formid'         => $form_id,
-					'source_post_id' => $source_post_id,
+					'method'           => 'input',
+					'formid'           => $form_id,
+					'form_hash'        => Meta::generate_form_hash( $form_id, $source_post_id ),
+					'source_post_id'   => $source_post_id,
 				),
 			)
 		);
@@ -212,5 +230,84 @@ class ControlTest extends WP_UnitTestCase {
 		$response = json_decode( $route->send(), true );
 
 		$this->assertTrue( false !== strpos( $response['controls']['select'][0], 'value="' . $source_post_id . '"' ) );
+		$this->assertSame( $original_post_id, get_the_ID() );
+	}
+
+	/**
+	 * @test
+	 */
+	public function should_not_restore_source_post_context_when_form_hash_is_invalid() {
+		$source_post_id = $this->factory->post->create();
+
+		add_filter(
+			'snow_monkey_forms/select/options',
+			function ( $options, $name ) {
+				if ( 'select' === $name ) {
+					return array(
+						get_the_ID() => get_the_ID(),
+					);
+				}
+				return $options;
+			},
+			10,
+			2
+		);
+
+		$form_id = $this->_create_form();
+		$route   = new View(
+			array(
+				Meta::get_key() => array(
+					'method'           => 'input',
+					'formid'           => $form_id,
+					'form_hash'        => 'invalid',
+					'source_post_id'   => $source_post_id,
+				),
+			)
+		);
+
+		$response = json_decode( $route->send(), true );
+
+		$this->assertTrue( false === strpos( $response['controls']['select'][0], 'value="' . $source_post_id . '"' ) );
+	}
+
+	/**
+	 * @test
+	 */
+	public function should_not_restore_private_source_post_context() {
+		$source_post_id = $this->factory->post->create(
+			array(
+				'post_status' => 'private',
+			)
+		);
+
+		add_filter(
+			'snow_monkey_forms/select/options',
+			function ( $options, $name ) {
+				if ( 'select' === $name ) {
+					return array(
+						get_the_ID() => get_the_ID(),
+					);
+				}
+				return $options;
+			},
+			10,
+			2
+		);
+
+		$form_id = $this->_create_form();
+		$route   = new View(
+			array(
+				Meta::get_key() => array(
+					'method'           => 'input',
+					'formid'           => $form_id,
+					'form_hash'        => Meta::generate_form_hash( $form_id, $source_post_id ),
+					'source_post_id'   => $source_post_id,
+				),
+			)
+		);
+
+		$response = json_decode( $route->send(), true );
+
+		$this->assertTrue( false === strpos( $response['controls']['select'][0], 'value="' . $source_post_id . '"' ) );
 	}
 }

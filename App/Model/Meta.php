@@ -25,6 +25,11 @@ class Meta {
 	protected static $formid;
 
 	/**
+	 * @var string
+	 */
+	protected static $form_hash;
+
+	/**
 	 * @var int
 	 */
 	protected static $source_post_id;
@@ -161,6 +166,53 @@ class Meta {
 	 */
 	public static function the_formid( $form_id ) {
 		static::_the_meta( 'formid', $form_id );
+	}
+
+	/**
+	 * Return the form hash.
+	 *
+	 * @return string
+	 */
+	public static function get_form_hash() {
+		return static::$form_hash;
+	}
+
+	/**
+	 * Generate the form hash.
+	 *
+	 * @param int $form_id        The form ID.
+	 * @param int $source_post_id The source post ID.
+	 * @return string
+	 */
+	public static function generate_form_hash( $form_id, $source_post_id = 0 ) {
+		return wp_hash( 'form|' . absint( $form_id ) . '|' . absint( $source_post_id ) );
+	}
+
+	/**
+	 * Verify the form hash.
+	 *
+	 * @return boolean
+	 */
+	public static function verify_form_hash() {
+		$form_id        = static::get_formid();
+		$source_post_id = static::get_source_post_id();
+		$form_hash      = static::get_form_hash();
+
+		if ( ! $form_id || ! $form_hash ) {
+			return false;
+		}
+
+		return hash_equals( static::generate_form_hash( $form_id, $source_post_id ), $form_hash );
+	}
+
+	/**
+	 * Display hidden field for form hash.
+	 *
+	 * @param int $form_id        The form ID.
+	 * @param int $source_post_id The source post ID.
+	 */
+	public static function the_form_hash( $form_id, $source_post_id = 0 ) {
+		static::_the_meta( 'form_hash', static::generate_form_hash( $form_id, $source_post_id ) );
 	}
 
 	/**

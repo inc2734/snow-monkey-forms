@@ -172,6 +172,135 @@ class Bootstrap {
 	}
 
 	/**
+	 * Return REST response that must not be cached.
+	 *
+	 * @param mixed   $data   Response data.
+	 * @param integer $status HTTP status code.
+	 * @return WP_REST_Response
+	 */
+	protected function _rest_response( $data, $status = 200 ) {
+		$response = new WP_REST_Response( $data, $status );
+
+		foreach ( wp_get_nocache_headers() as $name => $value ) {
+			if ( false === $value ) {
+				continue;
+			}
+			$response->header( $name, $value );
+		}
+
+		$response->header(
+			'Cache-Control',
+			'no-store, no-cache, must-revalidate, max-age=0, s-maxage=0, private'
+		);
+		$response->header( 'Pragma', 'no-cache' );
+		$response->header( 'Expires', 'Wed, 11 Jan 1984 05:00:00 GMT' );
+
+		return $response;
+	}
+
+	/**
+	 * Return REST response for system error.
+	 *
+	 * @param string $message Error message.
+	 * @return WP_REST_Response
+	 */
+	protected function _rest_system_error_response( $message = '' ) {
+		$message = $message
+			? $message
+			: __( 'An unexpected problem has occurred.', 'snow-monkey-forms' ) .
+				' ' .
+				__( 'Please try again later or contact your administrator by other means.', 'snow-monkey-forms' );
+
+		$message = sprintf(
+			'<div class="smf-system-error-content">%1$s</div>',
+			wp_kses_post( $message )
+		);
+
+		return $this->_rest_response(
+			wp_json_encode(
+				array(
+					'method'   => 'systemerror',
+					'data'     => array(),
+					'controls' => array(),
+					'action'   => '',
+					'message'  => apply_filters( 'the_content', $message ),
+				),
+				JSON_UNESCAPED_UNICODE
+			)
+		);
+	}
+
+	/**
+	 * Return sanitized form meta.
+	 *
+	 * @param array $meta Form meta.
+	 * @return array|false
+	 */
+	protected function _sanitize_posted_form_meta( $meta ) {
+		$form_id = isset( $meta['formid'] )
+			? Helper::sanitize_form_id( $meta['formid'] )
+			: false;
+
+		if ( false === $form_id ) {
+			return false;
+		}
+
+		$source_post_id = isset( $meta['source_post_id'] )
+			? $this->_sanitize_source_post_id( $meta['source_post_id'] )
+			: false;
+
+		if ( false === $source_post_id ) {
+			return false;
+		}
+
+		$form_hash = isset( $meta['form_hash'] ) && is_scalar( $meta['form_hash'] )
+			? sanitize_text_field( (string) $meta['form_hash'] )
+			: '';
+
+		if ( ! $this->_verify_form_meta( $form_id, $form_hash, $source_post_id ) ) {
+			return false;
+		}
+
+		$meta['formid']         = $form_id;
+		$meta['source_post_id'] = $source_post_id;
+		$meta['form_hash']      = $form_hash;
+
+		return $meta;
+	}
+
+	/**
+	 * Sanitize source post ID.
+	 *
+	 * @param mixed $source_post_id Source post ID.
+	 * @return int|false
+	 */
+	protected function _sanitize_source_post_id( $source_post_id ) {
+		if ( ! is_scalar( $source_post_id ) ) {
+			return false;
+		}
+
+		$source_post_id = (string) $source_post_id;
+		if ( '' === $source_post_id || ! preg_match( '/^[0-9]+$/', $source_post_id ) ) {
+			return false;
+		}
+
+		return absint( $source_post_id );
+	}
+
+	/**
+	 * Verify form meta.
+	 *
+	 * @param int    $form_id          Form ID.
+	 * @param string $form_hash        Form hash.
+	 * @param int    $source_post_id   Source post ID.
+	 * @return boolean
+	 */
+	protected function _verify_form_meta( $form_id, $form_hash, $source_post_id ) {
+		return $form_hash &&
+			hash_equals( Meta::generate_form_hash( $form_id, $source_post_id ), $form_hash );
+	}
+
+	/**
 	 * Register endpoint. This endpoint returns the form view.
 	 */
 	public function _endpoint() {
@@ -182,7 +311,7 @@ class Bootstrap {
 				'methods'             => 'GET',
 				'callback'            => function () {
 					if ( ! Csrf::validate_referer() ) {
-						return new WP_REST_Response( 'Invalid access.', 403 );
+						return $this->_rest_response( 'Invalid access.', 403 );
 					}
 
 					// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -193,18 +322,38 @@ class Bootstrap {
 
 					$form_id = Helper::sanitize_form_id( $form_id );
 					if ( false === $form_id ) {
-						return new WP_REST_Response( 'Bad request.', 400 );
+						return $this->_rest_system_error_response( __( 'Invalid access.', 'snow-monkey-forms' ) );
+					}
+
+					// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+					$form_hash = isset( $_SERVER['HTTP_X_SMF_FORM_HASH'] )
+						? sanitize_text_field( wp_unslash( $_SERVER['HTTP_X_SMF_FORM_HASH'] ) )
+						: '';
+
+					$source_post_id = isset( $_SERVER['HTTP_X_SMF_SOURCE_POST_ID'] )
+						? $this->_sanitize_source_post_id( wp_unslash( $_SERVER['HTTP_X_SMF_SOURCE_POST_ID'] ) )
+						: false;
+
+					// phpcs:enable
+
+					if (
+						false === $source_post_id ||
+						! $this->_verify_form_meta( $form_id, $form_hash, $source_post_id )
+					) {
+						return $this->_rest_system_error_response( __( 'Invalid access.', 'snow-monkey-forms' ) );
 					}
 
 					$route = new Rest\Route\View(
 						array(
 							Meta::get_key() => array(
-								'method' => 'input',
-								'formid' => $form_id,
+								'method'         => 'input',
+								'formid'         => $form_id,
+								'form_hash'      => $form_hash,
+								'source_post_id' => $source_post_id,
 							),
 						)
 					);
-					return $route->send();
+					return $this->_rest_response( $route->send() );
 				},
 				'permission_callback' => function () {
 					return true;
@@ -219,28 +368,30 @@ class Bootstrap {
 				'methods'             => 'POST',
 				'callback'            => function () {
 					if ( ! Csrf::validate_referer() ) {
-						return new WP_REST_Response( 'Invalid access.', 403 );
+						return $this->_rest_response( 'Invalid access.', 403 );
 					}
 
 					$data = filter_input_array( INPUT_POST );
 					$data = $data ? $data : array();
 
-					if ( isset( $data[ Meta::get_key() ] ) ) {
-						$raw_form_id = isset( $data[ Meta::get_key() ]['formid'] )
-							? $data[ Meta::get_key() ]['formid']
-							: '';
-
-						$raw_form_id = Helper::sanitize_form_id( $raw_form_id );
-						if ( false === $raw_form_id ) {
-							return new WP_REST_Response( 'Bad request.', 400 );
-						}
-
-						$data[ Meta::get_key() ]['formid'] = $raw_form_id;
-						$data[ Meta::get_key() ]['sender'] = wp_get_current_user();
+					if (
+						! isset( $data[ Meta::get_key() ] ) ||
+						! is_array( $data[ Meta::get_key() ] )
+					) {
+						return $this->_rest_system_error_response( __( 'Invalid access.', 'snow-monkey-forms' ) );
 					}
 
+					$form_meta = $this->_sanitize_posted_form_meta( $data[ Meta::get_key() ] );
+					if ( false === $form_meta ) {
+						return $this->_rest_system_error_response( __( 'Invalid access.', 'snow-monkey-forms' ) );
+					}
+
+					$form_meta['sender']     = wp_get_current_user();
+					$data[ Meta::get_key() ] = $form_meta;
+
 					$route = new Rest\Route\View( $data );
-					return $route->send();
+
+					return $this->_rest_response( $route->send() );
 				},
 				'permission_callback' => function () {
 					return true;

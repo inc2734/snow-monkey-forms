@@ -116,8 +116,62 @@ class Csrf {
 		// phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$referer = isset( $_SERVER['HTTP_REFERER'] ) ? wp_unslash( $_SERVER['HTTP_REFERER'] ) : false;
 		// phpcs:enable
-		$homeurl = untrailingslashit( home_url( '/' ) );
 
-		return 0 === strpos( $referer, $homeurl );
+		if ( ! $referer || ! is_string( $referer ) ) {
+			return false;
+		}
+
+		$referer_parts = wp_parse_url( $referer );
+		$home_parts    = wp_parse_url( home_url( '/' ) );
+
+		if (
+			empty( $referer_parts['scheme'] ) ||
+			empty( $referer_parts['host'] ) ||
+			empty( $home_parts['scheme'] ) ||
+			empty( $home_parts['host'] )
+		) {
+			return false;
+		}
+
+		$referer_scheme = strtolower( $referer_parts['scheme'] );
+		$home_scheme    = strtolower( $home_parts['scheme'] );
+		$referer_host   = strtolower( $referer_parts['host'] );
+		$home_host      = strtolower( $home_parts['host'] );
+
+		if ( $referer_scheme !== $home_scheme || $referer_host !== $home_host ) {
+			return false;
+		}
+
+		$referer_port = isset( $referer_parts['port'] )
+			? absint( $referer_parts['port'] )
+			: static::_get_default_port( $referer_scheme );
+
+		$home_port = isset( $home_parts['port'] )
+			? absint( $home_parts['port'] )
+			: static::_get_default_port( $home_scheme );
+
+		if ( $referer_port !== $home_port ) {
+			return false;
+		}
+
+		$referer_path = isset( $referer_parts['path'] )
+			? trailingslashit( $referer_parts['path'] )
+			: '/';
+
+		$home_path = isset( $home_parts['path'] )
+			? trailingslashit( $home_parts['path'] )
+			: '/';
+
+		return 0 === strpos( $referer_path, $home_path );
+	}
+
+	/**
+	 * Return default port.
+	 *
+	 * @param string $scheme URL scheme.
+	 * @return int
+	 */
+	protected static function _get_default_port( $scheme ) {
+		return 'https' === $scheme ? 443 : 80;
 	}
 }

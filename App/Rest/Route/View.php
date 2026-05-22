@@ -47,31 +47,81 @@ class View {
 			$data[ Meta::get_key() ] = Meta::init( $data[ Meta::get_key() ] );
 		}
 
-		$this->_setup_source_post();
-
-		$this->setting   = DataStore::get( Meta::get_formid() );
+		$this->setting   = $this->_with_source_post_context(
+			function () {
+				return DataStore::get( Meta::get_formid() );
+			}
+		);
 		$this->responser = new Responser( $data );
 		$this->validator = new Validator( $this->responser, $this->setting );
 	}
 
 	/**
-	 * Setup source post context.
+	 * Run callback with source post context.
+	 *
+	 * @param callable $callback Callback.
+	 * @return mixed
 	 */
-	protected function _setup_source_post() {
-		$source_post_id = Meta::get_source_post_id();
-		if ( ! $source_post_id ) {
-			return;
-		}
-
-		$source_post = get_post( $source_post_id );
+	protected function _with_source_post_context( $callback ) {
+		$source_post = $this->_get_source_post();
 		if ( ! $source_post ) {
-			return;
+			return $callback();
 		}
 
 		global $post;
 
+		$original_post = isset( $post )
+			? array(
+				'exists' => true,
+				'value'  => $post,
+			)
+			: array(
+				'exists' => false,
+				'value'  => null,
+			);
+
+		// Source post context is restored immediately after creating the form setting.
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		$post = $source_post;
-		setup_postdata( $post );
+
+		try {
+			return $callback();
+		} finally {
+			if ( $original_post['exists'] ) {
+				// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+				$post = $original_post['value'];
+			} else {
+				// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+				unset( $GLOBALS['post'] );
+			}
+		}
+	}
+
+	/**
+	 * Return source post.
+	 *
+	 * @return \WP_Post|false
+	 */
+	protected function _get_source_post() {
+		if ( ! Meta::verify_form_hash() ) {
+			return false;
+		}
+
+		$source_post_id = Meta::get_source_post_id();
+		if ( ! $source_post_id ) {
+			return false;
+		}
+
+		$source_post = get_post( $source_post_id );
+		if (
+			! $source_post ||
+			! is_post_publicly_viewable( $source_post ) ||
+			post_password_required( $source_post )
+		) {
+			return false;
+		}
+
+		return $source_post;
 	}
 
 	/**

@@ -267,12 +267,16 @@ async function fetchView( form, options ) {
 }
 
 export function init( form ) {
+	const getMetaValue = ( name ) =>
+		form.querySelector( `[name="snow-monkey-forms-meta[${ name }]"]` )
+			?.value ?? false;
+
 	fetchView( form, {
 		method: 'GET',
 		headers: {
-			'x-smf-formid':
-				form.querySelector( '[name="snow-monkey-forms-meta[formid]"]' )
-					?.value ?? false,
+			'x-smf-formid': getMetaValue( 'formid' ),
+			'x-smf-source-post-id': getMetaValue( 'source_post_id' ),
+			'x-smf-form-hash': getMetaValue( 'form_hash' ),
 		},
 	} );
 }
