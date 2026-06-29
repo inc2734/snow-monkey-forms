@@ -2,7 +2,7 @@
 Contributors: inc2734, mimitips, imawc, sonic, rocketmartue, hiroshisato
 Donate link: https://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: gutenberg, block, blocks, editor, gutenberg blocks, page builder, form, forms, mail, email, contact
-Stable tag: 12.1.3
+Stable tag: 12.1.4
 Requires at least: 6.8
 Tested up to: 7.0
 Requires PHP: 7.4
