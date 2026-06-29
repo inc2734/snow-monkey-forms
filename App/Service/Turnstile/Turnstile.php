@@ -114,49 +114,161 @@ class Turnstile {
 		wp_add_inline_script(
 			'cloudflare-turnstile',
 			'function onloadTurnstileCallback() {
-				const forms = document.querySelectorAll( ".snow-monkey-form" );
-					[].slice.call( forms ).forEach( ( form ) => {
-						const container = form.querySelector( ".snow-monkey-forms-turnstile" );
-						const tokenField = form.querySelector( "input[name=\"cf-turnstile-response\"]" );
-						const toggleSubmittersDisabled = ( disabled ) => {
-							const actionArea = form.querySelector( ".smf-action" );
-							if ( ! actionArea ) {
-								return;
-							}
+				const initializedForms = new WeakSet();
+				const widgetIds = new WeakMap();
+				const sitekey = "' . esc_js( $this->site_key ) . '";
+				const theme = "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ) ) . '";
+				const size = "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ) ) . '";
 
-							const submitters = actionArea.querySelectorAll( \'[type="submit"]\' );
-							submitters.forEach( ( submitter ) => {
-								if ( disabled ) {
-									submitter.setAttribute( "disabled", "disabled" );
-								} else {
-									submitter.removeAttribute( "disabled" );
-								}
-							} );
-						};
+				const getContainer = ( form ) => form.querySelector( ".snow-monkey-forms-turnstile" );
+				const getTokenField = ( form ) => form.querySelector( "input[name=\"cf-turnstile-response\"]" );
+
+				const toggleSubmittersDisabled = ( form, disabled ) => {
+					const actionArea = form.querySelector( ".smf-action" );
+					if ( ! actionArea ) {
+						return;
+					}
+
+					const submitters = actionArea.querySelectorAll( \'[type="submit"]\' );
+					submitters.forEach( ( submitter ) => {
+						if ( disabled ) {
+							submitter.setAttribute( "disabled", "disabled" );
+						} else {
+							submitter.removeAttribute( "disabled" );
+						}
+					} );
+				};
+
+				const render = ( form ) => {
+					const container = getContainer( form );
+					const tokenField = getTokenField( form );
 
 					if ( ! container || ! tokenField ) {
 						return;
 					}
 
-						const turnstileWidgetId = turnstile.render( container, {
-							sitekey: "' . esc_js( $this->site_key ) . '",
-							theme: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/theme', 'auto' ) ) . '",
-							size: "' . esc_js( apply_filters( 'snow_monkey_forms/turnstile/size', 'normal' ) ) . '",
-							callback: function() {
-								toggleSubmittersDisabled( false );
-							},
-						} );
+					if ( container.querySelector( "iframe" ) ) {
+						return;
+					}
 
-						form.addEventListener( "smf.input", () => {
-							toggleSubmittersDisabled( true );
-						} );
-						form.addEventListener( "smf.submit", () => {
-							toggleSubmittersDisabled( true );
-							turnstile.reset( turnstileWidgetId );
-						} );
-					form.addEventListener( "smf.systemerror", () => {
-						turnstile.reset( turnstileWidgetId );
+					const oldWidgetId = widgetIds.get( container );
+					if ( oldWidgetId ) {
+						toggleSubmittersDisabled( form, true );
+
+						if ( "function" !== typeof turnstile.remove ) {
+							return;
+						}
+
+						try {
+							turnstile.remove( oldWidgetId );
+						} catch ( e ) {
+							return;
+						}
+						widgetIds.delete( container );
+					}
+
+					toggleSubmittersDisabled( form, true );
+
+					const widgetId = turnstile.render( container, {
+						sitekey,
+						theme,
+						size,
+						callback: function() {
+							toggleSubmittersDisabled( form, false );
+						},
+						"expired-callback": function() {
+							toggleSubmittersDisabled( form, true );
+						},
+						"error-callback": function() {
+							toggleSubmittersDisabled( form, true );
+						},
 					} );
+					widgetIds.set( container, widgetId );
+				};
+
+				const reset = ( form ) => {
+					const container = getContainer( form );
+					if ( ! container ) {
+						return;
+					}
+
+					const widgetId = widgetIds.get( container );
+					if ( widgetId && container.querySelector( "iframe" ) ) {
+						toggleSubmittersDisabled( form, true );
+						try {
+							turnstile.reset( widgetId );
+						} catch ( e ) {
+							render( form );
+						}
+						return;
+					}
+
+					render( form );
+				};
+
+				const initialize = ( form ) => {
+					render( form );
+
+					if ( initializedForms.has( form ) ) {
+						return;
+					}
+					initializedForms.add( form );
+
+					form.addEventListener( "smf.input", () => {
+						reset( form );
+					} );
+					form.addEventListener( "smf.confirm", () => {
+						reset( form );
+					} );
+					form.addEventListener( "smf.back", () => {
+						reset( form );
+					} );
+					form.addEventListener( "smf.invalid", () => {
+						reset( form );
+					} );
+					form.addEventListener( "smf.systemerror", () => {
+						reset( form );
+					} );
+				};
+
+				const initializeElement = ( element ) => {
+					if ( ! element || ! element.matches ) {
+						return;
+					}
+
+					if ( element.matches( ".snow-monkey-form" ) ) {
+						initialize( element );
+						return;
+					}
+
+					if ( element.closest( ".snow-monkey-forms-turnstile" ) ) {
+						return;
+					}
+
+					const form = element.closest( ".snow-monkey-form" );
+					if ( form ) {
+						initialize( form );
+					}
+
+					const forms = element.querySelectorAll( ".snow-monkey-form" );
+					[].slice.call( forms ).forEach( initialize );
+				};
+
+				const initializeForms = () => {
+					const forms = document.querySelectorAll( ".snow-monkey-form" );
+					[].slice.call( forms ).forEach( initialize );
+				};
+
+				initializeForms();
+
+				const observer = new MutationObserver( ( mutations ) => {
+					mutations.forEach( ( mutation ) => {
+						[].slice.call( mutation.addedNodes ).forEach( initializeElement );
+					} );
+				} );
+				observer.observe( document.documentElement, {
+					childList: true,
+					subtree: true,
 				} );
 			}',
 			'before'
