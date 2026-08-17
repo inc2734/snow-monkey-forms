@@ -86,7 +86,6 @@ export default function () {
 			initialOpen={ false }
 		>
 			<TextControl
-				__next40pxDefaultSize
 				__nextHasNoMarginBottom
 				label={ __( 'Target email', 'snow-monkey-forms' ) }
 				help={ __(
@@ -121,7 +120,6 @@ export default function () {
 					<div style={ { flex: '1 1 auto' } }>
 						<TextControl
 							id="smf-blocked-sender-source-input"
-							__next40pxDefaultSize
 							__nextHasNoMarginBottom
 							value={ blockedSenderSource }
 							onChange={ setblockedSenderSource }

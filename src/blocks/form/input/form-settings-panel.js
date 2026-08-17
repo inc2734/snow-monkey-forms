@@ -37,7 +37,6 @@ export default function ( { attributes, onChangeFormStyle } ) {
 			/>
 
 			<SelectControl
-				__next40pxDefaultSize
 				__nextHasNoMarginBottom
 				label={ __( 'Form style', 'snow-monkey-forms' ) }
 				value={ formStyle }
@@ -65,7 +64,6 @@ export default function ( { attributes, onChangeFormStyle } ) {
 			{ meta.use_confirm_page && (
 				<>
 					<TextControl
-						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __(
 							'Confirm button label',
@@ -78,7 +76,6 @@ export default function ( { attributes, onChangeFormStyle } ) {
 					/>
 
 					<TextControl
-						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'Back button label', 'snow-monkey-forms' ) }
 						value={ meta.back_button_label }
@@ -90,7 +87,6 @@ export default function ( { attributes, onChangeFormStyle } ) {
 			) }
 
 			<TextControl
-				__next40pxDefaultSize
 				__nextHasNoMarginBottom
 				label={ __( 'Send button label', 'snow-monkey-forms' ) }
 				value={ meta.send_button_label }

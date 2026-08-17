@@ -18,7 +18,6 @@ export default function () {
 	return (
 		<PanelBody title={ __( 'Administrator email', 'snow-monkey-forms' ) }>
 			<TextControl
-				__next40pxDefaultSize
 				__nextHasNoMarginBottom
 				label={ __( 'To (Email address)', 'snow-monkey-forms' ) }
 				value={ meta.administrator_email_to }
@@ -31,7 +30,6 @@ export default function () {
 			/>
 
 			<TextControl
-				__next40pxDefaultSize
 				__nextHasNoMarginBottom
 				label={ __( 'Subject', 'snow-monkey-forms' ) }
 				value={ meta.administrator_email_subject }
@@ -63,7 +61,6 @@ export default function () {
 			/>
 
 			<TextControl
-				__next40pxDefaultSize
 				__nextHasNoMarginBottom
 				label={ __( 'Reply-To (Email address)', 'snow-monkey-forms' ) }
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
@@ -74,7 +71,6 @@ export default function () {
 			/>
 
 			<TextControl
-				__next40pxDefaultSize
 				__nextHasNoMarginBottom
 				label={ __( 'From (Email address)', 'snow-monkey-forms' ) }
 				help={ __( 'Optional', 'snow-monkey-forms' ) }
@@ -85,7 +81,6 @@ export default function () {
 			/>
 
 			<TextControl
-				__next40pxDefaultSize
 				__nextHasNoMarginBottom
 				label={ __( 'Sender', 'snow-monkey-forms' ) }
 				help={ __( 'Optional', 'snow-monkey-forms' ) }

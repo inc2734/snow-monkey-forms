@@ -90,7 +90,6 @@ export default function ( {
 
 					{ !! isDisplayLabelColumn && (
 						<TextControl
-							__next40pxDefaultSize
 							__nextHasNoMarginBottom
 							label={ __( 'label for', 'snow-monkey-forms' ) }
 							help={ __(

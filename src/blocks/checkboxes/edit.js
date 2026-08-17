@@ -178,7 +178,6 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<TextControl
-						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'Delimiter', 'snow-monkey-forms' ) }
 						help={ __(
@@ -196,7 +195,6 @@ const Edit = ( { attributes, setAttributes } ) => {
 					title={ __( 'Block settings', 'snow-monkey-forms' ) }
 				>
 					<SelectControl
-						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'Direction', 'snow-monkey-forms' ) }
 						value={ direction }
@@ -220,7 +218,6 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<TextControl
-						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'Description', 'snow-monkey-forms' ) }
 						value={ description }

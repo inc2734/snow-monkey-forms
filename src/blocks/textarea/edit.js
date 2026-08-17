@@ -69,7 +69,6 @@ const Edit = ( { attributes, setAttributes } ) => {
 					/>
 
 					<TextControl
-						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'rows', 'snow-monkey-forms' ) }
 						help={ __( 'Number of lines', 'snow-monkey-forms' ) }
@@ -136,7 +135,6 @@ const Edit = ( { attributes, setAttributes } ) => {
 					title={ __( 'Block settings', 'snow-monkey-forms' ) }
 				>
 					<TextControl
-						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={ __( 'Description', 'snow-monkey-forms' ) }
 						value={ description }
