@@ -265,7 +265,12 @@ class Setting {
 	 * @return array
 	 */
 	public function get_file_names() {
-		$blocks     = parse_blocks( $this->get( 'input_content' ) );
+		$input_content = $this->get( 'input_content' );
+		if ( ! is_string( $input_content ) || '' === $input_content ) {
+			return array();
+		}
+
+		$blocks     = parse_blocks( $input_content );
 		$blocks     = Helper::flatten_blocks( $blocks );
 		$file_names = array();
 
