@@ -23,7 +23,7 @@ const parseBlockedSenders = ( value ) => {
 			.filter( ( item ) => 'string' === typeof item )
 			.map( ( item ) => item.trim() )
 			.filter( Boolean );
-	} catch ( error ) {
+	} catch {
 		return [];
 	}
 };
