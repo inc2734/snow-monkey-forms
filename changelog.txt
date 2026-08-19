@@ -1,5 +1,9 @@
 *** Changelog ***
 
+= 13.0.0 =
+* WordPress 7.1 compatible.
+* Requires WordPress 7.1 or higher.
+
 = 12.1.4 =
 * Fixed an issue where the Cloudflare Turnstile widget would sometimes fail to render or the submit button would remain disabled.
 

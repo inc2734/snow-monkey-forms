@@ -1,5 +1,5 @@
 {
-	"core": "WordPress/wordpress-develop/src#7.1",
+	"core": null,
 	"port": 8889,
 	"testsEnvironment": false,
 	"plugins": [ "." ],
