@@ -8,6 +8,7 @@ dist/
 snow-monkey-forms/
 snow-monkey-forms.zip
 .wp-env.override.json
+.wp-env.tests.override.json
 /.export/*
 error_log
 .phpunit.result.cache

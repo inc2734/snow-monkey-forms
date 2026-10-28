@@ -163,10 +163,10 @@ async function fetchView( form, options ) {
 				'confirm' === method || 'complete' === method
 					? progressTracker.querySelector(
 							`.smf-progress-tracker__item--${ method }`
-					  )
+						)
 					: progressTracker.querySelector(
 							`.smf-progress-tracker__item--input`
-					  );
+						);
 			targetItem.setAttribute( 'aria-current', 'true' );
 		}
 

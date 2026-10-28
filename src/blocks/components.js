@@ -165,7 +165,7 @@ export const AutocompleteControl = ( { value, onChange, options = [] } ) => {
 						value: option,
 						label: option,
 					};
-			  } )
+				} )
 			: options;
 
 	return (
