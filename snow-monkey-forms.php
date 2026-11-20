@@ -120,11 +120,14 @@ class Bootstrap {
 			)
 		);
 
+		// Static URLs may return browser cache when browsing back.
+		$view_json_url = add_query_arg( 'ver', time(), rest_url( '/snow-monkey-form/v1/view' ) );
+
 		wp_add_inline_script(
 			'snow-monkey-forms',
 			'var snowmonkeyforms = ' . wp_json_encode(
 				array(
-					'view_json_url' => rest_url( '/snow-monkey-form/v1/view?ver=' . time() ), // Static URLs may return browser cache when browsing back.
+					'view_json_url' => $view_json_url,
 					'nonce'         => wp_create_nonce( 'wp_rest' ),
 				)
 			),
